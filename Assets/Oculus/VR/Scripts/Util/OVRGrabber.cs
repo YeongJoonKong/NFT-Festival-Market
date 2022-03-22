@@ -21,7 +21,6 @@ public class OVRGrabber : MonoBehaviour
     // Grip trigger thresholds for picking up objects, with some hysteresis.
     public float grabBegin = 0.55f;
     public float grabEnd = 0.35f;
-    private GameObject Door;
 
     // Demonstrates parenting the held object to the hand's transform when grabbed.
     // When false, the grabbed object is moved every FixedUpdate using MovePosition.
@@ -222,7 +221,6 @@ public class OVRGrabber : MonoBehaviour
             GrabEnd();
         }
     }
-
     protected virtual void GrabBegin()
     {
         float closestMagSq = float.MaxValue;
@@ -245,7 +243,7 @@ public class OVRGrabber : MonoBehaviour
                 float grabbableMagSq = (m_gripTransform.position - closestPointOnBounds).sqrMagnitude;
                 if(grabbable.CompareTag("Door"))
                 {
-                    //grabbable.gameObject.GetComponentInChildren<>
+                    //door_ovr = grabbable.gameObject.GetComponent<Door_OVR>();
                 }
                 else if (grabbableMagSq < closestMagSq)
                 {
