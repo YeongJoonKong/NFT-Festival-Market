@@ -18,6 +18,7 @@ using UnityEngine;
 [RequireComponent(typeof(Rigidbody))]
 public class OVRGrabber : MonoBehaviour
 {
+    private Door_OVR doorOvr;
     // Grip trigger thresholds for picking up objects, with some hysteresis.
     public float grabBegin = 0.55f;
     public float grabEnd = 0.35f;
@@ -221,11 +222,13 @@ public class OVRGrabber : MonoBehaviour
             GrabEnd();
         }
     }
+    public bool dooropen;
     protected virtual void GrabBegin()
     {
         float closestMagSq = float.MaxValue;
         OVRGrabbable closestGrabbable = null;
         Collider closestGrabbableCollider = null;
+        dooropen = false;
 
         // Iterate grab candidates and find the closest grabbable candidate
         foreach (OVRGrabbable grabbable in m_grabCandidates.Keys)
@@ -243,7 +246,8 @@ public class OVRGrabber : MonoBehaviour
                 float grabbableMagSq = (m_gripTransform.position - closestPointOnBounds).sqrMagnitude;
                 if(grabbable.CompareTag("Door"))
                 {
-                    //door_ovr = grabbable.gameObject.GetComponent<Door_OVR>();
+                    doorOvr = grabbable.gameObject.GetComponent<Door_OVR>();
+                    doorOvr.PlayDoorAnimation();
                 }
                 else if (grabbableMagSq < closestMagSq)
                 {
