@@ -8,6 +8,7 @@ public class SnaptoGround : MonoBehaviour
     [MenuItem("Custom/Snap To Ground %g")]
     public static void Ground()
     {
+    float randomrange = Random.Range(0, 180);
         foreach (var transform in Selection.transforms)
         {
             RaycastHit hitinfo;
@@ -18,6 +19,7 @@ public class SnaptoGround : MonoBehaviour
                     continue;
                 transform.position = hit.point;
                 transform.up = hit.normal;
+                transform.localEulerAngles = new Vector3(transform.localEulerAngles.x, randomrange, transform.localEulerAngles.z);
                 break;
             }
         }
