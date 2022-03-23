@@ -146,6 +146,7 @@ public class OVRGrabbable : MonoBehaviour
 
     protected virtual void Start()
     {
+        if(!this.CompareTag("Door"))
         m_grabbedKinematic = GetComponent<Rigidbody>().isKinematic;
     }
 
