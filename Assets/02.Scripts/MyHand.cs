@@ -13,6 +13,7 @@ public class MyHand : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        
         //lr = GetComponent<LineRenderer>();
     }
 
@@ -63,7 +64,9 @@ public class MyHand : MonoBehaviour
                 // 아바타라면 내아바타 배열에서 이름같은놈 켜
                 else if (avatars[i].tag == avatarName)
                 {
+                   
                     avatars[i].SetActive(true);
+                    PlayerPrefs.SetString("Avatar", avatars[i].tag);
                 }
                 // 그리고 나머지 다 꺼
                 else
