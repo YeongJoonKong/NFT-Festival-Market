@@ -60,11 +60,10 @@ public class testmove : MonoBehaviour
             {
                 this.avatars[i].SetActive(true);
             }
-            else
-            {
-                this.avatars[i].SetActive(false);
-            }
+           
         }
+
+        
 
 
     }
