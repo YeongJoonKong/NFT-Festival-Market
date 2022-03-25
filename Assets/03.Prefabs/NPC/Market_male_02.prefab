@@ -890,6 +890,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8965311047863472039}
   - component: {fileID: 9022910451464388189}
+  - component: {fileID: -806727354493728103}
   m_Layer: 0
   m_Name: Market_male_02
   m_TagString: Untagged
@@ -929,7 +930,7 @@ Animator:
   m_GameObject: {fileID: 8962536051114916911}
   m_Enabled: 1
   m_Avatar: {fileID: 9000000, guid: 0125309e38bea8a48bc578cf8f220634, type: 3}
-  m_Controller: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 57dd77d2840d4914ba476a3745117c08, type: 2}
   m_CullingMode: 1
   m_UpdateMode: 0
   m_ApplyRootMotion: 1
@@ -939,6 +940,21 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &-806727354493728103
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8962536051114916911}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbbda3baa4000e74e8d467aeaff186de, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Idledistance: 10
+  GreetingDistance: 9
+  TalkDistance: 3
 --- !u!1 &8962536492039531019
 GameObject:
   m_ObjectHideFlags: 0
