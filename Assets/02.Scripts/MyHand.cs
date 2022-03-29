@@ -20,22 +20,24 @@ public class MyHand : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if(OVRInput.Get(OVRInput.Button.One,OVRInput.Controller.RTouch))
         //if (ControllerManager.instance.GetOculus(ControllerManager.VRKey.Teleport, controller))
-        if (Input.GetKey(KeyCode.T))
+        //if (Input.GetKey(KeyCode.T))
         {
 
             lr.SetPosition(0, hand.position);
             Ray ray = new Ray(hand.position, hand.forward);
+            int layer = 1 << LayerMask.NameToLayer("Hand");
             RaycastHit hitinfo;
             //floor = null;
-            if (Physics.Raycast(ray, out hitinfo, float.MaxValue))
+            if (Physics.Raycast(ray, out hitinfo, float.MaxValue,~layer))
             {
                 // 부딪힌 오브젝트 태그 string으로 담음
                 avatarName = hitinfo.transform.tag;
 
                 lr.enabled = true;
 
-                bool isHit = Physics.Raycast(ray, out hitinfo);
+                bool isHit = Physics.Raycast(ray, out hitinfo,float.MaxValue, ~layer);
                 if (isHit)
                 {
                     lr.SetPosition(1, hitinfo.point);
@@ -48,7 +50,7 @@ public class MyHand : MonoBehaviour
             }
         }
         //else if (ControllerManager.instance.GetOculusUp(ControllerManager.VRKey.Teleport, controller))
-        else if (Input.GetKeyUp(KeyCode.T))
+        else if (OVRInput.GetUp(OVRInput.Button.One,OVRInput.Controller.RTouch))
         {
             lr.enabled = false;
 
@@ -75,10 +77,6 @@ public class MyHand : MonoBehaviour
 
                 }
             }
-
-
-
-
         }
     }
 }
