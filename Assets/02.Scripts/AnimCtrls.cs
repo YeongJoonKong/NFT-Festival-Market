@@ -6,13 +6,13 @@ public class AnimCtrls : MonoBehaviour
 {
     // Start is called before the first frame update
     [Header("Interaction")]
-    public float Idledistance;
-    public float GreetingDistance;
-    public float TalkDistance;
+    public float Idledistance = 10f;
+    public float GreetingDistance = 9f;
+    public float TalkDistance = 3f;
     
-    GameObject player;
-    Transform tr;
-    Animator anim;
+    private GameObject player;
+    private Transform tr;
+    private Animator anim;
     float dist;
     Vector3 dir;
     enum State
@@ -26,7 +26,7 @@ public class AnimCtrls : MonoBehaviour
     {
         anim = GetComponent<Animator>();
         tr = GetComponent<Transform>();
-        player = GameObject.Find("Player");
+        player = GameObject.FindWithTag("Player");
 
         state = State.Idle;
     }
@@ -66,7 +66,7 @@ public class AnimCtrls : MonoBehaviour
 
     void UpdateWaving()
     {
-        tr.LookAt(new Vector3(player.transform.position.x, 0, player.transform.position.z));
+        tr.LookAt(new Vector3(player.transform.position.x, this.transform.position.y, player.transform.position.z));
 
         if(dist < TalkDistance)
         {
@@ -82,7 +82,7 @@ public class AnimCtrls : MonoBehaviour
     }
     void UpdateTalk()
     {  
-        tr.LookAt(new Vector3(player.transform.position.x, 0, player.transform.position.z));
+        tr.LookAt(new Vector3(player.transform.position.x, this.transform.position.y, player.transform.position.z));;
 
         if(dist > TalkDistance + 1f)
         {
