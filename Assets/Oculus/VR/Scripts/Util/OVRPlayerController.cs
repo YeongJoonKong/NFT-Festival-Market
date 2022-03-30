@@ -161,15 +161,6 @@ public class OVRPlayerController : MonoBehaviour
 
 	void Start()
 	{
-		// Add eye-depth as a camera offset from the player controller
-		var p = CameraRig.transform.localPosition;
-		
-		p.z = OVRManager.profile.eyeDepth;
-		CameraRig.transform.localPosition = p;
-	}
-
-	void Awake()
-	{
 		Controller = gameObject.GetComponent<CharacterController>();
 
 		if (Controller == null)
@@ -187,6 +178,15 @@ public class OVRPlayerController : MonoBehaviour
 			CameraRig = CameraRigs[0];
 
 		InitialYRotation = transform.rotation.eulerAngles.y;
+		// Add eye-depth as a camera offset from the player controller
+		var p = CameraRig.transform.localPosition;
+		
+		p.z = OVRManager.profile.eyeDepth;
+		CameraRig.transform.localPosition = p;
+	}
+
+	void Awake()
+	{
 	}
 
 	void OnEnable()

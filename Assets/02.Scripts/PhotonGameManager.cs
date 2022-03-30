@@ -14,15 +14,16 @@ public class PhotonGameManager : MonoBehaviourPunCallbacks
 
     [System.NonSerialized]
     public PhotonView pv;
+    public GameObject CameaRig;
 
     private void Awake()
     {
         //instance = this;
         pv = GetComponent<PhotonView>();
 
-
         Vector3 pos = Vector3.zero + Vector3.up * 1.5f; //
         PhotonNetwork.Instantiate("Player_OVR", pos, Quaternion.identity, 0);
+        
     }
     // Start is called before the first frame update
     void Start()

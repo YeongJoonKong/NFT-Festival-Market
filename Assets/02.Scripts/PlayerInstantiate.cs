@@ -17,16 +17,17 @@ public class PlayerInstantiate : MonoBehaviour
     // Start is called before the first frame update
     private void Awake()
     {
-
-    }
-    void Start()
-    {
+           
         pv = GetComponent<PhotonView>();
         if (pv.IsMine)
         {
             CameaRig = GameObject.Find("OVRCameraRig");
             CameaRig.transform.parent = transform;
         }
+        
+    }
+    void Start()
+    {
 
         avatar = PlayerPrefs.GetString("Avatar");
 
