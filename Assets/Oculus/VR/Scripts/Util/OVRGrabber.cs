@@ -19,6 +19,7 @@ using UnityEngine;
 public class OVRGrabber : MonoBehaviour
 {
     private Door_OVR doorOvr;
+    private PrefabMaker prefabmaker = new PrefabMaker();
     // Grip trigger thresholds for picking up objects, with some hysteresis.
     public float grabBegin = 0.55f;
     public float grabEnd = 0.35f;
@@ -133,6 +134,7 @@ public class OVRGrabber : MonoBehaviour
     // visible artifacts.
     virtual public void Update()
     {
+        Nftcreate();
         if (m_operatingWithoutOVRCameraRig)
         {
             OnUpdatedAnchors();
@@ -207,6 +209,7 @@ public class OVRGrabber : MonoBehaviour
         }
         else
         {
+            NFTGrab = false;
             m_grabCandidates.Remove(grabbable);
         }
     }
@@ -222,13 +225,13 @@ public class OVRGrabber : MonoBehaviour
             GrabEnd();
         }
     }
-    public bool dooropen;
+ bool NFTGrab = false;
+ OVRGrabbable nftName;
     protected virtual void GrabBegin()
     {
         float closestMagSq = float.MaxValue;
         OVRGrabbable closestGrabbable = null;
         Collider closestGrabbableCollider = null;
-        dooropen = false;
 
         // Iterate grab candidates and find the closest grabbable candidate
         foreach (OVRGrabbable grabbable in m_grabCandidates.Keys)
@@ -249,6 +252,15 @@ public class OVRGrabber : MonoBehaviour
                     doorOvr = grabbable.gameObject.GetComponent<Door_OVR>();
                     doorOvr.PlayDoorAnimation();
                 }
+                else if(grabbable.CompareTag("NFT"))
+                {
+                    closestMagSq = grabbableMagSq;
+                    closestGrabbable = grabbable;
+                    closestGrabbableCollider = grabbableCollider;
+                    NFTGrab = true;
+                    nftName = grabbable;
+                    //display UI
+                }
                 else if (grabbableMagSq < closestMagSq)
                 {
                     closestMagSq = grabbableMagSq;
@@ -256,6 +268,8 @@ public class OVRGrabber : MonoBehaviour
                     closestGrabbableCollider = grabbableCollider;
                 }
             }
+
+
         }
 
         // Disable grab volumes to prevent overlaps
@@ -321,6 +335,13 @@ public class OVRGrabber : MonoBehaviour
             }
         }
     }
+    void Nftcreate()
+    {
+        if (OVRInput.GetDown(OVRInput.Button.Three) && NFTGrab)
+        {
+            prefabmaker.cretePrefab(nftName.gameObject);
+        }
+    }
 
     protected virtual void MoveGrabbedObject(Vector3 pos, Quaternion rot, bool forceTeleport = false)
     {
@@ -328,10 +349,9 @@ public class OVRGrabber : MonoBehaviour
         {
             return;
         }
-
         Rigidbody grabbedRigidbody = m_grabbedObj.grabbedRigidbody;
         Vector3 grabbablePosition = pos + rot * m_grabbedObjectPosOff;
-        Quaternion grabbableRotation = rot * m_grabbedObjectRotOff;
+        Quaternion grabbableRotation = rot * Quaternion.Euler(180, 180, 0);
 
         if (forceTeleport)
         {

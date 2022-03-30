@@ -9,6 +9,7 @@ TagManager:
   - Capsule
   - Cylinder
   - Cube
+  - NFT
   layers:
   - Default
   - TransparentFX
@@ -20,7 +21,7 @@ TagManager:
   - 
   - Player
   - Hand
-  - 
+  - Wall
   - 
   - 
   - 

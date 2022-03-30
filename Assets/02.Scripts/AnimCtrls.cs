@@ -34,7 +34,6 @@ public class AnimCtrls : MonoBehaviour
     void Update()
     {
         dist = Vector3.Distance(player.transform.position, tr.position);
-        Debug.Log(dist);
         dir = player.transform.position - tr.position;
         dir.Normalize();
         switch(state)
