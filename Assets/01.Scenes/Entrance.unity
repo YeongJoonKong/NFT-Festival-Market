@@ -20660,7 +20660,6 @@ MonoBehaviour:
   m_controller: 2
   m_parentTransform: {fileID: 0}
   m_player: {fileID: 0}
-  dooropen: 0
 --- !u!114 &1706949134099002883
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -22777,7 +22776,6 @@ MonoBehaviour:
   m_controller: 1
   m_parentTransform: {fileID: 0}
   m_player: {fileID: 0}
-  dooropen: 0
 --- !u!114 &1919212899705403462
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -7,7 +7,7 @@ using TMPro;
 
 public class PhotonGameManager : MonoBehaviourPunCallbacks
 {
-    public static PhotonGameManager instance;
+    //public static PhotonGameManager instance;
     
 
 
@@ -17,7 +17,7 @@ public class PhotonGameManager : MonoBehaviourPunCallbacks
 
     private void Awake()
     {
-        instance = this;
+        //instance = this;
     }
     // Start is called before the first frame update
     void Start()
@@ -26,7 +26,7 @@ public class PhotonGameManager : MonoBehaviourPunCallbacks
 
 
         Vector3 pos = Vector3.zero + Vector3.up * 1.5f; //
-        PhotonNetwork.Instantiate("Playertest", pos, Quaternion.identity, 0);
+        PhotonNetwork.Instantiate("Player_OVR", pos, Quaternion.identity, 0);
 
 
 
