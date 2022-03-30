@@ -17,10 +17,10 @@ public class PlayerInstantiate : MonoBehaviour
     // Start is called before the first frame update
     private void Awake()
     {
+
     }
     void Start()
     {
-
         pv = GetComponent<PhotonView>();
         if (pv.IsMine)
         {

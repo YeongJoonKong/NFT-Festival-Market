@@ -7,7 +7,7 @@ using TMPro;
 
 public class PhotonGameManager : MonoBehaviourPunCallbacks
 {
-    public static PhotonGameManager instance;
+    //public static PhotonGameManager instance;
     
 
 
@@ -17,7 +17,7 @@ public class PhotonGameManager : MonoBehaviourPunCallbacks
 
     private void Awake()
     {
-        instance = this;
+        //instance = this;
         pv = GetComponent<PhotonView>();
 
 
