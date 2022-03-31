@@ -19,7 +19,7 @@ public class SnaptoGround : MonoBehaviour
                     continue;
                 transform.position = hit.point;
                 transform.up = hit.normal;
-                transform.localEulerAngles = new Vector3(transform.localEulerAngles.x, randomrange, transform.localEulerAngles.z);
+                //transform.localEulerAngles = new Vector3(transform.localEulerAngles.x, randomrange, transform.localEulerAngles.z);
                 break;
             }
         }
