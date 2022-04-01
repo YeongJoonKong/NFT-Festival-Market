@@ -10,7 +10,6 @@ public class PurchaseTicketModel
     public Metadata metadata;
     public string[] destinations;
     public string[] tokenIds;
-    public string walletAddress;
     
     public class Metadata
     {
