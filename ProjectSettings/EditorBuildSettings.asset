@@ -12,6 +12,9 @@ EditorBuildSettings:
     path: Assets/01.Scenes/Map_01.unity
     guid: 9621b211f364d4b4391dc42cfe673dd1
   - enabled: 1
+    path: Assets/01.Scenes/TestScene.unity
+    guid: ff245ab92cf0c3f42ad983c1e1ee5f0d
+  - enabled: 1
     path: Assets/01.Scenes/Player_Game_KYJ_001_Wack A Mole.unity
     guid: 67ae2faab5c718546bde4b85c1d58d78
   m_configObjects:
