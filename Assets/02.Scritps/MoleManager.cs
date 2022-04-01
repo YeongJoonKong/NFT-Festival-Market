@@ -45,7 +45,6 @@ public class MoleManager : MonoBehaviour
 
             for(int i = 0; i < maxNum; i++)
             {
-                print(2);
                 this.moles[Random.Range(0, n)].Up();
 
                 yield return new WaitForSeconds(0.3f);

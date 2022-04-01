@@ -19,8 +19,12 @@ public class GameManager : MonoBehaviour
     const float waitTime = 5;
 
     MoleManager moleManager;
-    //Text remainongTime;
+    public Text StartText;
+    public Text remainongTime;
     AudioSource audioSource;
+
+    float currentTime;
+    float creatTime=3;
 
     State state;
     float timer;
@@ -33,7 +37,6 @@ public class GameManager : MonoBehaviour
         this.state = State.START;
         this.timer = 0;
         this.moleManager = GameObject.Find("GameManager").GetComponent<MoleManager>();
-        //this.remainongTime = GameObject.Find("RemainingTime").GetComponent<Text>();
         this.audioSource = GetComponent<AudioSource>();
     }
 
@@ -44,11 +47,22 @@ public class GameManager : MonoBehaviour
 
         if (this.state == State.START)
         {
-            this.state = State.PLAY;
+            currentTime += Time.deltaTime;
+            if(currentTime > creatTime)
+            {
+                StartText.text = "";
 
-            this.moleManager.StartGenerate();
+                this.state = State.PLAY;
 
-            this.audioSource.Play();
+                this.moleManager.StartGenerate();
+
+                this.audioSource.Play();
+
+                currentTime = 0;
+            }
+
+
+            
         }
         else if(this.state == State.PLAY)
         {
@@ -57,15 +71,23 @@ public class GameManager : MonoBehaviour
 
             if(this.timer > timeLimit)
             {
+                StartText.text = "Game Over";
+
+                this.remainongTime.text = "Time : 0";
+
                 this.state = State.GAMEOVER;
 
                 this.moleManager.StopGenerate();
 
                 this.timer = 0;
 
+                this.timeLimit = 0;
+
+                this.audioSource.Stop();
+
                 this.audioSource.loop = false;
             }
-            //this.remainongTime.text = "Time : " + ((int)(timeLimit - timer)).ToString("D2");
+            this.remainongTime.text = "Time : " + ((int)(timeLimit - timer)).ToString("D2");
         }
         else if(this.state == State.GAMEOVER)
         {
@@ -76,7 +98,7 @@ public class GameManager : MonoBehaviour
                 SceneManager.LoadScene(SceneManager.GetActiveScene().name);
             }
 
-            //this.remainongTime.text = "";
+            this.remainongTime.text = "";
         }
     }
 }
