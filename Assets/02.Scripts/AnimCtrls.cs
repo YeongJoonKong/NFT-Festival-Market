@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using TMPro;
 public class AnimCtrls : MonoBehaviour
 {
     // Start is called before the first frame update
@@ -29,6 +29,7 @@ public class AnimCtrls : MonoBehaviour
         player = GameObject.FindWithTag("Player");
 
         state = State.Idle;
+
     }
     // Update is called once per frame
     void Update()
