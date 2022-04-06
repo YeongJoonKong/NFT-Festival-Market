@@ -2,9 +2,12 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class Tutorial: MonoBehaviour, ObserverLobby
 {
+    #region public variables
+    
     public GameObject friendAvatar;
     public GameObject ticketGuideAvatar;
     public GameObject player;
@@ -13,17 +16,32 @@ public class Tutorial: MonoBehaviour, ObserverLobby
     public GameObject leftJoyStickTutorial;
     public GameObject rightJoyStickTutorial;
     public GameObject indexTriggerTutorial;
-    public GameObject shakeHandTutorial;
     public GameObject purchaseTicketAnswer;
+    public GameObject getNFTItemTutorial;
     public GameObject spotInFrontOfTicketGuideAvatarNPC;
+    public GameObject nftTicket;
+    public GameObject nftWallet;
+    public GameObject npcConversationTutorial;
+    
+    #endregion
+
+    #region private variables
+
+    NFTManager _nftManager = new NFTManager();
+    int _getNFTItemCount;
+
+    #endregion
+    
+    #region Life Cycle Method
+
+    private void Awake() 
+    {
+        SubscribeGameObjectStatus();
+    }
 
     private void Start()
     {
-        DeactiveKeyTutorial();
-        friendAvatar.GetComponent<FriendAvatar>().AddObserver(this);
-        inputTutorialRoad.GetComponentInChildren<DestinationZone>().AddObserver(this);
-        ticketGuideAvatar.GetComponent<TicketGuideAvatar>().AddObserver(this);
-        PlayFirstTutorial();
+        StartPlayTutorial();
     }
 
 
@@ -32,10 +50,86 @@ public class Tutorial: MonoBehaviour, ObserverLobby
 
     }
 
+    #endregion
+
+    #region Observing different gameObjects
+
+    void SubscribeGameObjectStatus() 
+    {
+        friendAvatar.GetComponent<FriendAvatar>().AddObserver(this);
+        inputTutorialRoad.GetComponentInChildren<DestinationZone>().AddObserver(this);
+        ticketGuideAvatar.GetComponent<TicketGuideAvatar>().AddObserver(this);
+        nftTicket.GetComponent<Ticket>().AddObserver(this);
+        nftWallet.GetComponent<Wallet>().AddObserver(this);
+    }
+
+
+    public void DetectEvent(UnityEngine.Object obj)
+    {
+        if (obj is Ticket || obj is Wallet) 
+        {
+            _getNFTItemCount++;
+            if (_getNFTItemCount == 2) 
+            {
+                TurnOffNFTWalletAndTicketTutorial();
+            }
+        }
+    }
+
+    public void DetectEvent(string _event) 
+    {    
+        if (_event.Equals("ACTIVE_KEY_TUTORIAL")) 
+        {
+            ActiveKeyTutorial();
+        }
+        else if (_event.Equals("PLAYER_ARRIVE_DESTINATION")) 
+        {
+            player.transform.LookAt(new Vector3(friendAvatar.transform.position.x, player.transform.position.y, friendAvatar.transform.position.z));
+            PlaySecondTutorial();
+        }
+        else if (_event.Equals("ACTIVE_PURCHASE_TICKET_TUTORIAL"))
+        {
+            player.transform.position = spotInFrontOfTicketGuideAvatarNPC.transform.position;
+            player.transform.rotation = spotInFrontOfTicketGuideAvatarNPC.transform.rotation;
+            PlayThirdTutorial();
+        }
+        else if (_event.Equals("WAIT_PLAYER_PURCHASE_TICKET_ANSWER"))
+        {
+            purchaseTicketAnswer.SetActive(true);
+        }
+        else if (_event.Equals("PLAYER_ANSWER_PURCHASE_TICKET"))
+        {
+            purchaseTicketAnswer.SetActive(false);
+        }
+        else if (_event.Equals("MAKE_NFT_END")) 
+        {
+            SpawnNFTWalletAndTicket();
+            TurnOnNFTWalletAndTicketTutorial();
+            StartCoroutine(PlayFinalTutorial());
+        } 
+        else if (_event.Equals("WAIT_PLAYER_TRY_CONVERSATION"))
+        {
+            TurnOnNPCConversationTutorial();
+        }
+        else if (_event.Equals("PLAYER_TRIED_CONVERSATION"))
+        {
+            TurnOffNPCConversationTutorial();
+        }
+    }
+
+    #endregion
+
+    #region Playing Tutorial Method
+    void StartPlayTutorial() 
+    {
+        DeactiveKeyTutorial();
+        PlayFirstTutorial();
+    }
+
     void PlayFirstTutorial()
     {
         BanOVRInput();
-        StartCoroutine(friendAvatar.GetComponent<FriendAvatar>().PlayFirstScript(0, AllowOVRInput));
+        StartCoroutine(friendAvatar.GetComponent<FriendAvatar>().PlayFirstScript(0));
     }
 
 
@@ -43,24 +137,31 @@ public class Tutorial: MonoBehaviour, ObserverLobby
     {
         BanOVRInput();
         DeactiveKeyTutorial();
-        player.transform.LookAt(new Vector3(friendAvatar.transform.position.x, player.transform.position.y, friendAvatar.transform.position.z));
         StartCoroutine(friendAvatar.GetComponent<FriendAvatar>().PlaySecondScript(6, AllowOVRInput));
     }
 
 
     void PlayThirdTutorial()
     {
-        BanOVRInput();
-        StartCoroutine(ticketGuideAvatar.GetComponent<TicketGuideAvatar>().Guide(0, AllowOVRInput));
+        StartCoroutine(ticketGuideAvatar.GetComponent<TicketGuideAvatar>().Guide(0));
     }
 
 
     void PlayFourthTutorial()
     {
-        BanOVRInput();
+        Vector3 tr = new Vector3(friendAvatar.transform.position.x, player.transform.position.y, friendAvatar.transform.position.z);
+        player.transform.LookAt(tr);
         StartCoroutine(friendAvatar.GetComponent<FriendAvatar>().PlayFourthScript(9, AllowOVRInput));
     }
 
+    IEnumerator PlayFinalTutorial() {
+        yield return new WaitUntil(() => _getNFTItemCount == 2);
+        PlayFourthTutorial();
+    }
+
+    #endregion
+
+    #region Set active or deactive tutorial Objects
 
     void ActiveKeyTutorial()
     {
@@ -73,6 +174,10 @@ public class Tutorial: MonoBehaviour, ObserverLobby
     {
         TurnOffInputTutorialRoad();
         TurnOffKeyTutorial();
+        TurnOffInteractionTutorial();
+        TurnOffNFTWalletAndTicketTutorial();
+        HideNFTWalletAndTicket();
+        TurnOffNPCConversationTutorial();
     }
 
 
@@ -104,9 +209,19 @@ public class Tutorial: MonoBehaviour, ObserverLobby
 
     void TurnOnKeyTutorial()
     {
-        leftJoyStickTutorial.SetActive(true);
-        rightJoyStickTutorial.SetActive(true);
-        indexTriggerTutorial.SetActive(true);
+        IEnumerator SetActiveSlow() {
+            GameObject[] tutorials = { leftJoyStickTutorial, rightJoyStickTutorial, indexTriggerTutorial };
+            foreach (GameObject t in tutorials) 
+            {
+                t.SetActive(true);
+                AudioSource audioSource = t.GetComponent<AudioSource>();
+                audioSource.PlayOneShot(audioSource.clip);
+                yield return new WaitForSeconds(0.7f);
+            }
+            AllowOVRInput();
+        }
+
+        StartCoroutine(SetActiveSlow());
     }
 
 
@@ -115,70 +230,86 @@ public class Tutorial: MonoBehaviour, ObserverLobby
         leftJoyStickTutorial.SetActive(false);
         rightJoyStickTutorial.SetActive(false);
         indexTriggerTutorial.SetActive(false);
-        shakeHandTutorial.SetActive(false);
+    }
+
+
+    void TurnOffInteractionTutorial() 
+    {
         purchaseTicketAnswer.SetActive(false);
     }
 
 
-    bool isAllowOVRInput()
+    void TurnOffNFTWalletAndTicketTutorial() 
     {
-        return player.GetComponent<CharacterController>().enabled;
+        getNFTItemTutorial.SetActive(false);
+
     }
 
-    public void DetectEvent(UnityEngine.Object obj)
+    void TurnOnNFTWalletAndTicketTutorial()
     {
-        if (obj is FriendAvatar)
-        {
-            var friendAvatar = obj as FriendAvatar;
-            int endScript = friendAvatar.GetCurrentScriptEnd();
-            bool isPlayerHandShake = friendAvatar.GetIsPlayerHandShake();
-
-            if (!isPlayerHandShake)
-            {
-                shakeHandTutorial.SetActive(true);
-            } 
-            else if (isPlayerHandShake) 
-            {
-                shakeHandTutorial.SetActive(false);
-            }
-
-            if (endScript == 1)
-            {
-                ActiveKeyTutorial();
-            }
-            else if (endScript == 2)
-            {
-                player.transform.position = spotInFrontOfTicketGuideAvatarNPC.transform.position;
-                player.transform.rotation = spotInFrontOfTicketGuideAvatarNPC.transform.rotation;
-                PlayThirdTutorial();
-            } 
-        }
-        else if (obj is TicketGuideAvatar) 
-        {
-            var ticketGuideAvatar = obj as TicketGuideAvatar;
-            bool isScriptEnd = ticketGuideAvatar.GetIsScriptEnd();
-            bool waitAnswer = ticketGuideAvatar.GetWaitAnswer();
-            if (waitAnswer) {
-                purchaseTicketAnswer.SetActive(true);
-            }
-            else if (!waitAnswer) {
-                purchaseTicketAnswer.SetActive(false);
-            }
-
-            if (isScriptEnd)
-            {
-                player.transform.LookAt(new Vector3(friendAvatar.transform.position.x, player.transform.position.y, friendAvatar.transform.position.z));
-                PlayFourthTutorial();
-            }
-
-        }
-        else if (obj is DestinationZone) 
-        {
-            var destinationZone = obj as DestinationZone;
-            bool isArrive = destinationZone.GetIsArrive();
-            if (isArrive) {
-                PlaySecondTutorial();
-            }
-        }
+        getNFTItemTutorial.SetActive(true);
     }
+
+
+    void HideNFTWalletAndTicket() 
+    {
+        nftTicket.SetActive(false);
+        nftWallet.SetActive(false);
+    }
+
+
+    void SpawnNFTWalletAndTicket() 
+    {
+        nftTicket.SetActive(true);
+        nftWallet.SetActive(true);
+
+        GameObject[] ticketNFTObjects = GameObject.FindGameObjectsWithTag("TicketRandomNFT");
+
+        int randomIndex = UnityEngine.Random.Range(0, ticketNFTObjects.Length);
+        for (int i = 0; i < ticketNFTObjects.Length; i++) 
+        {
+            if (i == randomIndex)
+            {
+                if (ticketNFTObjects[i].name.Contains("Apple")) 
+                {
+                    nftTicket.GetComponentInChildren<TextMeshPro>().text = "NFT 입장권\n사과 VER.";
+                } 
+                else if (ticketNFTObjects[i].name.Contains("Pumpkin")) 
+                {
+                    nftTicket.GetComponentInChildren<TextMeshPro>().text = "NFT 입장권\n호박 VER.";
+                } 
+                else if (ticketNFTObjects[i].name.Contains("Cheese")) 
+                {
+                    nftTicket.GetComponentInChildren<TextMeshPro>().text = "NFT 입장권\n치즈케익 VER.";
+                } 
+                else if (ticketNFTObjects[i].name.Contains("Carrot")) 
+                {
+                    nftTicket.GetComponentInChildren<TextMeshPro>().text = "NFT 입장권\n당근 VER.";
+                }
+            }
+            else
+            {
+                ticketNFTObjects[i].SetActive(false);
+            }
+        }
+
+        GameObject particleSystem = nftTicket.transform.Find("Particle System").gameObject;
+        particleSystem.SetActive(false);
+
+        _nftManager.CreateNFTTicketPrefab(nftTicket);
+        particleSystem.SetActive(true);
+    }
+
+    void TurnOffNPCConversationTutorial()
+    {
+        npcConversationTutorial.SetActive(false);
+    }
+
+    void TurnOnNPCConversationTutorial()
+    {
+        npcConversationTutorial.SetActive(true);
+    }
+
+    #endregion
+
 }

@@ -13,16 +13,19 @@ public class TicketGuideAvatar : MonoBehaviour, SubjectLobby
 
     public AudioClip[] audioClips;
     public GameObject player;
+    public GameObject iPad;
+    public GameObject textBubble;
     
     Animator anim;
     AudioSource audioSource;
-    bool _isScriptEnd;
     bool _isMakeNFTTicketEnd;
-    bool _waitAnswer;
+
+    NFTManager _nftManager = new NFTManager();
     void Start()
     {
         audioSource = GetComponent<AudioSource>();
         anim = GetComponent<Animator>();
+        iPad.SetActive(false);
     }
 
 
@@ -36,49 +39,53 @@ public class TicketGuideAvatar : MonoBehaviour, SubjectLobby
     }
 
 
-    public IEnumerator Guide(int index, Action callback)
+    public IEnumerator Guide(int index)
     {
-        if (index == 0 || index == 2) {
-            if (index == 2) {
-                SetWaitAnswer(true);
-            }
-            NotifyObserver();
+        if (index == 0)
+        {
+            NotifyObserver("WAIT_PLAYER_TRY_CONVERSATION");
             yield return new WaitUntil(() => OVRInput.GetDown(OVRInput.Button.Two));
+            NotifyObserver("PLAYER_TRIED_CONVERSATION");
         }
 
-        SetWaitAnswer(false);
-        NotifyObserver();
+        if (index == 2) 
+        {
+            NotifyObserver("WAIT_PLAYER_PURCHASE_TICKET_ANSWER");
+            yield return new WaitUntil(() => !textBubble.activeInHierarchy);
+        }
+
+        NotifyObserver("PLAYER_ANSWER_PURCHASE_TICKET");
         audioSource.clip = audioClips[index];
         audioSource.Play();
         yield return new WaitForSeconds(audioSource.clip.length + 1);
         index += 1;
         if (index < audioClips.Length)
         {
-            StartCoroutine(Guide(index, callback));
+            StartCoroutine(Guide(index));
             
         } else
         {
             index = 0;
             StartCoroutine(makeWalletAndNFT());
-            _isScriptEnd = true;
-            NotifyObserver();
-            if (callback != null) callback();
         }
     }
 
 
-    // TODO : 입장권 만드는 애니메이션 넣기 
     public IEnumerator makeWalletAndNFT()
     {
         anim.SetTrigger("makeNFT");
+        iPad.SetActive(true);
         FileInfo fi = new FileInfo("Assets/07.Json/TicketInfo.json");
         if (fi.Exists)
         {
             var ticketInfoJson = LoadJsonFile<PurchaseTicketModel>("Assets/07.Json", "TicketInfo");
             // anim.SetTrigger("Idle2");
             print(ticketInfoJson);
+            iPad.SetActive(false);
             anim.ResetTrigger("makeNFT");
             anim.SetTrigger("Idle2");
+
+            NotifyObserver("MAKE_NFT_END");
         } 
         else
         {
@@ -89,12 +96,16 @@ public class TicketGuideAvatar : MonoBehaviour, SubjectLobby
                 // TODO: 실패 처리 
                 if (request.result != UnityWebRequest.Result.Success)
                 {
+                    anim.SetTrigger("Idle2");
+                    iPad.SetActive(false);
                     print(request.result);
                 }
                 else
                 {
                     CreateJsonFile("Assets/07.Json", "TicketInfo", request.downloadHandler.text);
                     anim.SetTrigger("Idle2");
+                    iPad.SetActive(false);
+                    NotifyObserver("MAKE_NFT_END");
                 }
             }
         }
@@ -121,18 +132,6 @@ public class TicketGuideAvatar : MonoBehaviour, SubjectLobby
         return JsonConvert.DeserializeObject<T>(jsonData);
     }
 
-    public bool GetIsScriptEnd() {
-        return _isScriptEnd;
-    }
-
-    public bool GetWaitAnswer() {
-        return _waitAnswer;
-    }
-
-    public void SetWaitAnswer(bool value) {
-        _waitAnswer = value;
-    }
-
     public void AddObserver(ObserverLobby subscriber) {
         this._subscribers.Add(subscriber);
     }
@@ -148,6 +147,13 @@ public class TicketGuideAvatar : MonoBehaviour, SubjectLobby
         foreach(var subscriber in _subscribers)
         {
             subscriber.DetectEvent(this);
+        }
+    }
+
+    public void NotifyObserver(string _event) {
+        foreach(var subscriber in _subscribers)
+        {
+            subscriber.DetectEvent(_event);
         }
     }
 }

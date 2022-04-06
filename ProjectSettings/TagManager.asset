@@ -10,6 +10,8 @@ TagManager:
   - Cylinder
   - Cube
   - NFT
+  - TicketRandomNFT
+  - INVENTORY_ITEM
   layers:
   - Default
   - TransparentFX
