@@ -11,6 +11,8 @@ public class AnimCtrls : MonoBehaviour
     public float TalkDistance = 3f;
     
     private GameObject player;
+    private NpcDialugeManager npctext;
+    private Canvas canvas;
     private Transform tr;
     private Animator anim;
     float dist;
@@ -26,7 +28,12 @@ public class AnimCtrls : MonoBehaviour
     {
         anim = GetComponent<Animator>();
         tr = GetComponent<Transform>();
+
         player = GameObject.FindWithTag("Player");
+        npctext = GetComponentInChildren<NpcDialugeManager>();
+        canvas = GetComponentInChildren<Canvas>();
+
+        canvas.enabled = false;
 
         state = State.Idle;
 
@@ -61,6 +68,8 @@ public class AnimCtrls : MonoBehaviour
         {
             anim.SetTrigger("Greet_0"+ Random.Range(1, 3));
             state = State.Waving;
+        canvas.enabled = true;
+            npctext.Conversation();
         }
     }
 
@@ -76,6 +85,7 @@ public class AnimCtrls : MonoBehaviour
         }
         else if(dist > Idledistance)
         {
+            canvas.enabled = false;
             anim.SetTrigger("Idle");
             state = State.Idle;
         }
