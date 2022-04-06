@@ -7,4 +7,5 @@ public interface SubjectLobby
     void AddObserver(ObserverLobby observer);
     void RemoveObserver(ObserverLobby observer);
     void NotifyObserver();
+    void NotifyObserver(string _event);
 }

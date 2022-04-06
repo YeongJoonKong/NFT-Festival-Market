@@ -12,25 +12,22 @@ public class FriendAvatar : MonoBehaviour, SubjectLobby
     public Transform targetDestination;
     public GameObject player;
 
-    Animator anim;
-    AudioSource audioSource;
+    Animator _anim;
+    AudioSource _audioSource;
 
     int[] firstScript = { 0, 1, 2, 3, 4, 5 };
     int[] secondScript = { 6, 7, 8 };
     int[] thirdScript = { 16, 17, 18, 19, 20, 21 };
 
-    NavMeshAgent navMeshAgent;
+    NavMeshAgent _navMeshAgent;
 
-    bool isSetNavMeshAgentDestination;
-    bool _isPlayerHandShake;
-
-    int _currentScriptEnd;
+    bool _isStartWalk;
 
     void Awake()
     {
-        anim = GetComponent<Animator>();
-        navMeshAgent = GetComponent<NavMeshAgent>();
-        audioSource = GetComponent<AudioSource>();
+        _anim = GetComponent<Animator>();
+        _navMeshAgent = GetComponent<NavMeshAgent>();
+        _audioSource = GetComponent<AudioSource>();
     }
 
     void Start()
@@ -40,65 +37,56 @@ public class FriendAvatar : MonoBehaviour, SubjectLobby
 
     void Update()
     {
-        ArriveNavMeshTargetDestination();
+        CheckArriveNavMeshTargetDestination();
     }
 
-    void ArriveNavMeshTargetDestination() 
+    void CheckArriveNavMeshTargetDestination() 
     {
-        if (isSetNavMeshAgentDestination)
+        if (_isStartWalk) 
         {
-            if (navMeshAgent.remainingDistance == 0)
+            if (_navMeshAgent.remainingDistance == 0)
             {
-                anim.SetTrigger("Idle");
+                Debug.Log(_navMeshAgent.remainingDistance);
+                _anim.SetTrigger("Idle");
                 Vector3 tr = new Vector3(player.transform.position.x, transform.position.y, player.transform.position.z);
                 transform.LookAt(tr);
             }
         }
     }
 
-    // TODO: 중복코드 제거
-    public IEnumerator PlayFirstScript(int index, Action callback)
+
+    public IEnumerator PlayFirstScript(int index)
     {
-        AudioSource audioSource = GetComponent<AudioSource>();
-        audioSource.clip = audioClips[index];
-        audioSource.Play();
+        _audioSource.clip = audioClips[index];
+        _audioSource.Play();
         if (index == 2)
         {
-            anim.SetTrigger("Greeting");
-            SetIsPlayerHandShake(false);
-            NotifyObserver();
-            yield return new WaitUntil(() => OVRInput.GetDown(OVRInput.Button.Two));
-        } else {
-            yield return new WaitForSeconds(audioSource.clip.length + 1);
+            _anim.SetTrigger("Greeting");
         }
-        
-        SetIsPlayerHandShake(true);
-        NotifyObserver();
+        yield return new WaitForSeconds(_audioSource.clip.length + 1);
 
         index += 1;
         if (index < firstScript.Length)
         {
-            anim.SetTrigger("Idle");
-            StartCoroutine(PlayFirstScript(index, callback));
+            if (index == 3) {
+                _anim.SetTrigger("Idle");
+            }
+            StartCoroutine(PlayFirstScript(index));
         }
         else
         {
-            //transform.rotation = Quaternion.Euler(0, 0, 0);
-            navMeshAgent.SetDestination(targetDestination.position);
-            anim.SetTrigger("Walk");
-            isSetNavMeshAgentDestination = true;
-            _currentScriptEnd = 1;
-            NotifyObserver();
-            if (callback != null) callback();
+            _navMeshAgent.SetDestination(targetDestination.position);
+            _isStartWalk = true;
+            _anim.SetTrigger("Walk");
+            NotifyObserver("ACTIVE_KEY_TUTORIAL");
         }
     }
 
     public IEnumerator PlaySecondScript(int index, Action callback)
     {
-        AudioSource audioSource = GetComponent<AudioSource>();
-        audioSource.clip = audioClips[index];
-        audioSource.Play();
-        yield return new WaitForSeconds(audioSource.clip.length + 1);
+        _audioSource.clip = audioClips[index];
+        _audioSource.Play();
+        yield return new WaitForSeconds(_audioSource.clip.length + 1);
         index += 1;
         if (index < firstScript.Length + secondScript.Length)
         {
@@ -106,18 +94,19 @@ public class FriendAvatar : MonoBehaviour, SubjectLobby
         }
         else
         {
-            _currentScriptEnd = 2;
-            NotifyObserver();
+            NotifyObserver("ACTIVE_PURCHASE_TICKET_TUTORIAL");
             if (callback != null) callback();
         }
     }
 
     public IEnumerator PlayFourthScript(int index, Action callback)
     {
-        AudioSource audioSource = GetComponent<AudioSource>();
-        audioSource.clip = audioClips[index];
-        audioSource.Play();
-        yield return new WaitForSeconds(audioSource.clip.length + 1);
+        _audioSource.clip = audioClips[index];
+        _audioSource.Play();
+        if (index == 17) {
+            yield return new WaitUntil(() => OVRInput.Get(OVRInput.Button.One));
+        }
+        yield return new WaitForSeconds(_audioSource.clip.length + 1);
         index += 1;
         if (index < firstScript.Length + secondScript.Length + thirdScript.Length)
         {
@@ -125,23 +114,8 @@ public class FriendAvatar : MonoBehaviour, SubjectLobby
         }
         else
         {
-            _currentScriptEnd = 4;
-            NotifyObserver();
             if (callback != null) callback();
         }
-    }
-
-    public int GetCurrentScriptEnd()
-    {
-        return this._currentScriptEnd;
-    }
-
-    public bool GetIsPlayerHandShake() {
-        return this._isPlayerHandShake;
-    }
-
-    public void SetIsPlayerHandShake(bool value) {
-        this._isPlayerHandShake = value;
     }
 
     public void AddObserver(ObserverLobby subscriber)
@@ -162,6 +136,14 @@ public class FriendAvatar : MonoBehaviour, SubjectLobby
         foreach(var subscriber in _subscribers)
         {
             subscriber.DetectEvent(this);
+        }
+    }
+
+    public void NotifyObserver(string _event) 
+    {
+        foreach(var subscriber in _subscribers) 
+        {
+            subscriber.DetectEvent(_event);
         }
     }
 }

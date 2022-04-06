@@ -5,4 +5,5 @@ using UnityEngine;
 public interface ObserverLobby
 {
     void DetectEvent(Object obj);
+    void DetectEvent(string _event);
 }

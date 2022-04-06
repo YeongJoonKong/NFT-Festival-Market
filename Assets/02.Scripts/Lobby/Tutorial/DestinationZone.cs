@@ -6,14 +6,11 @@ public class DestinationZone : MonoBehaviour, SubjectLobby
 {
     List<ObserverLobby> _subscribers = new List<ObserverLobby>();
 
-    public bool _isArrive;
-    // Start is called before the first frame update
     void Start()
     {
         
     }
 
-    // Update is called once per frame
     void Update()
     {
         
@@ -21,12 +18,7 @@ public class DestinationZone : MonoBehaviour, SubjectLobby
 
     private void OnTriggerEnter(Collider other)
     {
-        _isArrive = true;
-        NotifyObserver();
-    }
-
-    public bool GetIsArrive() {
-        return _isArrive;
+        NotifyObserver("PLAYER_ARRIVE_DESTINATION");
     }
 
     public void AddObserver(ObserverLobby subscriber) {
@@ -45,6 +37,13 @@ public class DestinationZone : MonoBehaviour, SubjectLobby
         foreach(var subscriber in _subscribers)
         {
             subscriber.DetectEvent(this);
+        }
+    }
+
+    public void NotifyObserver(string _event) {
+        foreach(var subscriber in _subscribers)
+        {
+            subscriber.DetectEvent(_event);
         }
     }
 }
