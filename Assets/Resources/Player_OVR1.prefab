@@ -167,6 +167,30 @@ MonoBehaviour:
   - {fileID: 5071097701336461637}
   - {fileID: 5212475505747948912}
   CameaRig: {fileID: 0}
+  head:
+    bones: []
+    headTarget: {fileID: 0}
+    positionWeight: 1
+    rotationWeight: 1
+    headClampWeight: 0.6
+    minHeadHeight: 0.8
+    useAnimatedHeadHeightWeight: 0
+    useAnimatedHeadHeightRange: 0.1
+    animatedHeadHeightBlend: 0.3
+    pelvisTarget: {fileID: 0}
+    pelvisPositionWeight: 0
+    pelvisRotationWeight: 0
+    maintainPelvisPosition: 0.2
+    chestGoal: {fileID: 0}
+    chestGoalWeight: 0
+    chestClampWeight: 0.5
+    rotateChestByHands: 1
+    bodyPosStiffness: 0.55
+    bodyRotStiffness: 0.1
+    neckStiffness: 0.2
+    moveBodyBackWhenCrouching: 0.5
+    maxRootAngle: 25
+    rootHeadingOffset: 0
 --- !u!120 &5377651638489198444
 LineRenderer:
   m_ObjectHideFlags: 0
@@ -904,45 +928,45 @@ MonoBehaviour:
   ShowParameterInspector: 1
   m_SynchronizeParameters:
   - Type: 4
-    SynchronizeType: 0
+    SynchronizeType: 1
     Name: isMoving
   - Type: 1
-    SynchronizeType: 0
+    SynchronizeType: 1
     Name: Blend
   - Type: 1
-    SynchronizeType: 0
+    SynchronizeType: 1
     Name: DirectionX
   - Type: 1
-    SynchronizeType: 0
+    SynchronizeType: 1
     Name: DirectionY
   - Type: 1
-    SynchronizeType: 0
+    SynchronizeType: 1
     Name: Right Flex
   - Type: 1
-    SynchronizeType: 0
+    SynchronizeType: 1
     Name: Right Pinch
   - Type: 3
-    SynchronizeType: 0
+    SynchronizeType: 1
     Name: RIght Pose
   - Type: 1
-    SynchronizeType: 0
+    SynchronizeType: 1
     Name: Left Flex
   - Type: 1
-    SynchronizeType: 0
+    SynchronizeType: 1
     Name: Left Pinch
   - Type: 3
-    SynchronizeType: 0
+    SynchronizeType: 1
     Name: Left Pose
   m_SynchronizeLayers:
-  - SynchronizeType: 0
+  - SynchronizeType: 1
     LayerIndex: 0
-  - SynchronizeType: 0
+  - SynchronizeType: 1
     LayerIndex: 1
-  - SynchronizeType: 0
+  - SynchronizeType: 1
     LayerIndex: 2
-  - SynchronizeType: 0
+  - SynchronizeType: 1
     LayerIndex: 3
-  - SynchronizeType: 0
+  - SynchronizeType: 1
     LayerIndex: 4
 --- !u!4 &5366339151465771161 stripped
 Transform:

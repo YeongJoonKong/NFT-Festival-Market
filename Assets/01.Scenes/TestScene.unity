@@ -713,9 +713,29 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1299802815402110820, guid: cd608a4ecbaa49c4d8ddeec7ab71ac3b, type: 3}
+      propertyPath: m_TagString
+      value: Avatar2
+      objectReference: {fileID: 0}
     - target: {fileID: 1299802815434574147, guid: cd608a4ecbaa49c4d8ddeec7ab71ac3b, type: 3}
       propertyPath: m_Enabled
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1299802815439423082, guid: cd608a4ecbaa49c4d8ddeec7ab71ac3b, type: 3}
+      propertyPath: m_Name
+      value: LeftHand
+      objectReference: {fileID: 0}
+    - target: {fileID: 1299802815541706586, guid: cd608a4ecbaa49c4d8ddeec7ab71ac3b, type: 3}
+      propertyPath: m_Name
+      value: Head
+      objectReference: {fileID: 0}
+    - target: {fileID: 1299802815541706586, guid: cd608a4ecbaa49c4d8ddeec7ab71ac3b, type: 3}
+      propertyPath: m_TagString
+      value: Avatar1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1299802815629021780, guid: cd608a4ecbaa49c4d8ddeec7ab71ac3b, type: 3}
+      propertyPath: m_Name
+      value: RightHand
       objectReference: {fileID: 0}
     - target: {fileID: 1299802816116082782, guid: cd608a4ecbaa49c4d8ddeec7ab71ac3b, type: 3}
       propertyPath: m_Enabled

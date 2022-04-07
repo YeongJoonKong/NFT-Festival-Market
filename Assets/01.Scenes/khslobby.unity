@@ -11829,7 +11829,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: b43cd845969ba5943aa2eae4f1a2e19f, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: b43cd845969ba5943aa2eae4f1a2e19f, type: 3}
       propertyPath: m_TagString
@@ -11958,6 +11958,10 @@ PrefabInstance:
     - target: {fileID: 213691696431672214, guid: 1df2fee5f9911904e848613ac5105585, type: 3}
       propertyPath: m_Name
       value: Elaina (VRChat)
+      objectReference: {fileID: 0}
+    - target: {fileID: 213691696431672214, guid: 1df2fee5f9911904e848613ac5105585, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 213691696431672214, guid: 1df2fee5f9911904e848613ac5105585, type: 3}
       propertyPath: m_TagString
@@ -21467,10 +21471,18 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 765296174}
     m_Modifications:
+    - target: {fileID: 1299802815402110820, guid: cd608a4ecbaa49c4d8ddeec7ab71ac3b, type: 3}
+      propertyPath: m_TagString
+      value: Avatar2
+      objectReference: {fileID: 0}
     - target: {fileID: 1299802815434574147, guid: cd608a4ecbaa49c4d8ddeec7ab71ac3b, type: 3}
       propertyPath: m_animator
       value: 
       objectReference: {fileID: 1632356041}
+    - target: {fileID: 1299802815541706586, guid: cd608a4ecbaa49c4d8ddeec7ab71ac3b, type: 3}
+      propertyPath: m_TagString
+      value: Avatar1
+      objectReference: {fileID: 0}
     - target: {fileID: 1299802815865285761, guid: cd608a4ecbaa49c4d8ddeec7ab71ac3b, type: 3}
       propertyPath: PlayerController
       value: 

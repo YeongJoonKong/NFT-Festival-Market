@@ -4,6 +4,7 @@ using UnityEngine;
 using Photon.Pun;
 using Photon.Realtime;
 using System;
+using RootMotion.FinalIK;
 
 public class PlayerInstantiate : MonoBehaviour
 {
@@ -14,15 +15,17 @@ public class PlayerInstantiate : MonoBehaviour
     public GameObject[] avatars;
     string avatar;
     public GameObject CameaRig;
+    public IKSolverVR.Spine head;
+    
     // Start is called before the first frame update
     private void Awake()
     {
-
         pv = GetComponent<PhotonView>();
         if (pv.IsMine)
         {
             CameaRig = GameObject.Find("OVRCameraRig1");
             CameaRig.transform.parent = transform;
+            
         }
 
     }
@@ -31,9 +34,12 @@ public class PlayerInstantiate : MonoBehaviour
 
         avatar = PlayerPrefs.GetString("Avatar");
 
+        
+
         if (pv.IsMine)
         {
             pv.RPC("AvatarChange", RpcTarget.AllBufferedViaServer, avatar);
+        head.headTarget= GameObject.FindGameObjectWithTag(avatar).gameObject.transform;
 
         }
         PlayerPrefs.DeleteAll();

@@ -78,8 +78,8 @@ namespace OVRTouchSample
             CollisionEnable(false);
 
             // Get animator layer indices by name, for later use switching between hand visuals
-            m_animLayerIndexPoint = m_animator.GetLayerIndex(ANIM_LAYER_NAME_POINT);
-            m_animLayerIndexThumb = m_animator.GetLayerIndex(ANIM_LAYER_NAME_THUMB);
+            //m_animLayerIndexPoint = m_animator.GetLayerIndex(ANIM_LAYER_NAME_POINT);
+            //m_animLayerIndexThumb = m_animator.GetLayerIndex(ANIM_LAYER_NAME_THUMB);
             m_animParamIndexFlex = Animator.StringToHash(ANIM_PARAM_NAME_FLEX);
             m_animParamIndexPose = Animator.StringToHash(ANIM_PARAM_NAME_POSE);
 
@@ -193,7 +193,7 @@ namespace OVRTouchSample
             }
             // Pose
             HandPoseId handPoseId = grabPose.PoseId;
-            m_animator.SetInteger(m_animParamIndexPose, (int)handPoseId);
+            //m_animator.SetInteger(m_animParamIndexPose, (int)handPoseId);
 
             // Flex
             // blend between open hand and fully closed fist
