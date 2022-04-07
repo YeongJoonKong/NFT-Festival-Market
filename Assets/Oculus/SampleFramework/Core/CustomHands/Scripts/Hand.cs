@@ -23,10 +23,11 @@ namespace OVRTouchSample
     [RequireComponent(typeof(OVRGrabber))]
     public class Hand : MonoBehaviour
     {
-        public const string ANIM_LAYER_NAME_POINT = "Point Layer";
-        public const string ANIM_LAYER_NAME_THUMB = "Thumb Layer";
-        public const string ANIM_PARAM_NAME_FLEX = "Flex";
-        public const string ANIM_PARAM_NAME_POSE = "Pose";
+        public  string ANIM_LAYER_NAME_POINT = "Point Layer";
+        public  string ANIM_LAYER_NAME_THUMB = "Thumb Layer";
+        public  string ANIM_PARAM_NAME_FLEX = "Flex";
+        public string ANIM_PARAM_NAME_PINCH = "Pinch";
+        public string ANIM_PARAM_NAME_POSE = "Pose";
         public const float THRESH_COLLISION_FLEX = 0.9f;
 
         public const float INPUT_RATE_CHANGE = 20.0f;
@@ -210,7 +211,7 @@ namespace OVRTouchSample
             m_animator.SetLayerWeight(m_animLayerIndexThumb, thumbsUp);
 
             float pinch = OVRInput.Get(OVRInput.Axis1D.PrimaryIndexTrigger, m_controller);
-            m_animator.SetFloat("Pinch", pinch);
+            m_animator.SetFloat(ANIM_PARAM_NAME_PINCH, pinch);
         }
 
         private float m_collisionScaleCurrent = 0.0f;
