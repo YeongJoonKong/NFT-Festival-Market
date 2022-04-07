@@ -30,6 +30,8 @@ public class MoleController : MonoBehaviour
             return false;
         }
 
+        WackAMoleScoreManager.instance.AddScore(10);
+
         transform.position = new Vector3(transform.position.x, Bottom, transform.position.z);
 
         this.state = State.UNDER_GROUND;
@@ -41,8 +43,13 @@ public class MoleController : MonoBehaviour
     {
         if(this.state == State.UNDER_GROUND)
         {
-            this.state = State. UP;
+            this.state = State.UP;
         }
+    }
+
+    public void Down()
+    {
+        transform.position = new Vector3(transform.position.x, Bottom, transform.position.z);
     }
 
 
