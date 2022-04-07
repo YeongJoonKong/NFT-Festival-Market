@@ -59,7 +59,7 @@ public class MyHand : MonoBehaviour
             for (int i = 0; i < avatars.Length; i++)
             {
                 //부딪힌애가 아바타가 아니거나 플레이어라면 리턴
-                if (!(avatarName == "Cube" || avatarName == "Cylinder" || avatarName == "Capsule")) // 또는 플레이어라면
+                if (!(avatarName == "Avatar1" || avatarName == "Avatar2" )) // 또는 플레이어라면
                 {
                     return;
                 }

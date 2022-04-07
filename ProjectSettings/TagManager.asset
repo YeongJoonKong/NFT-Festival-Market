@@ -6,12 +6,16 @@ TagManager:
   tags:
   - Item
   - Door
-  - Capsule
-  - Cylinder
-  - Cube
   - NFT
   - TicketRandomNFT
   - INVENTORY_ITEM
+  - Mole
+  - Bullet
+  - Avatar1
+  - Avatar2
+  - Capsule
+  - Cylinder
+  - Cube
   layers:
   - Default
   - TransparentFX
