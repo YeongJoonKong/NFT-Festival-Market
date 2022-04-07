@@ -21,7 +21,7 @@ public class PlayerInstantiate : MonoBehaviour
         pv = GetComponent<PhotonView>();
         if (pv.IsMine)
         {
-            CameaRig = GameObject.Find("OVRCameraRig");
+            CameaRig = GameObject.Find("OVRCameraRig1");
             CameaRig.transform.parent = transform;
         }
 
