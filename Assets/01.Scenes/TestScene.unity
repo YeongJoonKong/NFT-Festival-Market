@@ -685,6 +685,69 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0ac4ab8a13bc1df44b6dc406c6824c02, type: 3}
+--- !u!1 &1731345906 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3483767864279222944, guid: 0ac4ab8a13bc1df44b6dc406c6824c02, type: 3}
+  m_PrefabInstance: {fileID: 1731345905}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1731345907 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1857433814325238873, guid: 0ac4ab8a13bc1df44b6dc406c6824c02, type: 3}
+  m_PrefabInstance: {fileID: 1731345905}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1731345908 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5684726076433899593, guid: 0ac4ab8a13bc1df44b6dc406c6824c02, type: 3}
+  m_PrefabInstance: {fileID: 1731345905}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1731345909
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1731345906}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 627855c7f81362d41938ffe0b1475957, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_SynchronizePosition: 1
+  m_SynchronizeRotation: 1
+  m_SynchronizeScale: 0
+  m_UseLocal: 1
+--- !u!114 &1731345910
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1731345907}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 627855c7f81362d41938ffe0b1475957, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_SynchronizePosition: 1
+  m_SynchronizeRotation: 1
+  m_SynchronizeScale: 0
+  m_UseLocal: 1
+--- !u!114 &1731345911
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1731345908}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 627855c7f81362d41938ffe0b1475957, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_SynchronizePosition: 1
+  m_SynchronizeRotation: 1
+  m_SynchronizeScale: 0
+  m_UseLocal: 1
 --- !u!1 &1774326851
 GameObject:
   m_ObjectHideFlags: 0

@@ -57,7 +57,7 @@ public class PlayerInstantiate : MonoBehaviour
 
 
         //}
-        PlayerPrefs.DeleteAll();
+        //PlayerPrefs.DeleteAll();
 
 
 
