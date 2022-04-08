@@ -8,9 +8,10 @@ public class MinigameEntrance : MonoBehaviour
     private OVRManager controller;
     void OnTriggerEnter(Collider other)
     {
-        if(other.CompareTag("Player"))
+        if(other.CompareTag("Player") && transform.parent.name == ("MiniGame_Mole"))
         {
-            SceneManager.LoadScene("Player_Game_KYJ_001_Wack A Mole", LoadSceneMode.Additive);
+            Playdata.instance.spawnPointData = 1;
+            SceneManager.LoadScene("Player_Game_KYJ_001_Wack A Mole");
         }
     }
 }

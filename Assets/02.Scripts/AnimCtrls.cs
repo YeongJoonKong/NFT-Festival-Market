@@ -41,25 +41,32 @@ public class AnimCtrls : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        dist = Vector3.Distance(player.transform.position, tr.position);
-        dir = player.transform.position - tr.position;
-        dir.Normalize();
-        switch(state)
+        if(player == null)
         {
-            case State.Idle:
-                UpdateIdle();
-                break;
             
-            case State.Waving:
-                UpdateWaving();
-                break;
+        }
+        else
+        {
+            dist = Vector3.Distance(player.transform.position, tr.position);
+            dir = player.transform.position - tr.position;
+            dir.Normalize();
+            switch (state)
+            {
+                case State.Idle:
+                    UpdateIdle();
+                    break;
 
-            case State.Talk:
-                UpdateTalk();
-                break;
+                case State.Waving:
+                    UpdateWaving();
+                    break;
 
-            default:
-                 break;
+                case State.Talk:
+                    UpdateTalk();
+                    break;
+
+                default:
+                    break;
+            }
         }
     }
     void UpdateIdle()
