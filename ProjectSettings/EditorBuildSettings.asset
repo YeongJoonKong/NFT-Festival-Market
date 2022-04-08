@@ -6,8 +6,8 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/01.Scenes/Entrance_01.unity
-    guid: 81e100b44556448b78007e635967c5a7
+    path: Assets/01.Scenes/khslobby.unity
+    guid: 1becfa3615c7ad34e9a816b1764977e6
   - enabled: 1
     path: Assets/01.Scenes/TestScene.unity
     guid: ff245ab92cf0c3f42ad983c1e1ee5f0d

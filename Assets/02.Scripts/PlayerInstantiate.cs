@@ -15,33 +15,48 @@ public class PlayerInstantiate : MonoBehaviour
     public GameObject[] avatars;
     string avatar;
     public GameObject CameaRig;
-    public IKSolverVR.Spine head;
-    
+    public GameObject myavatar;
+
+
+    public VRIK vrik;
+
+
+
     // Start is called before the first frame update
     private void Awake()
     {
         pv = GetComponent<PhotonView>();
         if (pv.IsMine)
         {
+            
+            avatar = PlayerPrefs.GetString("Avatar");
             CameaRig = GameObject.Find("OVRCameraRig1");
             CameaRig.transform.parent = transform;
+            print(avatar);
+            myavatar = GameObject.FindGameObjectWithTag(avatar);
+
+            print(myavatar);
+            myavatar.transform.parent = transform;
             
+
         }
 
     }
     void Start()
     {
 
-        avatar = PlayerPrefs.GetString("Avatar");
 
-        
 
-        if (pv.IsMine)
-        {
-            pv.RPC("AvatarChange", RpcTarget.AllBufferedViaServer, avatar);
-        head.headTarget= GameObject.FindGameObjectWithTag(avatar).gameObject.transform;
 
-        }
+        //if (pv.IsMine)
+        //{
+        //    pv.RPC("AvatarChange", RpcTarget.AllBufferedViaServer, avatar);
+        //    //vrik.solver.spine.headTarget = GameObject.FindGameObjectWithTag(avatar).gameObject.transform;
+        //    //vrik.solver.leftArm.target = GameObject.FindGameObjectWithTag(avatar).gameObject.transform;
+        //    //vrik.solver.rightArm.target = GameObject.FindGameObjectWithTag(avatar).gameObject.transform;
+
+
+        //}
         PlayerPrefs.DeleteAll();
 
 
