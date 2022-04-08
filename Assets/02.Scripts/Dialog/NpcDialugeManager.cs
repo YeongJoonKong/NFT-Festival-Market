@@ -10,21 +10,30 @@ public class NpcDialugeManager : MonoBehaviour
     //AudioSource audios;
     TextMeshProUGUI textUi;
     AudioSource audios;
-    int textNum = 0;
-
-    bool Played;
+    public int textNum;
+    private int npcNum;
     // Start is called before the first frame update
-    void Start()
+void Start()
     {
         audios = GetComponent<AudioSource>();
         npcDialogue = GetComponentInChildren<Dialogue>().npctext;
         textUi = GetComponentInChildren<TextMeshProUGUI>();
+        if(gameObject.name == "Market_male_03")
+        {
+            npcNum = 0;
+        }
+        else if(gameObject.name == "Market_male_04")
+        {
+            npcNum = 1;
+        }
+        textNum = Playdata.instance.textnumData[npcNum];
     }
 
 
     public void Conversation()
     {
         audios.Play();
+        Playdata.instance.TextData(npcNum, textNum);
         if(textNum >= npcDialogue.Length-1)
         {
             textNum = npcDialogue.Length-1;

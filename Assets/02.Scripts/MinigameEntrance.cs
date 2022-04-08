@@ -10,7 +10,7 @@ public class MinigameEntrance : MonoBehaviour
     {
         if(other.CompareTag("Player"))
         {
-            SceneManager.LoadScene("Player_Game_KYJ_001_Wack A Mole", LoadSceneMode.Additive);
+            SceneManager.LoadScene("Player_Game_KYJ_001_Wack A Mole");
         }
     }
 }
