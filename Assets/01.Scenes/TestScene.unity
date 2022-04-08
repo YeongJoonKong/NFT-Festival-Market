@@ -221,6 +221,11 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &472638232 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 9120593339337360429, guid: 0ac4ab8a13bc1df44b6dc406c6824c02, type: 3}
+  m_PrefabInstance: {fileID: 1731345905}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &649763470
 GameObject:
   m_ObjectHideFlags: 0
@@ -847,6 +852,62 @@ Animator:
   m_CorrespondingSourceObject: {fileID: 2538102924936135917, guid: 0ac4ab8a13bc1df44b6dc406c6824c02, type: 3}
   m_PrefabInstance: {fileID: 1731345905}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1847786193
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 472638232}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9b8c4a61274f60b4ea5fb4299cfdbf14, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ShowLayerWeightsInspector: 1
+  ShowParameterInspector: 1
+  m_SynchronizeParameters:
+  - Type: 4
+    SynchronizeType: 1
+    Name: isMoving
+  - Type: 1
+    SynchronizeType: 1
+    Name: Blend
+  - Type: 1
+    SynchronizeType: 1
+    Name: DirectionX
+  - Type: 1
+    SynchronizeType: 1
+    Name: DirectionY
+  - Type: 1
+    SynchronizeType: 1
+    Name: Right Flex
+  - Type: 1
+    SynchronizeType: 1
+    Name: Right Pinch
+  - Type: 3
+    SynchronizeType: 1
+    Name: RIght Pose
+  - Type: 1
+    SynchronizeType: 1
+    Name: Left Flex
+  - Type: 1
+    SynchronizeType: 1
+    Name: Left Pinch
+  - Type: 3
+    SynchronizeType: 1
+    Name: Left Pose
+  m_SynchronizeLayers:
+  - SynchronizeType: 1
+    LayerIndex: 0
+  - SynchronizeType: 1
+    LayerIndex: 1
+  - SynchronizeType: 1
+    LayerIndex: 2
+  - SynchronizeType: 1
+    LayerIndex: 3
+  - SynchronizeType: 1
+    LayerIndex: 4
 --- !u!1001 &1866667860
 PrefabInstance:
   m_ObjectHideFlags: 0
