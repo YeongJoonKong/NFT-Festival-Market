@@ -9,6 +9,10 @@ public class Playdata : MonoBehaviour
     // Start is called before the first frame update
     [Header("Npc First text Number")]
     public int[] textnumData;
+
+    [Header("Player SpawnPoints")]
+    public int spawnPointData = 0;
+
     void Awake()
     {
         if(instance == null)
@@ -34,4 +38,5 @@ public class Playdata : MonoBehaviour
             textnumData[1] = textnum;
         }
     }
+
 }
