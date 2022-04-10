@@ -7,23 +7,25 @@ using UnityEditor;
 using UnityEngine;
 using UnityEngine.Networking;
 using Newtonsoft.Json;
+using TMPro;
 
 public class NFTManager : MonoBehaviour
 {
-    // Start is called before the first frame update
+    public GameObject nftTicket;
+    
     void Start()
     {
-            
+
     }
 
-    // Update is called once per frame
+    
     void Update()
     {
-        
+
     }
 
-    public void RequestMakeWalletAndNFTTicket() {
-        StartCoroutine(MakeWalletAndNFTTicket());
+    public void RequestMakeWalletAndNFTTicket(Action callback) {
+        StartCoroutine(MakeWalletAndNFTTicket(callback));
     }
 
     public object ReadTicketInfoJsonFile() {
@@ -39,33 +41,79 @@ public class NFTManager : MonoBehaviour
         FileInfo fi = new FileInfo(Constant.TICKET_INFO_PATH);
         if (fi.Exists) {
             var ticketInfoJson = LoadJsonFile<PurchaseTicketModel>(Constant.TICKET_INFO_PATH);
-            if (key.Equals("transactionHash")) {
-                return ticketInfoJson.transactionHash;
-            } else if (key.Equals("metadata")) {
-                return ticketInfoJson.metadata;
-            } else if (key.Equals("destinations") || key.Equals("walletAddress")) {
-                return ticketInfoJson.destinations;
-            } else if (key.Equals("tokenIds")) {
-                return ticketInfoJson.tokenIds;
-            } else {
-                return "";
-            }
         }
         return "";
     }
 
-    IEnumerator MakeWalletAndNFTTicket() {
-        using (UnityWebRequest request = UnityWebRequest.Post(Constant.BASE_URL + Constant.PURCHASE_NFT_TICKET_API_URL, ""))
-            {
-                yield return request.SendWebRequest();
+    IEnumerator MakeWalletAndNFTTicket(Action callback) {
+        nftTicket.SetActive(true);
+        GameObject[] ticketNFTObjects = GameObject.FindGameObjectsWithTag("TicketRandomNFT");
 
-                if (request.result != UnityWebRequest.Result.Success){
-                    MakeFailedResponse();
-                } else {
-                    CreateJsonFile(Constant.SAVE_JSON_PATH, "TicketInfo", request.downloadHandler.text);
-                    MakeSuccessResponse();
+        int randomIndex = UnityEngine.Random.Range(0, ticketNFTObjects.Length);
+        for (int i = 0; i < ticketNFTObjects.Length; i++)
+        {
+            if (i == randomIndex)
+            {
+                if (ticketNFTObjects[i].name.Contains("Apple"))
+                {
+                    nftTicket.GetComponentInChildren<TextMeshPro>().text = "NFT 입장권\n사과 VER.";
+                }
+                else if (ticketNFTObjects[i].name.Contains("Pumpkin"))
+                {
+                    nftTicket.GetComponentInChildren<TextMeshPro>().text = "NFT 입장권\n호박 VER.";
+                }
+                else if (ticketNFTObjects[i].name.Contains("Cheese"))
+                {
+                    nftTicket.GetComponentInChildren<TextMeshPro>().text = "NFT 입장권\n치즈케익 VER.";
+                }
+                else if (ticketNFTObjects[i].name.Contains("Carrot"))
+                {
+                    nftTicket.GetComponentInChildren<TextMeshPro>().text = "NFT 입장권\n당근 VER.";
                 }
             }
+            else
+            {
+                ticketNFTObjects[i].SetActive(false);
+            }
+        }
+
+        GameObject particleSystem = nftTicket.transform.Find("Particle System").gameObject;
+        particleSystem.SetActive(false);
+
+        CreateNFTTicketPrefab(nftTicket);
+
+        particleSystem.SetActive(true);
+
+        nftTicket.SetActive(false);
+
+        WWWForm form = new WWWForm();
+        form.AddBinaryData("file", File.ReadAllBytes("Assets/Resources/NFT/Ticket.prefab"), "Ticket.prefab");
+
+        using (UnityWebRequest request = UnityWebRequest.Post(Constant.BASE_URL + Constant.CREATE_WALLET_AND_CONTRACT, form))
+        {
+            yield return request.SendWebRequest();
+
+            if (request.result != UnityWebRequest.Result.Success){
+                MakeFailedResponse();
+            } else {
+                UnityWebRequest request1 = new UnityWebRequest(Constant.BASE_URL + Constant.CREATE_NFT_TICKET, "POST");
+                byte[] encodedRequest = new System.Text.UTF8Encoding().GetBytes(request.downloadHandler.text);
+                request1.uploadHandler = (UploadHandler)new UploadHandlerRaw(encodedRequest);
+                request1.downloadHandler = new DownloadHandlerBuffer();
+                request1.SetRequestHeader("Content-Type", "application/json");
+
+                yield return request1.SendWebRequest();
+
+                if (request1.result != UnityWebRequest.Result.Success) {
+
+                } else {
+                    CreateJsonFile(Constant.SAVE_JSON_PATH, "TicketInfo", request1.downloadHandler.text);
+                    MakeSuccessResponse(request1.downloadHandler.text);
+                    if (callback != null) callback();
+                }
+
+            }
+        }
     }
 
 
@@ -107,11 +155,29 @@ public class NFTManager : MonoBehaviour
         ticketPrefab.transform.localScale = new Vector3(0.2f, 0.2f, 0.2f);
     }
 
-    public void MakeFailedResponse() {
+    public void MakeFailedResponse()
+    {
 
     }
 
-    public void MakeSuccessResponse() {
-        
+    public void MakeSuccessResponse(string text)
+    {
+        PurchaseTicketModel walletAndTicketInfo = JsonConvert.DeserializeObject<PurchaseTicketModel>(text);
+        WalletCache.id = walletAndTicketInfo.walletInfo.id;
+        WalletCache.address = walletAndTicketInfo.walletInfo.address;
+        WalletCache.walletType = walletAndTicketInfo.walletInfo.walletType;
+        WalletCache.secretType = walletAndTicketInfo.walletInfo.secretType;
+        WalletCache.createdAt = walletAndTicketInfo.walletInfo.createdAt;
+        WalletCache.archived = walletAndTicketInfo.walletInfo.archived;
+        WalletCache.description = walletAndTicketInfo.walletInfo.description;
+        WalletCache.primary = walletAndTicketInfo.walletInfo.primary;
+        WalletCache.hasCustomPin = walletAndTicketInfo.walletInfo.hasCustomPin;
+        WalletCache.identifier = walletAndTicketInfo.walletInfo.identifier;
+        WalletCache.balance = walletAndTicketInfo.walletInfo.balance;
+
+        TicketCache.transactionHash = walletAndTicketInfo.ticketInfo.transactionHash;
+        TicketCache.metadata = walletAndTicketInfo.ticketInfo.metadata;
+        TicketCache.destinations = walletAndTicketInfo.ticketInfo.destinations;
+        TicketCache.tokenIds = walletAndTicketInfo.ticketInfo.tokenIds;
     }
 }
