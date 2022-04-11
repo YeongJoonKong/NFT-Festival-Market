@@ -25,16 +25,16 @@ public class PlayerInstantiate : MonoBehaviour
     // Start is called before the first frame update
     private void Awake()
     {
-        
-            vrik = GetComponentInChildren<VRIK>();
+
+        vrik = GetComponentInChildren<VRIK>();
 
         pv = GetComponent<PhotonView>();
         if (pv.IsMine)
         {
-            
+
             avatar = PlayerPrefs.GetString("Avatar");
             CameaRig = GameObject.Find("OVRCameraRig1");
-            
+
             CameaRig.transform.parent = transform;
             //print(avatar);
             //myavatar = GameObject.FindGameObjectWithTag(avatar);
@@ -78,22 +78,6 @@ public class PlayerInstantiate : MonoBehaviour
 
     }
     [PunRPC]
-    private void ConnectingVRIK(string avatar)
-    {
-        if (pv.IsMine)
-        {
-            print(GameObject.FindGameObjectsWithTag(avatar)[0].gameObject.transform);
-            vrik.solver.spine.headTarget = GameObject.FindGameObjectsWithTag(avatar)[0].gameObject.transform;
-            vrik.solver.leftArm.target = GameObject.FindGameObjectsWithTag(avatar)[1].gameObject.transform;
-            vrik.solver.rightArm.target = GameObject.FindGameObjectsWithTag(avatar)[2].gameObject.transform;
-        }
-        if(!pv.IsMine)
-        {
-            vrik.enabled = false;
-        }
-    }
-
-    [PunRPC]
     private void AvatarChange(string avatar)
     {
 
@@ -106,6 +90,22 @@ public class PlayerInstantiate : MonoBehaviour
             }
 
         }
+    }
+    [PunRPC]
+    private void ConnectingVRIK(string avatar)
+    {
+        if (pv.IsMine)
+        {
+            print(GameObject.FindGameObjectsWithTag(avatar)[0].gameObject.transform);
+            vrik.solver.spine.headTarget = GameObject.FindGameObjectsWithTag(avatar)[0].gameObject.transform;
+            vrik.solver.leftArm.target = GameObject.FindGameObjectsWithTag(avatar)[1].gameObject.transform;
+            vrik.solver.rightArm.target = GameObject.FindGameObjectsWithTag(avatar)[2].gameObject.transform;
+        }
+        if (!pv.IsMine)
+        {
+            vrik.enabled = false;
+        }
+
         //print(avatar);
         //myavatar = GameObject.FindGameObjectWithTag(avatar);
 
