@@ -87,6 +87,10 @@ public class PlayerInstantiate : MonoBehaviour
             vrik.solver.leftArm.target = GameObject.FindGameObjectsWithTag(avatar)[1].gameObject.transform;
             vrik.solver.rightArm.target = GameObject.FindGameObjectsWithTag(avatar)[2].gameObject.transform;
         }
+        if(!pv.IsMine)
+        {
+            vrik.enabled = false;
+        }
     }
 
     [PunRPC]

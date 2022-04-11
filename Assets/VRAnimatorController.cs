@@ -25,8 +25,7 @@ public class VRAnimatorController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (pv.IsMine)
-        {
+       
          primaryAxis = OVRInput.Get(OVRInput.Axis2D.PrimaryThumbstick);
         if (primaryAxis.x > 0.1f || primaryAxis.y>0.1f|| primaryAxis.x < -0.1f || primaryAxis.y < -0.1f)
         {
@@ -40,7 +39,7 @@ public class VRAnimatorController : MonoBehaviour
         animator.SetFloat("DirectionX",primaryAxis.x);
         animator.SetFloat("DirectionY", primaryAxis.y);
 
-        }
+        
        
     }
 }
