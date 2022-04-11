@@ -96,7 +96,7 @@ public class PlayerInstantiate : MonoBehaviour
     {
         if (pv.IsMine)
         {
-            print(GameObject.FindGameObjectsWithTag(avatar)[0].gameObject.transform);
+            //print(GameObject.FindGameObjectsWithTag(avatar)[0].gameObject.transform);
             vrik.solver.spine.headTarget = GameObject.FindGameObjectsWithTag(avatar)[0].gameObject.transform;
             vrik.solver.leftArm.target = GameObject.FindGameObjectsWithTag(avatar)[1].gameObject.transform;
             vrik.solver.rightArm.target = GameObject.FindGameObjectsWithTag(avatar)[2].gameObject.transform;
