@@ -52,16 +52,15 @@ public class PlayerInstantiate : MonoBehaviour
 
 
 
+        pv.RPC("ConnectingVRIK", RpcTarget.AllBufferedViaServer, avatar);
 
-        if (pv.IsMine)
-        {
-            print(GameObject.FindGameObjectsWithTag(avatar)[0].gameObject.transform);
-            vrik.solver.spine.headTarget = GameObject.FindGameObjectsWithTag(avatar)[0].gameObject.transform;
-            vrik.solver.leftArm.target = GameObject.FindGameObjectsWithTag(avatar)[1].gameObject.transform;
-            vrik.solver.rightArm.target = GameObject.FindGameObjectsWithTag(avatar)[2].gameObject.transform;
-
-
-        }
+        //if (pv.IsMine)
+        //{
+        //    print(GameObject.FindGameObjectsWithTag(avatar)[0].gameObject.transform);
+        //    vrik.solver.spine.headTarget = GameObject.FindGameObjectsWithTag(avatar)[0].gameObject.transform;
+        //    vrik.solver.leftArm.target = GameObject.FindGameObjectsWithTag(avatar)[1].gameObject.transform;
+        //    vrik.solver.rightArm.target = GameObject.FindGameObjectsWithTag(avatar)[2].gameObject.transform;
+        //}
         //PlayerPrefs.DeleteAll();
 
 
@@ -78,6 +77,18 @@ public class PlayerInstantiate : MonoBehaviour
         //}
 
     }
+    [PunRPC]
+    private void ConnectingVRIK(string avatar)
+    {
+        if (pv.IsMine)
+        {
+            print(GameObject.FindGameObjectsWithTag(avatar)[0].gameObject.transform);
+            vrik.solver.spine.headTarget = GameObject.FindGameObjectsWithTag(avatar)[0].gameObject.transform;
+            vrik.solver.leftArm.target = GameObject.FindGameObjectsWithTag(avatar)[1].gameObject.transform;
+            vrik.solver.rightArm.target = GameObject.FindGameObjectsWithTag(avatar)[2].gameObject.transform;
+        }
+    }
+
     [PunRPC]
     private void AvatarChange(string avatar)
     {
