@@ -15,12 +15,11 @@ public class TicketGuideAvatar : MonoBehaviour, SubjectLobby
     public GameObject player;
     public GameObject iPad;
     public GameObject textBubble;
+    public GameObject nftManager;
     
     Animator anim;
     AudioSource audioSource;
-    bool _isMakeNFTTicketEnd;
 
-    NFTManager _nftManager = new NFTManager();
     void Start()
     {
         audioSource = GetComponent<AudioSource>();
@@ -79,7 +78,6 @@ public class TicketGuideAvatar : MonoBehaviour, SubjectLobby
         if (fi.Exists)
         {
             var ticketInfoJson = LoadJsonFile<PurchaseTicketModel>("Assets/07.Json", "TicketInfo");
-            // anim.SetTrigger("Idle2");
             print(ticketInfoJson);
             iPad.SetActive(false);
             anim.ResetTrigger("makeNFT");
@@ -89,30 +87,19 @@ public class TicketGuideAvatar : MonoBehaviour, SubjectLobby
         } 
         else
         {
-            using (UnityWebRequest request = UnityWebRequest.Post(Constant.BASE_URL + "/users/purchase/ticket", ""))
-            {
-                yield return request.SendWebRequest();
-
-                // TODO: 실패 처리 
-                if (request.result != UnityWebRequest.Result.Success)
-                {
-                    anim.SetTrigger("Idle2");
-                    iPad.SetActive(false);
-                    print(request.result);
-                }
-                else
-                {
-                    CreateJsonFile("Assets/07.Json", "TicketInfo", request.downloadHandler.text);
-                    anim.SetTrigger("Idle2");
-                    iPad.SetActive(false);
-                    NotifyObserver("MAKE_NFT_END");
-                }
+            void SetAnimation() {
+                anim.SetTrigger("Idle2");
+                iPad.SetActive(false);
+                NotifyObserver("MAKE_NFT_END");
             }
+
+            nftManager.GetComponent<NFTManager>().RequestMakeWalletAndNFTTicket(SetAnimation);
+            yield return "";
         }
 
     }
 
-
+   
     void CreateJsonFile(string createPath, string fileName, string jsonData)
     {
         FileStream fileStream = new FileStream(string.Format("{0}/{1}.json", createPath, fileName), FileMode.Create);

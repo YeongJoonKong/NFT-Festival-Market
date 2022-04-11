@@ -22,12 +22,13 @@ public class Tutorial: MonoBehaviour, ObserverLobby
     public GameObject nftTicket;
     public GameObject nftWallet;
     public GameObject npcConversationTutorial;
+    public GameObject nftManager;
     
     #endregion
 
     #region private variables
 
-    NFTManager _nftManager = new NFTManager();
+    // NFTManager _nftManager = new NFTManager();
     int _getNFTItemCount;
 
     #endregion
@@ -262,42 +263,6 @@ public class Tutorial: MonoBehaviour, ObserverLobby
     {
         nftTicket.SetActive(true);
         nftWallet.SetActive(true);
-
-        GameObject[] ticketNFTObjects = GameObject.FindGameObjectsWithTag("TicketRandomNFT");
-
-        int randomIndex = UnityEngine.Random.Range(0, ticketNFTObjects.Length);
-        for (int i = 0; i < ticketNFTObjects.Length; i++) 
-        {
-            if (i == randomIndex)
-            {
-                if (ticketNFTObjects[i].name.Contains("Apple")) 
-                {
-                    nftTicket.GetComponentInChildren<TextMeshPro>().text = "NFT 입장권\n사과 VER.";
-                } 
-                else if (ticketNFTObjects[i].name.Contains("Pumpkin")) 
-                {
-                    nftTicket.GetComponentInChildren<TextMeshPro>().text = "NFT 입장권\n호박 VER.";
-                } 
-                else if (ticketNFTObjects[i].name.Contains("Cheese")) 
-                {
-                    nftTicket.GetComponentInChildren<TextMeshPro>().text = "NFT 입장권\n치즈케익 VER.";
-                } 
-                else if (ticketNFTObjects[i].name.Contains("Carrot")) 
-                {
-                    nftTicket.GetComponentInChildren<TextMeshPro>().text = "NFT 입장권\n당근 VER.";
-                }
-            }
-            else
-            {
-                ticketNFTObjects[i].SetActive(false);
-            }
-        }
-
-        GameObject particleSystem = nftTicket.transform.Find("Particle System").gameObject;
-        particleSystem.SetActive(false);
-
-        _nftManager.CreateNFTTicketPrefab(nftTicket);
-        particleSystem.SetActive(true);
     }
 
     void TurnOffNPCConversationTutorial()
