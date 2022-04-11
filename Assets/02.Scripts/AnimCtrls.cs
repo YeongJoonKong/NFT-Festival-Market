@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using TMPro;
 public class AnimCtrls : MonoBehaviour
 {
     // Start is called before the first frame update
@@ -11,6 +11,8 @@ public class AnimCtrls : MonoBehaviour
     public float TalkDistance = 3f;
     
     private GameObject player;
+    private NpcDialugeManager npctext;
+    private Canvas canvas;
     private Transform tr;
     private Animator anim;
     float dist;
@@ -26,32 +28,45 @@ public class AnimCtrls : MonoBehaviour
     {
         anim = GetComponent<Animator>();
         tr = GetComponent<Transform>();
+
         player = GameObject.FindWithTag("Player");
+        npctext = GetComponentInChildren<NpcDialugeManager>();
+        canvas = GetComponentInChildren<Canvas>();
+
+        canvas.enabled = false;
 
         state = State.Idle;
+
     }
     // Update is called once per frame
     void Update()
     {
-        dist = Vector3.Distance(player.transform.position, tr.position);
-        dir = player.transform.position - tr.position;
-        dir.Normalize();
-        switch(state)
+        if(player == null)
         {
-            case State.Idle:
-                UpdateIdle();
-                break;
             
-            case State.Waving:
-                UpdateWaving();
-                break;
+        }
+        else
+        {
+            dist = Vector3.Distance(player.transform.position, tr.position);
+            dir = player.transform.position - tr.position;
+            dir.Normalize();
+            switch (state)
+            {
+                case State.Idle:
+                    UpdateIdle();
+                    break;
 
-            case State.Talk:
-                UpdateTalk();
-                break;
+                case State.Waving:
+                    UpdateWaving();
+                    break;
 
-            default:
-                 break;
+                case State.Talk:
+                    UpdateTalk();
+                    break;
+
+                default:
+                    break;
+            }
         }
     }
     void UpdateIdle()
@@ -60,6 +75,8 @@ public class AnimCtrls : MonoBehaviour
         {
             anim.SetTrigger("Greet_0"+ Random.Range(1, 3));
             state = State.Waving;
+        canvas.enabled = true;
+            npctext.Conversation();
         }
     }
 
@@ -75,6 +92,7 @@ public class AnimCtrls : MonoBehaviour
         }
         else if(dist > Idledistance)
         {
+            canvas.enabled = false;
             anim.SetTrigger("Idle");
             state = State.Idle;
         }

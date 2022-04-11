@@ -186,6 +186,7 @@ public class OVRPlayerController : MonoBehaviour
 
 	void Awake()
 	{
+
 	}
 
 	void OnEnable()
