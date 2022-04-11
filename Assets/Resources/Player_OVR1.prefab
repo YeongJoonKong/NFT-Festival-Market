@@ -168,6 +168,8 @@ MonoBehaviour:
   - {fileID: 5212475505747948912}
   CameaRig: {fileID: 0}
   vrik: {fileID: 0}
+  controller: {fileID: 0}
+  ovrcontroller: {fileID: 0}
 --- !u!120 &5377651638489198444
 LineRenderer:
   m_ObjectHideFlags: 0

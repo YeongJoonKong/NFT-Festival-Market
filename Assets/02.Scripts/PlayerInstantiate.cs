@@ -19,6 +19,8 @@ public class PlayerInstantiate : MonoBehaviour
 
 
     public VRIK vrik;
+    public CharacterController controller;
+    public OVRPlayerController ovrcontroller;
 
 
 
@@ -27,15 +29,16 @@ public class PlayerInstantiate : MonoBehaviour
     {
 
         vrik = GetComponentInChildren<VRIK>();
-
+        controller = GetComponent<CharacterController>();
+        ovrcontroller = GetComponent<OVRPlayerController>();
         pv = GetComponent<PhotonView>();
         if (pv.IsMine)
         {
-
-            avatar = PlayerPrefs.GetString("Avatar");
             CameaRig = GameObject.Find("OVRCameraRig1");
 
             CameaRig.transform.parent = transform;
+
+            avatar = PlayerPrefs.GetString("Avatar");
             //print(avatar);
             //myavatar = GameObject.FindGameObjectWithTag(avatar);
 
@@ -46,21 +49,30 @@ public class PlayerInstantiate : MonoBehaviour
 
 
         }
+        if (!pv.IsMine)
+        {
+            vrik.enabled = false;
+            controller.enabled = false;
+            ovrcontroller.enabled = false;
+        }
     }
     void Start()
     {
 
-
-
-        pv.RPC("ConnectingVRIK", RpcTarget.AllBufferedViaServer, avatar);
+        if (pv.IsMine)
+        {
+            print(GameObject.FindGameObjectsWithTag(avatar)[0].gameObject.transform);
+            vrik.solver.spine.headTarget = GameObject.FindGameObjectsWithTag(avatar)[0].gameObject.transform;
+            vrik.solver.leftArm.target = GameObject.FindGameObjectsWithTag(avatar)[1].gameObject.transform;
+            vrik.solver.rightArm.target = GameObject.FindGameObjectsWithTag(avatar)[2].gameObject.transform;
+        }
 
         //if (pv.IsMine)
         //{
-        //    print(GameObject.FindGameObjectsWithTag(avatar)[0].gameObject.transform);
-        //    vrik.solver.spine.headTarget = GameObject.FindGameObjectsWithTag(avatar)[0].gameObject.transform;
-        //    vrik.solver.leftArm.target = GameObject.FindGameObjectsWithTag(avatar)[1].gameObject.transform;
-        //    vrik.solver.rightArm.target = GameObject.FindGameObjectsWithTag(avatar)[2].gameObject.transform;
+
+        //pv.RPC("ConnectingVRIK", RpcTarget.AllBufferedViaServer, avatar);
         //}
+
         //PlayerPrefs.DeleteAll();
 
 
@@ -91,31 +103,28 @@ public class PlayerInstantiate : MonoBehaviour
 
         }
     }
-    [PunRPC]
-    private void ConnectingVRIK(string avatar)
-    {
-        if (pv.IsMine)
-        {
-            //print(GameObject.FindGameObjectsWithTag(avatar)[0].gameObject.transform);
-            vrik.solver.spine.headTarget = GameObject.FindGameObjectsWithTag(avatar)[0].gameObject.transform;
-            vrik.solver.leftArm.target = GameObject.FindGameObjectsWithTag(avatar)[1].gameObject.transform;
-            vrik.solver.rightArm.target = GameObject.FindGameObjectsWithTag(avatar)[2].gameObject.transform;
-        }
-        if (!pv.IsMine)
-        {
-            vrik.enabled = false;
-        }
+}
+    //[PunRPC]
+    //private void ConnectingVRIK(string avatar)
+    //{
 
-        //print(avatar);
-        //myavatar = GameObject.FindGameObjectWithTag(avatar);
+    //    //print(GameObject.FindGameObjectsWithTag(avatar)[0].gameObject.transform);
+    //    vrik.solver.spine.headTarget = GameObject.FindGameObjectsWithTag(avatar)[0].gameObject.transform;
+    //    vrik.solver.leftArm.target = GameObject.FindGameObjectsWithTag(avatar)[1].gameObject.transform;
+    //    vrik.solver.rightArm.target = GameObject.FindGameObjectsWithTag(avatar)[2].gameObject.transform;
+    //}
 
-        //print(myavatar);
-        //myavatar.transform.parent = transform;
+
+    //print(avatar);
+    //myavatar = GameObject.FindGameObjectWithTag(avatar);
+
+    //print(myavatar);
+    //myavatar.transform.parent = transform;
 
 
 
 
-    }
+    //}
 
     //float rx, ry;
     //float rotSpeed = 200;
@@ -168,4 +177,4 @@ public class PlayerInstantiate : MonoBehaviour
     //    }
 
     //}
-}
+
