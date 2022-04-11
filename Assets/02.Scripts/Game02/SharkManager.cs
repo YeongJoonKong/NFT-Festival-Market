@@ -2,22 +2,21 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MoleManager : MonoBehaviour
+public class SharkManager : MonoBehaviour
 {
-    List<MoleController> moles = new List<MoleController>();
+    List<SharkController> Sharks = new List<SharkController>();
     bool generate;
-    public AnimationCurve maxMoles;
+    public AnimationCurve maxSharkNum;
 
     // Start is called before the first frame update
     void Start()
     {
-        GameObject[] gos = GameObject.FindGameObjectsWithTag("Mole");
+        GameObject[] sos = GameObject.FindGameObjectsWithTag("Shark");
 
-        foreach(GameObject go in gos)
+        foreach(GameObject so in sos)
         {
-            moles.Add(go.GetComponent<MoleController>());
+            Sharks.Add(so.GetComponent<SharkController>());
         }
-
         this.generate = false;
     }
 
@@ -28,6 +27,7 @@ public class MoleManager : MonoBehaviour
 
     public void StopGenerate()
     {
+        StopCoroutine("Generate");
         this.generate = false;
     }
 
@@ -38,15 +38,17 @@ public class MoleManager : MonoBehaviour
         while(this.generate)
         {
             yield return new WaitForSeconds(1.0f);
+            
+            int n = Sharks.Count;
 
-            int n = moles.Count;
+            int maxNum = (int)this.maxSharkNum.Evaluate(SharkGamaManager.SharkTime);
+            print(maxSharkNum);
+            print(maxNum);
 
-            int maxNum = (int)this.maxMoles.Evaluate(GameManager.time);
-
-            for(int i = 0; i < maxNum; i++)
+            for (int i = 0; i < maxNum; i++)
             {
-                print(i);
-                this.moles[Random.Range(0, n)].Up();
+                this.Sharks[Random.Range(0, n)].Up();
+                print("shark[]" + Sharks[i]);
 
                 yield return new WaitForSeconds(0.3f);
             }
@@ -59,4 +61,8 @@ public class MoleManager : MonoBehaviour
     {
 
     }
+
+
+
+
 }
