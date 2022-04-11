@@ -43,8 +43,6 @@ public class HammerController : MonoBehaviour
             if(isHit)
             {
                 StartCoroutine(HitTheMole(mole.transform.position));
-
-                ScoreManager.score += 10;
             }
 
 
