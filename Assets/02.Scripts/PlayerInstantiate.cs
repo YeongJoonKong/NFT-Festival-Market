@@ -26,6 +26,7 @@ public class PlayerInstantiate : MonoBehaviour
     private void Awake()
     {
         
+            vrik = GetComponentInChildren<VRIK>();
 
         pv = GetComponent<PhotonView>();
         if (pv.IsMine)
@@ -43,7 +44,6 @@ public class PlayerInstantiate : MonoBehaviour
 
             pv.RPC("AvatarChange", RpcTarget.AllBufferedViaServer, avatar);
 
-            vrik = GetComponentInChildren<VRIK>();
 
         }
     }

@@ -1032,6 +1032,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4583727954031974917}
+  - component: {fileID: 2193758799753680580}
   m_Layer: 0
   m_Name: LeftHand
   m_TagString: Untagged
@@ -1059,6 +1060,22 @@ Transform:
   m_Father: {fileID: 5369654008560070647}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2193758799753680580
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1857433814325238873}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 627855c7f81362d41938ffe0b1475957, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_SynchronizePosition: 1
+  m_SynchronizeRotation: 1
+  m_SynchronizeScale: 0
+  m_UseLocal: 1
 --- !u!1 &2047008388658333202
 GameObject:
   m_ObjectHideFlags: 0
@@ -1552,6 +1569,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 312668165852885767}
+  - component: {fileID: 8213308784975356891}
   m_Layer: 0
   m_Name: RightHand
   m_TagString: Untagged
@@ -1579,6 +1597,22 @@ Transform:
   m_Father: {fileID: 969029503894803274}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &8213308784975356891
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3483767864279222944}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 627855c7f81362d41938ffe0b1475957, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_SynchronizePosition: 1
+  m_SynchronizeRotation: 1
+  m_SynchronizeScale: 0
+  m_UseLocal: 1
 --- !u!1 &3700283849053005160
 GameObject:
   m_ObjectHideFlags: 0
@@ -2813,6 +2847,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 436033096922888400}
+  - component: {fileID: 9116700761292921185}
   m_Layer: 0
   m_Name: Head
   m_TagString: Untagged
@@ -2838,6 +2873,22 @@ Transform:
   m_Father: {fileID: 7054244890835064383}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &9116700761292921185
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5684726076433899593}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 627855c7f81362d41938ffe0b1475957, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_SynchronizePosition: 1
+  m_SynchronizeRotation: 1
+  m_SynchronizeScale: 0
+  m_UseLocal: 1
 --- !u!1 &5728308547751008297
 GameObject:
   m_ObjectHideFlags: 0
@@ -4214,6 +4265,7 @@ GameObject:
   - component: {fileID: 8238124406550938288}
   - component: {fileID: 8238124406550938292}
   - component: {fileID: 8238124406550938299}
+  - component: {fileID: 6898350193015863149}
   m_Layer: 0
   m_Name: untitled
   m_TagString: Avatar1
@@ -4228,7 +4280,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 9120593339337360429}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 3.3999996, y: -1.0799999, z: -4.800001}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -4273,7 +4325,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 9120593339337360429}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1885d47f6086b6640ac7f1e1d1137642, type: 3}
   m_Name: 
@@ -4609,3 +4661,59 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c478593ee4e9ffb4fbad0dd3a834fe2a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &6898350193015863149
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9120593339337360429}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9b8c4a61274f60b4ea5fb4299cfdbf14, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ShowLayerWeightsInspector: 1
+  ShowParameterInspector: 1
+  m_SynchronizeParameters:
+  - Type: 4
+    SynchronizeType: 1
+    Name: isMoving
+  - Type: 1
+    SynchronizeType: 1
+    Name: Blend
+  - Type: 1
+    SynchronizeType: 1
+    Name: DirectionX
+  - Type: 1
+    SynchronizeType: 1
+    Name: DirectionY
+  - Type: 1
+    SynchronizeType: 1
+    Name: Right Flex
+  - Type: 1
+    SynchronizeType: 1
+    Name: Right Pinch
+  - Type: 3
+    SynchronizeType: 1
+    Name: RIght Pose
+  - Type: 1
+    SynchronizeType: 1
+    Name: Left Flex
+  - Type: 1
+    SynchronizeType: 1
+    Name: Left Pinch
+  - Type: 3
+    SynchronizeType: 1
+    Name: Left Pose
+  m_SynchronizeLayers:
+  - SynchronizeType: 1
+    LayerIndex: 0
+  - SynchronizeType: 1
+    LayerIndex: 1
+  - SynchronizeType: 1
+    LayerIndex: 2
+  - SynchronizeType: 1
+    LayerIndex: 3
+  - SynchronizeType: 1
+    LayerIndex: 4
