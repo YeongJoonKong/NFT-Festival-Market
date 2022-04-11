@@ -15,7 +15,7 @@ public class PlayerInstantiate : MonoBehaviour
     public GameObject[] avatars;
     string avatar;
     public GameObject CameaRig;
-    public GameObject myavatar;
+    //public GameObject myavatar;
 
 
     public VRIK vrik;
@@ -25,22 +25,27 @@ public class PlayerInstantiate : MonoBehaviour
     // Start is called before the first frame update
     private void Awake()
     {
+        
+
         pv = GetComponent<PhotonView>();
         if (pv.IsMine)
         {
             
             avatar = PlayerPrefs.GetString("Avatar");
             CameaRig = GameObject.Find("OVRCameraRig1");
-            CameaRig.transform.parent = transform;
-            print(avatar);
-            myavatar = GameObject.FindGameObjectWithTag(avatar);
-
-            print(myavatar);
-            myavatar.transform.parent = transform;
             
+            CameaRig.transform.parent = transform;
+            //print(avatar);
+            //myavatar = GameObject.FindGameObjectWithTag(avatar);
+
+            //print(myavatar);
+            //myavatar.transform.parent = transform;
+
+            pv.RPC("AvatarChange", RpcTarget.AllBufferedViaServer, avatar);
+
+            vrik = GetComponentInChildren<VRIK>();
 
         }
-
     }
     void Start()
     {
@@ -48,15 +53,15 @@ public class PlayerInstantiate : MonoBehaviour
 
 
 
-        //if (pv.IsMine)
-        //{
-        //    pv.RPC("AvatarChange", RpcTarget.AllBufferedViaServer, avatar);
-        //    //vrik.solver.spine.headTarget = GameObject.FindGameObjectWithTag(avatar).gameObject.transform;
-        //    //vrik.solver.leftArm.target = GameObject.FindGameObjectWithTag(avatar).gameObject.transform;
-        //    //vrik.solver.rightArm.target = GameObject.FindGameObjectWithTag(avatar).gameObject.transform;
+        if (pv.IsMine)
+        {
+            print(GameObject.FindGameObjectsWithTag(avatar)[0].gameObject.transform);
+            vrik.solver.spine.headTarget = GameObject.FindGameObjectsWithTag(avatar)[0].gameObject.transform;
+            vrik.solver.leftArm.target = GameObject.FindGameObjectsWithTag(avatar)[1].gameObject.transform;
+            vrik.solver.rightArm.target = GameObject.FindGameObjectsWithTag(avatar)[2].gameObject.transform;
 
 
-        //}
+        }
         //PlayerPrefs.DeleteAll();
 
 
@@ -86,6 +91,11 @@ public class PlayerInstantiate : MonoBehaviour
             }
 
         }
+        //print(avatar);
+        //myavatar = GameObject.FindGameObjectWithTag(avatar);
+
+        //print(myavatar);
+        //myavatar.transform.parent = transform;
 
 
 

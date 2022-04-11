@@ -686,7 +686,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9120593339337360429, guid: 0ac4ab8a13bc1df44b6dc406c6824c02, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0ac4ab8a13bc1df44b6dc406c6824c02, type: 3}
@@ -931,17 +931,25 @@ PrefabInstance:
       propertyPath: m_Name
       value: LeftHand
       objectReference: {fileID: 0}
+    - target: {fileID: 1299802815439423082, guid: cd608a4ecbaa49c4d8ddeec7ab71ac3b, type: 3}
+      propertyPath: m_TagString
+      value: Avatar1
+      objectReference: {fileID: 0}
     - target: {fileID: 1299802815541706586, guid: cd608a4ecbaa49c4d8ddeec7ab71ac3b, type: 3}
       propertyPath: m_Name
       value: Head
       objectReference: {fileID: 0}
     - target: {fileID: 1299802815541706586, guid: cd608a4ecbaa49c4d8ddeec7ab71ac3b, type: 3}
       propertyPath: m_TagString
-      value: Untagged
+      value: Avatar1
       objectReference: {fileID: 0}
     - target: {fileID: 1299802815629021780, guid: cd608a4ecbaa49c4d8ddeec7ab71ac3b, type: 3}
       propertyPath: m_Name
       value: RightHand
+      objectReference: {fileID: 0}
+    - target: {fileID: 1299802815629021780, guid: cd608a4ecbaa49c4d8ddeec7ab71ac3b, type: 3}
+      propertyPath: m_TagString
+      value: Avatar1
       objectReference: {fileID: 0}
     - target: {fileID: 1299802816116082782, guid: cd608a4ecbaa49c4d8ddeec7ab71ac3b, type: 3}
       propertyPath: m_Enabled
@@ -954,6 +962,10 @@ PrefabInstance:
     - target: {fileID: 1299802816501607392, guid: cd608a4ecbaa49c4d8ddeec7ab71ac3b, type: 3}
       propertyPath: m_Name
       value: OVRCameraRig1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1299802816501607392, guid: cd608a4ecbaa49c4d8ddeec7ab71ac3b, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1299802816501607399, guid: cd608a4ecbaa49c4d8ddeec7ab71ac3b, type: 3}
       propertyPath: m_RootOrder
@@ -1016,6 +1028,27 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 1299802815541706585, guid: cd608a4ecbaa49c4d8ddeec7ab71ac3b, type: 3}
   m_PrefabInstance: {fileID: 1866667860}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1866667869 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1299802815541706586, guid: cd608a4ecbaa49c4d8ddeec7ab71ac3b, type: 3}
+  m_PrefabInstance: {fileID: 1866667860}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1866667874
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1866667869}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 627855c7f81362d41938ffe0b1475957, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_SynchronizePosition: 1
+  m_SynchronizeRotation: 1
+  m_SynchronizeScale: 0
+  m_UseLocal: 1
 --- !u!1001 &2010628351
 PrefabInstance:
   m_ObjectHideFlags: 0
