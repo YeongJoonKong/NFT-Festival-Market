@@ -3955,7 +3955,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5832079463194705132, guid: 8d72a51ad05f803418686a52408e1af9, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -2
+      value: -2.2
       objectReference: {fileID: 0}
     - target: {fileID: 5832079463194705132, guid: 8d72a51ad05f803418686a52408e1af9, type: 3}
       propertyPath: m_LocalPosition.z
@@ -3992,6 +3992,10 @@ PrefabInstance:
     - target: {fileID: 6603515051659912790, guid: 8d72a51ad05f803418686a52408e1af9, type: 3}
       propertyPath: m_Name
       value: Dino_Shark17
+      objectReference: {fileID: 0}
+    - target: {fileID: 6603515051659912790, guid: 8d72a51ad05f803418686a52408e1af9, type: 3}
+      propertyPath: m_TagString
+      value: Shark
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8d72a51ad05f803418686a52408e1af9, type: 3}
@@ -10587,6 +10591,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Dino_Shark13
       objectReference: {fileID: 0}
+    - target: {fileID: 6261104875172102482, guid: 4812b37782e228841ba5ffa7fa2e6f4f, type: 3}
+      propertyPath: m_TagString
+      value: Shark
+      objectReference: {fileID: 0}
     - target: {fileID: 6748706827739454440, guid: 4812b37782e228841ba5ffa7fa2e6f4f, type: 3}
       propertyPath: m_RootOrder
       value: 4
@@ -10609,7 +10617,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6748706827739454440, guid: 4812b37782e228841ba5ffa7fa2e6f4f, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -2
+      value: -2.2
       objectReference: {fileID: 0}
     - target: {fileID: 6748706827739454440, guid: 4812b37782e228841ba5ffa7fa2e6f4f, type: 3}
       propertyPath: m_LocalPosition.z
@@ -15996,7 +16004,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3691625536861117042, guid: e97f9b56b074c724dbd3abb7c8a0de70, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -2
+      value: -2.2
       objectReference: {fileID: 0}
     - target: {fileID: 3691625536861117042, guid: e97f9b56b074c724dbd3abb7c8a0de70, type: 3}
       propertyPath: m_LocalPosition.z
@@ -16033,6 +16041,10 @@ PrefabInstance:
     - target: {fileID: 4066919176188346568, guid: e97f9b56b074c724dbd3abb7c8a0de70, type: 3}
       propertyPath: m_Name
       value: Dino_Shark16
+      objectReference: {fileID: 0}
+    - target: {fileID: 4066919176188346568, guid: e97f9b56b074c724dbd3abb7c8a0de70, type: 3}
+      propertyPath: m_TagString
+      value: Shark
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e97f9b56b074c724dbd3abb7c8a0de70, type: 3}
@@ -19056,6 +19068,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Dino_Shark20
       objectReference: {fileID: 0}
+    - target: {fileID: 8332709055852621187, guid: 24a5051a11e196746af0685b3f8c3c9a, type: 3}
+      propertyPath: m_TagString
+      value: Shark
+      objectReference: {fileID: 0}
     - target: {fileID: 8712330097181783865, guid: 24a5051a11e196746af0685b3f8c3c9a, type: 3}
       propertyPath: m_RootOrder
       value: 9
@@ -19078,7 +19094,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8712330097181783865, guid: 24a5051a11e196746af0685b3f8c3c9a, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -2
+      value: -2.2
       objectReference: {fileID: 0}
     - target: {fileID: 8712330097181783865, guid: 24a5051a11e196746af0685b3f8c3c9a, type: 3}
       propertyPath: m_LocalPosition.z
@@ -21183,6 +21199,11 @@ PrefabInstance:
 Transform:
   m_CorrespondingSourceObject: {fileID: 400000, guid: 5b297189a320b854682aa628b8042182, type: 3}
   m_PrefabInstance: {fileID: 633493963}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &634118411 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3534200170052429777, guid: 4f304ecd127bc4e4b9aedd8bd819c96b, type: 3}
+  m_PrefabInstance: {fileID: 1881202986}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &635811584
 PrefabInstance:
@@ -23891,6 +23912,11 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 400000, guid: 99b29fa09a4facc4faca87cace40f8c0, type: 3}
   m_PrefabInstance: {fileID: 1599189290}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &696959264 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2697116996940642522, guid: f513a4cd52fbb5e44aaa4c13892a74c6, type: 3}
+  m_PrefabInstance: {fileID: 1239692156}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &697226602
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -25361,6 +25387,26 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e323a6e12c7dbe645af5ef07f3d29486, type: 3}
+--- !u!1 &746557925 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8332709055852621187, guid: 24a5051a11e196746af0685b3f8c3c9a, type: 3}
+  m_PrefabInstance: {fileID: 581558669}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &746557926
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 746557925}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2e1a03a28de321c448c56762514f3319, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  MovingSpeed: 5
+  tmpTime: 0
+  WaitingTime: 1
 --- !u!1001 &747851441
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -27854,7 +27900,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6932312614599403936, guid: c1fc312d39fc3444785cf4381e6d8314, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -2
+      value: -2.2
       objectReference: {fileID: 0}
     - target: {fileID: 6932312614599403936, guid: c1fc312d39fc3444785cf4381e6d8314, type: 3}
       propertyPath: m_LocalPosition.z
@@ -27891,6 +27937,10 @@ PrefabInstance:
     - target: {fileID: 7746003568269226778, guid: c1fc312d39fc3444785cf4381e6d8314, type: 3}
       propertyPath: m_Name
       value: Dino_Shark19
+      objectReference: {fileID: 0}
+    - target: {fileID: 7746003568269226778, guid: c1fc312d39fc3444785cf4381e6d8314, type: 3}
+      propertyPath: m_TagString
+      value: Shark
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c1fc312d39fc3444785cf4381e6d8314, type: 3}
@@ -29432,6 +29482,26 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7b3a9e94061078649a1955d37ee82a9c, type: 3}
+--- !u!1 &873210349 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6261104875172102482, guid: 4812b37782e228841ba5ffa7fa2e6f4f, type: 3}
+  m_PrefabInstance: {fileID: 339887107}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &873210350
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 873210349}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2e1a03a28de321c448c56762514f3319, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  MovingSpeed: 5
+  tmpTime: 0
+  WaitingTime: 1
 --- !u!1001 &873735061
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -29602,6 +29672,11 @@ PrefabInstance:
 Transform:
   m_CorrespondingSourceObject: {fileID: 400000, guid: 8cdf8ca70bb73ac4884fe816f9e9ef05, type: 3}
   m_PrefabInstance: {fileID: 1461258755}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &883721569 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2032842695018594310, guid: 35c190690e9040546bddc6ffa09ad396, type: 3}
+  m_PrefabInstance: {fileID: 1333793823}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &884157983
 PrefabInstance:
@@ -34068,6 +34143,26 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 400000, guid: 99b29fa09a4facc4faca87cace40f8c0, type: 3}
   m_PrefabInstance: {fileID: 1101335846}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1043943649 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7746003568269226778, guid: c1fc312d39fc3444785cf4381e6d8314, type: 3}
+  m_PrefabInstance: {fileID: 829074816}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1043943650
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1043943649}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2e1a03a28de321c448c56762514f3319, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  MovingSpeed: 5
+  tmpTime: 0
+  WaitingTime: 1
 --- !u!1001 &1046632748
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -34363,7 +34458,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2309886252539260016, guid: a255b3b3add6f284f84a813f664dc612, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -2
+      value: -2.2
       objectReference: {fileID: 0}
     - target: {fileID: 2309886252539260016, guid: a255b3b3add6f284f84a813f664dc612, type: 3}
       propertyPath: m_LocalPosition.z
@@ -34400,6 +34495,10 @@ PrefabInstance:
     - target: {fileID: 3118054320580949706, guid: a255b3b3add6f284f84a813f664dc612, type: 3}
       propertyPath: m_Name
       value: Dino_Shark10
+      objectReference: {fileID: 0}
+    - target: {fileID: 3118054320580949706, guid: a255b3b3add6f284f84a813f664dc612, type: 3}
+      propertyPath: m_TagString
+      value: Shark
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a255b3b3add6f284f84a813f664dc612, type: 3}
@@ -37475,6 +37574,26 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5b297189a320b854682aa628b8042182, type: 3}
+--- !u!1 &1159940070 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4066919176188346568, guid: e97f9b56b074c724dbd3abb7c8a0de70, type: 3}
+  m_PrefabInstance: {fileID: 493411971}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1159940071
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1159940070}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2e1a03a28de321c448c56762514f3319, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  MovingSpeed: 5
+  tmpTime: 0
+  WaitingTime: 1
 --- !u!1001 &1160389480
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -37750,7 +37869,7 @@ GameObject:
   - component: {fileID: 1168186528}
   m_Layer: 0
   m_Name: Sharks
-  m_TagString: Untagged
+  m_TagString: Shark
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -40284,6 +40403,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Dino_Shark05
       objectReference: {fileID: 0}
+    - target: {fileID: 2697116996940642522, guid: f513a4cd52fbb5e44aaa4c13892a74c6, type: 3}
+      propertyPath: m_TagString
+      value: Shark
+      objectReference: {fileID: 0}
     - target: {fileID: 3325280722496840288, guid: f513a4cd52fbb5e44aaa4c13892a74c6, type: 3}
       propertyPath: m_RootOrder
       value: 1
@@ -40306,7 +40429,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3325280722496840288, guid: f513a4cd52fbb5e44aaa4c13892a74c6, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -2
+      value: -2.2
       objectReference: {fileID: 0}
     - target: {fileID: 3325280722496840288, guid: f513a4cd52fbb5e44aaa4c13892a74c6, type: 3}
       propertyPath: m_LocalPosition.z
@@ -40347,6 +40470,21 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 3325280722496840288, guid: f513a4cd52fbb5e44aaa4c13892a74c6, type: 3}
   m_PrefabInstance: {fileID: 1239692156}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1239692158
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 696959264}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2e1a03a28de321c448c56762514f3319, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  MovingSpeed: 5
+  tmpTime: 0
+  WaitingTime: 1
 --- !u!4 &1240665016 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 400000, guid: 42c47a23b22b2fe429fe06dde6f64cd1, type: 3}
@@ -42923,7 +43061,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1692732260423604924, guid: 35c190690e9040546bddc6ffa09ad396, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -2
+      value: -2.2
       objectReference: {fileID: 0}
     - target: {fileID: 1692732260423604924, guid: 35c190690e9040546bddc6ffa09ad396, type: 3}
       propertyPath: m_LocalPosition.z
@@ -42961,6 +43099,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Dino_Shark00
       objectReference: {fileID: 0}
+    - target: {fileID: 2032842695018594310, guid: 35c190690e9040546bddc6ffa09ad396, type: 3}
+      propertyPath: m_TagString
+      value: Shark
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 35c190690e9040546bddc6ffa09ad396, type: 3}
 --- !u!4 &1333793824 stripped
@@ -42968,6 +43110,21 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 1692732260423604924, guid: 35c190690e9040546bddc6ffa09ad396, type: 3}
   m_PrefabInstance: {fileID: 1333793823}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1333793825
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 883721569}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2e1a03a28de321c448c56762514f3319, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  MovingSpeed: 5
+  tmpTime: 0
+  WaitingTime: 1
 --- !u!1001 &1336302295
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -46218,6 +46375,26 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 400000, guid: e323a6e12c7dbe645af5ef07f3d29486, type: 3}
   m_PrefabInstance: {fileID: 1827822380}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1433433397 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3118054320580949706, guid: a255b3b3add6f284f84a813f664dc612, type: 3}
+  m_PrefabInstance: {fileID: 1052425264}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1433433398
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1433433397}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2e1a03a28de321c448c56762514f3319, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  MovingSpeed: 5
+  tmpTime: 0
+  WaitingTime: 1
 --- !u!4 &1434859066 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 400000, guid: cc20200a5f0ab794c8cc2a76a73f44fb, type: 3}
@@ -55708,6 +55885,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Dino_Shark12
       objectReference: {fileID: 0}
+    - target: {fileID: 6009926419346449374, guid: 6ec15c6dc48982c43ad0c6101f877da0, type: 3}
+      propertyPath: m_TagString
+      value: Shark
+      objectReference: {fileID: 0}
     - target: {fileID: 6353554948358224228, guid: 6ec15c6dc48982c43ad0c6101f877da0, type: 3}
       propertyPath: m_RootOrder
       value: 3
@@ -55730,7 +55911,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6353554948358224228, guid: 6ec15c6dc48982c43ad0c6101f877da0, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -2
+      value: -2.2
       objectReference: {fileID: 0}
     - target: {fileID: 6353554948358224228, guid: 6ec15c6dc48982c43ad0c6101f877da0, type: 3}
       propertyPath: m_LocalPosition.z
@@ -56157,6 +56338,26 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4ed2be451e9dc9845969311a51c7ba2c, type: 3}
+--- !u!1 &1721052466 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6009926419346449374, guid: 6ec15c6dc48982c43ad0c6101f877da0, type: 3}
+  m_PrefabInstance: {fileID: 1711139530}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1721052467
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1721052466}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2e1a03a28de321c448c56762514f3319, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  MovingSpeed: 5
+  tmpTime: 0
+  WaitingTime: 1
 --- !u!1001 &1722632621
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -58137,6 +58338,98 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 578e7ff63972ef942b20172635f4ca8e, type: 3}
+--- !u!1 &1790056756
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1790056759}
+  - component: {fileID: 1790056758}
+  - component: {fileID: 1790056757}
+  m_Layer: 0
+  m_Name: SharkGameManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1790056757
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1790056756}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 23a21a413b1aacf4d8634c5e4dc465da, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxSharkNum:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 2.2830095
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 0.68315804
+      value: 9.669811
+      inSlope: 8.461347
+      outSlope: 8.461347
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 0.997797
+      value: 8.582275
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+--- !u!114 &1790056758
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1790056756}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cfee1401dead1b04eb3fff79be7719f9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sharkTimeLimit: 26
+  WatingTime: 5
+--- !u!4 &1790056759
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1790056756}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1793050810
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -60230,6 +60523,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Dino_Shark15
       objectReference: {fileID: 0}
+    - target: {fileID: 3534200170052429777, guid: 4f304ecd127bc4e4b9aedd8bd819c96b, type: 3}
+      propertyPath: m_TagString
+      value: Shark
+      objectReference: {fileID: 0}
     - target: {fileID: 4199554945406074219, guid: 4f304ecd127bc4e4b9aedd8bd819c96b, type: 3}
       propertyPath: m_RootOrder
       value: 5
@@ -60252,7 +60549,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4199554945406074219, guid: 4f304ecd127bc4e4b9aedd8bd819c96b, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -2
+      value: -2.2
       objectReference: {fileID: 0}
     - target: {fileID: 4199554945406074219, guid: 4f304ecd127bc4e4b9aedd8bd819c96b, type: 3}
       propertyPath: m_LocalPosition.z
@@ -60293,6 +60590,21 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4199554945406074219, guid: 4f304ecd127bc4e4b9aedd8bd819c96b, type: 3}
   m_PrefabInstance: {fileID: 1881202986}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1881202988
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 634118411}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2e1a03a28de321c448c56762514f3319, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  MovingSpeed: 5
+  tmpTime: 0
+  WaitingTime: 1
 --- !u!1001 &1882271131
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -68644,6 +68956,26 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 400000, guid: 5817ee69c2f17e44fa7dcf9dcc010e32, type: 3}
   m_PrefabInstance: {fileID: 2118792353}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &2122396542 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6603515051659912790, guid: 8d72a51ad05f803418686a52408e1af9, type: 3}
+  m_PrefabInstance: {fileID: 169835043}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &2122396543
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2122396542}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2e1a03a28de321c448c56762514f3319, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  MovingSpeed: 5
+  tmpTime: 0
+  WaitingTime: 1
 --- !u!4 &2123702284 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 400000, guid: 578a745145b891646b37ee69680dee11, type: 3}

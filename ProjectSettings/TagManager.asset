@@ -10,6 +10,9 @@ TagManager:
   - Cylinder
   - Cube
   - NFT
+  - Mole
+  - Beach
+  - Shark
   layers:
   - Default
   - TransparentFX
