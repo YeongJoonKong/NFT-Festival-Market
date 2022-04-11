@@ -9,13 +9,16 @@ public class Ticket : MonoBehaviour, SubjectLobby
     public TextMesh ticketNumber;
     public TextMeshPro ticketName;
 
-    bool _isDecideNFT;
     List<ObserverLobby> _subscribers = new List<ObserverLobby>();
 
     void Start()
     {
-        NFTManager nftManager = new NFTManager();
-        ticketNumber.text = nftManager.ReadTicketInfoJsonFile("transactionHash").ToString();
+        if (TicketCache.transactionHash != null) 
+        {
+            ticketNumber.text = TicketCache.transactionHash;
+        }
+        // NFTManager nftManager = new NFTManager();
+        // ticketNumber.text = nftManager.ReadTicketInfoJsonFile("transactionHash").ToString();
     }
 
     void Update()

@@ -11,6 +11,7 @@ public class FriendAvatar : MonoBehaviour, SubjectLobby
     public AudioClip[] audioClips;
     public Transform targetDestination;
     public GameObject player;
+    public GameObject door;
 
     Animator _anim;
     AudioSource _audioSource;
@@ -46,7 +47,6 @@ public class FriendAvatar : MonoBehaviour, SubjectLobby
         {
             if (_navMeshAgent.remainingDistance == 0)
             {
-                Debug.Log(_navMeshAgent.remainingDistance);
                 _anim.SetTrigger("Idle");
                 Vector3 tr = new Vector3(player.transform.position.x, transform.position.y, player.transform.position.z);
                 transform.LookAt(tr);
@@ -104,7 +104,7 @@ public class FriendAvatar : MonoBehaviour, SubjectLobby
         _audioSource.clip = audioClips[index];
         _audioSource.Play();
         if (index == 17) {
-            yield return new WaitUntil(() => OVRInput.Get(OVRInput.Button.One));
+            yield return new WaitUntil(() => OVRInput.Get(OVRInput.Button.Two));
         }
         yield return new WaitForSeconds(_audioSource.clip.length + 1);
         index += 1;
@@ -114,6 +114,7 @@ public class FriendAvatar : MonoBehaviour, SubjectLobby
         }
         else
         {
+            door.GetComponent<Door>().OpenDoor();
             if (callback != null) callback();
         }
     }

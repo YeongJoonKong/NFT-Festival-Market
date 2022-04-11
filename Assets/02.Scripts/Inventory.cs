@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using System.IO;
+using Newtonsoft.Json;
 
 public class Inventory : MonoBehaviour
 {
@@ -31,8 +33,17 @@ public class Inventory : MonoBehaviour
 
     void Update()
     {
+       
+    }
+
+    public void SetWalletInfo() 
+    {
         if (gameObject.activeInHierarchy) 
         {
+            if (WalletCache.address != null) {
+                walletInfo.text = "-지갑 주소-\n" + WalletCache.address;
+            }
+
             GameObject[] nfts = Resources.LoadAll<GameObject>("NFT");
             if (nfts[0].name.Contains("Ticket")) {
                 nfts[0].GetComponent<Animation>().enabled = false;
