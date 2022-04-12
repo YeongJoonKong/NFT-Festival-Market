@@ -15,21 +15,20 @@ public class PhotonIKTransformView : MonoBehaviour,IPunObservable
     void Start()
     {
         tr = GetComponent<Transform>();
-        currPos = tr.position;
-        currRot = tr.rotation;
+        currPos = tr.localPosition;
+        currRot = tr.localRotation;
     }
     public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
     {
         if (stream.IsWriting)
         {
 
-            stream.SendNext(tr.position);
-            stream.SendNext(tr.rotation);
+            stream.SendNext(tr.localPosition);
+            stream.SendNext(tr.localRotation);
         }
         else    // 원격 플레이어의 위치 정보 송신
         {
             currPos = (Vector3)stream.ReceiveNext();
-            print(currPos);
             currRot = (Quaternion)stream.ReceiveNext();
 
         }
@@ -41,8 +40,10 @@ public class PhotonIKTransformView : MonoBehaviour,IPunObservable
 
         if (tr.root.GetComponent<PhotonView>().IsMine == false)
         {
-            tr.position = (Vector3)currPos;
-            tr.rotation = (Quaternion)currRot;
+            //tr.localPosition = (Vector3)currPos;
+            tr.localRotation = (Quaternion)currRot;
+            print("POS:" + currPos);
+            print("ROT:" + currRot);
         }
     }
 
