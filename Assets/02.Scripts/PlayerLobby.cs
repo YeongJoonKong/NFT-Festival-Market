@@ -29,6 +29,7 @@ public class PlayerLobby : MonoBehaviour
                 NFTObject obj = dItem.GetComponent<NFTObject>();
                 if (obj.isGrabbed) {
                     obj.ChangeLeftHandParent();
+                    break;
                 }
             }
         } else if (OVRInput.Get(OVRInput.Button.SecondaryHandTrigger)) {
@@ -36,6 +37,7 @@ public class PlayerLobby : MonoBehaviour
                 NFTObject obj = dItem.GetComponent<NFTObject>();
                 if (obj.isGrabbed) {
                     obj.ChangeRightHandParent();
+                    break;
                 }
             }
         }
