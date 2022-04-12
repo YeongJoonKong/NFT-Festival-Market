@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
-
+using System;
 public class NpcDialugeManager : MonoBehaviour
 {
     string[] npcDialogue;
@@ -42,28 +42,24 @@ void Start()
         Playdata.instance.TextData(npcNum, textNum, minigameplayed);
         if(textNum >= npcDialogue.Length-1)
         {
-            if(minigameplayed)
+            textNum = npcDialogue.Length - 1;
+            textUi.text = npcDialogue[textNum];
+        }
+        else if (minigameplayed)
+        {
+            if (sectextnum >= npcClearDialogue.Length - 1)
             {
-                if(sectextnum >=npcClearDialogue.Length -1 )
-                {
-                    sectextnum = npcClearDialogue.Length -1;
-                    textUi.text =npcClearDialogue[sectextnum];
-                }
-                else
-                {
-                    textUi.text = npcClearDialogue[sectextnum];
-                    StartCoroutine(WaitTime(minigameplayed));
-                }
+                sectextnum = npcClearDialogue.Length - 1;
+                textUi.text = npcClearDialogue[sectextnum];
             }
             else
             {
-                textNum = npcDialogue.Length - 1;
-                textUi.text = npcDialogue[textNum];
+                textUi.text = npcClearDialogue[sectextnum];
+                StartCoroutine(WaitTime(minigameplayed));
             }
         }
         else
         {
-            Debug.Log("out Corutin" + textNum);
             textUi.text = npcDialogue[textNum];
             StartCoroutine(WaitTime(minigameplayed));
         }
