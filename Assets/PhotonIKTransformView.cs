@@ -29,10 +29,21 @@ public class PhotonIKTransformView : MonoBehaviour,IPunObservable
         else    // 원격 플레이어의 위치 정보 송신
         {
             currPos = (Vector3)stream.ReceiveNext();
+            print(currPos);
             currRot = (Quaternion)stream.ReceiveNext();
 
         }
 
+    }
+    private void Update()
+    {
+        print(currPos);
+
+        if (tr.root.GetComponent<PhotonView>().IsMine == false)
+        {
+            tr.position = (Vector3)currPos;
+            tr.rotation = (Quaternion)currRot;
+        }
     }
 
 
