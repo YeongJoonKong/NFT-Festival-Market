@@ -51,7 +51,7 @@ public class PlayerInstantiate : MonoBehaviour
         }
         if (!pv.IsMine)
         {
-            vrik.enabled = false;
+            Destroy(vrik);
             controller.enabled = false;
             ovrcontroller.enabled = false;
         }
