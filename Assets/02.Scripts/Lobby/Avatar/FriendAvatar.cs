@@ -116,6 +116,10 @@ public class FriendAvatar : MonoBehaviour, SubjectLobby
         {
             door.GetComponent<Door>().OpenDoor();
             if (callback != null) callback();
+            transform.LookAt(door.transform);
+            _navMeshAgent.SetDestination(door.transform.position);
+            _isStartWalk = true;
+            _anim.SetTrigger("Walk");
         }
     }
 
