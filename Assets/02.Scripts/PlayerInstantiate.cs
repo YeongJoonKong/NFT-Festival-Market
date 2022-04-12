@@ -17,13 +17,13 @@ public class PlayerInstantiate : MonoBehaviour
     public GameObject CameaRig;
     public VRIK vrik;
     private OVRPlayerController opc;
-    public GameObject headPivot;
-    public GameObject leftHandPivot;
-    public GameObject rightHandPivot;
+    //public GameObject headPivot;
+    //public GameObject leftHandPivot;
+    //public GameObject rightHandPivot;
 
-    public Vector3 headoffset;
-    public Vector3 leftHandoffset;
-    public Vector3 rightHandoff;
+    //public Vector3 headoffset;
+    //public Vector3 leftHandoffset;
+    //public Vector3 rightHandoff;
 
     
 
@@ -41,9 +41,9 @@ public class PlayerInstantiate : MonoBehaviour
         {
             CameaRig = GameObject.Find("OVRCameraRig1");
             CameaRig.transform.parent = transform;
-            headPivot.transform.parent = GameObject.Find("CenterEyeAnchor").transform;
-            leftHandPivot.transform.parent = GameObject.Find("LeftHandAnchor").transform;
-            rightHandPivot.transform.parent = GameObject.Find("RightHandAnchor").transform;
+            //headPivot.transform.parent = GameObject.Find("CenterEyeAnchor").transform;
+            //leftHandPivot.transform.parent = GameObject.Find("LeftHandAnchor").transform;
+            //rightHandPivot.transform.parent = GameObject.Find("RightHandAnchor").transform;
 
         }
         if (!pv.IsMine)
