@@ -40,12 +40,7 @@ void Start()
     {
         audios.Play();
         Playdata.instance.TextData(npcNum, textNum, minigameplayed);
-        if(textNum >= npcDialogue.Length-1)
-        {
-            textNum = npcDialogue.Length - 1;
-            textUi.text = npcDialogue[textNum];
-        }
-        else if (minigameplayed)
+        if (minigameplayed)
         {
             if (sectextnum >= npcClearDialogue.Length - 1)
             {
@@ -57,6 +52,11 @@ void Start()
                 textUi.text = npcClearDialogue[sectextnum];
                 StartCoroutine(WaitTime(minigameplayed));
             }
+        }
+        else if(textNum >= npcDialogue.Length-1)
+        {
+            textNum = npcDialogue.Length - 1;
+            textUi.text = npcDialogue[textNum];
         }
         else
         {
