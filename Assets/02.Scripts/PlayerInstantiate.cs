@@ -4,6 +4,7 @@ using UnityEngine;
 using Photon.Pun;
 using Photon.Realtime;
 using System;
+using RootMotion.FinalIK;
 
 public class PlayerInstantiate : MonoBehaviour
 {
@@ -14,14 +15,15 @@ public class PlayerInstantiate : MonoBehaviour
     public GameObject[] avatars;
     string avatar;
     public GameObject CameaRig;
+    public VRIK vrik;
     // Start is called before the first frame update
     private void Awake()
     {
-
+        avatar = PlayerPrefs.GetString("Avatar");
         pv = GetComponent<PhotonView>();
         if (pv.IsMine)
         {
-            CameaRig = GameObject.Find("OVRCameraRig");
+            CameaRig = GameObject.Find("OVRCameraRig1");
             CameaRig.transform.parent = transform;
         }
 
@@ -29,14 +31,21 @@ public class PlayerInstantiate : MonoBehaviour
     void Start()
     {
 
-        avatar = PlayerPrefs.GetString("Avatar");
 
         if (pv.IsMine)
         {
             pv.RPC("AvatarChange", RpcTarget.AllBufferedViaServer, avatar);
+            
+             vrik =GetComponentInChildren<VRIK>();
+            print(GameObject.FindWithTag(avatar));
+            
+            vrik.solver.spine.headTarget = GameObject.Find("HeadPivot").gameObject.transform;
+            vrik.solver.leftArm.target = GameObject.Find("LeftHandPivot").gameObject.transform;
+            vrik.solver.rightArm.target = GameObject.Find("RightHandPivot").gameObject.transform;
+
 
         }
-        PlayerPrefs.DeleteAll();
+
 
 
 
@@ -59,12 +68,20 @@ public class PlayerInstantiate : MonoBehaviour
 
         for (int i = 0; i < avatars.Length; i++)
         {
+            if (avatars[i])
+            {
+                this.avatars[i].SetActive(false);
+            }
+        }
+        for (int i = 0; i < avatars.Length; i++)
+        {
             if (avatars[i].tag == avatar)
             {
                 this.avatars[i].SetActive(true);
             }
 
         }
+
 
 
 

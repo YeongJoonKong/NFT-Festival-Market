@@ -26,7 +26,7 @@ public class PhotonGameManager : MonoBehaviourPunCallbacks
 
 
         Vector3 pos = Vector3.zero + Vector3.up * 1.5f; //
-        PhotonNetwork.Instantiate("Player_OVR", pos, Quaternion.identity, 0);
+        PhotonNetwork.Instantiate("Player_OVR1", pos, Quaternion.identity, 0);
 
 
 
