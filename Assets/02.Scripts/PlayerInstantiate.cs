@@ -16,15 +16,21 @@ public class PlayerInstantiate : MonoBehaviour
     string avatar;
     public GameObject CameaRig;
     public VRIK vrik;
+    private OVRPlayerController opc;
     // Start is called before the first frame update
     private void Awake()
     {
+        opc=GetComponent<OVRPlayerController>();
         avatar = PlayerPrefs.GetString("Avatar");
         pv = GetComponent<PhotonView>();
         if (pv.IsMine)
         {
             CameaRig = GameObject.Find("OVRCameraRig1");
             CameaRig.transform.parent = transform;
+        }
+        if (!pv.IsMine)
+        {
+            opc.enabled = false;
         }
 
     }
@@ -42,7 +48,10 @@ public class PlayerInstantiate : MonoBehaviour
             vrik.solver.spine.headTarget = GameObject.Find("HeadPivot").gameObject.transform;
             vrik.solver.leftArm.target = GameObject.Find("LeftHandPivot").gameObject.transform;
             vrik.solver.rightArm.target = GameObject.Find("RightHandPivot").gameObject.transform;
-
+        }
+        if (!pv.IsMine)
+        {
+            vrik.enabled = false;
 
         }
 
