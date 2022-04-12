@@ -7,10 +7,13 @@ public class SharkController : MonoBehaviour
     public const float Top = 4.0f;
     public const float Bottom = -2.2f;
 
-    public float MovingSpeed = 5.0f;
-
     public float tmpTime;
     public float WaitingTime = 1.0f;
+
+    public GameObject WaterEffect01;
+    public GameObject WaterEffect02;
+
+    bool isWaterFloorChecking;
 
     enum State
     {
@@ -29,7 +32,7 @@ public class SharkController : MonoBehaviour
             return;
         }
 
-        this.gameObject.transform.position = new Vector3(transform.position.x, Bottom, transform.position.z);
+        this.gameObject.transform.position = new Vector3(transform.position.x, Bottom -0.5f, transform.position.z);
     }
 
     public void Up()
@@ -51,12 +54,15 @@ public class SharkController : MonoBehaviour
     {
         if(this.state == State.UP)
         {
-            transform.Translate(0, Time.deltaTime * MovingSpeed, 0);
+            isWaterFloorChecking = true;
+            //transform.Translate(0, Time.deltaTime * MovingSpeed, 0);
+            transform.position = Vector3.Lerp(transform.position, transform.position + Vector3.up * Random.Range(3, 11), Time.deltaTime); ;
             
             if(transform.position.y > Top)
             {
                 this.transform.position = new Vector3(transform.position.x, Top, transform.position.z);
                 this.state = State.ON_GROUND;
+                isWaterFloorChecking = false;
             }
         }
         else if(this.state == State.ON_GROUND)
@@ -65,16 +71,43 @@ public class SharkController : MonoBehaviour
             if(tmpTime > WaitingTime)
             {
                 this.state = State.DOWN;
+                tmpTime = 0;
             }
         }
         else if(this.state == State.DOWN)
         {
-            transform.Translate(0, Time.deltaTime * MovingSpeed, 0);
+            //transform.Translate(0, Time.deltaTime * -MovingSpeed, 0);
 
-            if(transform.position.y > Bottom)
+            transform.position = Vector3.Lerp(transform.position, transform.position + Vector3.down * Random.Range(3, 16), Time.deltaTime * 0.6f);
+
+            if(transform.position.y < Bottom)
             {
                 this.transform.position = new Vector3(transform.position.x, Bottom, transform.position.z);
                 state = State.UNDER_GOUND;
+            }
+        }
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (isWaterFloorChecking == false)
+        {
+            if (other.CompareTag("WaterFloor"))
+            {
+                GameObject waterEffect02 = Instantiate(WaterEffect02);
+                waterEffect02.transform.position = new Vector3(transform.position.x, 0, transform.position.z);
+            }
+        }
+    }
+
+    private void OnTriggerStay(Collider other)
+    {
+        if (isWaterFloorChecking == true)
+        {
+            if (other.CompareTag("WaterFloor"))
+            {
+                GameObject waterEffect01 = Instantiate(WaterEffect01);
+                waterEffect01.transform.position = new Vector3(transform.position.x, 0, transform.position.z);
             }
         }
     }

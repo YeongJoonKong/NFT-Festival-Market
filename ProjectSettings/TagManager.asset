@@ -16,6 +16,8 @@ TagManager:
   - DISPLAY_ITEM
   - Beach
   - Shark
+  - Missile
+  - WaterFloor
   layers:
   - Default
   - TransparentFX
