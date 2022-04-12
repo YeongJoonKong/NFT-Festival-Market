@@ -16,7 +16,7 @@ public class SharkGamaManager : MonoBehaviour
 
     float timer;
     public static float SharkTime;
-    public float sharkTimeLimit = 26;
+    public float sharkTimeLimit = 40;
     public float WatingTime = 5.0f;
 
     SharkManager sharkManager;

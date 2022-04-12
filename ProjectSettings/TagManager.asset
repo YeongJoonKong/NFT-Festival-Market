@@ -13,6 +13,8 @@ TagManager:
   - Mole
   - Beach
   - Shark
+  - Missile
+  - WaterFloor
   layers:
   - Default
   - TransparentFX

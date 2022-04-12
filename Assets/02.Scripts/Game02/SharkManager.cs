@@ -42,13 +42,10 @@ public class SharkManager : MonoBehaviour
             int n = Sharks.Count;
 
             int maxNum = (int)this.maxSharkNum.Evaluate(SharkGamaManager.SharkTime);
-            print(maxSharkNum);
-            print(maxNum);
 
             for (int i = 0; i < maxNum; i++)
             {
                 this.Sharks[Random.Range(0, n)].Up();
-                print("shark[]" + Sharks[i]);
 
                 yield return new WaitForSeconds(0.3f);
             }
