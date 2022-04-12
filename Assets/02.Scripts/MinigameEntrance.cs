@@ -11,6 +11,7 @@ public class MinigameEntrance : MonoBehaviour
         if(other.CompareTag("Player") && transform.parent.name == ("MiniGame_Mole"))
         {
             Playdata.instance.spawnPointData = 1;
+            Playdata.instance.minigameplayed[0] = true;
             SceneManager.LoadScene("Player_Game_KYJ_001_Wack A Mole");
         }
     }
