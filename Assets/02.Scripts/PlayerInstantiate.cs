@@ -51,6 +51,7 @@ public class PlayerInstantiate : MonoBehaviour
         }
         if (!pv.IsMine)
         {
+            vrik = GetComponentInChildren<VRIK>();
             vrik.enabled = false;
 
         }
