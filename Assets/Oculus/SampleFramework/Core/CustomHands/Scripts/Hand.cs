@@ -15,6 +15,8 @@ using UnityEngine;
 using OVRTouchSample;
 #if UNITY_EDITOR
 using UnityEngine.SceneManagement;
+using Photon.Pun;
+using Photon.Realtime;
 #endif
 
 namespace OVRTouchSample
@@ -71,6 +73,13 @@ namespace OVRTouchSample
 
         private void Start()
         {
+            if (!(transform.root.gameObject.GetComponent<PhotonView>()==null))
+            {
+            string avatar = PlayerPrefs.GetString("Avatar");
+                print(GameObject.FindGameObjectWithTag(avatar).gameObject);
+            m_animator = GameObject.FindGameObjectsWithTag(avatar)[3].gameObject.GetComponent<Animator>();
+
+            }
             m_showAfterInputFocusAcquired = new List<Renderer>();
 
             // Collision starts disabled. We'll enable it for certain cases such as making a fist.

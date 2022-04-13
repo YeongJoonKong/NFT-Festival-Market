@@ -49,6 +49,7 @@ public class PlayerInstantiate : MonoBehaviour, IPunObservable
             headTr = GameObject.FindGameObjectsWithTag(avatar)[0].transform;
             leftHandTr = GameObject.FindGameObjectsWithTag(avatar)[1].transform;
             rightHandTr = GameObject.FindGameObjectsWithTag(avatar)[2].transform;
+       
 
             //print(avatar);
             //myavatar = GameObject.FindGameObjectWithTag(avatar);
@@ -165,12 +166,12 @@ public class PlayerInstantiate : MonoBehaviour, IPunObservable
         }
         else
         {
-            FalseHeadRig.localRotation = currRotHead;
-            FalseHeadRig.localPosition = curPosHead;
-            FalseLeftRig.localRotation = curRotLeftHand;
-            FalseLeftRig.localPosition = curPosLeftHand;
-            FalseRightRig.localRotation = curRotRightHand;
-            FalseRightRig.localPosition = curPosRightHand;
+            FalseHeadRig.rotation = currRotHead;
+            FalseHeadRig.position = curPosHead;
+            FalseLeftRig.rotation = curRotLeftHand;
+            FalseLeftRig.position = curPosLeftHand;
+            FalseRightRig.rotation = curRotRightHand;
+            FalseRightRig.position = curPosRightHand;
 
         }
     }

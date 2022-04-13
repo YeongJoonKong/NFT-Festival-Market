@@ -941,6 +941,10 @@ PrefabInstance:
       value: Left Pinch
       objectReference: {fileID: 0}
     - target: {fileID: 2984037929070542667, guid: 133397192429bc441b8ea6848e6a49db, type: 3}
+      propertyPath: m_animator
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 2984037929070542667, guid: 133397192429bc441b8ea6848e6a49db, type: 3}
       propertyPath: ANIM_PARAM_NAME_FLEX
       value: Left Flex
       objectReference: {fileID: 0}
@@ -11644,7 +11648,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &1299802816221608917
 MonoBehaviour:
   m_ObjectHideFlags: 0
