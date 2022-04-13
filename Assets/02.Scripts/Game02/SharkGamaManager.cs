@@ -58,7 +58,7 @@ public class SharkGamaManager : MonoBehaviour
             timer += Time.deltaTime;
             if(timer > WatingTime)
             {
-                SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+                SceneManager.LoadScene("Map_01");
             }
         }
     }
