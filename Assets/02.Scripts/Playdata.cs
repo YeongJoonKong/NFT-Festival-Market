@@ -5,6 +5,7 @@ using UnityEngine.SceneManagement;
 public class Playdata : MonoBehaviour
 {
     public static Playdata instance;
+    public bool[] minigameplayed;
 
     // Start is called before the first frame update
     [Header("Npc First text Number")]
@@ -27,15 +28,17 @@ public class Playdata : MonoBehaviour
         DontDestroyOnLoad(gameObject);
     }
 
-    public void TextData(int npcnum, int textnum)
+    public void TextData(int npcnum, int textnum, bool minigame)
     {
         if(npcnum == 0)
         {
             textnumData[0] = textnum;
+            minigameplayed[0] = minigame;
         }
         else if(npcnum == 1)
         {
             textnumData[1] = textnum;
+            minigameplayed[1] = minigame;
         }
     }
 

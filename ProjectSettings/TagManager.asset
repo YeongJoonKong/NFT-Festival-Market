@@ -12,6 +12,8 @@ TagManager:
   - NFT
   - TicketRandomNFT
   - INVENTORY_ITEM
+  - Mole
+  - DISPLAY_ITEM
   layers:
   - Default
   - TransparentFX
