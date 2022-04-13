@@ -25,14 +25,15 @@ public class SharkController : MonoBehaviour
     }
     State state;
 
-    public void Hit()
+    public bool Hit()
     {
         if(this.state == State.UNDER_GOUND)
         {
-            return;
+            return false;
         }
 
         this.gameObject.transform.position = new Vector3(transform.position.x, Bottom -0.5f, transform.position.z);
+        return true;
     }
 
     public void Up()

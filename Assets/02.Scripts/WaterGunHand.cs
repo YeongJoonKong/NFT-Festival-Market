@@ -26,7 +26,6 @@ public class WaterGunHand : MonoBehaviour
     {
         if(OVRInput.GetDown(OVRInput.Button.PrimaryIndexTrigger, controller))
         {
-            print(03);
             waterGun.waterShooting();
         }
     }
