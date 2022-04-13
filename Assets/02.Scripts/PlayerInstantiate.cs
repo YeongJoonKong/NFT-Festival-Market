@@ -22,6 +22,7 @@ public class PlayerInstantiate : MonoBehaviour, IPunObservable
     private Transform headTr, leftHandTr, rightHandTr;
     // FalseCamera Rig Transform
     public Transform FalseHeadRig, FalseLeftRig, FalseRightRig;
+    public float FalseRigSmooteness = 10f;
 
     public VRIK vrik;
     public CharacterController controller;
@@ -166,8 +167,10 @@ public class PlayerInstantiate : MonoBehaviour, IPunObservable
         }
         else
         {
-            FalseHeadRig.rotation = currRotHead;
-            FalseHeadRig.position = curPosHead;
+            //FalseHeadRig.rotation = currRotHead;
+            //FalseHeadRig.position = curPosHead;
+            FalseHeadRig.rotation = Quaternion.Slerp(FalseHeadRig.rotation, currRotHead, Time.deltaTime * FalseRigSmooteness);
+            FalseHeadRig.position = Vector3.Lerp(FalseHeadRig.position, curPosHead, Time.deltaTime * FalseRigSmooteness);
             FalseLeftRig.rotation = curRotLeftHand;
             FalseLeftRig.position = curPosLeftHand;
             FalseRightRig.rotation = curRotRightHand;
