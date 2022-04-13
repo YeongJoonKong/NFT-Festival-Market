@@ -34869,6 +34869,18 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 2538102924936135917, guid: 0ac4ab8a13bc1df44b6dc406c6824c02, type: 3}
+      propertyPath: m_ApplyRootMotion
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8238124406550938288, guid: 0ac4ab8a13bc1df44b6dc406c6824c02, type: 3}
+      propertyPath: fixTransforms
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8238124406550938288, guid: 0ac4ab8a13bc1df44b6dc406c6824c02, type: 3}
+      propertyPath: solver.plantFeet
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8238124406550938288, guid: 0ac4ab8a13bc1df44b6dc406c6824c02, type: 3}
       propertyPath: solver.leftArm.target
       value: 
