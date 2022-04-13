@@ -123,6 +123,7 @@ public class PlayerInstantiate : MonoBehaviour, IPunObservable
     }
     //머리동기화변수
     private Quaternion currRotHead;
+    private Vector3 curPosHead;
     //왼손동기화변수
     private Quaternion curRotLeftHand;
     private Vector3 curPosLeftHand;
@@ -135,6 +136,7 @@ public class PlayerInstantiate : MonoBehaviour, IPunObservable
         if (stream.IsWriting)
         {
             stream.SendNext(headTr.rotation);
+            stream.SendNext(headTr.position);
             stream.SendNext(leftHandTr.rotation);
             stream.SendNext(leftHandTr.position);
             stream.SendNext(rightHandTr.rotation);
@@ -146,7 +148,9 @@ public class PlayerInstantiate : MonoBehaviour, IPunObservable
         }
         else
         {
+            
             currRotHead = (Quaternion)stream.ReceiveNext();
+            curPosHead = (Vector3)stream.ReceiveNext();
             curRotLeftHand = (Quaternion)stream.ReceiveNext();
             curPosLeftHand = (Vector3)stream.ReceiveNext();
             curRotRightHand = (Quaternion)stream.ReceiveNext();
@@ -162,6 +166,7 @@ public class PlayerInstantiate : MonoBehaviour, IPunObservable
         else
         {
             FalseHeadRig.localRotation = currRotHead;
+            FalseHeadRig.localPosition = curPosHead;
             FalseLeftRig.localRotation = curRotLeftHand;
             FalseLeftRig.localPosition = curPosLeftHand;
             FalseRightRig.localRotation = curRotRightHand;
