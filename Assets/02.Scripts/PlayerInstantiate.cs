@@ -6,7 +6,7 @@ using Photon.Realtime;
 using System;
 using RootMotion.FinalIK;
 
-public class PlayerInstantiate : MonoBehaviour
+public class PlayerInstantiate : MonoBehaviour,IPunObservable
 {
 
 
@@ -18,6 +18,11 @@ public class PlayerInstantiate : MonoBehaviour
     //public GameObject myavatar;
 
 
+    // CarmeraRig Pivot Transform
+    private Transform headTr, leftHandTr, rightHandTr;
+    // FalseCamera Rig Transform
+    public Transform FalseHeadRig, FalseLeftRig, FalseRightRig;
+
     public VRIK vrik;
     public CharacterController controller;
     public OVRPlayerController ovrcontroller;
@@ -27,11 +32,12 @@ public class PlayerInstantiate : MonoBehaviour
     // Start is called before the first frame update
     private void Awake()
     {
+        PhotonNetwork.IsMessageQueueRunning = false;
 
+        pv = GetComponent<PhotonView>();
         vrik = GetComponentInChildren<VRIK>();
         controller = GetComponent<CharacterController>();
         ovrcontroller = GetComponent<OVRPlayerController>();
-        pv = GetComponent<PhotonView>();
         if (pv.IsMine)
         {
             CameaRig = GameObject.Find("OVRCameraRig1");
@@ -39,6 +45,11 @@ public class PlayerInstantiate : MonoBehaviour
             CameaRig.transform.parent = transform;
 
             avatar = PlayerPrefs.GetString("Avatar");
+
+            headTr = GameObject.FindGameObjectsWithTag(avatar)[0].transform;
+            leftHandTr = GameObject.FindGameObjectsWithTag(avatar)[1].transform;
+            rightHandTr = GameObject.FindGameObjectsWithTag(avatar)[2].transform;
+
             //print(avatar);
             //myavatar = GameObject.FindGameObjectWithTag(avatar);
 
@@ -55,6 +66,7 @@ public class PlayerInstantiate : MonoBehaviour
             controller.enabled = false;
             ovrcontroller.enabled = false;
         }
+        PhotonNetwork.IsMessageQueueRunning = true;
     }
     void Start()
     {
@@ -62,9 +74,15 @@ public class PlayerInstantiate : MonoBehaviour
         if (pv.IsMine)
         {
             print(GameObject.FindGameObjectsWithTag(avatar)[0].gameObject.transform);
-            vrik.solver.spine.headTarget = GameObject.FindGameObjectsWithTag(avatar)[0].gameObject.transform;
-            vrik.solver.leftArm.target = GameObject.FindGameObjectsWithTag(avatar)[1].gameObject.transform;
-            vrik.solver.rightArm.target = GameObject.FindGameObjectsWithTag(avatar)[2].gameObject.transform;
+            vrik.solver.spine.headTarget = headTr;
+            vrik.solver.leftArm.target = leftHandTr;
+            vrik.solver.rightArm.target = rightHandTr;
+        }
+        else
+        {
+            vrik.solver.spine.headTarget = FalseHeadRig;
+            vrik.solver.leftArm.target = FalseLeftRig;
+            vrik.solver.rightArm.target = FalseRightRig;
         }
 
         //if (pv.IsMine)
@@ -101,6 +119,37 @@ public class PlayerInstantiate : MonoBehaviour
                 this.avatars[i].SetActive(true);
             }
 
+        }
+    }
+    //머리동기화변수
+    private Quaternion currRotHead;
+    //왼손동기화변수
+    private Quaternion curRotLeftHand;
+    private Vector3 curPosLeftHand;
+
+    //오른손동기화변수
+    private Quaternion curRotRightHand;
+    private Vector3 curPosRightHand;
+    public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
+    {
+        if (stream.IsWriting)
+        {
+            stream.SendNext(headTr.localRotation);
+        }
+        else
+        {
+            currRotHead = (Quaternion)stream.ReceiveNext();
+        }
+    }
+    private void Update()
+    {
+        if (pv.IsMine)
+        {
+
+        }
+        else
+        {
+            FalseHeadRig.localRotation = currRotHead;
         }
     }
 }
