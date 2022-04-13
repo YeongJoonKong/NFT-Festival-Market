@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 2213461685797302464}
   - component: {fileID: 2163687227437015990}
   - component: {fileID: 7020138039107206288}
+  - component: {fileID: 3987697268751318581}
   m_Layer: 0
   m_Name: LiquidMissileWaterClearConvert
   m_TagString: Untagged
@@ -30,8 +31,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2274549652621901342}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 2.254, z: 0.21}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 0.8, y: 0.8, z: 0.8}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 2270569745965465274}
@@ -4951,6 +4952,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 100
+  HittingEffect: {fileID: 1473089736959414, guid: 1835872bd93d499439f155fb3a9fa1e4, type: 3}
+--- !u!135 &3987697268751318581
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2274549652621901342}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.0000125
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &2275921272266527298
 GameObject:
   m_ObjectHideFlags: 0

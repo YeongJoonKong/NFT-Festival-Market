@@ -22,12 +22,12 @@ public class SharkManager : MonoBehaviour
 
     public void StartGenerate()
     {
-        StartCoroutine("Generate");
+        StartCoroutine(Generate());
     }
 
     public void StopGenerate()
     {
-        StopCoroutine("Generate");
+        StopCoroutine(Generate());
         this.generate = false;
     }
 

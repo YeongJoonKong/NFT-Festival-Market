@@ -9,9 +9,8 @@ public class WaterGun : MonoBehaviour
 
     public void waterShooting()
     {
-        print(04);
         GameObject waterShootingEffect = Instantiate(WaterShootingEffect);
-        waterShootingEffect.transform.position = new Vector3(transform.position.x, transform.position.y, transform.position.z - 0.2f);
+        waterShootingEffect.transform.position = new Vector3(this.gameObject.transform.position.x, this.gameObject.transform.position.y, this.gameObject.transform.position.z - 0.2f);
         waterShootingEffect.transform.rotation = playerHand.transform.rotation;
     }
 
