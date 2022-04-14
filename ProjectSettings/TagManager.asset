@@ -18,6 +18,7 @@ TagManager:
   - Shark
   - Missile
   - WaterFloor
+  - AvatarDoor
   layers:
   - Default
   - TransparentFX

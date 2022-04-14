@@ -36,6 +36,10 @@ public class MyHand : MonoBehaviour
                 avatarName = hitinfo.transform.tag;
 
                 lr.enabled = true;
+                if (hitinfo.transform.tag=="AvatarDoor")
+                {
+                    GameObject.Find("AvatarDoor").GetComponent<Door>().OpenDoor();
+                }
 
                 bool isHit = Physics.Raycast(ray, out hitinfo,float.MaxValue, ~layer);
                 if (isHit)

@@ -19,10 +19,10 @@ public class Door : MonoBehaviour
     {
         if (_isStartOpen) 
         {
-            if (leftDoor.transform.position.x >= -5.81f)
-                leftDoor.transform.position += new Vector3(-0.1f, 0, 0);
-            if (rightDoor.transform.position.x <= 5.81f)
-                rightDoor.transform.position += new Vector3(0.1f, 0, 0);
+            if (leftDoor.transform.localPosition.x >= -5.81f)
+                leftDoor.transform.localPosition += new Vector3(-0.1f, 0, 0);
+            if (rightDoor.transform.localPosition.x <= 5.81f)
+                rightDoor.transform.localPosition += new Vector3(0.1f, 0, 0);
         }
     }
 
