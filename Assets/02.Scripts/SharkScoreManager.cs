@@ -6,7 +6,7 @@ using TMPro;
 public class SharkScoreManager : MonoBehaviour
 {
     public static SharkScoreManager Instance;
-
+    
     private void Awake()
     {
         if(Instance != null && Instance != this)
@@ -20,6 +20,8 @@ public class SharkScoreManager : MonoBehaviour
     [Header("UI Field")]
     public TextMeshProUGUI HighScoreText;
     public TextMeshProUGUI CurrentScoreText;
+    public TextMeshProUGUI TimeText;
+    public TextMeshProUGUI SharkFinalScore;
 
     public int CurrentScore;
     public int HighScore;
@@ -30,6 +32,8 @@ public class SharkScoreManager : MonoBehaviour
     {
         HighScore = PlayerPrefs.GetInt("HighScore", 0);
         HighScoreText.text = "High Score : " + HighScore.ToString();
+        TimeText.text = "Time : " + SharkGamaManager.SharkTime;
+        SharkFinalScore.text = "Your FinalScore : 0";
 
         CurrentScoreText.text = "Score : 0";
     }
@@ -37,7 +41,8 @@ public class SharkScoreManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
+        SharkFinalScore.text = "Your FinalScore : " + CurrentScore;
+        
     }
 
     public void AddScore(int ScorePoint)

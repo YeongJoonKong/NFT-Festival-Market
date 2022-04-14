@@ -7,14 +7,18 @@ public class SharkController : MonoBehaviour
     public const float Top = 4.0f;
     public const float Bottom = -2.2f;
 
-    public float tmpTime;
     public float WaitingTime = 1.0f;
+    float tmpTime;
 
     public GameObject WaterEffect01;
     public GameObject WaterEffect02;
 
-    bool isWaterFloorChecking;
+    AudioSource audioSource;
 
+    public AudioClip jumpingSound;
+    public AudioClip bubblingSound;
+
+    bool isWaterFloorChecking;
     enum State
     {
         UNDER_GOUND,
@@ -32,6 +36,7 @@ public class SharkController : MonoBehaviour
             return false;
         }
 
+        audioSource.PlayOneShot(bubblingSound);
         this.gameObject.transform.position = new Vector3(transform.position.x, Bottom -0.5f, transform.position.z);
         return true;
     }
@@ -40,6 +45,7 @@ public class SharkController : MonoBehaviour
     {
         if(this.state == State.UNDER_GOUND)
         {
+            audioSource.PlayOneShot(jumpingSound);
             this.state = State.UP;
         }
     }
@@ -48,6 +54,7 @@ public class SharkController : MonoBehaviour
     void Start()
     {
         this.state = State.UNDER_GOUND;
+        audioSource = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -57,7 +64,7 @@ public class SharkController : MonoBehaviour
         {
             isWaterFloorChecking = true;
             //transform.Translate(0, Time.deltaTime * MovingSpeed, 0);
-            transform.position = Vector3.Lerp(transform.position, transform.position + Vector3.up * Random.Range(3, 11), Time.deltaTime); ;
+            transform.position = Vector3.Lerp(transform.position, transform.position + Vector3.up * Random.Range(3, 16), Time.deltaTime);
             
             if(transform.position.y > Top)
             {
@@ -79,7 +86,7 @@ public class SharkController : MonoBehaviour
         {
             //transform.Translate(0, Time.deltaTime * -MovingSpeed, 0);
 
-            transform.position = Vector3.Lerp(transform.position, transform.position + Vector3.down * Random.Range(3, 16), Time.deltaTime * 0.6f);
+            transform.position = Vector3.Lerp(transform.position, transform.position + Vector3.down * Random.Range(3, 20), Time.deltaTime);
 
             if(transform.position.y < Bottom)
             {
