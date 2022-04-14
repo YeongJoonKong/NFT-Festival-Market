@@ -73,13 +73,16 @@ namespace OVRTouchSample
 
         private void Start()
         {
-            if (!(transform.root.gameObject.GetComponent<PhotonView>()==null))
+            //포톤뷰있다면
+            if (!(transform.root.gameObject.GetComponent<PhotonView>() == null))
             {
-            string avatar = PlayerPrefs.GetString("Avatar");
+                string avatar = PlayerPrefs.GetString("Avatar");
                 print(GameObject.FindGameObjectWithTag(avatar).gameObject);
-            m_animator = GameObject.FindGameObjectsWithTag(avatar)[3].gameObject.GetComponent<Animator>();
+                m_animator = GameObject.FindGameObjectsWithTag(avatar)[3].gameObject.GetComponent<Animator>();
 
             }
+
+
             m_showAfterInputFocusAcquired = new List<Renderer>();
 
             // Collision starts disabled. We'll enable it for certain cases such as making a fist.
@@ -107,6 +110,10 @@ namespace OVRTouchSample
 
         private void Update()
         {
+            if ((transform.root.gameObject.GetComponent<PhotonView>() == null))
+            {
+                HandAnimatorChange();
+            }
             UpdateCapTouchStates();
 
             m_pointBlend = InputValueRateChange(m_isPointing, m_pointBlend);
@@ -118,6 +125,18 @@ namespace OVRTouchSample
             CollisionEnable(collisionEnabled);
 
             UpdateAnimStates();
+        }
+        private void HandAnimatorChange()
+        {
+           
+                string avatar = PlayerPrefs.GetString("Avatar");
+                if (!((GameObject.Find(avatar))==null))
+                {
+                m_animator = GameObject.Find(avatar).gameObject.GetComponent<Animator>();       
+
+                }
+
+            
         }
 
         // Just checking the state of the index and thumb cap touch sensors, but with a little bit of

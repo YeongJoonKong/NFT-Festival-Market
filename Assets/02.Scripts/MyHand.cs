@@ -55,7 +55,7 @@ public class MyHand : MonoBehaviour
         {
             lr.enabled = false;
 
-            if (!(avatarName == "Avatar1" || avatarName == "Avatar2")) // 또는 플레이어라면
+            if (!(avatarName == "Avatar1" || avatarName == "Avatar2" || avatarName == "Avatar3" || avatarName == "Avatar4" || avatarName == "Avatar5")) // 또는 플레이어라면
             {
                 return;
             }

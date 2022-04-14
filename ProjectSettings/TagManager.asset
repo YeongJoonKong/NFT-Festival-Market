@@ -16,6 +16,9 @@ TagManager:
   - Capsule
   - Cylinder
   - Cube
+  - Avatar5
+  - Avatar4
+  - Avatar3
   layers:
   - Default
   - TransparentFX
