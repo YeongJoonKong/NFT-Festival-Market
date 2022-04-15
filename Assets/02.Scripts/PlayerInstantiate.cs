@@ -65,8 +65,7 @@ public class PlayerInstantiate : MonoBehaviour, IPunObservable
         }
         if (!pv.IsMine)
         {
-            vrik = transform.Find(avatar).GetComponent<VRIK>();
-
+            vrik = transform.GetComponentInChildren<VRIK>(true);
             controller.enabled = false;
             ovrcontroller.enabled = false;
         }
