@@ -8,10 +8,14 @@ public class birdGameBomb : MonoBehaviour
     //public GameObject explosionFactory;
 
     float birdCurrentTime;
-    float birdWaitingTime = 5;
+    float birdWaitingTime = 10;
+
+    public int BombCounting;
 
     public void BirdBooming()
     {
+        BombCounting++;
+
         birdCurrentTime += Time.deltaTime;
 
         if(birdCurrentTime > birdWaitingTime)
