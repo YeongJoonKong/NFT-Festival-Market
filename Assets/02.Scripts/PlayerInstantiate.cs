@@ -62,16 +62,16 @@ public class PlayerInstantiate : MonoBehaviour, IPunObservable
             headTr = GameObject.FindGameObjectsWithTag(avatar)[0].transform;
             leftHandTr = GameObject.FindGameObjectsWithTag(avatar)[1].transform;
             rightHandTr = GameObject.FindGameObjectsWithTag(avatar)[2].transform;
-            vrik = transform.Find(avatar).GetComponent<VRIK>();
+            
             
 
         }
         if (!pv.IsMine)
         {
+
+            //Avrik = transform.GetComponentsInChildren<VRIK>();
+            //vrik=Avrik[count].GetComponent<VRIK>();
             
-            Avrik = transform.GetComponentsInChildren<VRIK>();
-            Avrik[count].GetComponent<VRIK>();
-            //vrik = transform.GetComponentInChildren<VRIK>();
             controller.enabled = false;
             ovrcontroller.enabled = false;
         }
@@ -102,6 +102,7 @@ public class PlayerInstantiate : MonoBehaviour, IPunObservable
 
         if (pv.IsMine)
         {
+            vrik = transform.Find(avatar).GetComponent<VRIK>();
             print(GameObject.FindGameObjectsWithTag(avatar)[0].gameObject.transform);
             vrik.solver.spine.headTarget = headTr;
             vrik.solver.leftArm.target = leftHandTr;
@@ -109,6 +110,7 @@ public class PlayerInstantiate : MonoBehaviour, IPunObservable
         }
         else
         {
+            vrik = transform.GetComponentInChildren<VRIK>();
             vrik.solver.spine.headTarget = FalseHeadRig;
             vrik.solver.leftArm.target = FalseLeftRig;
             vrik.solver.rightArm.target = FalseRightRig;
