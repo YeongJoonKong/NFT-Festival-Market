@@ -243,6 +243,7 @@ MonoBehaviour:
   FalseRightRig: {fileID: 6903783876752320621}
   FalseRigSmooteness: 10
   vrik: {fileID: 0}
+  Avrik: []
   controller: {fileID: 0}
   ovrcontroller: {fileID: 0}
 --- !u!120 &5377651638489198444

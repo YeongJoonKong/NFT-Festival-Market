@@ -15,6 +15,8 @@ public class PlayerInstantiate : MonoBehaviour, IPunObservable
     public GameObject[] avatars;
     string avatar;
     public GameObject CameaRig;
+
+    int count;
     //public GameObject myavatar;
 
 
@@ -66,15 +68,9 @@ public class PlayerInstantiate : MonoBehaviour, IPunObservable
         }
         if (!pv.IsMine)
         {
+            
             Avrik = transform.GetComponentsInChildren<VRIK>();
-            for(int i=0; i<Avrik.Length; i++)
-            {
-                if(Avrik[i].gameObject.activeSelf)
-                {
-                    vrik = Avrik[i];
-                }
-            }
-
+            Avrik[count].GetComponent<VRIK>();
             //vrik = transform.GetComponentInChildren<VRIK>();
             controller.enabled = false;
             ovrcontroller.enabled = false;
@@ -95,6 +91,7 @@ public class PlayerInstantiate : MonoBehaviour, IPunObservable
         {
             if (avatars[i].tag == avatar)
             {
+                count = i;
                 this.avatars[i].SetActive(true);
             }
 
