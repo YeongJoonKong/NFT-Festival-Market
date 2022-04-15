@@ -34,8 +34,8 @@ public class BirdHandController : MonoBehaviour
                 Rigidbody rb = bomb.GetComponent<Rigidbody>();
                 rb.isKinematic = false;
                 // 오른쪽 컨트롤러의 힘을 폭탄에게 전달하고싶다.
-                rb.velocity = OVRInput.GetLocalControllerVelocity(controller);
-                rb.angularVelocity = OVRInput.GetLocalControllerAngularVelocity(controller);
+                rb.velocity = OVRInput.GetLocalControllerVelocity(controller) * kAdjustForce;
+                rb.angularVelocity = OVRInput.GetLocalControllerAngularVelocity(controller) * kAdjustForce;
                 // 부모자식관계를 끊고
                 bomb.transform.parent = null;
                 bomb = null;
@@ -56,6 +56,6 @@ public class BirdHandController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        UpdateThrowBomb();
     }
 }
