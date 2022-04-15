@@ -24,7 +24,7 @@ public class PhotonGameManager : MonoBehaviourPunCallbacks
 
         //avatar1.SetActive(false);
         Vector3 pos = Vector3.zero + Vector3.up * 1.5f; //
-        PhotonNetwork.Instantiate("Player_OVR1", pos, Quaternion.identity, 0);
+        PhotonNetwork.Instantiate("PlayerNetWork", pos, Quaternion.identity, 0);
     }
     // Start is called before the first frame update
     void Start()

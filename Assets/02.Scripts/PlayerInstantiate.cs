@@ -41,7 +41,7 @@ public class PlayerInstantiate : MonoBehaviour, IPunObservable
         ovrcontroller = GetComponent<OVRPlayerController>();
         if (pv.IsMine)
         {
-            CameaRig = GameObject.Find("OVRCameraRig1");
+            CameaRig = GameObject.Find("OVRCameraRigNetWork");
 
             CameaRig.transform.parent = transform;
 
