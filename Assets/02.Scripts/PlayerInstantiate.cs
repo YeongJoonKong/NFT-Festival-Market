@@ -59,12 +59,13 @@ public class PlayerInstantiate : MonoBehaviour, IPunObservable
             headTr = GameObject.FindGameObjectsWithTag(avatar)[0].transform;
             leftHandTr = GameObject.FindGameObjectsWithTag(avatar)[1].transform;
             rightHandTr = GameObject.FindGameObjectsWithTag(avatar)[2].transform;
-            vrik = GameObject.FindGameObjectsWithTag(avatar)[3].GetComponent<VRIK>();
+            vrik = transform.Find(avatar).GetComponent<VRIK>();
             
 
         }
         if (!pv.IsMine)
         {
+            vrik = transform.Find(avatar).GetComponent<VRIK>();
 
             controller.enabled = false;
             ovrcontroller.enabled = false;
