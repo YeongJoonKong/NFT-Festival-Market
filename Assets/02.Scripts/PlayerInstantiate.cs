@@ -36,7 +36,7 @@ public class PlayerInstantiate : MonoBehaviour, IPunObservable
         PhotonNetwork.IsMessageQueueRunning = false;
 
         pv = GetComponent<PhotonView>();
-        vrik = GetComponentInChildren<VRIK>();
+        //vrik = GetComponentInChildren<VRIK>();
         controller = GetComponent<CharacterController>();
         ovrcontroller = GetComponent<OVRPlayerController>();
         if (pv.IsMine)
@@ -46,10 +46,6 @@ public class PlayerInstantiate : MonoBehaviour, IPunObservable
             CameaRig.transform.parent = transform;
 
             avatar = PlayerPrefs.GetString("Avatar");
-
-            headTr = GameObject.FindGameObjectsWithTag(avatar)[0].transform;
-            leftHandTr = GameObject.FindGameObjectsWithTag(avatar)[1].transform;
-            rightHandTr = GameObject.FindGameObjectsWithTag(avatar)[2].transform;
        
 
             //print(avatar);
@@ -60,6 +56,11 @@ public class PlayerInstantiate : MonoBehaviour, IPunObservable
 
             pv.RPC("AvatarChange", RpcTarget.AllBufferedViaServer, avatar);
 
+            headTr = GameObject.FindGameObjectsWithTag(avatar)[0].transform;
+            leftHandTr = GameObject.FindGameObjectsWithTag(avatar)[1].transform;
+            rightHandTr = GameObject.FindGameObjectsWithTag(avatar)[2].transform;
+            vrik = GameObject.FindGameObjectsWithTag(avatar)[3].GetComponent<VRIK>();
+            
 
         }
         if (!pv.IsMine)
@@ -69,6 +70,25 @@ public class PlayerInstantiate : MonoBehaviour, IPunObservable
             ovrcontroller.enabled = false;
         }
         PhotonNetwork.IsMessageQueueRunning = true;
+    }
+    [PunRPC]
+    private void AvatarChange(string avatar)
+    {
+        for (int i = 0; i < avatars.Length; i++)
+        {
+            {
+                avatars[i].SetActive(false);
+
+            }
+        }
+        for (int i = 0; i < avatars.Length; i++)
+        {
+            if (avatars[i].tag == avatar)
+            {
+                this.avatars[i].SetActive(true);
+            }
+
+        }
     }
     void Start()
     {
@@ -87,41 +107,7 @@ public class PlayerInstantiate : MonoBehaviour, IPunObservable
             vrik.solver.rightArm.target = FalseRightRig;
         }
 
-        //if (pv.IsMine)
-        //{
 
-        //pv.RPC("ConnectingVRIK", RpcTarget.AllBufferedViaServer, avatar);
-        //}
-
-        //PlayerPrefs.DeleteAll();
-
-
-
-        //if (pv.IsMine)
-        //{
-        //    //내카메라만켜요
-        //    cam.SetActive(true);
-        //}
-        //if (!pv.IsMine)
-        //{
-        //    //남카메라오프
-        //    cam.SetActive(false);
-        //}
-
-    }
-    [PunRPC]
-    private void AvatarChange(string avatar)
-    {
-
-
-        for (int i = 0; i < avatars.Length; i++)
-        {
-            if (avatars[i].tag == avatar)
-            {
-                this.avatars[i].SetActive(true);
-            }
-
-        }
     }
     //머리동기화변수
     private Quaternion currRotHead;
@@ -179,77 +165,5 @@ public class PlayerInstantiate : MonoBehaviour, IPunObservable
         }
     }
 }
-//[PunRPC]
-//private void ConnectingVRIK(string avatar)
-//{
 
-//    //print(GameObject.FindGameObjectsWithTag(avatar)[0].gameObject.transform);
-//    vrik.solver.spine.headTarget = GameObject.FindGameObjectsWithTag(avatar)[0].gameObject.transform;
-//    vrik.solver.leftArm.target = GameObject.FindGameObjectsWithTag(avatar)[1].gameObject.transform;
-//    vrik.solver.rightArm.target = GameObject.FindGameObjectsWithTag(avatar)[2].gameObject.transform;
-//}
-
-
-//print(avatar);
-//myavatar = GameObject.FindGameObjectWithTag(avatar);
-
-//print(myavatar);
-//myavatar.transform.parent = transform;
-
-
-
-
-//}
-
-//float rx, ry;
-//float rotSpeed = 200;
-// Update is called once per frame
-//void Update()
-//{
-//    // 내플레이어만
-//    if (pv.IsMine)
-//    {
-//        //살았을때
-
-//        // 마우스 입력값으로 카메라 축을 회전하고싶다.
-//        float mx = Input.GetAxis("Mouse X");
-//        float my = Input.GetAxis("Mouse Y");
-//        rx += my * rotSpeed * Time.deltaTime;
-//        ry += mx * rotSpeed * Time.deltaTime;
-
-//        rx = Mathf.Clamp(rx, -70, 45);
-
-//        cameraAxis.transform.eulerAngles = new Vector3(-rx, ry, 0);
-
-//        // 키보드의 이동축을 입력받고싶다.
-//        float h = Input.GetAxisRaw("Horizontal");
-//        float v = Input.GetAxisRaw("Vertical");
-//        // 키보드 입력이 있다면
-//        if (h != 0 || v != 0)
-//        {
-//            // 몸을 카메라가 바라보는 앞쪽으로 회전하고싶다.
-//            Vector3 bodyDir = cameraAxis.transform.forward;
-//            bodyDir.y = 0;
-//            bodyDir.Normalize();
-//            body.forward = bodyDir;
-//        }
-
-//        // 몸의 앞방향을 기준으로 이동하고싶다.
-//        Vector3 dir = body.transform.right * h + body.transform.forward * v;
-//        dir.Normalize();
-
-
-//        transform.position += dir * speed * Time.deltaTime;
-
-//        Quaternion targetRotation = Quaternion.Euler(new Vector3(0, cameraAxis.eulerAngles.y, 0));
-
-
-//        transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, Time.deltaTime * 10);
-
-
-
-
-//    }
-
-//}
 
