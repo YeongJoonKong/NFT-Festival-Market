@@ -25,6 +25,7 @@ public class PlayerInstantiate : MonoBehaviour, IPunObservable
     public float FalseRigSmooteness = 10f;
 
     public VRIK vrik;
+    public VRIK[] Avrik;
     public CharacterController controller;
     public OVRPlayerController ovrcontroller;
 
@@ -65,7 +66,16 @@ public class PlayerInstantiate : MonoBehaviour, IPunObservable
         }
         if (!pv.IsMine)
         {
-            vrik = transform.GetComponentInChildren<VRIK>(true);
+            Avrik = transform.GetComponentsInChildren<VRIK>();
+            for(int i=0; i<Avrik.Length; i++)
+            {
+                if(Avrik[i].gameObject.activeSelf)
+                {
+                    vrik = Avrik[i];
+                }
+            }
+
+            //vrik = transform.GetComponentInChildren<VRIK>();
             controller.enabled = false;
             ovrcontroller.enabled = false;
         }
