@@ -9,8 +9,9 @@ public class BirdHandController : MonoBehaviour
     public Transform hand;
     public float kAdjustForce = 3;
 
-    public OVRInput.Controller controller;
+    public bool isThrowingCheck;
 
+    public OVRInput.Controller controller;
     void UpdateThrowBomb()
     {
         // 만약 물체를 잡았다면
@@ -18,9 +19,12 @@ public class BirdHandController : MonoBehaviour
         {
             if (bomb == null)
             {
+                isThrowingCheck = false;
+
                 // 오른손에 폭탄공장에서 폭탄을 만들어서 자식으로 붙이고싶다.
                 bomb = Instantiate(bombFactory);
                 bomb.transform.position = hand.position;
+                bomb.transform.rotation = Quaternion.Euler(new Vector3(0, 180, 0));
                 bomb.transform.parent = hand;
                 // Rigidbody의 isKinemetic를 켜고싶다.
                 bomb.GetComponent<Rigidbody>().isKinematic = true;
@@ -30,6 +34,8 @@ public class BirdHandController : MonoBehaviour
         {
             if (bomb != null)
             {
+                isThrowingCheck = true;
+
                 // 폭탄의 Rigidbody의 isKinemetic를 끄고싶다.
                 Rigidbody rb = bomb.GetComponent<Rigidbody>();
                 rb.isKinematic = false;
@@ -50,7 +56,7 @@ public class BirdHandController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+
     }
 
     // Update is called once per frame
