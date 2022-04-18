@@ -11,7 +11,14 @@ public class MinigameEntrance : MonoBehaviour
         if(other.CompareTag("Player") && transform.parent.name == ("MiniGame_Mole"))
         {
             Playdata.instance.spawnPointData = 1;
-            SceneManager.LoadScene("Player_Game_KYJ_001_Wack A Mole");
+            Playdata.instance.minigameplayed[0] = true;
+            SceneManager.LoadScene("Play_Game01KYJ_Wack_A_Mole");
+        }
+        else if (other.CompareTag("Player") && transform.parent.name == ("MiniGame_Shark"))
+        {
+            Playdata.instance.spawnPointData = 2;
+            Playdata.instance.minigameplayed[1] = true;
+            SceneManager.LoadScene("Play_Game02_KYJ_Wack_A_Shark");
         }
     }
 }

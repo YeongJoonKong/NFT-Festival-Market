@@ -8,6 +8,8 @@ public class NFTObject : MonoBehaviour
     public GameObject originalParent;
     public GameObject leftHandParent;
     public GameObject rightHandParent;
+
+    public Dictionary<string, string> info;
     
     Vector3 originalPosition;
     Quaternion originalRotation;

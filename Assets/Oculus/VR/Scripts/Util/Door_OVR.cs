@@ -30,6 +30,11 @@ public class Door_OVR : MonoBehaviour
         _doorAnimator = gameObject.GetComponent<Animator>();
         _doorOpenTime = _doorAnimator.GetCurrentAnimatorStateInfo(0).length + doorDelayTime; //Sum of animation time and additional delay
     }
+    private void Start() 
+    {
+        _doorAnimator.Play("OpenDoor");
+        doorOpen = true;
+    }   
 
     //Play an animation and sound, depending on door status
     public void PlayDoorAnimation()
