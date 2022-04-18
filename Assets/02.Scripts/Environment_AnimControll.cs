@@ -29,9 +29,13 @@ public class Environment_AnimControll : MonoBehaviour
 
         canvas = GetComponentInChildren<Canvas>();
 
-        if(transform.name == "Customer")
+        if(transform.name == "Customer_01")
         {
             anim.SetTrigger("Customer");
+        }
+        else if(transform.name == "Customer_11")
+        {
+            anim.SetTrigger("Sad");
         }
         else
         {
