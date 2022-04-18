@@ -9,4 +9,8 @@ public class Dialogue : MonoBehaviour
     
     [TextArea (1, 10)]
     public string[] cleartext;
+
+    [TextArea (1, 10)]
+
+    public string[] workShoptext;
 }

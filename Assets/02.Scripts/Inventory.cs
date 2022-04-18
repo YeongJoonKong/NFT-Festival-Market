@@ -41,7 +41,7 @@ public class Inventory : MonoBehaviour
         if (gameObject.activeInHierarchy) 
         {
             if (WalletCache.address != null) {
-                walletInfo.text = "-지갑 주소-\n" + WalletCache.address;
+                walletInfo.text = "-지갑 주소-\n" + WalletCache.address + "\n" + "-코인 종류-\n" + WalletCache.secretType + "\n" + "-기타 정보-\n" + WalletCache.description;
             }
 
             GameObject[] nfts = Resources.LoadAll<GameObject>("NFT");
