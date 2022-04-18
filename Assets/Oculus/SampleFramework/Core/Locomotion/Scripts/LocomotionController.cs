@@ -29,19 +29,19 @@ public class LocomotionController : MonoBehaviour
 
     void Start()
     {
-		/*
+        
         if (CharacterController == null)
         {
             CharacterController = GetComponentInParent<CharacterController>();
         }
         Assert.IsNotNull(CharacterController);
-		*/
-        //if (PlayerController == null)
-        //{
-            //PlayerController = GetComponentInParent<OVRPlayerController>();
-        //}
-        //Assert.IsNotNull(PlayerController);
-        if(CameraRig == null)
+		
+        if (PlayerController == null)
+        {
+            PlayerController = GetComponentInParent<OVRPlayerController>();
+        }
+        Assert.IsNotNull(PlayerController);
+        if (CameraRig == null)
         {
             CameraRig = FindObjectOfType<OVRCameraRig>();
         }

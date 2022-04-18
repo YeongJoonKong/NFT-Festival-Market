@@ -11,14 +11,18 @@ public class PrefabMaker : MonoBehaviour
     public void cretePrefab(GameObject PrefabObjects)
     {        
         string localPath = "Assets/" + PrefabObjects.name + ".prefab";
+#if UNITY_EDITOR
         localPath = AssetDatabase.GenerateUniqueAssetPath(localPath);
-        
+#endif
+
         bool prefabSucces;
+#if UNITY_EDITOR
         PrefabUtility.SaveAsPrefabAsset(PrefabObjects, localPath, out prefabSucces);
-         if (prefabSucces == true)
+        if (prefabSucces == true)
                 Debug.Log("Prefab was saved successfully");
         else
                 Debug.Log("Prefab failed to save" + prefabSucces);
+#endif
 
         // string filePath = Path.Combine(Application.dataPath, "TEST_01.fbx");
         // Debug.Log(filePath);
