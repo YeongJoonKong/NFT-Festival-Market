@@ -34,11 +34,13 @@ public class Playdata : MonoBehaviour
         {
             textnumData[0] = textnum;
             minigameplayed[0] = minigame;
+
         }
         else if(npcnum == 1)
         {
             textnumData[1] = textnum;
             minigameplayed[1] = minigame;
+
         }
     }
 
