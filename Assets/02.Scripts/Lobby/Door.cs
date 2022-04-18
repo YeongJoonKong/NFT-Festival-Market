@@ -31,7 +31,7 @@ public class Door : MonoBehaviour
     public void OpenDoor() 
     {
         // _isStartOpen = true;
-        if (Vector3.Distance(player.transform.position, transform.position) <= 1f) {
+        if (Vector3.Distance(player.transform.position, transform.position) <= 3f) {
             leftDoor.transform.localPosition += new Vector3(-0.1f, 0, 0);
             rightDoor.transform.localPosition += new Vector3(0.1f, 0, 0);
         }
