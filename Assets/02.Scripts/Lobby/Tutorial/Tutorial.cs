@@ -123,8 +123,8 @@ public class Tutorial: MonoBehaviour, ObserverLobby
     #region Playing Tutorial Method
     void StartPlayTutorial() 
     {
-        DeactiveKeyTutorial();
-        PlayFirstTutorial();
+        // DeactiveKeyTutorial();
+        // PlayFirstTutorial();
     }
 
     void PlayFirstTutorial()
