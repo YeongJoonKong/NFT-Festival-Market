@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class MyHand : MonoBehaviour
 {
@@ -9,6 +10,10 @@ public class MyHand : MonoBehaviour
     public Transform hand;
     string avatarName;
     public GameObject[] avatars;
+    public TextMeshPro raytext;
+    public GameObject rayUI;
+    public GameObject rotationUI;
+
 
     // Start is called before the first frame update
     void Start()
@@ -86,7 +91,9 @@ public class MyHand : MonoBehaviour
                 // �ƹ�Ÿ��� ���ƹ�Ÿ �迭���� �̸������� ��
                 if (avatars[i].tag == avatarName)
                 {
-
+                    rayUI.SetActive(false);
+                    rotationUI.SetActive(true);
+                    raytext.text = "오른손 회전 키를 사용하여 뒤를 돌아보세요";
                     avatars[i].SetActive(true);
                     var av = avatars[i].tag;
                     PlayerPrefs.SetString("Avatar", av);
