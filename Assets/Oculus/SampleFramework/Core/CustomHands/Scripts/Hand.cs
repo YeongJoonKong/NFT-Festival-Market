@@ -15,6 +15,8 @@ using UnityEngine;
 using OVRTouchSample;
 #if UNITY_EDITOR
 using UnityEngine.SceneManagement;
+using Photon.Pun;
+using Photon.Realtime;
 #endif
 
 namespace OVRTouchSample
@@ -23,10 +25,11 @@ namespace OVRTouchSample
     [RequireComponent(typeof(OVRGrabber))]
     public class Hand : MonoBehaviour
     {
-        public const string ANIM_LAYER_NAME_POINT = "Point Layer";
-        public const string ANIM_LAYER_NAME_THUMB = "Thumb Layer";
-        public const string ANIM_PARAM_NAME_FLEX = "Flex";
-        public const string ANIM_PARAM_NAME_POSE = "Pose";
+        public  string ANIM_LAYER_NAME_POINT = "Point Layer";
+        public  string ANIM_LAYER_NAME_THUMB = "Thumb Layer";
+        public  string ANIM_PARAM_NAME_FLEX = "Flex";
+        public string ANIM_PARAM_NAME_PINCH = "Pinch";
+        public string ANIM_PARAM_NAME_POSE = "Pose";
         public const float THRESH_COLLISION_FLEX = 0.9f;
 
         public const float INPUT_RATE_CHANGE = 20.0f;
@@ -70,6 +73,16 @@ namespace OVRTouchSample
 
         private void Start()
         {
+            //포톤뷰있다면
+            if (!(transform.root.gameObject.GetComponent<PhotonView>() == null))
+            {
+                string avatar = PlayerPrefs.GetString("Avatar");
+                print(GameObject.FindGameObjectWithTag(avatar).gameObject);
+                m_animator = GameObject.FindGameObjectsWithTag(avatar)[3].gameObject.GetComponent<Animator>();
+
+            }
+
+
             m_showAfterInputFocusAcquired = new List<Renderer>();
 
             // Collision starts disabled. We'll enable it for certain cases such as making a fist.
@@ -77,8 +90,8 @@ namespace OVRTouchSample
             CollisionEnable(false);
 
             // Get animator layer indices by name, for later use switching between hand visuals
-            m_animLayerIndexPoint = m_animator.GetLayerIndex(ANIM_LAYER_NAME_POINT);
-            m_animLayerIndexThumb = m_animator.GetLayerIndex(ANIM_LAYER_NAME_THUMB);
+            //m_animLayerIndexPoint = m_animator.GetLayerIndex(ANIM_LAYER_NAME_POINT);
+            //m_animLayerIndexThumb = m_animator.GetLayerIndex(ANIM_LAYER_NAME_THUMB);
             m_animParamIndexFlex = Animator.StringToHash(ANIM_PARAM_NAME_FLEX);
             m_animParamIndexPose = Animator.StringToHash(ANIM_PARAM_NAME_POSE);
 
@@ -97,6 +110,10 @@ namespace OVRTouchSample
 
         private void Update()
         {
+            if ((transform.root.gameObject.GetComponent<PhotonView>() == null))
+            {
+                HandAnimatorChange();
+            }
             UpdateCapTouchStates();
 
             m_pointBlend = InputValueRateChange(m_isPointing, m_pointBlend);
@@ -108,6 +125,18 @@ namespace OVRTouchSample
             CollisionEnable(collisionEnabled);
 
             UpdateAnimStates();
+        }
+        private void HandAnimatorChange()
+        {
+           
+                string avatar = PlayerPrefs.GetString("Avatar");
+                if (!((GameObject.Find(avatar))==null))
+                {
+                m_animator = GameObject.Find(avatar).gameObject.GetComponent<Animator>();       
+
+                }
+
+            
         }
 
         // Just checking the state of the index and thumb cap touch sensors, but with a little bit of
@@ -192,7 +221,7 @@ namespace OVRTouchSample
             }
             // Pose
             HandPoseId handPoseId = grabPose.PoseId;
-            m_animator.SetInteger(m_animParamIndexPose, (int)handPoseId);
+            //m_animator.SetInteger(m_animParamIndexPose, (int)handPoseId);
 
             // Flex
             // blend between open hand and fully closed fist
@@ -210,7 +239,7 @@ namespace OVRTouchSample
             m_animator.SetLayerWeight(m_animLayerIndexThumb, thumbsUp);
 
             float pinch = OVRInput.Get(OVRInput.Axis1D.PrimaryIndexTrigger, m_controller);
-            m_animator.SetFloat("Pinch", pinch);
+            m_animator.SetFloat(ANIM_PARAM_NAME_PINCH, pinch);
         }
 
         private float m_collisionScaleCurrent = 0.0f;

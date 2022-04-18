@@ -13,14 +13,20 @@ public class MyHand : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        print(PlayerPrefs.HasKey("Avatar"));
+        print(PlayerPrefs.GetString("Avatar"));
         //lr = GetComponent<LineRenderer>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(OVRInput.Get(OVRInput.Button.One,OVRInput.Controller.RTouch))
+        if (OVRInput.Get(OVRInput.Button.PrimaryHandTrigger) || OVRInput.Get(OVRInput.Button.SecondaryHandTrigger)) 
+        {
+            GameObject.Find("AvatarDoor").GetComponent<Door>().OpenDoor();
+        }
+
+        if (OVRInput.Get(OVRInput.Button.One, OVRInput.Controller.RTouch))
         //if (ControllerManager.instance.GetOculus(ControllerManager.VRKey.Teleport, controller))
         //if (Input.GetKey(KeyCode.T))
         {
@@ -30,51 +36,65 @@ public class MyHand : MonoBehaviour
             int layer = 1 << LayerMask.NameToLayer("Hand");
             RaycastHit hitinfo;
             //floor = null;
-            if (Physics.Raycast(ray, out hitinfo, float.MaxValue,~layer))
+            if (Physics.Raycast(ray, out hitinfo, float.MaxValue, ~layer))
             {
-                // ºÎµúÈù ¿ÀºêÁ§Æ® ÅÂ±× stringÀ¸·Î ´ãÀ½
+                // ï¿½Îµï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ® ï¿½Â±ï¿½ stringï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
                 avatarName = hitinfo.transform.tag;
 
                 lr.enabled = true;
+                
+                // if (hitinfo.transform.tag=="AvatarDoor")
+                // {
+                //     GameObject.Find("AvatarDoor").GetComponent<Door>().OpenDoor();
+                // }
 
-                bool isHit = Physics.Raycast(ray, out hitinfo,float.MaxValue, ~layer);
+                bool isHit = Physics.Raycast(ray, out hitinfo, float.MaxValue, ~layer);
                 if (isHit)
                 {
                     lr.SetPosition(1, hitinfo.point);
                 }
             }
-            else // Çã°ø
+            else // ï¿½ï¿½ï¿½
             {
                 lr.enabled = true;
                 lr.SetPosition(1, ray.origin + ray.direction * 50);
             }
         }
         //else if (ControllerManager.instance.GetOculusUp(ControllerManager.VRKey.Teleport, controller))
-        else if (OVRInput.GetUp(OVRInput.Button.One,OVRInput.Controller.RTouch))
+        else if (OVRInput.GetUp(OVRInput.Button.One, OVRInput.Controller.RTouch))
         {
             lr.enabled = false;
 
+            if (!(avatarName == "Avatar1" || avatarName == "Avatar2" || avatarName == "Avatar3" || avatarName == "Avatar4" || avatarName == "Avatar5")) // ï¿½Ç´ï¿½ ï¿½Ã·ï¿½ï¿½Ì¾ï¿½ï¿½ï¿½
+            {
+                return;
+            }
 
-            //ÇÃ·¹ÀÌ¾î ÇÏÀ§¿¡ avatar ¹è¿­ ³ÖÀ½
+            // ï¿½×¸ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½
             for (int i = 0; i < avatars.Length; i++)
             {
-                //ºÎµúÈù¾Ö°¡ ¾Æ¹ÙÅ¸°¡ ¾Æ´Ï°Å³ª ÇÃ·¹ÀÌ¾î¶ó¸é ¸®ÅÏ
-                if (!(avatarName == "Cube" || avatarName == "Cylinder" || avatarName == "Capsule")) // ¶Ç´Â ÇÃ·¹ÀÌ¾î¶ó¸é
-                {
-                    return;
-                }
-                // ¾Æ¹ÙÅ¸¶ó¸é ³»¾Æ¹ÙÅ¸ ¹è¿­¿¡¼­ ÀÌ¸§°°Àº³ð ÄÑ
-                else if (avatars[i].tag == avatarName)
-                {
-                   
-                    avatars[i].SetActive(true);
-                    PlayerPrefs.SetString("Avatar", avatars[i].tag);
-                }
-                // ±×¸®°í ³ª¸ÓÁö ´Ù ²¨
-                else
                 {
                     avatars[i].SetActive(false);
 
+                }
+
+            }
+            //ï¿½Ã·ï¿½ï¿½Ì¾ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ avatar ï¿½è¿­ ï¿½ï¿½ï¿½ï¿½
+            for (int i = 0; i < avatars.Length; i++)
+            {
+                //ï¿½Îµï¿½ï¿½ï¿½ï¿½Ö°ï¿½ ï¿½Æ¹ï¿½Å¸ï¿½ï¿½ ï¿½Æ´Ï°Å³ï¿½ ï¿½Ã·ï¿½ï¿½Ì¾ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+                // ï¿½Æ¹ï¿½Å¸ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Æ¹ï¿½Å¸ ï¿½è¿­ï¿½ï¿½ï¿½ï¿½ ï¿½Ì¸ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½
+                if (avatars[i].tag == avatarName)
+                {
+
+                    avatars[i].SetActive(true);
+                    var av = avatars[i].tag;
+                    PlayerPrefs.SetString("Avatar", av);
+
+                    print(PlayerPrefs.HasKey("Avatar"));
+                    print(PlayerPrefs.GetString("Avatar"));
+
+                    break;
                 }
             }
         }
