@@ -15,18 +15,20 @@ public class PhotonGameManager : MonoBehaviourPunCallbacks
     [System.NonSerialized]
     public PhotonView pv;
 
+    //public GameObject avatar1;
+
     private void Awake()
     {
         //instance = this;
+        pv = GetComponent<PhotonView>();
+
+        //avatar1.SetActive(false);
+        Vector3 pos = Vector3.zero + Vector3.up * 1.5f; //
+        PhotonNetwork.Instantiate("PlayerNetWork", pos, Quaternion.identity, 0);
     }
     // Start is called before the first frame update
     void Start()
     {
-        pv = GetComponent<PhotonView>();
-
-
-        Vector3 pos = Vector3.zero + Vector3.up * 1.5f; //
-        PhotonNetwork.Instantiate("Player_OVR", pos, Quaternion.identity, 0);
 
 
 
