@@ -4610,7 +4610,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   friendAvatar: {fileID: 297330782}
   ticketGuideAvatar: {fileID: 1115099882}
-  player: {fileID: 536177889964418493}
+  player: {fileID: 765296166}
   locomotionController: {fileID: 1919212900454213854}
   inputTutorialRoad: {fileID: 460128258}
   leftJoyStickTutorial: {fileID: 0}
@@ -4623,6 +4623,7 @@ MonoBehaviour:
   nftWallet: {fileID: 3581648218793631725}
   npcConversationTutorial: {fileID: 121513814}
   nftManager: {fileID: 1561466142}
+  RayJoystickTutorial: {fileID: 0}
 --- !u!4 &182210190
 Transform:
   m_ObjectHideFlags: 0
@@ -9785,9 +9786,19 @@ MonoBehaviour:
   - {fileID: 8300000, guid: a3821445b892545a19920d0a7810b1a1, type: 3}
   - {fileID: 8300000, guid: f6fa3ef360d404887bf659331e2ffdae, type: 3}
   - {fileID: 8300000, guid: 37db235a7cc9c4e45a5a67ca60d7eed1, type: 3}
+  - {fileID: 8300000, guid: dcb9551c7bdc3af43aa3786d2acffbaf, type: 3}
+  - {fileID: 8300000, guid: 7f5545ab50400c841bf1d79354eebf45, type: 3}
+  - {fileID: 8300000, guid: 82085b45fac6e844c92fcfb942a4c127, type: 3}
+  - {fileID: 8300000, guid: e70f5676173841e4fb9925821c11fb86, type: 3}
+  - {fileID: 8300000, guid: 5e2416d56ff34bc4c878bf4a432aa5bb, type: 3}
+  - {fileID: 8300000, guid: fa885d4b8bceeaf4a817de0893b90720, type: 3}
+  - {fileID: 8300000, guid: 4e0643a7a5ffe5544a992f0b71f49861, type: 3}
   targetDestination: {fileID: 302429824}
   player: {fileID: 536177889964418493}
   door: {fileID: 1996527363}
+  leftCurtain: {fileID: 369031860}
+  rightCurtain: {fileID: 1078027201}
+  rayJoystickTutorial: {fileID: 0}
 --- !u!82 &297330786
 AudioSource:
   m_ObjectHideFlags: 0
@@ -9906,8 +9917,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 297330782}
-  m_LocalRotation: {x: 0, y: -0.7071068, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: -16.35, y: 0, z: 3.982}
+  m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
+  m_LocalPosition: {x: -26.126, y: 0, z: 6.426}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -9924,7 +9935,7 @@ Transform:
   - {fileID: 45220820}
   m_Father: {fileID: 0}
   m_RootOrder: 3
-  m_LocalEulerAnglesHint: {x: 0, y: -90, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
 --- !u!1001 &297789223
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -10053,7 +10064,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 302429823}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 2}
+  m_LocalPosition: {x: -32.47, y: 0, z: 6.13}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -29055,7 +29066,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: c3895873ab50845408a75b623c6f07f8, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c3895873ab50845408a75b623c6f07f8, type: 3}
@@ -33636,6 +33647,10 @@ PrefabInstance:
     - target: {fileID: 639075905346619817, guid: 65172c147728f5d479e7d2ab301387ae, type: 3}
       propertyPath: m_Name
       value: JoyStickTutorial
+      objectReference: {fileID: 0}
+    - target: {fileID: 639075905346619817, guid: 65172c147728f5d479e7d2ab301387ae, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 639075905346619822, guid: 65172c147728f5d479e7d2ab301387ae, type: 3}
       propertyPath: m_Enabled
@@ -39457,31 +39472,31 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5535304368399430904, guid: c266320039eef2f4390ffd20a08f77ee, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -24.167
+      value: -24.339
       objectReference: {fileID: 0}
     - target: {fileID: 5535304368399430904, guid: c266320039eef2f4390ffd20a08f77ee, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.5140002
+      value: 1.715
       objectReference: {fileID: 0}
     - target: {fileID: 5535304368399430904, guid: c266320039eef2f4390ffd20a08f77ee, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 8.17
+      value: 5.235
       objectReference: {fileID: 0}
     - target: {fileID: 5535304368399430904, guid: c266320039eef2f4390ffd20a08f77ee, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 1
+      value: 0.8655876
       objectReference: {fileID: 0}
     - target: {fileID: 5535304368399430904, guid: c266320039eef2f4390ffd20a08f77ee, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 5535304368399430904, guid: c266320039eef2f4390ffd20a08f77ee, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0
+      value: 0.5007575
       objectReference: {fileID: 0}
     - target: {fileID: 5535304368399430904, guid: c266320039eef2f4390ffd20a08f77ee, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 5535304368399430904, guid: c266320039eef2f4390ffd20a08f77ee, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -39489,7 +39504,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5535304368399430904, guid: c266320039eef2f4390ffd20a08f77ee, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
+      value: 60.1
       objectReference: {fileID: 0}
     - target: {fileID: 5535304368399430904, guid: c266320039eef2f4390ffd20a08f77ee, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
@@ -39497,15 +39512,23 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5535304368399430905, guid: c266320039eef2f4390ffd20a08f77ee, type: 3}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5535304368399430906, guid: c266320039eef2f4390ffd20a08f77ee, type: 3}
       propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 5535304368399430907, guid: c266320039eef2f4390ffd20a08f77ee, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5535304368399430908, guid: c266320039eef2f4390ffd20a08f77ee, type: 3}
       propertyPath: m_Name
       value: RayJoyStickTutorial
+      objectReference: {fileID: 0}
+    - target: {fileID: 5535304368399430908, guid: c266320039eef2f4390ffd20a08f77ee, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c266320039eef2f4390ffd20a08f77ee, type: 3}
@@ -51922,7 +51945,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1551250335}
   m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
-  m_LocalPosition: {x: -26.85, y: 0, z: 4.9}
+  m_LocalPosition: {x: -25.79, y: 0, z: 6.38}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -51953,6 +51976,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   leftCurtain: {fileID: 369031860}
   rightCurtain: {fileID: 1078027201}
+  audioClips: []
 --- !u!1 &1552172992
 GameObject:
   m_ObjectHideFlags: 0
@@ -61708,7 +61732,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: c3895873ab50845408a75b623c6f07f8, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c3895873ab50845408a75b623c6f07f8, type: 3}

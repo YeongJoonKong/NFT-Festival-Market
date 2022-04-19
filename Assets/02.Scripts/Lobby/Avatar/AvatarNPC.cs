@@ -8,6 +8,7 @@ public class AvatarNPC : MonoBehaviour, SubjectLobby
 
     public GameObject leftCurtain;
     public GameObject rightCurtain;
+    public GameObject[] audioClips;
 
     void Start()
     {
@@ -16,10 +17,15 @@ public class AvatarNPC : MonoBehaviour, SubjectLobby
 
     void Update()
     {
-        PullCurtains();        
+        // PullCurtains();        
     }
 
-    void PullCurtains() {
+    public void PlayScript() 
+    {
+        
+    }
+
+    public void PullCurtains() {
         if (leftCurtain.transform.position.x >= -34.7f) {
             leftCurtain.transform.position += new Vector3(-0.1f, 0, 0);
         }

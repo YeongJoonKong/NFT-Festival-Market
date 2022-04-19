@@ -23,6 +23,7 @@ public class Tutorial: MonoBehaviour, ObserverLobby
     public GameObject nftWallet;
     public GameObject npcConversationTutorial;
     public GameObject nftManager;
+    public GameObject RayJoystickTutorial;
     
     #endregion
 
@@ -124,13 +125,14 @@ public class Tutorial: MonoBehaviour, ObserverLobby
     void StartPlayTutorial() 
     {
         // DeactiveKeyTutorial();
-        // PlayFirstTutorial();
+        PlayFirstTutorial();
     }
 
     void PlayFirstTutorial()
     {
         BanOVRInput();
-        StartCoroutine(friendAvatar.GetComponent<FriendAvatar>().PlayFirstScript(0));
+        // StartCoroutine(friendAvatar.GetComponent<FriendAvatar>().PlayFirstScript(0));
+        StartCoroutine(friendAvatar.GetComponent<FriendAvatar>().PlayScript(14, AllowOVRInput));
     }
 
 

@@ -12,6 +12,9 @@ public class FriendAvatar : MonoBehaviour, SubjectLobby
     public Transform targetDestination;
     public GameObject player;
     public GameObject door;
+    public GameObject leftCurtain;
+    public GameObject rightCurtain;
+    public GameObject rayJoystickTutorial;
 
     Animator _anim;
     AudioSource _audioSource;
@@ -19,6 +22,7 @@ public class FriendAvatar : MonoBehaviour, SubjectLobby
     int[] firstScript = { 0, 1, 2, 3, 4, 5 };
     int[] secondScript = { 6, 7, 8 };
     int[] thirdScript = { 16, 17, 18, 19, 20, 21 };
+    int[] Script = {15, 16, 17, 18, 19, 20, 21};
 
     NavMeshAgent _navMeshAgent;
 
@@ -29,6 +33,7 @@ public class FriendAvatar : MonoBehaviour, SubjectLobby
         _anim = GetComponent<Animator>();
         _navMeshAgent = GetComponent<NavMeshAgent>();
         _audioSource = GetComponent<AudioSource>();
+        rayJoystickTutorial.SetActive(false);
     }
 
     void Start()
@@ -121,6 +126,41 @@ public class FriendAvatar : MonoBehaviour, SubjectLobby
             _isStartWalk = true;
             _anim.SetTrigger("Walk");
         }
+    }
+
+    public IEnumerator PlayScript(int index, Action callback)
+    {
+        _audioSource.clip = audioClips[index];
+        _audioSource.Play();
+        if (index == 18) 
+        {
+            PullCurtains();
+            _navMeshAgent.SetDestination(targetDestination.position);
+            _isStartWalk = true;
+            _anim.SetTrigger("Walk");
+            yield return new WaitUntil(() => OVRInput.GetUp(OVRInput.Button.One));
+        }
+        yield return new WaitForSeconds(_audioSource.clip.length + 1);
+        index += 1;
+
+        if (index <= Script[Script.Length-1])
+        {
+            StartCoroutine(PlayScript(index, callback));
+        }
+        else
+        {
+            if (callback != null) callback();
+        }
+    }
+
+    void PullCurtains() {
+        while (leftCurtain.transform.position.x >= -34.7f && rightCurtain.transform.position.x <= -11.71f)
+        {
+            leftCurtain.transform.position += new Vector3(-0.001f, 0, 0);
+            rightCurtain.transform.position += new Vector3(0.001f, 0, 0);
+        }
+
+        rayJoystickTutorial.SetActive(true);
     }
 
     public void AddObserver(ObserverLobby subscriber)
