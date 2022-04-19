@@ -94,6 +94,11 @@ public class MyHand : MonoBehaviour
                 {
                     lr.SetPosition(1, hitinfo.point);
                 }
+
+                if (hitinfo.transform.tag == "TUTORIAL_ITEM")
+                {
+                    hitinfo.transform.gameObject.SetActive(false);
+                }
             }
             else // ���
             {

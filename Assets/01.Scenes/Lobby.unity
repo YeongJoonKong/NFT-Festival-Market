@@ -69324,7 +69324,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "HandTrigger\uB85C\n\uB9D0\uD48D\uC120 \uC7A1\uC544\uBCF4\uAE30"
+  m_text: "\uAD11\uC120 \uBC1C\uC0AC\uB85C\n\uB9D0\uD48D\uC120 \uC7A1\uC544\uBCF4\uAE30"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: ee15160009e2b4e77b75a0736e4dc127, type: 2}
   m_sharedMaterial: {fileID: 4263123469116924945, guid: ee15160009e2b4e77b75a0736e4dc127, type: 2}
@@ -115697,7 +115697,7 @@ GameObject:
   - component: {fileID: 8164078558462378207}
   m_Layer: 0
   m_Name: PurchaseTicketAnswer
-  m_TagString: Untagged
+  m_TagString: TUTORIAL_ITEM
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

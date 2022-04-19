@@ -16,10 +16,10 @@ public class TextBubbleInteraction : MonoBehaviour
         
     }
 
-    void OnTriggerEnter(Collider otherCollider) {
-        if (OVRInput.Get(OVRInput.Button.PrimaryHandTrigger) || OVRInput.Get(OVRInput.Button.SecondaryHandTrigger)) {
-            gameObject.SetActive(false);
-        }
-    }
+    // void OnTriggerEnter(Collider otherCollider) {
+    //     if (OVRInput.Get(OVRInput.Button.PrimaryHandTrigger) || OVRInput.Get(OVRInput.Button.SecondaryHandTrigger)) {
+    //         gameObject.SetActive(false);
+    //     }
+    // }
     
 }
