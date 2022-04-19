@@ -9798,7 +9798,7 @@ MonoBehaviour:
   door: {fileID: 1996527363}
   leftCurtain: {fileID: 369031860}
   rightCurtain: {fileID: 1078027201}
-  rayJoystickTutorial: {fileID: 0}
+  rayJoystickTutorial: {fileID: 423397790}
 --- !u!82 &297330786
 AudioSource:
   m_ObjectHideFlags: 0
@@ -15839,19 +15839,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2114525664061933602, guid: 8bcb6af70f8953f4a9336648a1c0d5ca, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -24.167
+      value: -24.339
       objectReference: {fileID: 0}
     - target: {fileID: 2114525664061933602, guid: 8bcb6af70f8953f4a9336648a1c0d5ca, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.5140002
+      value: 1.571
       objectReference: {fileID: 0}
     - target: {fileID: 2114525664061933602, guid: 8bcb6af70f8953f4a9336648a1c0d5ca, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 7.43
+      value: 5.235
       objectReference: {fileID: 0}
     - target: {fileID: 2114525664061933602, guid: 8bcb6af70f8953f4a9336648a1c0d5ca, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 1
+      value: 0.8655876
       objectReference: {fileID: 0}
     - target: {fileID: 2114525664061933602, guid: 8bcb6af70f8953f4a9336648a1c0d5ca, type: 3}
       propertyPath: m_LocalRotation.x
@@ -15859,7 +15859,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2114525664061933602, guid: 8bcb6af70f8953f4a9336648a1c0d5ca, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0
+      value: 0.5007575
       objectReference: {fileID: 0}
     - target: {fileID: 2114525664061933602, guid: 8bcb6af70f8953f4a9336648a1c0d5ca, type: 3}
       propertyPath: m_LocalRotation.z
@@ -15883,11 +15883,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2114525664061933603, guid: 8bcb6af70f8953f4a9336648a1c0d5ca, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2114525664061933605, guid: 8bcb6af70f8953f4a9336648a1c0d5ca, type: 3}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8bcb6af70f8953f4a9336648a1c0d5ca, type: 3}
@@ -39476,7 +39476,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5535304368399430904, guid: c266320039eef2f4390ffd20a08f77ee, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.715
+      value: 1.571
       objectReference: {fileID: 0}
     - target: {fileID: 5535304368399430904, guid: c266320039eef2f4390ffd20a08f77ee, type: 3}
       propertyPath: m_LocalPosition.z
