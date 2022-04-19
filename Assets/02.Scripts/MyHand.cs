@@ -17,7 +17,6 @@ public class MyHand : MonoBehaviour
     public GameObject[] Lights;
     public AudioClip[] sfx;
     public GameObject vfx;
-    public GameObject marker;
 
     AudioSource _AudioSource;
 
@@ -28,6 +27,7 @@ public class MyHand : MonoBehaviour
         print(PlayerPrefs.GetString("Avatar"));
         //lr = GetComponent<LineRenderer>();
         _AudioSource = GetComponent<AudioSource>();
+        
     }
 
     // Update is called once per frame
@@ -42,7 +42,6 @@ public class MyHand : MonoBehaviour
         if (OVRInput.Get(OVRInput.Button.PrimaryHandTrigger) || OVRInput.Get(OVRInput.Button.SecondaryHandTrigger)) 
         {
             GameObject.Find("AvatarDoor").GetComponent<Door>().OpenDoor();
-            marker.SetActive(false);
         }
     }
 
@@ -58,11 +57,14 @@ public class MyHand : MonoBehaviour
                     _AudioSource.clip = sfx[0];
                     _AudioSource.Play();
                 }
-                Lights[i-1].SetActive(true);
+                Lights[i - 1].GetComponentInChildren<MeshRenderer>().material.EnableKeyword("_EMISSION");
+                Lights[i - 1].transform.Find("Spotlight").gameObject.SetActive(true);
             }
             else
             {
-                Lights[i-1].SetActive(false);
+                Lights[i - 1].GetComponentInChildren<MeshRenderer>().material.DisableKeyword("_EMISSION");
+                Lights[i - 1].transform.Find("Spotlight").gameObject.SetActive(false);
+
             }
         }
     }
