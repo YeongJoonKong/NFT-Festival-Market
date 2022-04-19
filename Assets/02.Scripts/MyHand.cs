@@ -28,6 +28,7 @@ public class MyHand : MonoBehaviour
         print(PlayerPrefs.GetString("Avatar"));
         //lr = GetComponent<LineRenderer>();
         _AudioSource = GetComponent<AudioSource>();
+        
     }
 
     // Update is called once per frame
