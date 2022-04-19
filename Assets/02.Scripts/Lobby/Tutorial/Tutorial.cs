@@ -138,6 +138,7 @@ public class Tutorial: MonoBehaviour, ObserverLobby
 
     void PlayTempTutorial()
     {
+        DeactiveKeyTutorial();
         StartCoroutine(ticketGuideAvatar.GetComponent<TicketGuideAvatar>().Guide(0));
     }
 
