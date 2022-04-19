@@ -24,6 +24,7 @@ public class Tutorial: MonoBehaviour, ObserverLobby
     public GameObject npcConversationTutorial;
     public GameObject nftManager;
     public GameObject RayJoystickTutorial;
+    public GameObject MoveTutorial;
     
     #endregion
 
@@ -108,7 +109,7 @@ public class Tutorial: MonoBehaviour, ObserverLobby
         {
             SpawnNFTWalletAndTicket();
             TurnOnNFTWalletAndTicketTutorial();
-            StartCoroutine(PlayFinalTutorial());
+            // StartCoroutine(PlayFinalTutorial());
         } 
         else if (_event.Equals("WAIT_PLAYER_TRY_CONVERSATION"))
         {
@@ -134,6 +135,7 @@ public class Tutorial: MonoBehaviour, ObserverLobby
         BanOVRInput();
         StartCoroutine(friendAvatar.GetComponent<FriendAvatar>().PlayScript(14, AllowOVRInput));
         ActiveKeyTutorial();
+        MoveTutorial.SetActive(true);
     }
 
     void PlayTempTutorial()
@@ -183,7 +185,7 @@ public class Tutorial: MonoBehaviour, ObserverLobby
     void DeactiveKeyTutorial()
     {
         TurnOffInputTutorialRoad();
-        // TurnOffKeyTutorial();
+        TurnOffKeyTutorial();
         TurnOffInteractionTutorial();
         TurnOffNFTWalletAndTicketTutorial();
         HideNFTWalletAndTicket();
@@ -203,7 +205,6 @@ public class Tutorial: MonoBehaviour, ObserverLobby
         player.GetComponent<CharacterController>().enabled = true;
         locomotionController.SetActive(true);
     }
-
 
     void TurnOnInputTutorialRoad()
     {
@@ -237,9 +238,10 @@ public class Tutorial: MonoBehaviour, ObserverLobby
 
     void TurnOffKeyTutorial()
     {
-        leftJoyStickTutorial.SetActive(false);
-        rightJoyStickTutorial.SetActive(false);
-        indexTriggerTutorial.SetActive(false);
+        // leftJoyStickTutorial.SetActive(false);
+        // rightJoyStickTutorial.SetActive(false);
+        // indexTriggerTutorial.SetActive(false);
+        MoveTutorial.SetActive(false);
     }
 
 
