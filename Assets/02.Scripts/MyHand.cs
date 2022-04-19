@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using System;
 
 public class MyHand : MonoBehaviour
 {
@@ -13,7 +14,11 @@ public class MyHand : MonoBehaviour
     public TextMeshPro raytext;
     public GameObject rayUI;
     public GameObject rotationUI;
+    public GameObject[] Lights;
+    public AudioClip[] sfx;
+    public GameObject vfx;
 
+    AudioSource _AudioSource;
 
     // Start is called before the first frame update
     void Start()
@@ -21,16 +26,47 @@ public class MyHand : MonoBehaviour
         print(PlayerPrefs.HasKey("Avatar"));
         print(PlayerPrefs.GetString("Avatar"));
         //lr = GetComponent<LineRenderer>();
+        _AudioSource = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
     void Update()
     {
+        ChooseAvatar();
+        OpenDoor();
+    }
+
+    void OpenDoor() 
+    {
         if (OVRInput.Get(OVRInput.Button.PrimaryHandTrigger) || OVRInput.Get(OVRInput.Button.SecondaryHandTrigger)) 
         {
             GameObject.Find("AvatarDoor").GetComponent<Door>().OpenDoor();
         }
+    }
 
+    void ManageLight(RaycastHit hitInfo)
+    {
+        for (int i = 1; i <= Lights.Length; i++) 
+        {
+            if (hitInfo.transform.tag.EndsWith(Convert.ToString(i)))
+            {
+                if (!_AudioSource.isPlaying && !Lights[i-1].activeInHierarchy) 
+                {
+                    _AudioSource.volume = 1;
+                    _AudioSource.clip = sfx[0];
+                    _AudioSource.Play();
+                }
+                Lights[i-1].SetActive(true);
+            }
+            else
+            {
+                Lights[i-1].SetActive(false);
+            }
+        }
+    }
+
+    void ChooseAvatar()
+    {
         if (OVRInput.Get(OVRInput.Button.One, OVRInput.Controller.RTouch))
         //if (ControllerManager.instance.GetOculus(ControllerManager.VRKey.Teleport, controller))
         //if (Input.GetKey(KeyCode.T))
@@ -48,10 +84,7 @@ public class MyHand : MonoBehaviour
 
                 lr.enabled = true;
                 
-                // if (hitinfo.transform.tag=="AvatarDoor")
-                // {
-                //     GameObject.Find("AvatarDoor").GetComponent<Door>().OpenDoor();
-                // }
+                ManageLight(hitinfo);
 
                 bool isHit = Physics.Raycast(ray, out hitinfo, float.MaxValue, ~layer);
                 if (isHit)
@@ -80,7 +113,6 @@ public class MyHand : MonoBehaviour
             {
                 {
                     avatars[i].SetActive(false);
-
                 }
 
             }
@@ -95,6 +127,10 @@ public class MyHand : MonoBehaviour
                     rotationUI.SetActive(true);
                     raytext.text = "오른손 회전 키를 사용하여 뒤를 돌아보세요";
                     avatars[i].SetActive(true);
+                    _AudioSource.volume = 1;
+                    _AudioSource.clip = sfx[1];
+                    _AudioSource.Play();
+                    StartCoroutine(PlayVFX());
                     var av = avatars[i].tag;
                     PlayerPrefs.SetString("Avatar", av);
 
@@ -105,5 +141,12 @@ public class MyHand : MonoBehaviour
                 }
             }
         }
+    }
+
+    IEnumerator PlayVFX() 
+    {
+        vfx.SetActive(true);
+        yield return new WaitForSeconds(1f);
+        vfx.SetActive(false);
     }
 }
