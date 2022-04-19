@@ -4616,6 +4616,7 @@ MonoBehaviour:
   npcConversationTutorial: {fileID: 121513814}
   nftManager: {fileID: 1561466142}
   RayJoystickTutorial: {fileID: 0}
+  MoveTutorial: {fileID: 1869770362}
 --- !u!4 &182210190
 Transform:
   m_ObjectHideFlags: 0
@@ -62672,6 +62673,11 @@ PrefabInstance:
 Transform:
   m_CorrespondingSourceObject: {fileID: 492620, guid: 0f9396310131e47e3979f1a7cb96c071, type: 3}
   m_PrefabInstance: {fileID: 1869273505}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1869770362 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 639075905346619817, guid: 65172c147728f5d479e7d2ab301387ae, type: 3}
+  m_PrefabInstance: {fileID: 916795749}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &1871746117
 GameObject:
