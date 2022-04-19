@@ -51,7 +51,7 @@ public class MyHand : MonoBehaviour
         {
             if (hitInfo.transform.tag.EndsWith(Convert.ToString(i)))
             {
-                if (!_AudioSource.isPlaying && !Lights[i-1].activeInHierarchy) 
+                if (!_AudioSource.isPlaying && !Lights[i-1].transform.Find("Spotlight").gameObject.activeInHierarchy) 
                 {
                     _AudioSource.volume = 1;
                     _AudioSource.clip = sfx[0];
