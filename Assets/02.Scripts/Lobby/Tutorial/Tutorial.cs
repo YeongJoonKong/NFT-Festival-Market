@@ -25,6 +25,8 @@ public class Tutorial: MonoBehaviour, ObserverLobby
     public GameObject nftManager;
     public GameObject RayJoystickTutorial;
     public GameObject MoveTutorial;
+    public GameObject RayTextTutorial;
+    public GameObject RotateTutorial;
     
     #endregion
 
@@ -95,7 +97,7 @@ public class Tutorial: MonoBehaviour, ObserverLobby
         {
             player.transform.position = spotInFrontOfTicketGuideAvatarNPC.transform.position;
             player.transform.rotation = spotInFrontOfTicketGuideAvatarNPC.transform.rotation;
-            PlayThirdTutorial();
+            // PlayThirdTutorial();
         }
         else if (_event.Equals("WAIT_PLAYER_PURCHASE_TICKET_ANSWER"))
         {
@@ -133,9 +135,10 @@ public class Tutorial: MonoBehaviour, ObserverLobby
     void PlayFirstTutorial()
     {
         BanOVRInput();
-        StartCoroutine(friendAvatar.GetComponent<FriendAvatar>().PlayScript(14, AllowOVRInput));
+        StartCoroutine(friendAvatar.GetComponent<FriendAvatar>().PlayScript(-1, AllowOVRInput));
         ActiveKeyTutorial();
-        MoveTutorial.SetActive(true);
+        // MoveTutorial.SetActive(true);
+        // RayTextTutorial.SetActive(true);
     }
 
     void PlayTempTutorial()
@@ -144,32 +147,10 @@ public class Tutorial: MonoBehaviour, ObserverLobby
         StartCoroutine(ticketGuideAvatar.GetComponent<TicketGuideAvatar>().Guide(0));
     }
 
-
-    void PlaySecondTutorial()
-    {
-        BanOVRInput();
-        DeactiveKeyTutorial();
-        // StartCoroutine(friendAvatar.GetComponent<FriendAvatar>().PlaySecondScript(6, AllowOVRInput));
-    }
-
-
-    void PlayThirdTutorial()
-    {
-        StartCoroutine(ticketGuideAvatar.GetComponent<TicketGuideAvatar>().Guide(0));
-    }
-
-
-    void PlayFourthTutorial()
-    {
-        Vector3 tr = new Vector3(friendAvatar.transform.position.x, player.transform.position.y, friendAvatar.transform.position.z);
-        player.transform.LookAt(tr);
-        // StartCoroutine(friendAvatar.GetComponent<FriendAvatar>().PlayFourthScript(9, AllowOVRInput));
-    }
-
-    IEnumerator PlayFinalTutorial() {
-        yield return new WaitUntil(() => _getNFTItemCount == 2);
-        PlayFourthTutorial();
-    }
+    // IEnumerator PlayFinalTutorial() {
+    //     yield return new WaitUntil(() => _getNFTItemCount == 2);
+    //     PlayFourthTutorial();
+    // }
 
     #endregion
 
@@ -190,6 +171,9 @@ public class Tutorial: MonoBehaviour, ObserverLobby
         TurnOffNFTWalletAndTicketTutorial();
         HideNFTWalletAndTicket();
         TurnOffNPCConversationTutorial();
+        RayTextTutorial.SetActive(false);
+        MoveTutorial.SetActive(false);
+        RotateTutorial.SetActive(false);
     }
 
 
@@ -216,25 +200,6 @@ public class Tutorial: MonoBehaviour, ObserverLobby
     {
         inputTutorialRoad.SetActive(false);
     }
-
-
-    void TurnOnKeyTutorial()
-    {
-        IEnumerator SetActiveSlow() {
-            GameObject[] tutorials = { leftJoyStickTutorial, rightJoyStickTutorial, indexTriggerTutorial };
-            foreach (GameObject t in tutorials) 
-            {
-                t.SetActive(true);
-                AudioSource audioSource = t.GetComponent<AudioSource>();
-                audioSource.PlayOneShot(audioSource.clip);
-                yield return new WaitForSeconds(0.7f);
-            }
-            AllowOVRInput();
-        }
-
-        StartCoroutine(SetActiveSlow());
-    }
-
 
     void TurnOffKeyTutorial()
     {
