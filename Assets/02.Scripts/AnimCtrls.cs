@@ -75,7 +75,8 @@ public class AnimCtrls : MonoBehaviour
         {
             anim.SetTrigger("Greet_0"+ Random.Range(1, 3));
             state = State.Waving;
-        canvas.enabled = true;
+            canvas.enabled = true;
+            npctext.talk = true;
             npctext.Conversation();
         }
     }
@@ -88,13 +89,13 @@ public class AnimCtrls : MonoBehaviour
         {
             anim.SetTrigger("Talk_0"+ Random.Range(1, 4));
             state = State.Talk;
-
         }
         else if(dist > Idledistance)
         {
             canvas.enabled = false;
             anim.SetTrigger("Idle");
             state = State.Idle;
+            npctext.talk = false;
         }
     }
     void UpdateTalk()
