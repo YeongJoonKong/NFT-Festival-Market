@@ -162,7 +162,6 @@ public class NFTManager : MonoBehaviour
 
     public void MakeSuccessResponse(string text)
     {
-        Debug.Log(text);
         PurchaseTicketModel walletAndTicketInfo = JsonConvert.DeserializeObject<PurchaseTicketModel>(text);
         WalletCache.id = walletAndTicketInfo.walletInfo.id;
         WalletCache.address = walletAndTicketInfo.walletInfo.address;
