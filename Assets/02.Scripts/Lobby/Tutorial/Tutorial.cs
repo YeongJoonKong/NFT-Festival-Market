@@ -86,8 +86,9 @@ public class Tutorial: MonoBehaviour, ObserverLobby
         }
         else if (_event.Equals("PLAYER_ARRIVE_DESTINATION")) 
         {
-            player.transform.LookAt(new Vector3(friendAvatar.transform.position.x, player.transform.position.y, friendAvatar.transform.position.z));
-            PlaySecondTutorial();
+            player.transform.LookAt(new Vector3(ticketGuideAvatar.transform.position.x, player.transform.position.y, ticketGuideAvatar.transform.position.z));
+            // PlaySecondTutorial();
+            PlayTempTutorial();
         }
         else if (_event.Equals("ACTIVE_PURCHASE_TICKET_TUTORIAL"))
         {
@@ -124,15 +125,19 @@ public class Tutorial: MonoBehaviour, ObserverLobby
     #region Playing Tutorial Method
     void StartPlayTutorial() 
     {
-        // DeactiveKeyTutorial();
+        DeactiveKeyTutorial();
         PlayFirstTutorial();
     }
 
     void PlayFirstTutorial()
     {
         BanOVRInput();
-        // StartCoroutine(friendAvatar.GetComponent<FriendAvatar>().PlayFirstScript(0));
         StartCoroutine(friendAvatar.GetComponent<FriendAvatar>().PlayScript(14, AllowOVRInput));
+    }
+
+    void PlayTempTutorial()
+    {
+        StartCoroutine(ticketGuideAvatar.GetComponent<TicketGuideAvatar>().Guide(0));
     }
 
 
@@ -176,7 +181,7 @@ public class Tutorial: MonoBehaviour, ObserverLobby
     void DeactiveKeyTutorial()
     {
         TurnOffInputTutorialRoad();
-        TurnOffKeyTutorial();
+        // TurnOffKeyTutorial();
         TurnOffInteractionTutorial();
         TurnOffNFTWalletAndTicketTutorial();
         HideNFTWalletAndTicket();
