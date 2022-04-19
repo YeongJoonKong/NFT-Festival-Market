@@ -15,6 +15,7 @@ public class FriendAvatar : MonoBehaviour, SubjectLobby
     public GameObject leftCurtain;
     public GameObject rightCurtain;
     public GameObject rayJoystickTutorial;
+    public GameObject marker;
 
     Animator _anim;
     AudioSource _audioSource;
@@ -34,6 +35,7 @@ public class FriendAvatar : MonoBehaviour, SubjectLobby
         _navMeshAgent = GetComponent<NavMeshAgent>();
         _audioSource = GetComponent<AudioSource>();
         rayJoystickTutorial.SetActive(false);
+        marker.SetActive(false);
     }
 
     void Start()
@@ -60,73 +62,73 @@ public class FriendAvatar : MonoBehaviour, SubjectLobby
     }
 
 
-    public IEnumerator PlayFirstScript(int index)
-    {
-        _audioSource.clip = audioClips[index];
-        _audioSource.Play();
-        if (index == 2)
-        {
-            _anim.SetTrigger("Greeting");
-        }
-        yield return new WaitForSeconds(_audioSource.clip.length + 1);
+    // public IEnumerator PlayFirstScript(int index)
+    // {
+    //     _audioSource.clip = audioClips[index];
+    //     _audioSource.Play();
+    //     if (index == 2)
+    //     {
+    //         _anim.SetTrigger("Greeting");
+    //     }
+    //     yield return new WaitForSeconds(_audioSource.clip.length + 1);
 
-        index += 1;
-        if (index < firstScript.Length)
-        {
-            if (index == 3) {
-                _anim.SetTrigger("Idle");
-            }
-            StartCoroutine(PlayFirstScript(index));
-        }
-        else
-        {
-            _navMeshAgent.SetDestination(targetDestination.position);
-            _isStartWalk = true;
-            _anim.SetTrigger("Walk");
-            NotifyObserver("ACTIVE_KEY_TUTORIAL");
-        }
-    }
+    //     index += 1;
+    //     if (index < firstScript.Length)
+    //     {
+    //         if (index == 3) {
+    //             _anim.SetTrigger("Idle");
+    //         }
+    //         StartCoroutine(PlayFirstScript(index));
+    //     }
+    //     else
+    //     {
+    //         _navMeshAgent.SetDestination(targetDestination.position);
+    //         _isStartWalk = true;
+    //         _anim.SetTrigger("Walk");
+    //         NotifyObserver("ACTIVE_KEY_TUTORIAL");
+    //     }
+    // }
 
-    public IEnumerator PlaySecondScript(int index, Action callback)
-    {
-        _audioSource.clip = audioClips[index];
-        _audioSource.Play();
-        yield return new WaitForSeconds(_audioSource.clip.length + 1);
-        index += 1;
-        if (index < firstScript.Length + secondScript.Length)
-        {
-            StartCoroutine(PlaySecondScript(index, callback));
-        }
-        else
-        {
-            NotifyObserver("ACTIVE_PURCHASE_TICKET_TUTORIAL");
-            if (callback != null) callback();
-        }
-    }
+    // public IEnumerator PlaySecondScript(int index, Action callback)
+    // {
+    //     _audioSource.clip = audioClips[index];
+    //     _audioSource.Play();
+    //     yield return new WaitForSeconds(_audioSource.clip.length + 1);
+    //     index += 1;
+    //     if (index < firstScript.Length + secondScript.Length)
+    //     {
+    //         StartCoroutine(PlaySecondScript(index, callback));
+    //     }
+    //     else
+    //     {
+    //         NotifyObserver("ACTIVE_PURCHASE_TICKET_TUTORIAL");
+    //         if (callback != null) callback();
+    //     }
+    // }
 
-    public IEnumerator PlayFourthScript(int index, Action callback)
-    {
-        _audioSource.clip = audioClips[index];
-        _audioSource.Play();
-        if (index == 17) {
-            yield return new WaitUntil(() => OVRInput.Get(OVRInput.Button.Two));
-        }
-        yield return new WaitForSeconds(_audioSource.clip.length + 1);
-        index += 1;
-        if (index < firstScript.Length + secondScript.Length + thirdScript.Length)
-        {
-            StartCoroutine(PlayFourthScript(index, callback));
-        }
-        else
-        {
-            door.GetComponent<Door>().OpenDoor();
-            if (callback != null) callback();
-            transform.LookAt(door.transform);
-            _navMeshAgent.SetDestination(door.transform.position);
-            _isStartWalk = true;
-            _anim.SetTrigger("Walk");
-        }
-    }
+    // public IEnumerator PlayFourthScript(int index, Action callback)
+    // {
+    //     _audioSource.clip = audioClips[index];
+    //     _audioSource.Play();
+    //     if (index == 17) {
+    //         yield return new WaitUntil(() => OVRInput.Get(OVRInput.Button.Two));
+    //     }
+    //     yield return new WaitForSeconds(_audioSource.clip.length + 1);
+    //     index += 1;
+    //     if (index < firstScript.Length + secondScript.Length + thirdScript.Length)
+    //     {
+    //         StartCoroutine(PlayFourthScript(index, callback));
+    //     }
+    //     else
+    //     {
+    //         door.GetComponent<Door>().OpenDoor();
+    //         if (callback != null) callback();
+    //         transform.LookAt(door.transform);
+    //         _navMeshAgent.SetDestination(door.transform.position);
+    //         _isStartWalk = true;
+    //         _anim.SetTrigger("Walk");
+    //     }
+    // }
 
     public IEnumerator PlayScript(int index, Action callback)
     {
@@ -150,6 +152,7 @@ public class FriendAvatar : MonoBehaviour, SubjectLobby
         else
         {
             if (callback != null) callback();
+            marker.SetActive(true);
         }
     }
 

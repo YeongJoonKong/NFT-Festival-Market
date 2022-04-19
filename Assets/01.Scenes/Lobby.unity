@@ -9799,6 +9799,7 @@ MonoBehaviour:
   leftCurtain: {fileID: 369031860}
   rightCurtain: {fileID: 1078027201}
   rayJoystickTutorial: {fileID: 423397790}
+  marker: {fileID: 671662990}
 --- !u!82 &297330786
 AudioSource:
   m_ObjectHideFlags: 0
@@ -20591,6 +20592,84 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 2114525664061933603, guid: 8bcb6af70f8953f4a9336648a1c0d5ca, type: 3}
   m_PrefabInstance: {fileID: 507396244}
   m_PrefabAsset: {fileID: 0}
+--- !u!1001 &671662989
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 1167685827400720, guid: 860a00df38bb45747863505b9e88f7fd, type: 3}
+      propertyPath: m_Name
+      value: Marker 1 Loop
+      objectReference: {fileID: 0}
+    - target: {fileID: 4127351907655178, guid: 860a00df38bb45747863505b9e88f7fd, type: 3}
+      propertyPath: m_RootOrder
+      value: 34
+      objectReference: {fileID: 0}
+    - target: {fileID: 4127351907655178, guid: 860a00df38bb45747863505b9e88f7fd, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -20.11
+      objectReference: {fileID: 0}
+    - target: {fileID: 4127351907655178, guid: 860a00df38bb45747863505b9e88f7fd, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4127351907655178, guid: 860a00df38bb45747863505b9e88f7fd, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 4127351907655178, guid: 860a00df38bb45747863505b9e88f7fd, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 4127351907655178, guid: 860a00df38bb45747863505b9e88f7fd, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 4127351907655178, guid: 860a00df38bb45747863505b9e88f7fd, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4127351907655178, guid: 860a00df38bb45747863505b9e88f7fd, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4127351907655178, guid: 860a00df38bb45747863505b9e88f7fd, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: -90
+      objectReference: {fileID: 0}
+    - target: {fileID: 4127351907655178, guid: 860a00df38bb45747863505b9e88f7fd, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4127351907655178, guid: 860a00df38bb45747863505b9e88f7fd, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 199155664963967970, guid: 860a00df38bb45747863505b9e88f7fd, type: 3}
+      propertyPath: m_Materials.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 199275752188691240, guid: 860a00df38bb45747863505b9e88f7fd, type: 3}
+      propertyPath: m_Materials.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 199667347708431678, guid: 860a00df38bb45747863505b9e88f7fd, type: 3}
+      propertyPath: m_Materials.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 199797984425611310, guid: 860a00df38bb45747863505b9e88f7fd, type: 3}
+      propertyPath: m_Materials.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 860a00df38bb45747863505b9e88f7fd, type: 3}
+--- !u!1 &671662990 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1167685827400720, guid: 860a00df38bb45747863505b9e88f7fd, type: 3}
+  m_PrefabInstance: {fileID: 671662989}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &672599934
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -28449,6 +28528,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: b8eb53ee658488946b9f5f6fadb347e7, type: 3}
   - {fileID: 8300000, guid: 686101cf65a89ea4e8aed8b39bcf1273, type: 3}
   vfx: {fileID: 1676147897}
+  marker: {fileID: 671662990}
 --- !u!54 &765296169
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -72629,6 +72709,7 @@ MonoBehaviour:
   Lights: []
   sfx: []
   vfx: {fileID: 0}
+  marker: {fileID: 0}
 --- !u!54 &536177889597857483
 Rigidbody:
   m_ObjectHideFlags: 0

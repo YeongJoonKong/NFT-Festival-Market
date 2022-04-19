@@ -17,6 +17,7 @@ public class MyHand : MonoBehaviour
     public GameObject[] Lights;
     public AudioClip[] sfx;
     public GameObject vfx;
+    public GameObject marker;
 
     AudioSource _AudioSource;
 
@@ -41,6 +42,7 @@ public class MyHand : MonoBehaviour
         if (OVRInput.Get(OVRInput.Button.PrimaryHandTrigger) || OVRInput.Get(OVRInput.Button.SecondaryHandTrigger)) 
         {
             GameObject.Find("AvatarDoor").GetComponent<Door>().OpenDoor();
+            marker.SetActive(false);
         }
     }
 

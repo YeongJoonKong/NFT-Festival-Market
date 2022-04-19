@@ -140,7 +140,7 @@ public class Tutorial: MonoBehaviour, ObserverLobby
     {
         BanOVRInput();
         DeactiveKeyTutorial();
-        StartCoroutine(friendAvatar.GetComponent<FriendAvatar>().PlaySecondScript(6, AllowOVRInput));
+        // StartCoroutine(friendAvatar.GetComponent<FriendAvatar>().PlaySecondScript(6, AllowOVRInput));
     }
 
 
@@ -154,7 +154,7 @@ public class Tutorial: MonoBehaviour, ObserverLobby
     {
         Vector3 tr = new Vector3(friendAvatar.transform.position.x, player.transform.position.y, friendAvatar.transform.position.z);
         player.transform.LookAt(tr);
-        StartCoroutine(friendAvatar.GetComponent<FriendAvatar>().PlayFourthScript(9, AllowOVRInput));
+        // StartCoroutine(friendAvatar.GetComponent<FriendAvatar>().PlayFourthScript(9, AllowOVRInput));
     }
 
     IEnumerator PlayFinalTutorial() {
