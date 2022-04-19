@@ -11,9 +11,6 @@ public class FriendAvatar : MonoBehaviour, SubjectLobby
     public AudioClip[] audioClips;
     public Transform targetDestination;
     public GameObject player;
-    public GameObject door;
-    public GameObject leftCurtain;
-    public GameObject rightCurtain;
     public GameObject rayJoystickTutorial;
     public GameObject marker;
 
@@ -136,7 +133,7 @@ public class FriendAvatar : MonoBehaviour, SubjectLobby
         _audioSource.Play();
         if (index == 18) 
         {
-            PullCurtains();
+            rayJoystickTutorial.SetActive(true);
             _navMeshAgent.SetDestination(targetDestination.position);
             _isStartWalk = true;
             _anim.SetTrigger("Walk");
@@ -156,15 +153,6 @@ public class FriendAvatar : MonoBehaviour, SubjectLobby
         }
     }
 
-    void PullCurtains() {
-        while (leftCurtain.transform.position.x >= -34.7f && rightCurtain.transform.position.x <= -11.71f)
-        {
-            leftCurtain.transform.position += new Vector3(-0.001f, 0, 0);
-            rightCurtain.transform.position += new Vector3(0.001f, 0, 0);
-        }
-
-        rayJoystickTutorial.SetActive(true);
-    }
 
     public void AddObserver(ObserverLobby subscriber)
     {

@@ -9795,9 +9795,6 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 4e0643a7a5ffe5544a992f0b71f49861, type: 3}
   targetDestination: {fileID: 302429824}
   player: {fileID: 536177889964418493}
-  door: {fileID: 1996527363}
-  leftCurtain: {fileID: 369031860}
-  rightCurtain: {fileID: 1078027201}
   rayJoystickTutorial: {fileID: 423397790}
   marker: {fileID: 671662990}
 --- !u!82 &297330786
@@ -28627,7 +28624,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 765296166}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -26, y: 1.276, z: 3.707}
+  m_LocalPosition: {x: -26, y: 1.026, z: 3.707}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -29146,7 +29143,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: c3895873ab50845408a75b623c6f07f8, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c3895873ab50845408a75b623c6f07f8, type: 3}
@@ -61812,7 +61809,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: c3895873ab50845408a75b623c6f07f8, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c3895873ab50845408a75b623c6f07f8, type: 3}
@@ -69082,6 +69079,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: c2e155e8b8d1a454091166cff3290f58, type: 3}
       propertyPath: m_Name
       value: capsuleY (3)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: c2e155e8b8d1a454091166cff3290f58, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1151388028547126963, guid: c2e155e8b8d1a454091166cff3290f58, type: 3}
       propertyPath: m_LocalPosition.z
