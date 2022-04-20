@@ -18,7 +18,7 @@ public class ParaglidingPlayer : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        infoText.text = "땅에 무사히 착지를 하세요!";
+        infoText.text = "마을 북쪽에 있는 꽃에 무사히 착지를 하세요!";
     }
 
     // Update is called once per frame
@@ -42,12 +42,12 @@ public class ParaglidingPlayer : MonoBehaviour
                 if(won == true)
                 {
                     infoText.text = "잘했어요! 성공했어요!";
-                    infoText.text += "\n게임이 곧 시작 됩니다." + Mathf.Ceil(restartTimer);
+                    infoText.text += "\n마을로 다시 돌아갑니다." + Mathf.Ceil(restartTimer);
                 }
                 else
                 {
-                    infoText.text = "다시한번 해보세요!";
-                    infoText.text += "\n게임이 곧 시작 됩니다." + Mathf.Ceil(restartTimer);
+                    infoText.text = "아쉽네요 다음에 다시한번 해보세요!";
+                    infoText.text += "\n마을로 다시 돌아갑니다." + Mathf.Ceil(restartTimer);
                 }
             }
         }
