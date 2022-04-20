@@ -46,45 +46,8 @@ public class NFTManager : MonoBehaviour
     }
 
     IEnumerator MakeWalletAndNFTTicket(Action callback) {
-        nftTicket.SetActive(true);
-        GameObject[] ticketNFTObjects = GameObject.FindGameObjectsWithTag("TicketRandomNFT");
-
-        int randomIndex = UnityEngine.Random.Range(0, ticketNFTObjects.Length);
-        for (int i = 0; i < ticketNFTObjects.Length; i++)
-        {
-            if (i == randomIndex)
-            {
-                if (ticketNFTObjects[i].name.Contains("Apple"))
-                {
-                    nftTicket.GetComponentInChildren<TextMeshPro>().text = "NFT 입장권\n사과 VER.";
-                }
-                else if (ticketNFTObjects[i].name.Contains("Pumpkin"))
-                {
-                    nftTicket.GetComponentInChildren<TextMeshPro>().text = "NFT 입장권\n호박 VER.";
-                }
-                else if (ticketNFTObjects[i].name.Contains("Cheese"))
-                {
-                    nftTicket.GetComponentInChildren<TextMeshPro>().text = "NFT 입장권\n치즈케익 VER.";
-                }
-                else if (ticketNFTObjects[i].name.Contains("Carrot"))
-                {
-                    nftTicket.GetComponentInChildren<TextMeshPro>().text = "NFT 입장권\n당근 VER.";
-                }
-            }
-            else
-            {
-                ticketNFTObjects[i].SetActive(false);
-            }
-        }
-
-        GameObject particleSystem = nftTicket.transform.Find("Particle System").gameObject;
-        particleSystem.SetActive(false);
-
-        CreateNFTTicketPrefab(nftTicket);
-
-        particleSystem.SetActive(true);
-
-        nftTicket.SetActive(false);
+        
+        makeTicketPrefab();
 
         WWWForm form = new WWWForm();
         form.AddBinaryData("file", File.ReadAllBytes("Assets/Resources/NFT/Ticket.prefab"), "Ticket.prefab");
@@ -134,6 +97,49 @@ public class NFTManager : MonoBehaviour
         fileStream.Close();
         string jsonData = Encoding.UTF8.GetString(data);
         return JsonConvert.DeserializeObject<T>(jsonData);
+    }
+
+    public void makeTicketPrefab() 
+    {
+        nftTicket.SetActive(true);
+        GameObject[] ticketNFTObjects = GameObject.FindGameObjectsWithTag("TicketRandomNFT");
+
+        int randomIndex = UnityEngine.Random.Range(0, ticketNFTObjects.Length);
+        for (int i = 0; i < ticketNFTObjects.Length; i++)
+        {
+            if (i == randomIndex)
+            {
+                if (ticketNFTObjects[i].name.Contains("Apple"))
+                {
+                    nftTicket.GetComponentInChildren<TextMeshPro>().text = "NFT 입장권\n사과 VER.";
+                }
+                else if (ticketNFTObjects[i].name.Contains("Pumpkin"))
+                {
+                    nftTicket.GetComponentInChildren<TextMeshPro>().text = "NFT 입장권\n호박 VER.";
+                }
+                else if (ticketNFTObjects[i].name.Contains("Cheese"))
+                {
+                    nftTicket.GetComponentInChildren<TextMeshPro>().text = "NFT 입장권\n치즈케익 VER.";
+                }
+                else if (ticketNFTObjects[i].name.Contains("Carrot"))
+                {
+                    nftTicket.GetComponentInChildren<TextMeshPro>().text = "NFT 입장권\n당근 VER.";
+                }
+            }
+            else
+            {
+                ticketNFTObjects[i].SetActive(false);
+            }
+        }
+
+        GameObject particleSystem = nftTicket.transform.Find("Particle System").gameObject;
+        particleSystem.SetActive(false);
+
+        CreateNFTTicketPrefab(nftTicket);
+
+        particleSystem.SetActive(true);
+
+        nftTicket.SetActive(false);
     }
 
     public void CreateNFTTicketPrefab(GameObject ticketPrefab)
