@@ -95,6 +95,25 @@ public class TicketGuideAvatar : MonoBehaviour, SubjectLobby
             string filename = string.Format("TicketInfo{0}", randomIndex);
             var ticketInfoJson = LoadJsonFile<PurchaseTicketModel>("Assets/07.Json", filename);
             print(ticketInfoJson);
+
+            PurchaseTicketModel walletAndTicketInfo = ticketInfoJson;
+            WalletCache.id = walletAndTicketInfo.walletInfo.id;
+            WalletCache.address = walletAndTicketInfo.walletInfo.address;
+            WalletCache.walletType = walletAndTicketInfo.walletInfo.walletType;
+            WalletCache.secretType = walletAndTicketInfo.walletInfo.secretType;
+            WalletCache.createdAt = walletAndTicketInfo.walletInfo.createdAt;
+            WalletCache.archived = walletAndTicketInfo.walletInfo.archived;
+            WalletCache.description = walletAndTicketInfo.walletInfo.description;
+            WalletCache.primary = walletAndTicketInfo.walletInfo.primary;
+            WalletCache.hasCustomPin = walletAndTicketInfo.walletInfo.hasCustomPin;
+            WalletCache.identifier = walletAndTicketInfo.walletInfo.identifier;
+            WalletCache.balance = walletAndTicketInfo.walletInfo.balance;
+
+            TicketCache.transactionHash = walletAndTicketInfo.ticketInfo.transactionHash;
+            TicketCache.metadata = walletAndTicketInfo.ticketInfo.metadata;
+            TicketCache.destinations = walletAndTicketInfo.ticketInfo.destinations;
+            TicketCache.tokenIds = walletAndTicketInfo.ticketInfo.tokenIds;
+            
             iPad.SetActive(false);
             anim.ResetTrigger("makeNFT");
             anim.SetTrigger("Idle2");

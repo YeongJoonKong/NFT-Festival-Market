@@ -48,35 +48,36 @@ public class NFTManager : MonoBehaviour
     IEnumerator MakeWalletAndNFTTicket(Action callback) {
         
         makeTicketPrefab();
+        yield return "";
 
-        WWWForm form = new WWWForm();
-        form.AddBinaryData("file", File.ReadAllBytes("Assets/Resources/NFT/Ticket.prefab"), "Ticket.prefab");
+        // WWWForm form = new WWWForm();
+        // form.AddBinaryData("file", File.ReadAllBytes("Assets/Resources/NFT/Ticket.prefab"), "Ticket.prefab");
 
-        using (UnityWebRequest request = UnityWebRequest.Post(Constant.BASE_URL + Constant.CREATE_WALLET_AND_CONTRACT, form))
-        {
-            yield return request.SendWebRequest();
+        // using (UnityWebRequest request = UnityWebRequest.Post(Constant.BASE_URL + Constant.CREATE_WALLET_AND_CONTRACT, form))
+        // {
+        //     yield return request.SendWebRequest();
 
-            if (request.result != UnityWebRequest.Result.Success){
-                MakeFailedResponse();
-            } else {
-                UnityWebRequest request1 = new UnityWebRequest(Constant.BASE_URL + Constant.CREATE_NFT_TICKET, "POST");
-                byte[] encodedRequest = new System.Text.UTF8Encoding().GetBytes(request.downloadHandler.text);
-                request1.uploadHandler = (UploadHandler)new UploadHandlerRaw(encodedRequest);
-                request1.downloadHandler = new DownloadHandlerBuffer();
-                request1.SetRequestHeader("Content-Type", "application/json");
+        //     if (request.result != UnityWebRequest.Result.Success){
+        //         MakeFailedResponse();
+        //     } else {
+        //         UnityWebRequest request1 = new UnityWebRequest(Constant.BASE_URL + Constant.CREATE_NFT_TICKET, "POST");
+        //         byte[] encodedRequest = new System.Text.UTF8Encoding().GetBytes(request.downloadHandler.text);
+        //         request1.uploadHandler = (UploadHandler)new UploadHandlerRaw(encodedRequest);
+        //         request1.downloadHandler = new DownloadHandlerBuffer();
+        //         request1.SetRequestHeader("Content-Type", "application/json");
 
-                yield return request1.SendWebRequest();
+        //         yield return request1.SendWebRequest();
 
-                if (request1.result != UnityWebRequest.Result.Success) {
+        //         if (request1.result != UnityWebRequest.Result.Success) {
 
-                } else {
-                    CreateJsonFile(Constant.SAVE_JSON_PATH, "TicketInfo", request1.downloadHandler.text);
-                    MakeSuccessResponse(request1.downloadHandler.text);
-                    if (callback != null) callback();
-                }
+        //         } else {
+        //             CreateJsonFile(Constant.SAVE_JSON_PATH, "TicketInfo", request1.downloadHandler.text);
+        //             MakeSuccessResponse(request1.downloadHandler.text);
+        //             if (callback != null) callback();
+        //         }
 
-            }
-        }
+        //     }
+        // }
     }
 
 
