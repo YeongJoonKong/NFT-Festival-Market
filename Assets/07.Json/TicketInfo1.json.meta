@@ -1,6 +1,11 @@
 fileFormatVersion: 2
+<<<<<<<< HEAD:Assets/03.Prefabs/OVRCameraRigNetWork.prefab.meta
+guid: d8c711e977da56040beb78acf6b15433
+PrefabImporter:
+========
 guid: 36cdf8963daa2b046a4626a7c9835d10
 TextScriptImporter:
+>>>>>>>> dccb5ca7f365810a906ff868c5fad009ce8a48fa:Assets/07.Json/TicketInfo1.json.meta
   externalObjects: {}
   userData: 
   assetBundleName: 

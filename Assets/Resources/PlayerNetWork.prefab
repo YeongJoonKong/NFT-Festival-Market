@@ -219,6 +219,14 @@ MonoBehaviour:
   avatars:
   - {fileID: 0}
   - {fileID: 5212475505747948912}
+  raytext: {fileID: 0}
+  rayUI: {fileID: 0}
+  rotationUI: {fileID: 0}
+  Lights: []
+  sfx: []
+  vfx: {fileID: 0}
+  joystickHighlight: {fileID: 0}
+  aButtonHighlight: {fileID: 0}
 --- !u!114 &7848431936568117905
 MonoBehaviour:
   m_ObjectHideFlags: 0

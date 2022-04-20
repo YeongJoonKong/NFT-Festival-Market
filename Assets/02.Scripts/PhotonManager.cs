@@ -87,7 +87,7 @@ public class PhotonManager : MonoBehaviourPunCallbacks
         //if (PhotonNetwork.IsMasterClient == true)
         //{
             //  ���濡�� ���ε���
-            PhotonNetwork.LoadLevel("TestScene");
+            PhotonNetwork.LoadLevel("Map_01");
         //}
 
 
@@ -151,7 +151,7 @@ public class PhotonManager : MonoBehaviourPunCallbacks
             //SetUserID();
             PhotonNetwork.JoinRandomRoom();
         }
-        SceneManager.LoadScene("Map_01");
+        //SceneManager.LoadScene("Map_01");
     }
 
     #endregion

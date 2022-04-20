@@ -47,6 +47,7 @@ public class PlayerInstantiate : MonoBehaviour, IPunObservable
             CameaRig = GameObject.Find("OVRCameraRigNetWork");
 
             CameaRig.transform.parent = transform;
+            CameaRig.transform.position = transform.position;
 
             avatar = PlayerPrefs.GetString("Avatar");
        
