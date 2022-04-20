@@ -7434,7 +7434,9 @@ PrefabInstance:
       propertyPath: m_Materials.Array.size
       value: 1
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 198025859805546612, guid: 721cfe8018b2cd04abd0748143d2a312, type: 3}
+    - {fileID: 199309077266273066, guid: 721cfe8018b2cd04abd0748143d2a312, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 721cfe8018b2cd04abd0748143d2a312, type: 3}
 --- !u!108 &240204510
 Light:
@@ -12291,6 +12293,18 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 120831927734292082, guid: 096a45d9c5ba8614fb4dba7780ab1b26, type: 3}
+      propertyPath: m_Parameters.numCapVertices
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 120831927734292082, guid: 096a45d9c5ba8614fb4dba7780ab1b26, type: 3}
+      propertyPath: m_Parameters.numCornerVertices
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 120831927734292082, guid: 096a45d9c5ba8614fb4dba7780ab1b26, type: 3}
+      propertyPath: m_Parameters.colorGradient.key0.a
+      value: 0.49019608
+      objectReference: {fileID: 0}
+    - target: {fileID: 120831927734292082, guid: 096a45d9c5ba8614fb4dba7780ab1b26, type: 3}
       propertyPath: m_Parameters.colorGradient.key0.b
       value: 1
       objectReference: {fileID: 0}
@@ -12301,6 +12315,14 @@ PrefabInstance:
     - target: {fileID: 120831927734292082, guid: 096a45d9c5ba8614fb4dba7780ab1b26, type: 3}
       propertyPath: m_Parameters.colorGradient.key0.r
       value: 0.5151917
+      objectReference: {fileID: 0}
+    - target: {fileID: 120831927734292082, guid: 096a45d9c5ba8614fb4dba7780ab1b26, type: 3}
+      propertyPath: m_Parameters.widthCurve.m_Curve.Array.data[0].value
+      value: 0.6837616
+      objectReference: {fileID: 0}
+    - target: {fileID: 120831927734292082, guid: 096a45d9c5ba8614fb4dba7780ab1b26, type: 3}
+      propertyPath: m_Parameters.widthCurve.m_Curve.Array.data[1].value
+      value: 0.32478714
       objectReference: {fileID: 0}
     - target: {fileID: 199111803148899346, guid: 096a45d9c5ba8614fb4dba7780ab1b26, type: 3}
       propertyPath: m_Materials.Array.size

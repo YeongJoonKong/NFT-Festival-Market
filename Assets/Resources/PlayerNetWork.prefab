@@ -225,6 +225,8 @@ MonoBehaviour:
   Lights: []
   sfx: []
   vfx: {fileID: 0}
+  joystickHighlight: {fileID: 0}
+  aButtonHighlight: {fileID: 0}
 --- !u!114 &7848431936568117905
 MonoBehaviour:
   m_ObjectHideFlags: 0
