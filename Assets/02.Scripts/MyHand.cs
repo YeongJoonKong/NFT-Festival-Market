@@ -38,6 +38,14 @@ public class MyHand : MonoBehaviour
     {
         ChooseAvatar();
         OpenDoor();
+        if (OVRInput.GetDown(OVRInput.Button.Three)) {
+            if (gameObject.GetComponent<CharacterController>().enabled
+                && Inventory.instance != null
+                && Inventory.instance.Wallet != null) {
+                    Inventory.instance.gameObject.SetActive(!Inventory.instance.gameObject.activeInHierarchy);
+                    Inventory.instance.SetWalletInfo();
+                }
+        }
     }
 
     void OpenDoor() 
