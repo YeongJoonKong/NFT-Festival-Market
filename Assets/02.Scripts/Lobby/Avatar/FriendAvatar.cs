@@ -14,6 +14,7 @@ public class FriendAvatar : MonoBehaviour, SubjectLobby
     public GameObject marker;
     public GameObject rayTextTutorial;
     public GameObject aButtonHighlight;
+    public GameObject moveTutorial;
 
     Animator _anim;
     AudioSource _audioSource;
@@ -89,6 +90,7 @@ public class FriendAvatar : MonoBehaviour, SubjectLobby
             {
                 if (callback != null) callback();
                 marker.SetActive(true);
+                moveTutorial.SetActive(true);
             }
         }
     }
