@@ -24,10 +24,11 @@ public class VRFootIK : MonoBehaviour
     // Update is called once per frame
     private void OnAnimatorIK(int layerIndex)
     {
+        int layer = 1 << LayerMask.NameToLayer("Hand");
         Vector3 rightFootPos = animator.GetIKPosition(AvatarIKGoal.RightFoot);
         RaycastHit hit;
           
-        bool hashit = Physics.Raycast(rightFootPos + Vector3.up, Vector3.down, out hit);
+        bool hashit = Physics.Raycast(rightFootPos + Vector3.up, Vector3.down, out hit,float.MaxValue,~layer);
 
         if (hashit)
         {
@@ -44,7 +45,7 @@ public class VRFootIK : MonoBehaviour
         }
         Vector3 leftFootPos = animator.GetIKPosition(AvatarIKGoal.LeftFoot);
         
-         hashit = Physics.Raycast(leftFootPos + Vector3.up, Vector3.down, out hit);
+         hashit = Physics.Raycast(leftFootPos + Vector3.up, Vector3.down, out hit, float.MaxValue, ~layer);
 
         if (hashit)
         {

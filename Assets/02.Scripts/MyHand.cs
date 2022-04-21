@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
+using System;
 
 public class MyHand : MonoBehaviour
 {
@@ -9,18 +11,67 @@ public class MyHand : MonoBehaviour
     public Transform hand;
     string avatarName;
     public GameObject[] avatars;
+    public TextMeshPro raytext;
+    public GameObject rayUI;
+    public GameObject rotationUI;
+    public GameObject[] Lights;
+    public AudioClip[] sfx;
+    public GameObject vfx;
+
+    AudioSource _AudioSource;
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        print(PlayerPrefs.HasKey("Avatar"));
+        print(PlayerPrefs.GetString("Avatar"));
         //lr = GetComponent<LineRenderer>();
+        _AudioSource = GetComponent<AudioSource>();
+        
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(OVRInput.Get(OVRInput.Button.One,OVRInput.Controller.RTouch))
+        ChooseAvatar();
+        OpenDoor();
+    }
+
+    void OpenDoor() 
+    {
+        if (OVRInput.Get(OVRInput.Button.PrimaryHandTrigger) || OVRInput.Get(OVRInput.Button.SecondaryHandTrigger)) 
+        {
+            GameObject.Find("AvatarDoor").GetComponent<Door>().OpenDoor();
+        }
+    }
+
+    void ManageLight(RaycastHit hitInfo)
+    {
+        for (int i = 1; i <= Lights.Length; i++) 
+        {
+            if (hitInfo.transform.tag.EndsWith(Convert.ToString(i)))
+            {
+                if (!_AudioSource.isPlaying && !Lights[i-1].transform.Find("Spotlight").gameObject.activeInHierarchy) 
+                {
+                    _AudioSource.volume = 1;
+                    _AudioSource.clip = sfx[0];
+                    _AudioSource.Play();
+                }
+                Lights[i - 1].GetComponentInChildren<MeshRenderer>().material.EnableKeyword("_EMISSION");
+                Lights[i - 1].transform.Find("Spotlight").gameObject.SetActive(true);
+            }
+            else
+            {
+                Lights[i - 1].GetComponentInChildren<MeshRenderer>().material.DisableKeyword("_EMISSION");
+                Lights[i - 1].transform.Find("Spotlight").gameObject.SetActive(false);
+
+            }
+        }
+    }
+
+    void ChooseAvatar()
+    {
+        if (OVRInput.Get(OVRInput.Button.One, OVRInput.Controller.RTouch))
         //if (ControllerManager.instance.GetOculus(ControllerManager.VRKey.Teleport, controller))
         //if (Input.GetKey(KeyCode.T))
         {
@@ -30,53 +81,81 @@ public class MyHand : MonoBehaviour
             int layer = 1 << LayerMask.NameToLayer("Hand");
             RaycastHit hitinfo;
             //floor = null;
-            if (Physics.Raycast(ray, out hitinfo, float.MaxValue,~layer))
+            if (Physics.Raycast(ray, out hitinfo, float.MaxValue, ~layer))
             {
-                // ºÎµúÈù ¿ÀºêÁ§Æ® ÅÂ±× stringÀ¸·Î ´ãÀ½
+                // ï¿½Îµï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ® ï¿½Â±ï¿½ stringï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
                 avatarName = hitinfo.transform.tag;
 
                 lr.enabled = true;
+                
+                ManageLight(hitinfo);
 
-                bool isHit = Physics.Raycast(ray, out hitinfo,float.MaxValue, ~layer);
+                bool isHit = Physics.Raycast(ray, out hitinfo, float.MaxValue, ~layer);
                 if (isHit)
                 {
                     lr.SetPosition(1, hitinfo.point);
                 }
+
+                if (hitinfo.transform.tag == "TUTORIAL_ITEM")
+                {
+                    hitinfo.transform.gameObject.SetActive(false);
+                }
             }
-            else // Çã°ø
+            else // ï¿½ï¿½ï¿½
             {
                 lr.enabled = true;
                 lr.SetPosition(1, ray.origin + ray.direction * 50);
             }
         }
         //else if (ControllerManager.instance.GetOculusUp(ControllerManager.VRKey.Teleport, controller))
-        else if (OVRInput.GetUp(OVRInput.Button.One,OVRInput.Controller.RTouch))
+        else if (OVRInput.GetUp(OVRInput.Button.One, OVRInput.Controller.RTouch))
         {
             lr.enabled = false;
 
+            if (!(avatarName == "Avatar1" || avatarName == "Avatar2" || avatarName == "Avatar3" || avatarName == "Avatar4" || avatarName == "Avatar5")) // ï¿½Ç´ï¿½ ï¿½Ã·ï¿½ï¿½Ì¾ï¿½ï¿½ï¿½
+            {
+                return;
+            }
 
-            //ÇÃ·¹ÀÌ¾î ÇÏÀ§¿¡ avatar ¹è¿­ ³ÖÀ½
+            // ï¿½×¸ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½
             for (int i = 0; i < avatars.Length; i++)
             {
-                //ºÎµúÈù¾Ö°¡ ¾Æ¹ÙÅ¸°¡ ¾Æ´Ï°Å³ª ÇÃ·¹ÀÌ¾î¶ó¸é ¸®ÅÏ
-                if (!(avatarName == "Cube" || avatarName == "Cylinder" || avatarName == "Capsule")) // ¶Ç´Â ÇÃ·¹ÀÌ¾î¶ó¸é
-                {
-                    return;
-                }
-                // ¾Æ¹ÙÅ¸¶ó¸é ³»¾Æ¹ÙÅ¸ ¹è¿­¿¡¼­ ÀÌ¸§°°Àº³ð ÄÑ
-                else if (avatars[i].tag == avatarName)
-                {
-                   
-                    avatars[i].SetActive(true);
-                    PlayerPrefs.SetString("Avatar", avatars[i].tag);
-                }
-                // ±×¸®°í ³ª¸ÓÁö ´Ù ²¨
-                else
                 {
                     avatars[i].SetActive(false);
+                }
 
+            }
+            //ï¿½Ã·ï¿½ï¿½Ì¾ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ avatar ï¿½è¿­ ï¿½ï¿½ï¿½ï¿½
+            for (int i = 0; i < avatars.Length; i++)
+            {
+                //ï¿½Îµï¿½ï¿½ï¿½ï¿½Ö°ï¿½ ï¿½Æ¹ï¿½Å¸ï¿½ï¿½ ï¿½Æ´Ï°Å³ï¿½ ï¿½Ã·ï¿½ï¿½Ì¾ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+                // ï¿½Æ¹ï¿½Å¸ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Æ¹ï¿½Å¸ ï¿½è¿­ï¿½ï¿½ï¿½ï¿½ ï¿½Ì¸ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½
+                if (avatars[i].tag == avatarName)
+                {
+                    rayUI.SetActive(false);
+                    rotationUI.SetActive(true);
+                    raytext.text = "ì˜¤ë¥¸ì† íšŒì „ í‚¤ë¥¼ ì‚¬ìš©í•˜ì—¬ ë’¤ë¥¼ ëŒì•„ë³´ì„¸ìš”";
+                    avatars[i].SetActive(true);
+                    _AudioSource.volume = 1;
+                    _AudioSource.clip = sfx[1];
+                    _AudioSource.Play();
+                    StartCoroutine(PlayVFX());
+                    var av = avatars[i].tag;
+                    PlayerPrefs.SetString("Avatar", av);
+
+                    print(PlayerPrefs.HasKey("Avatar"));
+                    print(PlayerPrefs.GetString("Avatar"));
+
+                    break;
                 }
             }
         }
+    }
+
+    IEnumerator PlayVFX() 
+    {
+        vfx.SetActive(true);
+        yield return new WaitForSeconds(1f);
+        vfx.SetActive(false);
     }
 }

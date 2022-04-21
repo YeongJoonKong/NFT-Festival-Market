@@ -7,6 +7,7 @@ public class Door : MonoBehaviour
     
     public GameObject leftDoor;
     public GameObject rightDoor;
+    public GameObject player;
 
     bool _isStartOpen;
 
@@ -17,17 +18,14 @@ public class Door : MonoBehaviour
 
     void Update()
     {
-        if (_isStartOpen) 
-        {
-            if (leftDoor.transform.position.x >= -5.81f)
-                leftDoor.transform.position += new Vector3(-0.1f, 0, 0);
-            if (rightDoor.transform.position.x <= 5.81f)
-                rightDoor.transform.position += new Vector3(0.1f, 0, 0);
-        }
     }
 
     public void OpenDoor() 
     {
-        _isStartOpen = true;
+        // _isStartOpen = true;
+        if (Vector3.Distance(player.transform.position, transform.position) <= 3f) {
+            leftDoor.transform.localPosition += new Vector3(-0.1f, 0, 0);
+            rightDoor.transform.localPosition += new Vector3(0.1f, 0, 0);
+        }
     }
 }
