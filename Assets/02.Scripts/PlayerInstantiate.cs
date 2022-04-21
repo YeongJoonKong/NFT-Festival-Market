@@ -31,6 +31,7 @@ public class PlayerInstantiate : MonoBehaviour, IPunObservable
     public CharacterController controller;
     public OVRPlayerController ovrcontroller;
 
+    GameObject[] displayItem;
 
 
     // Start is called before the first frame update
@@ -47,6 +48,7 @@ public class PlayerInstantiate : MonoBehaviour, IPunObservable
             CameaRig = GameObject.Find("OVRCameraRigNetWork");
 
             CameaRig.transform.parent = transform;
+            CameaRig.transform.position = transform.position;
 
             avatar = PlayerPrefs.GetString("Avatar");
        
@@ -116,16 +118,18 @@ public class PlayerInstantiate : MonoBehaviour, IPunObservable
             vrik.solver.rightArm.target = FalseRightRig;
         }
 
+        displayItem = GameObject.FindGameObjectsWithTag("DISPLAY_ITEM");
+
 
     }
-    //¸Ó¸®µ¿±âÈ­º¯¼ö
+    //ï¿½Ó¸ï¿½ï¿½ï¿½ï¿½ï¿½È­ï¿½ï¿½ï¿½ï¿½
     private Quaternion currRotHead;
     private Vector3 curPosHead;
-    //¿Þ¼Õµ¿±âÈ­º¯¼ö
+    //ï¿½Þ¼Õµï¿½ï¿½ï¿½È­ï¿½ï¿½ï¿½ï¿½
     private Quaternion curRotLeftHand;
     private Vector3 curPosLeftHand;
 
-    //¿À¸¥¼Õµ¿±âÈ­º¯¼ö
+    //ï¿½ï¿½ï¿½ï¿½ï¿½Õµï¿½ï¿½ï¿½È­ï¿½ï¿½ï¿½ï¿½
     private Quaternion curRotRightHand;
     private Vector3 curPosRightHand;
     public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
@@ -158,6 +162,33 @@ public class PlayerInstantiate : MonoBehaviour, IPunObservable
     {
         if (pv.IsMine)
         {
+            if (OVRInput.GetDown(OVRInput.Button.Three)) {
+                if (gameObject.GetComponent<CharacterController>().enabled
+                    && Inventory.instance != null) {
+                        if (Inventory.instance.gameObject.activeInHierarchy) {
+                            Inventory.instance.gameObject.SetActive(false);
+                        } else {
+                            Inventory.instance.gameObject.SetActive(true);
+                            Inventory.instance.SetWalletInfo();
+                        }
+                    }
+            } else if (OVRInput.Get(OVRInput.Button.PrimaryHandTrigger)) {
+                foreach (GameObject dItem in displayItem) {
+                    NFTObject obj = dItem.GetComponent<NFTObject>();
+                    if (obj.isGrabbed) {
+                        obj.ChangeLeftHandParent();
+                        break;
+                    }
+                }
+            } else if (OVRInput.Get(OVRInput.Button.SecondaryHandTrigger)) {
+                foreach (GameObject dItem in displayItem) {
+                    NFTObject obj = dItem.GetComponent<NFTObject>();
+                    if (obj.isGrabbed) {
+                        obj.ChangeRightHandParent();
+                        break;
+                    }
+                }
+            }
 
         }
         else
