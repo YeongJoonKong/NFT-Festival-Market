@@ -52,9 +52,13 @@ void Start()
         }
 
     }
-
+public bool talk;
     public void Conversation()
     {
+        if(talk == false)
+        {
+            return;
+        }
         Playdata.instance.TextData(npcNum, textNum, minigameplayed);
         if(minigameplayed && workShopArea.transform.GetComponent<WorkShopArea>().inWorkshop)
         {

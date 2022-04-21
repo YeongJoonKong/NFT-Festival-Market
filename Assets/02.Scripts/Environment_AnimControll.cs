@@ -29,11 +29,11 @@ public class Environment_AnimControll : MonoBehaviour
 
         canvas = GetComponentInChildren<Canvas>();
 
-        if(transform.name == "Customer_01")
+        if(transform.name == "Customer_Npc")
         {
             anim.SetTrigger("Customer");
         }
-        else if(transform.name == "Customer_11")
+        else if(transform.name == "Sad_Npc")
         {
             anim.SetTrigger("Sad");
         }
@@ -55,6 +55,7 @@ public class Environment_AnimControll : MonoBehaviour
             dist = Vector3.Distance(transform.position, player.transform.position);
             if(dist < talkdistance)
             {
+                canvas.transform.LookAt(new Vector3(player.transform.position.x, canvas.transform.position.y, player.transform.position.z));;
                 canvas.enabled = true;
             }
             else

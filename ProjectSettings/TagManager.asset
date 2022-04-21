@@ -14,8 +14,17 @@ TagManager:
   - INVENTORY_ITEM
   - Mole
   - DISPLAY_ITEM
-  - Target
-  - Bird
+  - Beach
+  - Shark
+  - Missile
+  - WaterFloor
+  - Avatar1
+  - Avatar5
+  - Avatar4
+  - Avatar3
+  - Avatar2
+  - AvatarDoor
+  - TUTORIAL_ITEM
   layers:
   - Default
   - TransparentFX
@@ -28,11 +37,11 @@ TagManager:
   - Player
   - Hand
   - Wall
+  - SecondFloor
   - 
   - 
   - 
   - 
-  - Bird
   - 
   - 
   - 
