@@ -418,26 +418,65 @@ MonoBehaviour:
   textureSounds:
   - albedo: {fileID: 2800000, guid: d3d12a5c44f10ef49bce5c0cddb59bf8, type: 3}
     clips:
-    - {fileID: 8300000, guid: b67303b71482e3548bf297246a8d3143, type: 3}
-    - {fileID: 8300000, guid: 4593646541be83145bbef8187bfc911b, type: 3}
-    - {fileID: 8300000, guid: 2d628a270362d6c408e8b58fa44bcd42, type: 3}
-    - {fileID: 8300000, guid: 971bcdbaadf68be4ba232cf1b0bddc99, type: 3}
-    - {fileID: 8300000, guid: b6ac7e2de5487494f813ca78109d79a2, type: 3}
+    - {fileID: 8300000, guid: 9c7f36dd02b718048b7aea337eb5a20e, type: 3}
+    - {fileID: 8300000, guid: cb2cd73993620f5459b8672cf0160a5d, type: 3}
+    - {fileID: 8300000, guid: 56f4f7b8f9f49a744b05bf5a91d655cd, type: 3}
   - albedo: {fileID: 2800000, guid: 599913b2e4ce6094abec3e56f55d4399, type: 3}
     clips:
-    - {fileID: 8300000, guid: 78b0a7bf79368d24ca193f27feb999db, type: 3}
-    - {fileID: 8300000, guid: 64e02da7dd73fbf4c8ec5a0aaf098c1d, type: 3}
-    - {fileID: 8300000, guid: 73d9440bb15bef14e91efe1516b878a9, type: 3}
-    - {fileID: 8300000, guid: 94dcc9cd0b41c6e41a8921c560b8b096, type: 3}
-    - {fileID: 8300000, guid: fc7163954079ab943bf43c4be15d8944, type: 3}
+    - {fileID: 8300000, guid: 4f3e51d2a3341494c8fbf8df57a85cdc, type: 3}
+    - {fileID: 8300000, guid: 0a4d82076f68fd34197d94e702644c8f, type: 3}
+    - {fileID: 8300000, guid: 70a2db425fc0fbc418472bbeefd56050, type: 3}
   - albedo: {fileID: 2800000, guid: 2b47f2696e9ccfa4cac3f18a1e969cfe, type: 3}
     clips:
-    - {fileID: 8300000, guid: 85d65900f24d17b40979c1f31123086b, type: 3}
-    - {fileID: 8300000, guid: 8af7d63445f8a82449e5ed91575141b3, type: 3}
-    - {fileID: 8300000, guid: a826e8466926c1e42adb066d244610e0, type: 3}
-    - {fileID: 8300000, guid: 76142406930b8f343843dbabb2b7aa89, type: 3}
-    - {fileID: 8300000, guid: 7ffd46d85076e4d4e850ce4a7205f1a9, type: 3}
-  blendTerrainSounds: 0
+    - {fileID: 8300000, guid: 3543f7f9bc85a8841865b92e0977524f, type: 3}
+    - {fileID: 8300000, guid: 2644afdbfc4ef3d4584b43b94d852237, type: 3}
+    - {fileID: 8300000, guid: ebc6ceee268959344abe1fbe24b7cc16, type: 3}
+  - albedo: {fileID: 2800000, guid: 5aaab05814f258b4f91014cd8ac2bc7b, type: 3}
+    clips:
+    - {fileID: 8300000, guid: 6aa2dccc8e9aa184aaacca23bbfead05, type: 3}
+    - {fileID: 8300000, guid: 18d89cea24db0d4478ad1b3b0fec6ff7, type: 3}
+    - {fileID: 8300000, guid: 8f1e70b8475f8c641858470b5a7da858, type: 3}
+  - albedo: {fileID: 2800000, guid: 6bed64f1ea9763345b90ced1d6f5345e, type: 3}
+    clips:
+    - {fileID: 8300000, guid: 6aa2dccc8e9aa184aaacca23bbfead05, type: 3}
+    - {fileID: 8300000, guid: 18d89cea24db0d4478ad1b3b0fec6ff7, type: 3}
+    - {fileID: 8300000, guid: 8f1e70b8475f8c641858470b5a7da858, type: 3}
+  - albedo: {fileID: 2800000, guid: 1b314c2bebf2ab84ba31d3489029d46e, type: 3}
+    clips:
+    - {fileID: 8300000, guid: 6aa2dccc8e9aa184aaacca23bbfead05, type: 3}
+    - {fileID: 8300000, guid: 18d89cea24db0d4478ad1b3b0fec6ff7, type: 3}
+    - {fileID: 8300000, guid: 8f1e70b8475f8c641858470b5a7da858, type: 3}
+  - albedo: {fileID: 2800000, guid: 2449a2ef79f8eb94eb3527f2ebb7b0f7, type: 3}
+    clips:
+    - {fileID: 8300000, guid: 6aa2dccc8e9aa184aaacca23bbfead05, type: 3}
+    - {fileID: 8300000, guid: 18d89cea24db0d4478ad1b3b0fec6ff7, type: 3}
+    - {fileID: 8300000, guid: 8f1e70b8475f8c641858470b5a7da858, type: 3}
+  - albedo: {fileID: 2800000, guid: 472793615252a404cab9325b6b9d36f7, type: 3}
+    clips:
+    - {fileID: 8300000, guid: 6aa2dccc8e9aa184aaacca23bbfead05, type: 3}
+    - {fileID: 8300000, guid: 18d89cea24db0d4478ad1b3b0fec6ff7, type: 3}
+    - {fileID: 8300000, guid: 8f1e70b8475f8c641858470b5a7da858, type: 3}
+  - albedo: {fileID: 2800000, guid: 1b26863b8cc2d61459d77919fbe3ad9d, type: 3}
+    clips:
+    - {fileID: 8300000, guid: 6aa2dccc8e9aa184aaacca23bbfead05, type: 3}
+    - {fileID: 8300000, guid: 18d89cea24db0d4478ad1b3b0fec6ff7, type: 3}
+    - {fileID: 8300000, guid: 8f1e70b8475f8c641858470b5a7da858, type: 3}
+  - albedo: {fileID: 2800000, guid: 5d05a775a84ec76469b6db8a2c2974b5, type: 3}
+    clips:
+    - {fileID: 8300000, guid: 2644afdbfc4ef3d4584b43b94d852237, type: 3}
+    - {fileID: 8300000, guid: ebc6ceee268959344abe1fbe24b7cc16, type: 3}
+    - {fileID: 8300000, guid: 3543f7f9bc85a8841865b92e0977524f, type: 3}
+  - albedo: {fileID: 2800000, guid: 797754f24015e2546823c4d42c8f1470, type: 3}
+    clips:
+    - {fileID: 8300000, guid: 3543f7f9bc85a8841865b92e0977524f, type: 3}
+    - {fileID: 8300000, guid: 2644afdbfc4ef3d4584b43b94d852237, type: 3}
+    - {fileID: 8300000, guid: ebc6ceee268959344abe1fbe24b7cc16, type: 3}
+  - albedo: {fileID: 2800000, guid: 6a84e83055fdb344b9a8c48e6279010c, type: 3}
+    clips:
+    - {fileID: 8300000, guid: 3543f7f9bc85a8841865b92e0977524f, type: 3}
+    - {fileID: 8300000, guid: 2644afdbfc4ef3d4584b43b94d852237, type: 3}
+    - {fileID: 8300000, guid: ebc6ceee268959344abe1fbe24b7cc16, type: 3}
+  blendTerrainSounds: 1
   audiosourceVolume: 0.42
 --- !u!82 &-2035350249739571366
 AudioSource:
