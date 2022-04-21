@@ -14,10 +14,7 @@ TagManager:
   - INVENTORY_ITEM
   - Mole
   - DISPLAY_ITEM
-  - Beach
-  - Shark
-  - Missile
-  - WaterFloor
+  - Target
   layers:
   - Default
   - TransparentFX
