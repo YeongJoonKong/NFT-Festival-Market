@@ -11,7 +11,8 @@ public class FriendAvatar : MonoBehaviour, SubjectLobby
     public AudioClip[] audioClips;
     public Transform targetDestination;
     public GameObject player;
-    public GameObject door;
+    public GameObject rayJoystickTutorial;
+    public GameObject marker;
 
     Animator _anim;
     AudioSource _audioSource;
@@ -19,6 +20,7 @@ public class FriendAvatar : MonoBehaviour, SubjectLobby
     int[] firstScript = { 0, 1, 2, 3, 4, 5 };
     int[] secondScript = { 6, 7, 8 };
     int[] thirdScript = { 16, 17, 18, 19, 20, 21 };
+    int[] Script = {15, 16, 17, 18, 19, 20, 21};
 
     NavMeshAgent _navMeshAgent;
 
@@ -29,6 +31,8 @@ public class FriendAvatar : MonoBehaviour, SubjectLobby
         _anim = GetComponent<Animator>();
         _navMeshAgent = GetComponent<NavMeshAgent>();
         _audioSource = GetComponent<AudioSource>();
+        rayJoystickTutorial.SetActive(false);
+        marker.SetActive(false);
     }
 
     void Start()
@@ -55,73 +59,100 @@ public class FriendAvatar : MonoBehaviour, SubjectLobby
     }
 
 
-    public IEnumerator PlayFirstScript(int index)
+    // public IEnumerator PlayFirstScript(int index)
+    // {
+    //     _audioSource.clip = audioClips[index];
+    //     _audioSource.Play();
+    //     if (index == 2)
+    //     {
+    //         _anim.SetTrigger("Greeting");
+    //     }
+    //     yield return new WaitForSeconds(_audioSource.clip.length + 1);
+
+    //     index += 1;
+    //     if (index < firstScript.Length)
+    //     {
+    //         if (index == 3) {
+    //             _anim.SetTrigger("Idle");
+    //         }
+    //         StartCoroutine(PlayFirstScript(index));
+    //     }
+    //     else
+    //     {
+    //         _navMeshAgent.SetDestination(targetDestination.position);
+    //         _isStartWalk = true;
+    //         _anim.SetTrigger("Walk");
+    //         NotifyObserver("ACTIVE_KEY_TUTORIAL");
+    //     }
+    // }
+
+    // public IEnumerator PlaySecondScript(int index, Action callback)
+    // {
+    //     _audioSource.clip = audioClips[index];
+    //     _audioSource.Play();
+    //     yield return new WaitForSeconds(_audioSource.clip.length + 1);
+    //     index += 1;
+    //     if (index < firstScript.Length + secondScript.Length)
+    //     {
+    //         StartCoroutine(PlaySecondScript(index, callback));
+    //     }
+    //     else
+    //     {
+    //         NotifyObserver("ACTIVE_PURCHASE_TICKET_TUTORIAL");
+    //         if (callback != null) callback();
+    //     }
+    // }
+
+    // public IEnumerator PlayFourthScript(int index, Action callback)
+    // {
+    //     _audioSource.clip = audioClips[index];
+    //     _audioSource.Play();
+    //     if (index == 17) {
+    //         yield return new WaitUntil(() => OVRInput.Get(OVRInput.Button.Two));
+    //     }
+    //     yield return new WaitForSeconds(_audioSource.clip.length + 1);
+    //     index += 1;
+    //     if (index < firstScript.Length + secondScript.Length + thirdScript.Length)
+    //     {
+    //         StartCoroutine(PlayFourthScript(index, callback));
+    //     }
+    //     else
+    //     {
+    //         door.GetComponent<Door>().OpenDoor();
+    //         if (callback != null) callback();
+    //         transform.LookAt(door.transform);
+    //         _navMeshAgent.SetDestination(door.transform.position);
+    //         _isStartWalk = true;
+    //         _anim.SetTrigger("Walk");
+    //     }
+    // }
+
+    public IEnumerator PlayScript(int index, Action callback)
     {
         _audioSource.clip = audioClips[index];
         _audioSource.Play();
-        if (index == 2)
+        if (index == 18) 
         {
-            _anim.SetTrigger("Greeting");
-        }
-        yield return new WaitForSeconds(_audioSource.clip.length + 1);
-
-        index += 1;
-        if (index < firstScript.Length)
-        {
-            if (index == 3) {
-                _anim.SetTrigger("Idle");
-            }
-            StartCoroutine(PlayFirstScript(index));
-        }
-        else
-        {
+            rayJoystickTutorial.SetActive(true);
             _navMeshAgent.SetDestination(targetDestination.position);
             _isStartWalk = true;
             _anim.SetTrigger("Walk");
-            NotifyObserver("ACTIVE_KEY_TUTORIAL");
-        }
-    }
-
-    public IEnumerator PlaySecondScript(int index, Action callback)
-    {
-        _audioSource.clip = audioClips[index];
-        _audioSource.Play();
-        yield return new WaitForSeconds(_audioSource.clip.length + 1);
-        index += 1;
-        if (index < firstScript.Length + secondScript.Length)
-        {
-            StartCoroutine(PlaySecondScript(index, callback));
-        }
-        else
-        {
-            NotifyObserver("ACTIVE_PURCHASE_TICKET_TUTORIAL");
-            if (callback != null) callback();
-        }
-    }
-
-    public IEnumerator PlayFourthScript(int index, Action callback)
-    {
-        _audioSource.clip = audioClips[index];
-        _audioSource.Play();
-        if (index == 17) {
-            yield return new WaitUntil(() => OVRInput.Get(OVRInput.Button.Two));
+            yield return new WaitUntil(() => OVRInput.GetUp(OVRInput.Button.One));
         }
         yield return new WaitForSeconds(_audioSource.clip.length + 1);
         index += 1;
-        if (index < firstScript.Length + secondScript.Length + thirdScript.Length)
+
+        if (index <= Script[Script.Length-1])
         {
-            StartCoroutine(PlayFourthScript(index, callback));
+            StartCoroutine(PlayScript(index, callback));
         }
         else
         {
-            door.GetComponent<Door>().OpenDoor();
             if (callback != null) callback();
-            transform.LookAt(door.transform);
-            _navMeshAgent.SetDestination(door.transform.position);
-            _isStartWalk = true;
-            _anim.SetTrigger("Walk");
+            marker.SetActive(true);
         }
     }
+
 
     public void AddObserver(ObserverLobby subscriber)
     {

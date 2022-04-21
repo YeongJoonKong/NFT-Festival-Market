@@ -23,6 +23,8 @@ public class Tutorial: MonoBehaviour, ObserverLobby
     public GameObject nftWallet;
     public GameObject npcConversationTutorial;
     public GameObject nftManager;
+    public GameObject RayJoystickTutorial;
+    public GameObject MoveTutorial;
     
     #endregion
 
@@ -85,8 +87,9 @@ public class Tutorial: MonoBehaviour, ObserverLobby
         }
         else if (_event.Equals("PLAYER_ARRIVE_DESTINATION")) 
         {
-            player.transform.LookAt(new Vector3(friendAvatar.transform.position.x, player.transform.position.y, friendAvatar.transform.position.z));
-            PlaySecondTutorial();
+            player.transform.LookAt(new Vector3(ticketGuideAvatar.transform.position.x, player.transform.position.y, ticketGuideAvatar.transform.position.z));
+            // PlaySecondTutorial();
+            PlayTempTutorial();
         }
         else if (_event.Equals("ACTIVE_PURCHASE_TICKET_TUTORIAL"))
         {
@@ -106,7 +109,7 @@ public class Tutorial: MonoBehaviour, ObserverLobby
         {
             SpawnNFTWalletAndTicket();
             TurnOnNFTWalletAndTicketTutorial();
-            StartCoroutine(PlayFinalTutorial());
+            // StartCoroutine(PlayFinalTutorial());
         } 
         else if (_event.Equals("WAIT_PLAYER_TRY_CONVERSATION"))
         {
@@ -130,7 +133,15 @@ public class Tutorial: MonoBehaviour, ObserverLobby
     void PlayFirstTutorial()
     {
         BanOVRInput();
-        StartCoroutine(friendAvatar.GetComponent<FriendAvatar>().PlayFirstScript(0));
+        StartCoroutine(friendAvatar.GetComponent<FriendAvatar>().PlayScript(14, AllowOVRInput));
+        ActiveKeyTutorial();
+        MoveTutorial.SetActive(true);
+    }
+
+    void PlayTempTutorial()
+    {
+        DeactiveKeyTutorial();
+        StartCoroutine(ticketGuideAvatar.GetComponent<TicketGuideAvatar>().Guide(0));
     }
 
 
@@ -138,7 +149,7 @@ public class Tutorial: MonoBehaviour, ObserverLobby
     {
         BanOVRInput();
         DeactiveKeyTutorial();
-        StartCoroutine(friendAvatar.GetComponent<FriendAvatar>().PlaySecondScript(6, AllowOVRInput));
+        // StartCoroutine(friendAvatar.GetComponent<FriendAvatar>().PlaySecondScript(6, AllowOVRInput));
     }
 
 
@@ -152,7 +163,7 @@ public class Tutorial: MonoBehaviour, ObserverLobby
     {
         Vector3 tr = new Vector3(friendAvatar.transform.position.x, player.transform.position.y, friendAvatar.transform.position.z);
         player.transform.LookAt(tr);
-        StartCoroutine(friendAvatar.GetComponent<FriendAvatar>().PlayFourthScript(9, AllowOVRInput));
+        // StartCoroutine(friendAvatar.GetComponent<FriendAvatar>().PlayFourthScript(9, AllowOVRInput));
     }
 
     IEnumerator PlayFinalTutorial() {
@@ -167,7 +178,7 @@ public class Tutorial: MonoBehaviour, ObserverLobby
     void ActiveKeyTutorial()
     {
         TurnOnInputTutorialRoad();
-        TurnOnKeyTutorial();
+        // TurnOnKeyTutorial();
     }
 
 
@@ -194,7 +205,6 @@ public class Tutorial: MonoBehaviour, ObserverLobby
         player.GetComponent<CharacterController>().enabled = true;
         locomotionController.SetActive(true);
     }
-
 
     void TurnOnInputTutorialRoad()
     {
@@ -228,9 +238,10 @@ public class Tutorial: MonoBehaviour, ObserverLobby
 
     void TurnOffKeyTutorial()
     {
-        leftJoyStickTutorial.SetActive(false);
-        rightJoyStickTutorial.SetActive(false);
-        indexTriggerTutorial.SetActive(false);
+        // leftJoyStickTutorial.SetActive(false);
+        // rightJoyStickTutorial.SetActive(false);
+        // indexTriggerTutorial.SetActive(false);
+        MoveTutorial.SetActive(false);
     }
 
 
