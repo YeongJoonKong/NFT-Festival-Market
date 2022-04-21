@@ -48,18 +48,6 @@ public class BirdGameManager : MonoBehaviour
 
             this.audioSource.Play();
         }
-        else if (this.state == State.Tutorial)
-        {
-            if(bombControll.BombCounting == 5)
-            {
-                GmCurrentTime += Time.deltaTime;
-                if(GmCurrentTime > GmWaitTime)
-                {
-                    Hand.SetActive(false);
-                    this.state = State.PLAY;
-                }
-            }
-        }
         else if (this.state == State.PLAY)
         {
             this.timer += Time.deltaTime;

@@ -15,6 +15,7 @@ TagManager:
   - Mole
   - DISPLAY_ITEM
   - Target
+  - Bird
   layers:
   - Default
   - TransparentFX

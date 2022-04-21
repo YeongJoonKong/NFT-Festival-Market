@@ -4,29 +4,27 @@ using UnityEngine;
 
 public class birdGameBomb : MonoBehaviour
 {
-    public float radius = 3;
+    public float radius = 3f;
 
     float bombCurrentTime;
     float bombWaitingTime = 3;
 
-    //public GameObject explosionFactory;
+    public GameObject explosionFactory;
 
     public int BombCounting;
-
-    public BirdHandController birdHandController;
 
     public void takeExplode()
     {
         BombCounting++;
 
-        //GameObject birdExplosion = Instantiate(explosionFactory);
-        //birdExplosion.transform.position = transform.position;
-
-        if(birdHandController.isThrowingCheck == true)
+        if(BirdHandController.Instance.isThrowingCheck == true)
         {
             bombCurrentTime += Time.deltaTime;
             if (bombCurrentTime >= bombWaitingTime)
             {
+                GameObject birdExplosion = Instantiate(explosionFactory);
+                birdExplosion.transform.position = transform.position;
+
                 int layerMask = 1 << LayerMask.NameToLayer("Bird");
                 Collider[] cols = Physics.OverlapSphere(transform.position, radius, layerMask);
 
@@ -40,12 +38,16 @@ public class birdGameBomb : MonoBehaviour
                 Destroy(gameObject);
             }
         }
+        else
+        {
+            return;
+        }
     }
 
     // Start is called before the first frame update
     void Start()
     {
-        birdHandController = GetComponent<BirdHandController>();
+
     }
 
     // Update is called once per frame

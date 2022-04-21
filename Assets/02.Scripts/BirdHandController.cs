@@ -4,6 +4,18 @@ using UnityEngine;
 
 public class BirdHandController : MonoBehaviour
 {
+    public static BirdHandController Instance;
+
+    private void Awake()
+    {
+        if (Instance != null && Instance != this)
+        {
+            Destroy(this.gameObject);
+            return;
+        }
+        Instance = this;
+    }
+
     public GameObject bombFactory;
     GameObject bomb;
     public Transform hand;

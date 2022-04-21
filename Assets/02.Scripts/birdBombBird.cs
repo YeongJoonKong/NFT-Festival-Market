@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class birdBombBird : MonoBehaviour
 {
-    //public GameObject birdExplosionFactory;
+    public GameObject birdExplosionFactory;
 
     public void ExplodeBomb()
     {
@@ -25,8 +25,8 @@ public class birdBombBird : MonoBehaviour
 
     public void TakeShot()
     {
-        //GameObject explosion = Instantiate(birdExplosionFactory);
-        //explosion.transform.position = transform.position;
+        GameObject explosion = Instantiate(birdExplosionFactory);
+        explosion.transform.position = transform.position;
         Destroy(gameObject);
         birdScoreManager.instance.AddScore(1);
     }
