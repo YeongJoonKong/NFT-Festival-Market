@@ -8,19 +8,18 @@ public class NFTObject : MonoBehaviour
     public GameObject originalParent;
     public GameObject leftHandParent;
     public GameObject rightHandParent;
-
-    public Dictionary<string, string> info;
     
-    Vector3 originalPosition;
-    Quaternion originalRotation;
-    // Start is called before the first frame update
+    public Vector3 originalPosition;
+    public Quaternion originalRotation;
+    Rigidbody rb;
+
     void Start()
     {
         originalPosition = this.transform.position;
         originalRotation = this.transform.rotation;
+        rb = GetComponent<Rigidbody>();
     }
 
-    // Update is called once per frame
     void Update()
     {
         if (!OVRInput.Get(OVRInput.Button.PrimaryHandTrigger) && !OVRInput.Get(OVRInput.Button.SecondaryHandTrigger)) {
@@ -30,15 +29,14 @@ public class NFTObject : MonoBehaviour
     
     void OnTriggerEnter(Collider otherCollider) 
     {
-
     }
     
     void OnTriggerStay(Collider otherCollider)
     {
-       if(otherCollider.gameObject.name.Contains("GrabVolumeBig")) {
+       if(otherCollider.gameObject.name.Contains("GrabVolumeBig")) 
+       {
            isGrabbed = true;
-       } 
-
+       }
     }
 
     void OnTriggerExit(Collider otherCollider)
@@ -50,6 +48,7 @@ public class NFTObject : MonoBehaviour
     {
         if (this.transform.parent != leftHandParent.transform) {
             this.transform.parent = leftHandParent.transform;
+            rb.useGravity = false;
         }
     }
 
@@ -57,6 +56,7 @@ public class NFTObject : MonoBehaviour
     {
         if (this.transform.parent != rightHandParent.transform) {
             this.transform.parent = rightHandParent.transform;
+            rb.useGravity = false;
         }
     }
 
@@ -64,9 +64,11 @@ public class NFTObject : MonoBehaviour
     {
         if (this.transform.parent != originalParent.transform) {
             this.transform.parent = originalParent.transform;
-            this.transform.position = originalPosition;
-            this.transform.rotation = originalRotation;
+            // this.transform.position = originalPosition;
+            // this.transform.rotation = originalRotation;
             isGrabbed = false;
+            rb.useGravity = true;
         }
     }
+
 }
