@@ -49,6 +49,7 @@ public class PlayerInstantiate : MonoBehaviour, IPunObservable
 
             CameaRig.transform.parent = transform;
             CameaRig.transform.position = transform.position;
+            AudioListener.volume = 1;
 
             avatar = PlayerPrefs.GetString("Avatar");
        
