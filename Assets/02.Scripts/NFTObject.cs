@@ -11,13 +11,15 @@ public class NFTObject : MonoBehaviour
     
     public Vector3 originalPosition;
     public Quaternion originalRotation;
-    Rigidbody rb;
+
+    public GameObject CounterSpawnPoint;
+
+    Vector3 beforePosition;
 
     void Start()
     {
         originalPosition = this.transform.position;
         originalRotation = this.transform.rotation;
-        rb = GetComponent<Rigidbody>();
     }
 
     void Update()
@@ -25,6 +27,25 @@ public class NFTObject : MonoBehaviour
         if (!OVRInput.Get(OVRInput.Button.PrimaryHandTrigger) && !OVRInput.Get(OVRInput.Button.SecondaryHandTrigger)) {
             ChangeOriginalParent();
         }
+        
+        if (!isGrabbed) {
+            if (beforePosition == transform.position) {
+                if (gameObject.GetComponent<Rigidbody>() != null) {
+                    Destroy(gameObject.GetComponent<Rigidbody>());
+                }
+
+                if (Vector3.Distance(CounterSpawnPoint.transform.position, transform.position) <= 1f) {
+                    transform.position = CounterSpawnPoint.transform.position;
+                    transform.rotation = CounterSpawnPoint.transform.rotation;
+                } else {
+                    transform.position = originalPosition;
+                    transform.rotation = originalRotation;
+                }
+            }
+
+        }
+        beforePosition = gameObject.transform.position;
+
     }
     
     void OnTriggerEnter(Collider otherCollider) 
@@ -48,7 +69,6 @@ public class NFTObject : MonoBehaviour
     {
         if (this.transform.parent != leftHandParent.transform) {
             this.transform.parent = leftHandParent.transform;
-            rb.useGravity = false;
         }
     }
 
@@ -56,7 +76,6 @@ public class NFTObject : MonoBehaviour
     {
         if (this.transform.parent != rightHandParent.transform) {
             this.transform.parent = rightHandParent.transform;
-            rb.useGravity = false;
         }
     }
 
@@ -64,10 +83,11 @@ public class NFTObject : MonoBehaviour
     {
         if (this.transform.parent != originalParent.transform) {
             this.transform.parent = originalParent.transform;
+            Rigidbody rb = gameObject.AddComponent<Rigidbody>();
+            rb.useGravity = true;
             // this.transform.position = originalPosition;
             // this.transform.rotation = originalRotation;
             isGrabbed = false;
-            rb.useGravity = true;
         }
     }
 
