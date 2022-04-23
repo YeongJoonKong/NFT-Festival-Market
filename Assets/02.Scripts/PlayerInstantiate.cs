@@ -161,38 +161,7 @@ public class PlayerInstantiate : MonoBehaviour, IPunObservable
     }
     private void Update()
     {
-        if (pv.IsMine)
-        {
-            if (OVRInput.GetDown(OVRInput.Button.Three)) {
-                if (gameObject.GetComponent<CharacterController>().enabled
-                    && Inventory.instance != null) {
-                        if (Inventory.instance.gameObject.activeInHierarchy) {
-                            Inventory.instance.gameObject.SetActive(false);
-                        } else {
-                            Inventory.instance.gameObject.SetActive(true);
-                            Inventory.instance.SetWalletInfo();
-                        }
-                    }
-            } else if (OVRInput.Get(OVRInput.Button.PrimaryHandTrigger)) {
-                foreach (GameObject dItem in displayItem) {
-                    NFTObject obj = dItem.GetComponent<NFTObject>();
-                    if (obj.isGrabbed) {
-                        obj.ChangeLeftHandParent();
-                        break;
-                    }
-                }
-            } else if (OVRInput.Get(OVRInput.Button.SecondaryHandTrigger)) {
-                foreach (GameObject dItem in displayItem) {
-                    NFTObject obj = dItem.GetComponent<NFTObject>();
-                    if (obj.isGrabbed) {
-                        obj.ChangeRightHandParent();
-                        break;
-                    }
-                }
-            }
-
-        }
-        else
+        if (!pv.IsMine)
         {
             //FalseHeadRig.rotation = currRotHead;
             //FalseHeadRig.position = curPosHead;
@@ -202,6 +171,59 @@ public class PlayerInstantiate : MonoBehaviour, IPunObservable
             FalseLeftRig.position = Vector3.Lerp(FalseLeftRig.position, curPosLeftHand, Time.deltaTime * FalseRigSmooteness);
             FalseRightRig.rotation = Quaternion.Slerp(FalseRightRig.rotation, curRotRightHand, Time.deltaTime * FalseRigSmooteness);
             FalseRightRig.position = Vector3.Lerp(FalseRightRig.position, curPosRightHand, Time.deltaTime * FalseRigSmooteness);
+
+        }
+        else
+        {
+            pv.RPC("Test", RpcTarget.All);
+        }
+    }
+
+    [PunRPC]
+    public void Test()
+    {
+        if (pv.IsMine)
+        {
+            if (OVRInput.GetDown(OVRInput.Button.Three))
+            {
+                if (gameObject.GetComponent<CharacterController>().enabled
+                    && Inventory.instance != null)
+                {
+                    if (Inventory.instance.gameObject.activeInHierarchy)
+                    {
+                        Inventory.instance.gameObject.SetActive(false);
+                    }
+                    else
+                    {
+                        Inventory.instance.gameObject.SetActive(true);
+                        Inventory.instance.SetWalletInfo();
+                    }
+                }
+            }
+            else if (OVRInput.Get(OVRInput.Button.PrimaryHandTrigger))
+            {
+                foreach (GameObject dItem in displayItem)
+                {
+                    NFTObject obj = dItem.GetComponent<NFTObject>();
+                    if (obj.isGrabbed)
+                    {
+                        obj.ChangeLeftHandParent();
+                        break;
+                    }
+                }
+            }
+            else if (OVRInput.Get(OVRInput.Button.SecondaryHandTrigger))
+            {
+                foreach (GameObject dItem in displayItem)
+                {
+                    NFTObject obj = dItem.GetComponent<NFTObject>();
+                    if (obj.isGrabbed)
+                    {
+                        obj.ChangeRightHandParent();
+                        break;
+                    }
+                }
+            }
 
         }
     }
