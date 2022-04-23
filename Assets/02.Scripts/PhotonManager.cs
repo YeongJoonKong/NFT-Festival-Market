@@ -87,7 +87,7 @@ public class PhotonManager : MonoBehaviourPunCallbacks
         //if (PhotonNetwork.IsMasterClient == true)
         //{
             //  ���濡�� ���ε���
-            PhotonNetwork.LoadLevel("Map_01");
+            PhotonNetwork.LoadLevel("Map_01Photon");
         //}
 
 
