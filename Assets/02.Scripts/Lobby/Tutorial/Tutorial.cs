@@ -134,7 +134,7 @@ public class Tutorial: MonoBehaviour, ObserverLobby
 
     void PlayFirstTutorial()
     {
-        BanOVRInput();
+        //BanOVRInput();
         StartCoroutine(friendAvatar.GetComponent<FriendAvatar>().PlayScript(-1, AllowOVRInput));
         ActiveKeyTutorial();
         // MoveTutorial.SetActive(true);
