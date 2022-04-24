@@ -1,8 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Photon.Pun;
 
-public class NFTObject : MonoBehaviour
+public class NFTObject : MonoBehaviour,IPunObservable
 {
     public bool isGrabbed;
     public GameObject originalParent;
@@ -45,6 +46,10 @@ public class NFTObject : MonoBehaviour
 
         }
         beforePosition = gameObject.transform.position;
+
+        this.transform.position = curPos;
+        this.transform.rotation = curRot;
+
 
     }
     
@@ -90,5 +95,20 @@ public class NFTObject : MonoBehaviour
             isGrabbed = false;
         }
     }
-
+    private Quaternion curRot;
+    private Vector3 curPos;
+    public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
+    {
+        if (stream.IsWriting)
+        {
+            stream.SendNext(this.transform.rotation);
+            stream.SendNext(this.transform.position);
+          
+        }
+        else
+        {
+            curRot = (Quaternion)stream.ReceiveNext();
+            curPos = (Vector3)stream.ReceiveNext();         
+        }
+    }
 }
