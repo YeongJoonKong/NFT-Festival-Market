@@ -40,6 +40,8 @@ public class PlayerLobby : MonoBehaviour
                     break;
                 }
             }
+        } else if (OVRInput.Get(OVRInput.Button.Two)) {
+            
         }
     }
     

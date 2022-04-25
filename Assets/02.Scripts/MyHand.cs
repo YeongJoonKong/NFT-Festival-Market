@@ -17,6 +17,9 @@ public class MyHand : MonoBehaviour
     public GameObject[] Lights;
     public AudioClip[] sfx;
     public GameObject vfx;
+    
+    public GameObject joystickHighlight;
+    public GameObject aButtonHighlight;
 
     AudioSource _AudioSource;
 
@@ -27,7 +30,7 @@ public class MyHand : MonoBehaviour
         print(PlayerPrefs.GetString("Avatar"));
         //lr = GetComponent<LineRenderer>();
         _AudioSource = GetComponent<AudioSource>();
-        
+        joystickHighlight.SetActive(false);
     }
 
     // Update is called once per frame
@@ -35,6 +38,14 @@ public class MyHand : MonoBehaviour
     {
         ChooseAvatar();
         OpenDoor();
+        if (OVRInput.GetDown(OVRInput.Button.Three)) {
+            if (gameObject.GetComponent<CharacterController>().enabled
+                && Inventory.instance != null
+                && Inventory.instance.Wallet != null) {
+                    Inventory.instance.gameObject.SetActive(!Inventory.instance.gameObject.activeInHierarchy);
+                    Inventory.instance.SetWalletInfo();
+                }
+        }
     }
 
     void OpenDoor() 
@@ -132,9 +143,11 @@ public class MyHand : MonoBehaviour
                 // �ƹ�Ÿ��� ���ƹ�Ÿ �迭���� �̸������� ��
                 if (avatars[i].tag == avatarName)
                 {
-                    rayUI.SetActive(false);
-                    rotationUI.SetActive(true);
+                    // rayUI.SetActive(false);
+                    // rotationUI.SetActive(false);
                     raytext.text = "오른손 회전 키를 사용하여 뒤를 돌아보세요";
+                    aButtonHighlight.SetActive(false);
+                    joystickHighlight.SetActive(true);
                     avatars[i].SetActive(true);
                     _AudioSource.volume = 1;
                     _AudioSource.clip = sfx[1];

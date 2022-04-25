@@ -25,6 +25,7 @@ TagManager:
   - Avatar2
   - AvatarDoor
   - TUTORIAL_ITEM
+  - COUNTER
   layers:
   - Default
   - TransparentFX
@@ -37,7 +38,7 @@ TagManager:
   - Player
   - Hand
   - Wall
-  - 
+  - SecondFloor
   - 
   - 
   - 
