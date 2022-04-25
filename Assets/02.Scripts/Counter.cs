@@ -26,12 +26,12 @@ public class Counter : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        CheckCoin();
     }
 
     private void OnCollisionEnter(Collision other) 
     {
-        CheckCoin();
+
     }
 
     void CheckCoin() 

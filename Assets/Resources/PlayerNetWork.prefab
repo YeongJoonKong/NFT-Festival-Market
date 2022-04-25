@@ -294,7 +294,6 @@ MonoBehaviour:
   Avrik: []
   controller: {fileID: 0}
   ovrcontroller: {fileID: 0}
-  lr: {fileID: 5377651638489198444}
 --- !u!120 &5377651638489198444
 LineRenderer:
   m_ObjectHideFlags: 0
