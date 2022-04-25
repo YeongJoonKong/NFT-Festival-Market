@@ -141,6 +141,7 @@ public class PlayerInstantiate : MonoBehaviour, IPunObservable
     private Quaternion curRotRightHandAnchor;
     private Vector3 curPosRightHandAnchor;
 
+    private bool lineEnabled;
     private Vector3 line0;
     private Vector3 line1;
 
@@ -158,6 +159,8 @@ public class PlayerInstantiate : MonoBehaviour, IPunObservable
             stream.SendNext(rightHandAnchor.rotation);
             stream.SendNext(rightHandAnchor.position);
 
+            
+            stream.SendNext(lr.enabled);
             stream.SendNext(lr.GetPosition(0));
             stream.SendNext(lr.GetPosition(1));
 
@@ -182,6 +185,7 @@ public class PlayerInstantiate : MonoBehaviour, IPunObservable
             curPosRightHandAnchor = (Vector3)stream.ReceiveNext();
             curPosRightHandAnchor = (Vector3)stream.ReceiveNext();
 
+            lineEnabled= (bool)stream.ReceiveNext();
             line0 = (Vector3)stream.ReceiveNext();
             line1 = (Vector3)stream.ReceiveNext();
         }
@@ -202,6 +206,8 @@ public class PlayerInstantiate : MonoBehaviour, IPunObservable
             FalseRightHandAnchor.rotation = Quaternion.Slerp(FalseRightHandAnchor.rotation, curRotRightHandAnchor, Time.deltaTime * 10f);
             FalseRightHandAnchor.position = Vector3.Lerp(FalseRightHandAnchor.position, curPosRightHandAnchor, Time.deltaTime * 10f);
 
+
+            lr.enabled = lineEnabled;
             lr.SetPosition(0, line0);
             lr.SetPosition(1, line1);
 
