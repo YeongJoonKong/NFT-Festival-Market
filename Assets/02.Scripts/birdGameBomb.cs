@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class birdGameBomb : MonoBehaviour
 {
-    public float radius = 3f;
+    public float radius = 5f;
 
     float bombCurrentTime;
     float bombWaitingTime = 3;

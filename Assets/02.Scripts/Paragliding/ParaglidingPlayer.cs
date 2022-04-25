@@ -7,7 +7,7 @@ using UnityEngine.SceneManagement;
 public class ParaglidingPlayer : MonoBehaviour
 {
     public float speed = 5.0f;
-    public float fallingForce = 0.25f;
+    public float fallingForce = 0.4f;
     public float restartTimer = 3.0f;
 
     public TextMeshProUGUI infoText;
@@ -15,10 +15,13 @@ public class ParaglidingPlayer : MonoBehaviour
     private bool isGameOver;
     private bool won;
 
+    //public GameObject cam;
+
     // Start is called before the first frame update
     void Start()
     {
         infoText.text = "마을 북쪽에 있는 꽃에 무사히 착지를 하세요!";
+       
     }
 
     // Update is called once per frame
@@ -26,8 +29,13 @@ public class ParaglidingPlayer : MonoBehaviour
     {
         if(isGameOver == false)
         {
-            Vector3 direction = new Vector3(transform.forward.x, -fallingForce, transform.forward.z);
+            if (transform.position.y >= 224f)
+            {
+                transform.position = new Vector3(transform.position.x, 224f, transform.position.z);
+            }
+            Vector3 direction = new Vector3(Camera.main.transform.forward.x, -fallingForce, Camera.main.transform.forward.z);
             transform.position += direction.normalized * speed * Time.deltaTime;
+           
         }
         else
         {

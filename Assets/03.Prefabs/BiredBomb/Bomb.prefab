@@ -542,7 +542,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 561a0afd4e7338842ab1a567bed086b0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  radius: 3
+  radius: 5
   explosionFactory: {fileID: 130848, guid: 5b14d98de6dd96c468ae3d031a22829c, type: 3}
   BombCounting: 0
 --- !u!1 &5317271701633621148

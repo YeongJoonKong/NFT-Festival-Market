@@ -11,7 +11,7 @@ public class birdScoreManager : MonoBehaviour
     [Header("UI Fields")]
     public TextMeshProUGUI BdhighScoreText;
     public TextMeshProUGUI BdcurrentScoreText;
-    //public TextMeshProUGUI finalScoreText;
+    public TextMeshProUGUI finalScoreText;
 
     public static birdScoreManager instance;
 
@@ -49,7 +49,7 @@ public class birdScoreManager : MonoBehaviour
 
         BdcurrentScoreText.text = "Score : " + BdCurrentScore.ToString();
 
-        //finalScoreText.text = "Final Score : " + BdCurrentScore.ToString();
+        finalScoreText.text = "Final Score : " + BdCurrentScore.ToString();
 
         if (BdCurrentScore > PlayerPrefs.GetInt("BirdGameHighScore", 0))
         {
