@@ -9,6 +9,7 @@ using RootMotion.FinalIK;
 public class PlayerInstantiate : MonoBehaviour, IPunObservable
 {
 
+    public LineRenderer lr;
 
     private PhotonView pv;
     //public GameObject cam;
@@ -34,7 +35,6 @@ public class PlayerInstantiate : MonoBehaviour, IPunObservable
     public OVRPlayerController ovrcontroller;
 
     GameObject[] displayItem;
-    public LineRenderer lr;
 
 
     // Start is called before the first frame update
@@ -125,7 +125,6 @@ public class PlayerInstantiate : MonoBehaviour, IPunObservable
 
         displayItem = GameObject.FindGameObjectsWithTag("DISPLAY_ITEM");
 
-
     }
     //�Ӹ�����ȭ����
     private Quaternion currRotHead;
@@ -214,6 +213,7 @@ public class PlayerInstantiate : MonoBehaviour, IPunObservable
         }
         else
         {
+            HandInteraction();
             Ray();
             //pv.RPC("Test", RpcTarget.All);
         }
@@ -283,54 +283,49 @@ public class PlayerInstantiate : MonoBehaviour, IPunObservable
         }
     }
 
-
-        [PunRPC]
-    public void Test()
+    public void HandInteraction()
     {
-        if (pv.IsMine)
+        if (OVRInput.GetDown(OVRInput.Button.Three))
         {
-            if (OVRInput.GetDown(OVRInput.Button.Three))
+            if (gameObject.GetComponent<CharacterController>().enabled
+                && Inventory.instance != null)
             {
-                if (gameObject.GetComponent<CharacterController>().enabled
-                    && Inventory.instance != null)
+                if (Inventory.instance.gameObject.activeInHierarchy)
                 {
-                    if (Inventory.instance.gameObject.activeInHierarchy)
-                    {
-                        Inventory.instance.gameObject.SetActive(false);
-                    }
-                    else
-                    {
-                        Inventory.instance.gameObject.SetActive(true);
-                        Inventory.instance.SetWalletInfo();
-                    }
+                    Inventory.instance.gameObject.SetActive(false);
+                }
+                else
+                {
+                    Inventory.instance.gameObject.SetActive(true);
+                    Inventory.instance.SetWalletInfo();
                 }
             }
-            else if (OVRInput.Get(OVRInput.Button.PrimaryHandTrigger))
-            {
-                foreach (GameObject dItem in displayItem)
-                {
-                    NFTObject obj = dItem.GetComponent<NFTObject>();
-                    if (obj.isGrabbed)
-                    {
-                        obj.ChangeLeftHandParent();
-                        break;
-                    }
-                }
-            }
-            else if (OVRInput.Get(OVRInput.Button.SecondaryHandTrigger))
-            {
-                foreach (GameObject dItem in displayItem)
-                {
-                    NFTObject obj = dItem.GetComponent<NFTObject>();
-                    if (obj.isGrabbed)
-                    {
-                        obj.ChangeRightHandParent();
-                        break;
-                    }
-                }
-            }
-
         }
+        else if (OVRInput.Get(OVRInput.Button.PrimaryHandTrigger))
+        {
+            foreach (GameObject dItem in displayItem)
+            {
+                NFTObject obj = dItem.GetComponent<NFTObject>();
+                if (obj.isGrabbed)
+                {
+                    obj.ChangeLeftHandParent();
+                    break;
+                }
+            }
+        }
+        else if (OVRInput.Get(OVRInput.Button.SecondaryHandTrigger))
+        {
+            foreach (GameObject dItem in displayItem)
+            {
+                NFTObject obj = dItem.GetComponent<NFTObject>();
+                if (obj.isGrabbed)
+                {
+                    obj.ChangeRightHandParent();
+                    break;
+                }
+            }
+        }
+
     }
 }
 
