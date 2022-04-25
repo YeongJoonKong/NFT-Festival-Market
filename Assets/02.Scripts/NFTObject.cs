@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
+using System;
 
 public class NFTObject : MonoBehaviour
 {
@@ -45,11 +47,11 @@ public class NFTObject : MonoBehaviour
 
         }
         beforePosition = gameObject.transform.position;
-
     }
     
     void OnTriggerEnter(Collider otherCollider) 
     {
+        Debug.Log(otherCollider.gameObject.tag);
     }
     
     void OnTriggerStay(Collider otherCollider)
@@ -85,10 +87,19 @@ public class NFTObject : MonoBehaviour
             this.transform.parent = originalParent.transform;
             Rigidbody rb = gameObject.AddComponent<Rigidbody>();
             rb.useGravity = true;
-            // this.transform.position = originalPosition;
-            // this.transform.rotation = originalRotation;
             isGrabbed = false;
         }
     }
 
+    public int GetObjectPrice()
+    {
+        TextMeshPro[] infos = gameObject.GetComponentsInChildren<TextMeshPro>();
+        foreach (TextMeshPro info in infos) {
+            if (info.text.Contains("Coin")) {
+                int price = Int32.Parse(info.text.Replace(" Coin", ""));
+                return price;
+            }
+        }
+        return 0;
+    }
 }
