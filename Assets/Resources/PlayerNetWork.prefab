@@ -62,6 +62,37 @@ Transform:
   m_Father: {fileID: 5377651638489198437}
   m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &2698305317756862374
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 191738645812716131}
+  m_Layer: 0
+  m_Name: FalseRightHandAnchor
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &191738645812716131
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2698305317756862374}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 5377651638489198437}
+  m_RootOrder: 9
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &5377651638489198445
 GameObject:
   m_ObjectHideFlags: 0
@@ -113,6 +144,7 @@ Transform:
   - {fileID: 7846018791394968743}
   - {fileID: 3592000904863782989}
   - {fileID: 6903783876752320621}
+  - {fileID: 191738645812716131}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -250,14 +282,18 @@ MonoBehaviour:
   - {fileID: 5262284555501210577}
   - {fileID: 5212475505747948912}
   CameaRig: {fileID: 0}
+  CamrigHigh: 0
+  rightHandAnchor: {fileID: 0}
   FalseHeadRig: {fileID: 7846018791394968743}
   FalseLeftRig: {fileID: 3592000904863782989}
   FalseRightRig: {fileID: 6903783876752320621}
+  FalseRightHandAnchor: {fileID: 191738645812716131}
   FalseRigSmooteness: 10
   vrik: {fileID: 0}
   Avrik: []
   controller: {fileID: 0}
   ovrcontroller: {fileID: 0}
+  lr: {fileID: 5377651638489198444}
 --- !u!120 &5377651638489198444
 LineRenderer:
   m_ObjectHideFlags: 0

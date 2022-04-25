@@ -8,10 +8,10 @@ using Photon.Pun;
 public class VRAnimatorController : MonoBehaviour
 {
     private PhotonView pv;
-   private Animator animator;
-   private Vector3 previousPos;
+    private Animator animator;
+    private Vector3 previousPos;
     private Transform tr;
-   
+
     Vector2 primaryAxis;
     // Start is called before the first frame update
     void Start()
@@ -32,24 +32,28 @@ public class VRAnimatorController : MonoBehaviour
         //{
         //    tr.position = new Vector3(tr.position.x, -0.9f,tr.position.z);
         //}
-        if (pv==null ||pv.IsMine)
+        if (pv == null || pv.IsMine)
         {
-         primaryAxis = OVRInput.Get(OVRInput.Axis2D.PrimaryThumbstick);
-        if (primaryAxis.x > 0.1f || primaryAxis.y>0.1f|| primaryAxis.x < -0.1f || primaryAxis.y < -0.1f)
-        {
-        animator.SetBool("isMoving", true);
+            if (transform.root.GetComponent<CharacterController>().velocity != Vector3.zero)
+            {
 
-        }
-        else
-        {
-            animator.SetBool("isMoving", false);
-        }
-        animator.SetFloat("DirectionX",primaryAxis.x);
-        animator.SetFloat("DirectionY", primaryAxis.y);
+                primaryAxis = OVRInput.Get(OVRInput.Axis2D.PrimaryThumbstick);
+                if (primaryAxis.x > 0.1f || primaryAxis.y > 0.1f || primaryAxis.x < -0.1f || primaryAxis.y < -0.1f)
+                {
+                    animator.SetBool("isMoving", true);
 
+                }
+                else
+                {
+                    animator.SetBool("isMoving", false);
+                }
+                animator.SetFloat("DirectionX", primaryAxis.x);
+                animator.SetFloat("DirectionY", primaryAxis.y);
+
+            }
         }
 
-        
-       
+
+
     }
 }

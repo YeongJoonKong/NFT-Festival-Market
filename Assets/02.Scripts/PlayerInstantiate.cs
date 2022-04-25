@@ -15,6 +15,8 @@ public class PlayerInstantiate : MonoBehaviour, IPunObservable
     public GameObject[] avatars;
     string avatar;
     public GameObject CameaRig;
+    public float CamrigHigh;
+    public Transform rightHandAnchor;
 
     int count;
     //public GameObject myavatar;
@@ -23,7 +25,7 @@ public class PlayerInstantiate : MonoBehaviour, IPunObservable
     // CarmeraRig Pivot Transform
     private Transform headTr, leftHandTr, rightHandTr;
     // FalseCamera Rig Transform
-    public Transform FalseHeadRig, FalseLeftRig, FalseRightRig;
+    public Transform FalseHeadRig, FalseLeftRig, FalseRightRig, FalseRightHandAnchor;
     public float FalseRigSmooteness = 10f;
 
     public VRIK vrik;
@@ -32,6 +34,7 @@ public class PlayerInstantiate : MonoBehaviour, IPunObservable
     public OVRPlayerController ovrcontroller;
 
     GameObject[] displayItem;
+    public LineRenderer lr;
 
 
     // Start is called before the first frame update
@@ -48,11 +51,12 @@ public class PlayerInstantiate : MonoBehaviour, IPunObservable
             CameaRig = GameObject.Find("OVRCameraRigNetWork");
 
             CameaRig.transform.parent = transform;
-            CameaRig.transform.position = transform.position;
+            CameaRig.transform.position = transform.position + new Vector3(0, CamrigHigh, 0);
+            rightHandAnchor = GameObject.Find("RightHandAnchor").transform;
             AudioListener.volume = 1;
 
             avatar = PlayerPrefs.GetString("Avatar");
-       
+
 
             //print(avatar);
             //myavatar = GameObject.FindGameObjectWithTag(avatar);
@@ -65,8 +69,8 @@ public class PlayerInstantiate : MonoBehaviour, IPunObservable
             headTr = GameObject.FindGameObjectsWithTag(avatar)[0].transform;
             leftHandTr = GameObject.FindGameObjectsWithTag(avatar)[1].transform;
             rightHandTr = GameObject.FindGameObjectsWithTag(avatar)[2].transform;
-            
-            
+
+
 
         }
         if (!pv.IsMine)
@@ -74,7 +78,7 @@ public class PlayerInstantiate : MonoBehaviour, IPunObservable
 
             //Avrik = transform.GetComponentsInChildren<VRIK>();
             //vrik=Avrik[count].GetComponent<VRIK>();
-            
+
             controller.enabled = false;
             ovrcontroller.enabled = false;
         }
@@ -133,6 +137,9 @@ public class PlayerInstantiate : MonoBehaviour, IPunObservable
     //�����յ���ȭ����
     private Quaternion curRotRightHand;
     private Vector3 curPosRightHand;
+
+    private Quaternion curRotRightHandAnchor;
+    private Vector3 curPosRightHandAnchor;
     public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
     {
         if (stream.IsWriting)
@@ -144,19 +151,25 @@ public class PlayerInstantiate : MonoBehaviour, IPunObservable
             stream.SendNext(rightHandTr.rotation);
             stream.SendNext(rightHandTr.position);
 
+            stream.SendNext(rightHandAnchor.rotation);
+            stream.SendNext(rightHandAnchor.position);
+
 
 
 
         }
         else
         {
-            
+
             currRotHead = (Quaternion)stream.ReceiveNext();
             curPosHead = (Vector3)stream.ReceiveNext();
             curRotLeftHand = (Quaternion)stream.ReceiveNext();
             curPosLeftHand = (Vector3)stream.ReceiveNext();
             curRotRightHand = (Quaternion)stream.ReceiveNext();
             curPosRightHand = (Vector3)stream.ReceiveNext();
+
+            curRotRightHandAnchor = (Quaternion)stream.ReceiveNext();
+            curPosRightHandAnchor = (Vector3)stream.ReceiveNext();
         }
     }
     private void Update()
@@ -172,14 +185,83 @@ public class PlayerInstantiate : MonoBehaviour, IPunObservable
             FalseRightRig.rotation = Quaternion.Slerp(FalseRightRig.rotation, curRotRightHand, Time.deltaTime * FalseRigSmooteness);
             FalseRightRig.position = Vector3.Lerp(FalseRightRig.position, curPosRightHand, Time.deltaTime * FalseRigSmooteness);
 
+            FalseRightHandAnchor.rotation = Quaternion.Slerp(FalseRightRig.rotation, curRotRightHand, Time.deltaTime * FalseRigSmooteness);
+            FalseRightHandAnchor.position = Vector3.Lerp(FalseRightRig.position, curPosRightHand, Time.deltaTime * FalseRigSmooteness);
+
         }
         else
         {
+            Ray();
             pv.RPC("Test", RpcTarget.All);
         }
     }
 
+    void Ray()
+    {
+        if (OVRInput.Get(OVRInput.Button.One, OVRInput.Controller.RTouch))
+        //if (ControllerManager.instance.GetOculus(ControllerManager.VRKey.Teleport, controller))
+        //if (Input.GetKey(KeyCode.T))
+        {
+
+            lr.SetPosition(0, rightHandAnchor.position);
+            Ray ray = new Ray(rightHandAnchor.position, rightHandAnchor.forward);
+            int layer = 1 << LayerMask.NameToLayer("Hand");
+            pv.RPC("RPCRay", RpcTarget.Others, 0, FalseRightHandAnchor.position, true);
+            RaycastHit hitinfo;
+            if (Physics.Raycast(ray, out hitinfo, float.MaxValue, ~layer))
+            {
+
+
+
+                lr.enabled = true;
+
+
+
+                bool isHit = Physics.Raycast(ray, out hitinfo, float.MaxValue, ~layer);
+                if (isHit)
+                {
+                    lr.SetPosition(1, hitinfo.point);
+                    pv.RPC("RPCRay", RpcTarget.Others, 0, FalseRightHandAnchor.position, true);
+                }
+
+                //if (hitinfo.transform.tag == "TUTORIAL_ITEM")
+                //{
+                //    hitinfo.transform.gameObject.SetActive(false);
+                //}
+            }
+            else // ���
+            {
+                lr.enabled = true;
+                lr.SetPosition(1, ray.origin + ray.direction * 50);
+                pv.RPC("RPCRay", RpcTarget.Others, 0, transform.position, true);
+
+            }
+        }
+        //else if (ControllerManager.instance.GetOculusUp(ControllerManager.VRKey.Teleport, controller))
+        else if (OVRInput.GetUp(OVRInput.Button.One, OVRInput.Controller.RTouch))
+        {
+            lr.enabled = false;
+            pv.RPC("RPCRay", RpcTarget.Others, 0, transform.position, false);
+
+        }
+    }
+
     [PunRPC]
+    void RPCRay(int k, Vector3 pos, bool state)
+    {
+        if (lr == null)
+        {
+            lr = GetComponent<LineRenderer>();
+        }
+        lr.enabled = state;
+        if (state)
+        {
+            lr.SetPosition(k, pos);
+        }
+    }
+
+
+        [PunRPC]
     public void Test()
     {
         if (pv.IsMine)

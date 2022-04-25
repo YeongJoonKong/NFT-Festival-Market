@@ -42430,6 +42430,10 @@ PrefabInstance:
       value: Portal
       objectReference: {fileID: 0}
     - target: {fileID: 7881460095784977848, guid: 07d325cbc4cd5d445bab778d74dbe874, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7881460095784977848, guid: 07d325cbc4cd5d445bab778d74dbe874, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 2147483647
       objectReference: {fileID: 0}
@@ -43151,7 +43155,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 7881460095784977844, guid: 07d325cbc4cd5d445bab778d74dbe874, type: 3}
       propertyPath: m_RootOrder
-      value: 29
+      value: 30
       objectReference: {fileID: 0}
     - target: {fileID: 7881460095784977844, guid: 07d325cbc4cd5d445bab778d74dbe874, type: 3}
       propertyPath: m_LocalPosition.x
@@ -44154,6 +44158,10 @@ PrefabInstance:
     - target: {fileID: 7881460095784977848, guid: 07d325cbc4cd5d445bab778d74dbe874, type: 3}
       propertyPath: m_Name
       value: Portal (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 7881460095784977848, guid: 07d325cbc4cd5d445bab778d74dbe874, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7881460095784977848, guid: 07d325cbc4cd5d445bab778d74dbe874, type: 3}
       propertyPath: m_StaticEditorFlags
