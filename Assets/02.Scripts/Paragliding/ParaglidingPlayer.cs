@@ -43,7 +43,8 @@ public class ParaglidingPlayer : MonoBehaviour
 
             if(restartTimer < 0)
             {
-                SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+                //SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+                SceneManager.LoadScene("Map_01");
             }
             else
             {

@@ -87,7 +87,8 @@ public class BirdGameManager : MonoBehaviour
 
             if (this.timer > waitTime)
             {
-                SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+                //SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+                SceneManager.LoadScene("Map_01");
             }
         }
     }
