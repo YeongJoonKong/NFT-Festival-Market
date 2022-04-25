@@ -51,7 +51,7 @@ public class NFTObject : MonoBehaviour
     
     void OnTriggerEnter(Collider otherCollider) 
     {
-        Debug.Log(otherCollider.gameObject.tag);
+
     }
     
     void OnTriggerStay(Collider otherCollider)
@@ -90,7 +90,6 @@ public class NFTObject : MonoBehaviour
             isGrabbed = false;
         }
     }
-
     public int GetObjectPrice()
     {
         TextMeshPro[] infos = gameObject.GetComponentsInChildren<TextMeshPro>();
@@ -102,4 +101,5 @@ public class NFTObject : MonoBehaviour
         }
         return 0;
     }
+
 }

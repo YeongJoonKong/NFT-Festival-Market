@@ -29,6 +29,11 @@ public class Counter : MonoBehaviour
         CheckCoin();
     }
 
+    private void OnCollisionEnter(Collision other) 
+    {
+
+    }
+
     void CheckCoin() 
     {
         int count = 0;
@@ -68,6 +73,5 @@ public class Counter : MonoBehaviour
             infoText.enabled = true;
             effect.SetActive(true);
         }
-
     }
 }
