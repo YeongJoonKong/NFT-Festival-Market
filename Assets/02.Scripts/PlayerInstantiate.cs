@@ -185,9 +185,8 @@ public class PlayerInstantiate : MonoBehaviour, IPunObservable
             FalseRightRig.rotation = Quaternion.Slerp(FalseRightRig.rotation, curRotRightHand, Time.deltaTime * FalseRigSmooteness);
             FalseRightRig.position = Vector3.Lerp(FalseRightRig.position, curPosRightHand, Time.deltaTime * FalseRigSmooteness);
 
-            FalseRightHandAnchor.rotation = Quaternion.Slerp(FalseRightRig.rotation, curRotRightHand, Time.deltaTime * FalseRigSmooteness);
-            FalseRightHandAnchor.position = Vector3.Lerp(FalseRightRig.position, curPosRightHand, Time.deltaTime * FalseRigSmooteness);
-
+            FalseRightHandAnchor.rotation = Quaternion.Slerp(FalseRightRig.rotation, curRotRightHandAnchor, Time.deltaTime * 10f);
+            FalseRightHandAnchor.position = Vector3.Lerp(FalseRightRig.position, curPosRightHandAnchor, Time.deltaTime * 10f);
         }
         else
         {
