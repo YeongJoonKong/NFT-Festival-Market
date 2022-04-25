@@ -9,6 +9,7 @@ using RootMotion.FinalIK;
 public class PlayerInstantiate : MonoBehaviour, IPunObservable
 {
 
+    public LineRenderer lr;
 
     private PhotonView pv;
     //public GameObject cam;
@@ -120,7 +121,6 @@ public class PlayerInstantiate : MonoBehaviour, IPunObservable
         }
 
         displayItem = GameObject.FindGameObjectsWithTag("DISPLAY_ITEM");
-
 
     }
     //�Ӹ�����ȭ����
