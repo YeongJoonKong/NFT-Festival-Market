@@ -220,7 +220,7 @@ public class PlayerInstantiate : MonoBehaviour, IPunObservable
                 if (isHit)
                 {
                     lr.SetPosition(1, hitinfo.point);
-                    pv.RPC("RPCRay", RpcTarget.Others, 0, FalseRightHandAnchor.position, true);
+                    pv.RPC("RPCRay", RpcTarget.Others, 0, hitinfo.point, true);
                 }
 
                 //if (hitinfo.transform.tag == "TUTORIAL_ITEM")
@@ -232,7 +232,7 @@ public class PlayerInstantiate : MonoBehaviour, IPunObservable
             {
                 lr.enabled = true;
                 lr.SetPosition(1, ray.origin + ray.direction * 50);
-                pv.RPC("RPCRay", RpcTarget.Others, 0, transform.position, true);
+                pv.RPC("RPCRay", RpcTarget.Others, 0, hitinfo.point, true);
 
             }
         }
