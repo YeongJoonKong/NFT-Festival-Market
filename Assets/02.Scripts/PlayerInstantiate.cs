@@ -140,6 +140,10 @@ public class PlayerInstantiate : MonoBehaviour, IPunObservable
 
     private Quaternion curRotRightHandAnchor;
     private Vector3 curPosRightHandAnchor;
+
+    private Vector3 line0;
+    private Vector3 line1;
+
     public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
     {
         if (stream.IsWriting)
@@ -153,6 +157,10 @@ public class PlayerInstantiate : MonoBehaviour, IPunObservable
 
             stream.SendNext(rightHandAnchor.rotation);
             stream.SendNext(rightHandAnchor.position);
+
+            stream.SendNext(lr.GetPosition(0));
+            stream.SendNext(lr.GetPosition(1));
+
 
 
 
@@ -170,6 +178,12 @@ public class PlayerInstantiate : MonoBehaviour, IPunObservable
 
             curRotRightHandAnchor = (Quaternion)stream.ReceiveNext();
             curPosRightHandAnchor = (Vector3)stream.ReceiveNext();
+
+            curPosRightHandAnchor = (Vector3)stream.ReceiveNext();
+            curPosRightHandAnchor = (Vector3)stream.ReceiveNext();
+
+            line0 = (Vector3)stream.ReceiveNext();
+            line1 = (Vector3)stream.ReceiveNext();
         }
     }
     private void Update()
@@ -187,6 +201,10 @@ public class PlayerInstantiate : MonoBehaviour, IPunObservable
 
             FalseRightHandAnchor.rotation = Quaternion.Slerp(FalseRightHandAnchor.rotation, curRotRightHandAnchor, Time.deltaTime * 10f);
             FalseRightHandAnchor.position = Vector3.Lerp(FalseRightHandAnchor.position, curPosRightHandAnchor, Time.deltaTime * 10f);
+
+            lr.SetPosition(0, line0);
+            lr.SetPosition(1, line1);
+
         }
         else
         {
@@ -205,7 +223,7 @@ public class PlayerInstantiate : MonoBehaviour, IPunObservable
             lr.SetPosition(0, rightHandAnchor.position);
             Ray ray = new Ray(rightHandAnchor.position, rightHandAnchor.forward);
             int layer = 1 << LayerMask.NameToLayer("Hand");
-            pv.RPC("RPCRay", RpcTarget.Others, 0, FalseRightHandAnchor.position, true);
+            //pv.RPC("RPCRay", RpcTarget.Others, 0, FalseRightHandAnchor.position, true);
             RaycastHit hitinfo;
             if (Physics.Raycast(ray, out hitinfo, float.MaxValue, ~layer))
             {
@@ -220,7 +238,7 @@ public class PlayerInstantiate : MonoBehaviour, IPunObservable
                 if (isHit)
                 {
                     lr.SetPosition(1, hitinfo.point);
-                    pv.RPC("RPCRay", RpcTarget.Others, 0, hitinfo.point, true);
+                    //pv.RPC("RPCRay", RpcTarget.Others, 0, hitinfo.point, true);
                 }
 
                 //if (hitinfo.transform.tag == "TUTORIAL_ITEM")
@@ -232,7 +250,7 @@ public class PlayerInstantiate : MonoBehaviour, IPunObservable
             {
                 lr.enabled = true;
                 lr.SetPosition(1, ray.origin + ray.direction * 50);
-                pv.RPC("RPCRay", RpcTarget.Others, 0, hitinfo.point, true);
+                //pv.RPC("RPCRay", RpcTarget.Others, 0, hitinfo.point, true);
 
             }
         }
@@ -240,7 +258,7 @@ public class PlayerInstantiate : MonoBehaviour, IPunObservable
         else if (OVRInput.GetUp(OVRInput.Button.One, OVRInput.Controller.RTouch))
         {
             lr.enabled = false;
-            pv.RPC("RPCRay", RpcTarget.Others, 0, transform.position, false);
+            //pv.RPC("RPCRay", RpcTarget.Others, 0, transform.position, false);
 
         }
     }
