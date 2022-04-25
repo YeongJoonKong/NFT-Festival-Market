@@ -141,9 +141,9 @@ public class PlayerInstantiate : MonoBehaviour, IPunObservable
     private Quaternion curRotRightHandAnchor;
     private Vector3 curPosRightHandAnchor;
 
-    private bool lineEnabled;
-    private Vector3 line0;
-    private Vector3 line1;
+    //private bool lineEnabled;
+    //private Vector3 line0;
+    //private Vector3 line1;
 
     public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
     {
@@ -160,9 +160,9 @@ public class PlayerInstantiate : MonoBehaviour, IPunObservable
             stream.SendNext(rightHandAnchor.position);
 
             
-            stream.SendNext(lr.enabled);
-            stream.SendNext(lr.GetPosition(0));
-            stream.SendNext(lr.GetPosition(1));
+            //stream.SendNext(lr.enabled);
+            //stream.SendNext(lr.GetPosition(0));
+            //stream.SendNext(lr.GetPosition(1));
 
 
 
@@ -185,9 +185,9 @@ public class PlayerInstantiate : MonoBehaviour, IPunObservable
             curPosRightHandAnchor = (Vector3)stream.ReceiveNext();
             curPosRightHandAnchor = (Vector3)stream.ReceiveNext();
 
-            lineEnabled= (bool)stream.ReceiveNext();
-            line0 = (Vector3)stream.ReceiveNext();
-            line1 = (Vector3)stream.ReceiveNext();
+            //lineEnabled= (bool)stream.ReceiveNext();
+            //line0 = (Vector3)stream.ReceiveNext();
+            //line1 = (Vector3)stream.ReceiveNext();
         }
     }
     private void Update()
@@ -203,19 +203,19 @@ public class PlayerInstantiate : MonoBehaviour, IPunObservable
             FalseRightRig.rotation = Quaternion.Slerp(FalseRightRig.rotation, curRotRightHand, Time.deltaTime * FalseRigSmooteness);
             FalseRightRig.position = Vector3.Lerp(FalseRightRig.position, curPosRightHand, Time.deltaTime * FalseRigSmooteness);
 
-            FalseRightHandAnchor.rotation = Quaternion.Slerp(FalseRightHandAnchor.rotation, curRotRightHandAnchor, Time.deltaTime * 10f);
-            FalseRightHandAnchor.position = Vector3.Lerp(FalseRightHandAnchor.position, curPosRightHandAnchor, Time.deltaTime * 10f);
+            //FalseRightHandAnchor.rotation = Quaternion.Slerp(FalseRightHandAnchor.rotation, curRotRightHandAnchor, Time.deltaTime * 10f);
+            //FalseRightHandAnchor.position = Vector3.Lerp(FalseRightHandAnchor.position, curPosRightHandAnchor, Time.deltaTime * 10f);
 
 
-            lr.enabled = lineEnabled;
-            lr.SetPosition(0, line0);
-            lr.SetPosition(1, line1);
+            //lr.enabled = lineEnabled;
+            //lr.SetPosition(0, line0);
+            //lr.SetPosition(1, line1);
 
         }
         else
         {
             Ray();
-            pv.RPC("Test", RpcTarget.All);
+            //pv.RPC("Test", RpcTarget.All);
         }
     }
 
