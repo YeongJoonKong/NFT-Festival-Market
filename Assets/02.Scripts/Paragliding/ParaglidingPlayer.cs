@@ -7,7 +7,7 @@ using UnityEngine.SceneManagement;
 public class ParaglidingPlayer : MonoBehaviour
 {
     public float speed = 5.0f;
-    public float fallingForce = 0.4f;
+    public float fallingForce = 0.3f;
     public float restartTimer = 3.0f;
 
     public TextMeshProUGUI infoText;
