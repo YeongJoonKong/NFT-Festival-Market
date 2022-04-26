@@ -18,7 +18,13 @@ public class Door : MonoBehaviour
 
     void Update()
     {
-
+        if (_isStartOpen) 
+        {
+            OpenBackDoor();
+            if (leftDoor.transform.localPosition.x <= -5.81f && rightDoor.transform.localPosition.x >= 5.81f) {
+                _isStartOpen = false;
+            }
+        }
     }
 
     public void OpenDoor() 
@@ -28,5 +34,12 @@ public class Door : MonoBehaviour
             leftDoor.transform.localPosition += new Vector3(-0.1f, 0, 0);
             rightDoor.transform.localPosition += new Vector3(0.1f, 0, 0);
         }
+    }
+
+    public void OpenBackDoor()
+    {
+        _isStartOpen = true;
+        leftDoor.transform.localPosition += new Vector3(-0.1f, 0, 0);
+        rightDoor.transform.localPosition += new Vector3(0.1f, 0, 0);
     }
 }

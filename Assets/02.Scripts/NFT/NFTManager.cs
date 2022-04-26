@@ -46,6 +46,62 @@ public class NFTManager : MonoBehaviour
     }
 
     IEnumerator MakeWalletAndNFTTicket(Action callback) {
+        
+        makeTicketPrefab();
+        yield return "";
+
+        // WWWForm form = new WWWForm();
+        // form.AddBinaryData("file", File.ReadAllBytes("Assets/Resources/NFT/Ticket.prefab"), "Ticket.prefab");
+
+        // using (UnityWebRequest request = UnityWebRequest.Post(Constant.BASE_URL + Constant.CREATE_WALLET_AND_CONTRACT, form))
+        // {
+        //     yield return request.SendWebRequest();
+
+        //     if (request.result != UnityWebRequest.Result.Success){
+        //         MakeFailedResponse();
+        //     } else {
+        //         UnityWebRequest request1 = new UnityWebRequest(Constant.BASE_URL + Constant.CREATE_NFT_TICKET, "POST");
+        //         byte[] encodedRequest = new System.Text.UTF8Encoding().GetBytes(request.downloadHandler.text);
+        //         request1.uploadHandler = (UploadHandler)new UploadHandlerRaw(encodedRequest);
+        //         request1.downloadHandler = new DownloadHandlerBuffer();
+        //         request1.SetRequestHeader("Content-Type", "application/json");
+
+        //         yield return request1.SendWebRequest();
+
+        //         if (request1.result != UnityWebRequest.Result.Success) {
+
+        //         } else {
+        //             CreateJsonFile(Constant.SAVE_JSON_PATH, "TicketInfo", request1.downloadHandler.text);
+        //             MakeSuccessResponse(request1.downloadHandler.text);
+        //             if (callback != null) callback();
+        //         }
+
+        //     }
+        // }
+    }
+
+
+    void CreateJsonFile(string createPath, string fileName, string jsonData)
+    {
+        FileStream fileStream = new FileStream(string.Format("{0}/{1}.json", createPath, fileName), FileMode.Create);
+        byte[] data = Encoding.UTF8.GetBytes(jsonData);
+        fileStream.Write(data, 0, data.Length);
+        fileStream.Close();
+    }
+
+
+    T LoadJsonFile<T>(string loadPath)
+    {
+        FileStream fileStream = new FileStream(string.Format("{0}", loadPath), FileMode.Open);
+        byte[] data = new byte[fileStream.Length];
+        fileStream.Read(data, 0, data.Length);
+        fileStream.Close();
+        string jsonData = Encoding.UTF8.GetString(data);
+        return JsonConvert.DeserializeObject<T>(jsonData);
+    }
+
+    public void makeTicketPrefab() 
+    {
         nftTicket.SetActive(true);
         GameObject[] ticketNFTObjects = GameObject.FindGameObjectsWithTag("TicketRandomNFT");
 
@@ -85,55 +141,6 @@ public class NFTManager : MonoBehaviour
         particleSystem.SetActive(true);
 
         nftTicket.SetActive(false);
-
-        WWWForm form = new WWWForm();
-        form.AddBinaryData("file", File.ReadAllBytes("Assets/Resources/NFT/Ticket.prefab"), "Ticket.prefab");
-
-        using (UnityWebRequest request = UnityWebRequest.Post(Constant.BASE_URL + Constant.CREATE_WALLET_AND_CONTRACT, form))
-        {
-            yield return request.SendWebRequest();
-
-            if (request.result != UnityWebRequest.Result.Success){
-                MakeFailedResponse();
-            } else {
-                UnityWebRequest request1 = new UnityWebRequest(Constant.BASE_URL + Constant.CREATE_NFT_TICKET, "POST");
-                byte[] encodedRequest = new System.Text.UTF8Encoding().GetBytes(request.downloadHandler.text);
-                request1.uploadHandler = (UploadHandler)new UploadHandlerRaw(encodedRequest);
-                request1.downloadHandler = new DownloadHandlerBuffer();
-                request1.SetRequestHeader("Content-Type", "application/json");
-
-                yield return request1.SendWebRequest();
-
-                if (request1.result != UnityWebRequest.Result.Success) {
-
-                } else {
-                    CreateJsonFile(Constant.SAVE_JSON_PATH, "TicketInfo", request1.downloadHandler.text);
-                    MakeSuccessResponse(request1.downloadHandler.text);
-                    if (callback != null) callback();
-                }
-
-            }
-        }
-    }
-
-
-    void CreateJsonFile(string createPath, string fileName, string jsonData)
-    {
-        FileStream fileStream = new FileStream(string.Format("{0}/{1}.json", createPath, fileName), FileMode.Create);
-        byte[] data = Encoding.UTF8.GetBytes(jsonData);
-        fileStream.Write(data, 0, data.Length);
-        fileStream.Close();
-    }
-
-
-    T LoadJsonFile<T>(string loadPath)
-    {
-        FileStream fileStream = new FileStream(string.Format("{0}", loadPath), FileMode.Open);
-        byte[] data = new byte[fileStream.Length];
-        fileStream.Read(data, 0, data.Length);
-        fileStream.Close();
-        string jsonData = Encoding.UTF8.GetString(data);
-        return JsonConvert.DeserializeObject<T>(jsonData);
     }
 
     public void CreateNFTTicketPrefab(GameObject ticketPrefab)
@@ -163,6 +170,7 @@ public class NFTManager : MonoBehaviour
     public void MakeSuccessResponse(string text)
     {
         PurchaseTicketModel walletAndTicketInfo = JsonConvert.DeserializeObject<PurchaseTicketModel>(text);
+        
         WalletCache.id = walletAndTicketInfo.walletInfo.id;
         WalletCache.address = walletAndTicketInfo.walletInfo.address;
         WalletCache.walletType = walletAndTicketInfo.walletInfo.walletType;
@@ -179,5 +187,7 @@ public class NFTManager : MonoBehaviour
         TicketCache.metadata = walletAndTicketInfo.ticketInfo.metadata;
         TicketCache.destinations = walletAndTicketInfo.ticketInfo.destinations;
         TicketCache.tokenIds = walletAndTicketInfo.ticketInfo.tokenIds;
+
+        CoinCache.coin = 50;
     }
 }
