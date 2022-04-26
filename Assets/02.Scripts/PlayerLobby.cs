@@ -22,7 +22,7 @@ public class PlayerLobby : MonoBehaviour
                 && Inventory.instance != null
                 && Inventory.instance.Wallet != null) {
                     Inventory.instance.gameObject.SetActive(!Inventory.instance.gameObject.activeInHierarchy);
-                    Inventory.instance.SetWalletInfo();
+                    // Inventory.instance.SetWalletInfo();
                 }
         } else if (OVRInput.Get(OVRInput.Button.PrimaryHandTrigger)) {
             foreach (GameObject dItem in displayItem) {

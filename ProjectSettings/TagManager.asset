@@ -26,6 +26,7 @@ TagManager:
   - AvatarDoor
   - TUTORIAL_ITEM
   - COUNTER
+  - INTERACTION
   layers:
   - Default
   - TransparentFX

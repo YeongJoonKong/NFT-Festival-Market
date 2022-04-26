@@ -8,6 +8,7 @@ using UnityEngine;
 using UnityEngine.Networking;
 using Newtonsoft.Json;
 using TMPro;
+using Newtonsoft.Json.Linq;
 
 public class NFTManager : MonoBehaviour
 {
@@ -80,6 +81,45 @@ public class NFTManager : MonoBehaviour
         // }
     }
 
+    IEnumerator MakeNFTObject(string filename) {
+        WWWForm form = new WWWForm();
+        form.AddBinaryData("file", File.ReadAllBytes("Assets/Resources/NFT/"+filename+".prefab"), "nft.prefab");
+        
+        PurchaseTicketModel readJson = LoadJsonFile<PurchaseTicketModel>("Assets/07.json/TicketInfo1.json");
+
+        string walletInfo = JsonConvert.SerializeObject(readJson.walletInfo);
+        form.AddField("walletInfo", walletInfo);
+        form.AddField("filename", filename);
+
+        using (UnityWebRequest request = UnityWebRequest.Post(Constant.BASE_URL + Constant.CREATE_NFT_OBJECT_CONTRACT, form))
+        {
+            yield return request.SendWebRequest();
+
+            if (request.result != UnityWebRequest.Result.Success){
+                MakeFailedResponse();
+            } else {
+                var result = new JObject();
+                result.Merge(JObject.Parse(request.downloadHandler.text));
+                result.Merge(JObject.Parse(walletInfo));
+
+                string res = JsonConvert.SerializeObject(result);
+                UnityWebRequest request1 = new UnityWebRequest(Constant.BASE_URL + Constant.CREATE_NFT_OBJECT, "POST");
+                
+                byte[] encodedRequest = new System.Text.UTF8Encoding().GetBytes(res);
+                request1.uploadHandler = (UploadHandler)new UploadHandlerRaw(encodedRequest);
+                request1.downloadHandler = new DownloadHandlerBuffer();
+                request1.SetRequestHeader("Content-Type", "application/json");
+
+                yield return request1.SendWebRequest();
+
+                if (request1.result != UnityWebRequest.Result.Success) {
+
+                } else {
+                    CreateJsonFile(Constant.SAVE_JSON_PATH, "NFTInfo_"+filename, request1.downloadHandler.text);
+                }
+            }
+        }
+    }
 
     void CreateJsonFile(string createPath, string fileName, string jsonData)
     {
@@ -110,21 +150,21 @@ public class NFTManager : MonoBehaviour
         {
             if (i == randomIndex)
             {
-                if (ticketNFTObjects[i].name.Contains("Apple"))
+                if (ticketNFTObjects[i].name.Contains("SpookyPumpkin"))
                 {
-                    nftTicket.GetComponentInChildren<TextMeshPro>().text = "NFT 입장권\n사과 VER.";
+                    nftTicket.GetComponentInChildren<TextMeshPro>().text = "NFT 입장권\n모자호박 VER.";
                 }
-                else if (ticketNFTObjects[i].name.Contains("Pumpkin"))
+                else if (ticketNFTObjects[i].name.Contains("Pumpkin 1"))
                 {
                     nftTicket.GetComponentInChildren<TextMeshPro>().text = "NFT 입장권\n호박 VER.";
                 }
-                else if (ticketNFTObjects[i].name.Contains("Cheese"))
+                else if (ticketNFTObjects[i].name.Contains("Dino"))
                 {
-                    nftTicket.GetComponentInChildren<TextMeshPro>().text = "NFT 입장권\n치즈케익 VER.";
+                    nftTicket.GetComponentInChildren<TextMeshPro>().text = "NFT 입장권\n상어인형 VER.";
                 }
-                else if (ticketNFTObjects[i].name.Contains("Carrot"))
+                else if (ticketNFTObjects[i].name.Contains("Drum"))
                 {
-                    nftTicket.GetComponentInChildren<TextMeshPro>().text = "NFT 입장권\n당근 VER.";
+                    nftTicket.GetComponentInChildren<TextMeshPro>().text = "NFT 입장권\n드럼스틱 VER.";
                 }
             }
             else
@@ -162,6 +202,21 @@ public class NFTManager : MonoBehaviour
         ticketPrefab.transform.localScale = new Vector3(0.2f, 0.2f, 0.2f);
     }
 
+    public void CreateNFTObjectPrefab(GameObject nftObject)
+    {
+        string localPath = "Assets/Resources/NFT/"+nftObject.gameObject.name+".prefab";
+        localPath = AssetDatabase.GenerateUniqueAssetPath(localPath);
+
+        bool prefabSuccess;
+        PrefabUtility.SaveAsPrefabAsset(nftObject, localPath, out prefabSuccess);
+        if (prefabSuccess) {
+            Debug.Log("Prefab was saved successfully");
+            StartCoroutine(MakeNFTObject(nftObject.gameObject.name));
+        } else {
+            Debug.Log("Prefab failed to save " + prefabSuccess);
+        }
+    }
+
     public void MakeFailedResponse()
     {
 
@@ -190,4 +245,5 @@ public class NFTManager : MonoBehaviour
 
         CoinCache.coin = 50;
     }
+
 }

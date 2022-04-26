@@ -15,6 +15,8 @@ public class NFTObject : MonoBehaviour
     public Quaternion originalRotation;
 
     public GameObject CounterSpawnPoint;
+    public GameObject Case;
+    public TextMeshProUGUI CaseText;
 
     Vector3 beforePosition;
 
@@ -22,6 +24,7 @@ public class NFTObject : MonoBehaviour
     {
         originalPosition = this.transform.position;
         originalRotation = this.transform.rotation;
+        Case.SetActive(false);
     }
 
     void Update()
@@ -45,6 +48,9 @@ public class NFTObject : MonoBehaviour
                 }
             }
 
+            if (originalPosition == transform.position) {
+                Case.SetActive(false);
+            }
         }
         beforePosition = gameObject.transform.position;
     }
@@ -83,13 +89,18 @@ public class NFTObject : MonoBehaviour
 
     public void ChangeOriginalParent() 
     {
-        if (this.transform.parent != originalParent.transform) {
-            this.transform.parent = originalParent.transform;
-            Rigidbody rb = gameObject.AddComponent<Rigidbody>();
-            rb.useGravity = true;
-            isGrabbed = false;
+        try {
+            if (this.transform.parent != originalParent.transform) {
+                this.transform.parent = originalParent.transform;
+                Rigidbody rb = gameObject.AddComponent<Rigidbody>();
+                rb.useGravity = true;
+                isGrabbed = false;
+            }
+        } catch (UnassignedReferenceException e) {
+
         }
     }
+    
     public int GetObjectPrice()
     {
         TextMeshPro[] infos = gameObject.GetComponentsInChildren<TextMeshPro>();

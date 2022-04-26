@@ -5,6 +5,7 @@ using Photon.Pun;
 using Photon.Realtime;
 using System;
 using RootMotion.FinalIK;
+using TMPro;
 
 public class PlayerInstantiate : MonoBehaviour, IPunObservable
 {
@@ -234,11 +235,7 @@ public class PlayerInstantiate : MonoBehaviour, IPunObservable
             if (Physics.Raycast(ray, out hitinfo, float.MaxValue, ~layer))
             {
 
-
-
                 lr.enabled = true;
-
-
 
                 bool isHit = Physics.Raycast(ray, out hitinfo, float.MaxValue, ~layer);
                 if (isHit)
@@ -247,10 +244,74 @@ public class PlayerInstantiate : MonoBehaviour, IPunObservable
                     //pv.RPC("RPCRay", RpcTarget.Others, 0, hitinfo.point, true);
                 }
 
-                //if (hitinfo.transform.tag == "TUTORIAL_ITEM")
-                //{
-                //    hitinfo.transform.gameObject.SetActive(false);
-                //}
+                if (hitinfo.transform.tag == "INTERACTION")
+                {
+                    TextMeshPro bubble = hitinfo.transform.gameObject.GetComponentInChildren<TextMeshPro>();
+                    GameObject[] counters = GameObject.FindGameObjectsWithTag("COUNTER");
+                    if (bubble.text.Equals("네!"))
+                    {
+                        float distance = Vector3.Distance(counters[0].transform.position, hitinfo.transform.position);
+                        int index = 0;
+                        for (int i = 1; i < counters.Length; i++)
+                        {
+                            if (Vector3.Distance(counters[i].transform.position, hitinfo.transform.position) <= distance)
+                            {
+                                distance = Vector3.Distance(counters[i].transform.position, hitinfo.transform.position);
+                                index = i;
+                            }
+                        }
+                        counters[index].GetComponent<Counter>().makeNFT();
+                    }
+                    else if (bubble.text.Equals("감사합니다!"))
+                    {
+                        float distance = Vector3.Distance(counters[0].transform.position, hitinfo.transform.position);
+                        int index = 0;
+                        for (int i = 1; i < counters.Length; i++)
+                        {
+                            if (Vector3.Distance(counters[i].transform.position, hitinfo.transform.position) <= distance)
+                            {
+                                distance = Vector3.Distance(counters[i].transform.position, hitinfo.transform.position);
+                                index = i;
+                            }
+                        }
+
+                        foreach (GameObject item in displayItem)
+                        {
+                            if (item.transform.position == counters[index].GetComponent<Counter>().spawnPosition.transform.position)
+                            {
+                                
+                                counters[index].GetComponent<Counter>().restoreCounterEffect(item);
+                                counters[index].GetComponent<Counter>().isMakingNFT = false;
+                                counters[index].GetComponent<Counter>().yesBubble.GetComponentInChildren<TextMeshPro>().text = "네!";
+                                break;
+                            }
+
+                        }
+                    }
+                    else if (bubble.text.Contains("다음에요"))
+                    {
+                        float distance = Vector3.Distance(counters[0].transform.position, hitinfo.transform.position);
+                        int index = 0;
+                        for (int i = 1; i < counters.Length; i++)
+                        {
+                            if (Vector3.Distance(counters[i].transform.position, hitinfo.transform.position) <= distance)
+                            {
+                                distance = Vector3.Distance(counters[i].transform.position, hitinfo.transform.position);
+                                index = i;
+                            }
+                        }
+                        foreach (GameObject item in displayItem)
+                        {
+                            if (item.transform.position == counters[index].GetComponent<Counter>().spawnPosition.transform.position)
+                            {
+                                
+                                counters[index].GetComponent<Counter>().restoreCounterEffect(item);
+                                break;
+                            }
+
+                        }
+                    }
+                }
             }
             else // ���
             {
@@ -297,7 +358,7 @@ public class PlayerInstantiate : MonoBehaviour, IPunObservable
                 else
                 {
                     Inventory.instance.gameObject.SetActive(true);
-                    Inventory.instance.SetWalletInfo();
+                    // Inventory.instance.SetWalletInfo();
                 }
             }
         }
