@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using TMPro;
 
 public class SharkGamaManager : MonoBehaviour
 {
@@ -20,6 +21,8 @@ public class SharkGamaManager : MonoBehaviour
     public float WatingTime = 5.0f;
 
     SharkManager sharkManager;
+
+
 
     // Start is called before the first frame update
     void Start()
