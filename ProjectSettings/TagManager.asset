@@ -25,8 +25,8 @@ TagManager:
   - Avatar2
   - AvatarDoor
   - TUTORIAL_ITEM
-  - Undefined
   - Bird
+  - COUNTER
   layers:
   - Default
   - TransparentFX
@@ -41,6 +41,7 @@ TagManager:
   - Wall
   - SecondFloor
   - Bird
+  - 
   - 
   - 
   - 

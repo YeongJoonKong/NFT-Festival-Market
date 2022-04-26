@@ -1,9 +1,5 @@
 fileFormatVersion: 2
-<<<<<<<< HEAD:Assets/04.DownAssets/stylized-hand-painted-flower/textures/FlowerF.png.meta
-guid: b3856399d12b3f94a913de96d18f1a18
-========
-guid: 2c55055174c3fa34487105b4c17453d4
->>>>>>>> main:Assets/01.Scenes/Lobby/Lightmap-3_comp_light.exr.meta
+guid: 4eaf9bae4d3be3041af93ad9f79069a3
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -25,7 +21,7 @@ TextureImporter:
     heightScale: 0.25
     normalMapFilter: 0
   isReadable: 0
-  streamingMipmaps: 0
+  streamingMipmaps: 1
   streamingMipmapsPriority: 0
   vTOnly: 0
   ignoreMasterTextureLimit: 0
@@ -38,11 +34,11 @@ TextureImporter:
   textureSettings:
     serializedVersion: 2
     filterMode: 1
-    aniso: 1
+    aniso: 3
     mipBias: 0
-    wrapU: 0
-    wrapV: 0
-    wrapW: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
   nPOTScale: 1
   lightmap: 0
   compressionQuality: 50
@@ -54,10 +50,10 @@ TextureImporter:
   spritePixelsToUnits: 100
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
-  alphaUsage: 1
+  alphaUsage: 0
   alphaIsTransparency: 0
   spriteTessellationDetail: -1
-  textureType: 0
+  textureType: 6
   textureShape: 1
   singleChannelComponent: 0
   flipbookRows: 1
@@ -73,11 +69,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-<<<<<<<< HEAD:Assets/04.DownAssets/stylized-hand-painted-flower/textures/FlowerF.png.meta
-    textureCompression: 1
-========
     textureCompression: 0
->>>>>>>> main:Assets/01.Scenes/Lobby/Lightmap-3_comp_light.exr.meta
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0

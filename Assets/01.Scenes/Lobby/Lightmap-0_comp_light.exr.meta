@@ -1,9 +1,5 @@
 fileFormatVersion: 2
-<<<<<<<< HEAD:Assets/04.DownAssets/water-gun/textures/colorLogo.jpg.meta
-guid: 9a0c33e0eca8e3e45951d021c4f14575
-========
-guid: 10acbaa28535a9342a6e3bea51fc7cdf
->>>>>>>> main:Assets/01.Scenes/Lobby/Lightmap-0_comp_light.exr.meta
+guid: 54add42e4bcea854e94792f2a00cffe5
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -25,7 +21,7 @@ TextureImporter:
     heightScale: 0.25
     normalMapFilter: 0
   isReadable: 0
-  streamingMipmaps: 0
+  streamingMipmaps: 1
   streamingMipmapsPriority: 0
   vTOnly: 0
   ignoreMasterTextureLimit: 0
@@ -38,11 +34,11 @@ TextureImporter:
   textureSettings:
     serializedVersion: 2
     filterMode: 1
-    aniso: 1
+    aniso: 3
     mipBias: 0
-    wrapU: 0
-    wrapV: 0
-    wrapW: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
   nPOTScale: 1
   lightmap: 0
   compressionQuality: 50
@@ -54,10 +50,10 @@ TextureImporter:
   spritePixelsToUnits: 100
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
-  alphaUsage: 1
+  alphaUsage: 0
   alphaIsTransparency: 0
   spriteTessellationDetail: -1
-  textureType: 0
+  textureType: 6
   textureShape: 1
   singleChannelComponent: 0
   flipbookRows: 1
@@ -73,11 +69,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-<<<<<<<< HEAD:Assets/04.DownAssets/water-gun/textures/colorLogo.jpg.meta
-    textureCompression: 1
-========
     textureCompression: 0
->>>>>>>> main:Assets/01.Scenes/Lobby/Lightmap-0_comp_light.exr.meta
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0

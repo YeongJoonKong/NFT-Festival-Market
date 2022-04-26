@@ -1,9 +1,5 @@
 fileFormatVersion: 2
-<<<<<<<< HEAD:Assets/05.Materials/CustomSign.png.meta
-guid: 31f14e6cf1e77ab44b11908cfa7fe9c5
-========
-guid: c11901d7048ed8243a7365916bed274d
->>>>>>>> main:Assets/01.Scenes/Lobby/Lightmap-1_comp_light.exr.meta
+guid: f6d55d6e3c6930a4f84196ac8a0dffb0
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -25,7 +21,7 @@ TextureImporter:
     heightScale: 0.25
     normalMapFilter: 0
   isReadable: 0
-  streamingMipmaps: 0
+  streamingMipmaps: 1
   streamingMipmapsPriority: 0
   vTOnly: 0
   ignoreMasterTextureLimit: 0
@@ -38,11 +34,11 @@ TextureImporter:
   textureSettings:
     serializedVersion: 2
     filterMode: 1
-    aniso: 1
+    aniso: 3
     mipBias: 0
-    wrapU: 0
-    wrapV: 0
-    wrapW: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
   nPOTScale: 1
   lightmap: 0
   compressionQuality: 50
@@ -54,10 +50,10 @@ TextureImporter:
   spritePixelsToUnits: 100
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
-  alphaUsage: 1
+  alphaUsage: 0
   alphaIsTransparency: 0
   spriteTessellationDetail: -1
-  textureType: 0
+  textureType: 6
   textureShape: 1
   singleChannelComponent: 0
   flipbookRows: 1
@@ -73,11 +69,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-<<<<<<<< HEAD:Assets/05.Materials/CustomSign.png.meta
-    textureCompression: 1
-========
     textureCompression: 0
->>>>>>>> main:Assets/01.Scenes/Lobby/Lightmap-1_comp_light.exr.meta
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0

@@ -1,9 +1,5 @@
 fileFormatVersion: 2
-<<<<<<<< HEAD:Assets/05.Materials/CustomSign.png.meta
-guid: 1a4695fbecbd55b45b584248f4f8706c
-========
-guid: c11901d7048ed8243a7365916bed274d
->>>>>>>> main:Assets/01.Scenes/Lobby/Lightmap-1_comp_light.exr.meta
+guid: bd279a7e0adc1d0479c512ec292ee6d1
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -73,11 +69,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-<<<<<<<< HEAD:Assets/05.Materials/CustomSign.png.meta
     textureCompression: 1
-========
-    textureCompression: 0
->>>>>>>> main:Assets/01.Scenes/Lobby/Lightmap-1_comp_light.exr.meta
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
