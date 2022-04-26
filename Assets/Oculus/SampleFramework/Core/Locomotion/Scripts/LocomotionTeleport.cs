@@ -396,8 +396,21 @@ public class LocomotionTeleport : MonoBehaviour
 	/// <param name="enableRotation"></param>
 	private void EnableMotion(bool enableLinear, bool enableRotation)
 	{
-		LocomotionController.PlayerController.EnableLinearMovement = enableLinear;
-		LocomotionController.PlayerController.EnableRotation = enableRotation;
+		StartCoroutine(WaitPlayerController());
+
+		IEnumerator WaitPlayerController()
+		{
+			if (LocomotionController.PlayerController == null)
+            {
+				yield return new WaitForSeconds(1);
+				StartCoroutine(WaitPlayerController());
+            }
+			else
+            {
+				LocomotionController.PlayerController.EnableLinearMovement = enableLinear;
+				LocomotionController.PlayerController.EnableRotation = enableRotation;
+            }
+        }
 	}
 
 	/// <summary>
