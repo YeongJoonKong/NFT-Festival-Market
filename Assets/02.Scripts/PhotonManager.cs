@@ -150,7 +150,7 @@ public class PhotonManager : MonoBehaviourPunCallbacks
         print(1);
         if (cols.gameObject.CompareTag("Player"))
         {
-            StartCoroutine(Loading(cols));
+            // StartCoroutine(Loading(cols));
 
             //SetUserID();
             PhotonNetwork.JoinRandomRoom();
