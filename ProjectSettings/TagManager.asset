@@ -25,6 +25,7 @@ TagManager:
   - Avatar2
   - AvatarDoor
   - TUTORIAL_ITEM
+  - Bird
   - COUNTER
   - INTERACTION
   layers:
@@ -40,6 +41,7 @@ TagManager:
   - Hand
   - Wall
   - SecondFloor
+  - Bird
   - 
   - 
   - 
