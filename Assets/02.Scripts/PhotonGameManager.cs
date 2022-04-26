@@ -25,7 +25,7 @@ public class PhotonGameManager : MonoBehaviourPunCallbacks
         //avatar1.SetActive(false);
         //Vector3 pos = Vector3.zero + Vector3.up * 1.5f; //
         //PhotonNetwork.Instantiate("PlayerNetWork", pos, Quaternion.identity, 0);
-
+        PhotonNetwork.IsMessageQueueRunning = true;
         List<Transform> points = new List<Transform>();
         GameObject.Find("SpawnPointGroup").GetComponentsInChildren<Transform>(points);
         int idx = Random.Range(1, points.Count);

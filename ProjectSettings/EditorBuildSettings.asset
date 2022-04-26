@@ -15,6 +15,9 @@ EditorBuildSettings:
     path: Assets/01.Scenes/Map_01Photon.unity
     guid: 448db9da8d2aebd41b4b3a98bb2787ca
   - enabled: 0
+    path: Assets/01.Scenes/LoadingScene.unity
+    guid: 9fe19523c3b281140b7abc9070e386d2
+  - enabled: 0
     path: 
     guid: 00000000000000000000000000000000
   - enabled: 1
