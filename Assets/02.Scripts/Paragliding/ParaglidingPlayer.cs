@@ -3,8 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using UnityEngine.SceneManagement;
+using Photon.Pun;
+using Photon.Realtime;
 
-public class ParaglidingPlayer : MonoBehaviour
+public class ParaglidingPlayer : MonoBehaviourPunCallbacks
 {
     public float speed = 5.0f;
     public float fallingForce = 0.3f;
@@ -44,7 +46,7 @@ public class ParaglidingPlayer : MonoBehaviour
             if(restartTimer < 0)
             {
                 //SceneManager.LoadScene(SceneManager.GetActiveScene().name);
-                SceneManager.LoadScene("Map_01");
+                PhotonNetwork.JoinRandomRoom();
             }
             else
             {
@@ -73,5 +75,24 @@ public class ParaglidingPlayer : MonoBehaviour
             won = false;
         }
         isGameOver = true;
+    }
+
+    public override void OnJoinRandomFailed(short returnCode, string message)
+    {
+        RoomOptions ro = new RoomOptions();
+        ro.IsOpen = true;
+        ro.IsVisible = true;
+        ro.MaxPlayers = 20;
+
+
+        PhotonNetwork.CreateRoom("room", ro);
+    }
+    public override void OnCreatedRoom()
+    {
+
+    }
+    public override void OnJoinedRoom()
+    {
+        PhotonNetwork.LoadLevel("Map_01");
     }
 }

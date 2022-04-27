@@ -7,8 +7,11 @@ using UnityEngine.Networking;
 using Newtonsoft.Json;
 using System.IO;
 using System.Text;
+using Photon.Pun;
+using Photon.Realtime;
 
-public class GameManager : MonoBehaviour
+
+public class GameManager : MonoBehaviourPunCallbacks
 {
 
     enum State
@@ -108,9 +111,30 @@ public class GameManager : MonoBehaviour
                 Debug.Log(coin);
                 StartCoroutine("Request", coin);
 
-                SceneManager.LoadScene("Map_01");
+                PhotonNetwork.JoinRandomRoom();
+                //SceneManager.LoadScene("Map_01");
             }
         }
+
+        
+    }
+    public override void OnJoinRandomFailed(short returnCode, string message)
+    {
+        RoomOptions ro = new RoomOptions();
+        ro.IsOpen = true;
+        ro.IsVisible = true;
+        ro.MaxPlayers = 20;
+
+        
+        PhotonNetwork.CreateRoom("room", ro);
+    }
+    public override void OnCreatedRoom()
+    {
+       
+    }
+    public override void OnJoinedRoom()
+    {
+        PhotonNetwork.LoadLevel("Map_01");
     }
 
     IEnumerator Request(double coin)
