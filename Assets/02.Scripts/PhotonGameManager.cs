@@ -32,6 +32,8 @@ public class PhotonGameManager : MonoBehaviourPunCallbacks
 
         Vector3 molepos = GameObject.Find("SpawnPoint_mole").GetComponent<Transform>().position;
         Vector3 sharkpos = GameObject.Find("SpawnPoint_Shark").GetComponent<Transform>().position;
+        Vector3 birdpos = GameObject.Find("SpawnPoint_Bird").GetComponent<Transform>().position;
+        Vector3 parapos = GameObject.Find("SpawnPoint_Parachute").GetComponent<Transform>().position;
 
         
 
@@ -46,9 +48,17 @@ public class PhotonGameManager : MonoBehaviourPunCallbacks
         {
             PhotonNetwork.Instantiate("PlayerNetWork", molepos, Quaternion.identity, 0);
         }
-         else if(Playdata.instance.spawnPointData == 2)
+        else if(Playdata.instance.spawnPointData == 2)
         {
             PhotonNetwork.Instantiate("PlayerNetWork", sharkpos, Quaternion.identity, 0);
+        }
+        else if(Playdata.instance.spawnPointData == 3)
+        {
+            PhotonNetwork.Instantiate("PlayerNetWork", birdpos, Quaternion.identity, 0);
+        }
+        else if(Playdata.instance.spawnPointData == 4)
+        {
+            PhotonNetwork.Instantiate("PlayerNetWork", parapos, Quaternion.identity, 0);
         }
 
             
