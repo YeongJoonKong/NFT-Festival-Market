@@ -1,9 +1,5 @@
 fileFormatVersion: 2
-<<<<<<<< HEAD:Assets/04.DownAssets/water-gun/textures/colorLogo.jpg.meta
 guid: 9758e43ba669cda43b083aec4542568b
-========
-guid: 10acbaa28535a9342a6e3bea51fc7cdf
->>>>>>>> main:Assets/01.Scenes/Lobby/Lightmap-0_comp_light.exr.meta
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -73,11 +69,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-<<<<<<<< HEAD:Assets/04.DownAssets/water-gun/textures/colorLogo.jpg.meta
     textureCompression: 1
-========
-    textureCompression: 0
->>>>>>>> main:Assets/01.Scenes/Lobby/Lightmap-0_comp_light.exr.meta
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
