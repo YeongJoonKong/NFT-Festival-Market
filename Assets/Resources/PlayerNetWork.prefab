@@ -243,6 +243,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b1b79e5cbf2df3447bd30857529ca827, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  lr: {fileID: 5377651638489198444}
   avatars:
   - {fileID: 7345739279502876926}
   - {fileID: 7205738756902557337}

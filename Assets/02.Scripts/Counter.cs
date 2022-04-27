@@ -8,28 +8,66 @@ public class Counter : MonoBehaviour
     public GameObject effect;
     public GameObject spawnPosition;
     public TextMeshPro infoText;
-    public GameObject buyText;
+    public TextMeshPro buyText;
+    public GameObject yesBubble;
+    public GameObject noBubble;
+
+    GameObject[] displayItems;
 
     // Start is called before the first frame update
     void Start()
     {
-        // buyText.SetActive(false);
+        buyText.enabled = false;
+        yesBubble.SetActive(false);
+        noBubble.SetActive(false);
+        displayItems = GameObject.FindGameObjectsWithTag("DISPLAY_ITEM");
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        CheckCoin();
     }
 
-    private void OnCollisionEnter(Collision other) 
+    void CheckCoin() 
     {
-        if (other.gameObject.tag == "DISPLAY_ITEM") 
+        int count = 0;
+        foreach (GameObject item in displayItems)
         {
-            // Instantiate(other.gameObject, other.gameObject.GetComponent<NFTObject>().originalPosition, other.gameObject.GetComponent<NFTObject>().originalRotation);
-            other.gameObject.transform.position = spawnPosition.transform.position;
-            effect.SetActive(false);
-            infoText.enabled = false;
+            if (item.transform.position == spawnPosition.transform.position)
+            {
+                count += 1;
+                // isSpawnItem = true;
+                int price = item.GetComponent<NFTObject>().GetObjectPrice();
+                infoText.enabled = false;
+                effect.SetActive(false);
+                CoinCache.coin = 100;
+                if (price > CoinCache.coin)
+                {
+                    buyText.text = "코인이 부족합니다!\n미니게임으로 돈을 벌어보세요!";
+                    buyText.enabled = true;
+                }
+                else
+                {
+                    buyText.text = "구매가 가능합니다!\nNFT로 만들어볼까요?";
+                    buyText.enabled = true;
+                    yesBubble.SetActive(true);
+                    noBubble.SetActive(true);
+                }
+                break;
+            }
+
         }
+
+        if (count == 0)
+        {
+            buyText.text = "-";
+            buyText.enabled = false;
+            yesBubble.SetActive(false);
+            noBubble.SetActive(false);
+            infoText.enabled = true;
+            effect.SetActive(true);
+        }
+
     }
 }
