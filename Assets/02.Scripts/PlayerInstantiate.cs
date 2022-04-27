@@ -101,10 +101,16 @@ public class PlayerInstantiate : MonoBehaviour, IPunObservable
             {
                 count = i;
                 this.avatars[i].SetActive(true);
+
+                
             }
 
         }
     }
+
+
+
+  
     void Start()
     {
 
@@ -115,6 +121,8 @@ public class PlayerInstantiate : MonoBehaviour, IPunObservable
             vrik.solver.spine.headTarget = headTr;
             vrik.solver.leftArm.target = leftHandTr;
             vrik.solver.rightArm.target = rightHandTr;
+
+            
         }
         else
         {
@@ -122,11 +130,36 @@ public class PlayerInstantiate : MonoBehaviour, IPunObservable
             vrik.solver.spine.headTarget = FalseHeadRig;
             vrik.solver.leftArm.target = FalseLeftRig;
             vrik.solver.rightArm.target = FalseRightRig;
+
+            for (int i = 0; i < avatars.Length; i++)
+            {
+                if (avatars[i].tag == avatar)
+                {
+
+                    ChangeLayer(avatars[i].transform, "Default");
+
+
+                }
+
+            }
+
+
         }
 
         displayItem = GameObject.FindGameObjectsWithTag("DISPLAY_ITEM");
 
     }
+
+    public void ChangeLayer(Transform trans,string name)
+    {
+        trans.gameObject.layer = LayerMask.NameToLayer(name);
+        foreach (Transform child in trans)
+        {
+            ChangeLayer(child, name);
+        }
+    }
+
+    
     //�Ӹ�����ȭ����
     private Quaternion currRotHead;
     private Vector3 curPosHead;
