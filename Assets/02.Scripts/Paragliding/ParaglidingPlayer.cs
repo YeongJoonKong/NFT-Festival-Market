@@ -8,6 +8,7 @@ using Photon.Realtime;
 
 public class ParaglidingPlayer : MonoBehaviourPunCallbacks
 {
+   bool checkphoton;
     public float speed = 5.0f;
     public float fallingForce = 0.3f;
     public float restartTimer = 3.0f;
@@ -22,7 +23,7 @@ public class ParaglidingPlayer : MonoBehaviourPunCallbacks
     // Start is called before the first frame update
     void Start()
     {
-        infoText.text = "¸¶À» ºÏÂÊ¿¡ ÀÖ´Â ²É¿¡ ¹«»çÈ÷ ÂøÁö¸¦ ÇÏ¼¼¿ä!";
+        infoText.text = "ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ê¿ï¿½ ï¿½Ö´ï¿½ ï¿½É¿ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ï¼ï¿½ï¿½ï¿½!";
        
     }
 
@@ -45,20 +46,29 @@ public class ParaglidingPlayer : MonoBehaviourPunCallbacks
 
             if(restartTimer < 0)
             {
-                //SceneManager.LoadScene(SceneManager.GetActiveScene().name);
-                PhotonNetwork.JoinRandomRoom();
+                if (isGameOver && !checkphoton) {
+                    // checkphoton = true;
+                    RoomOptions ro = new RoomOptions();
+                    ro.IsOpen = true;
+                    ro.IsVisible = true;
+                    ro.MaxPlayers = 20;
+                    
+                    PhotonNetwork.JoinRandomOrCreateRoom(roomOptions: ro);
+                    PhotonNetwork.JoinRandomRoom();
+                    
+                }
             }
             else
             {
                 if(won == true)
                 {
-                    infoText.text = "ÀßÇß¾î¿ä! ¼º°øÇß¾î¿ä!";
-                    infoText.text += "\n¸¶À»·Î ´Ù½Ã µ¹¾Æ°©´Ï´Ù." + Mathf.Ceil(restartTimer);
+                    infoText.text = "ï¿½ï¿½ï¿½ß¾ï¿½ï¿½! ï¿½ï¿½ï¿½ï¿½ï¿½ß¾ï¿½ï¿½!";
+                    infoText.text += "\nï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ù½ï¿½ ï¿½ï¿½ï¿½Æ°ï¿½ï¿½Ï´ï¿½." + Mathf.Ceil(restartTimer);
                 }
                 else
                 {
-                    infoText.text = "¾Æ½±³×¿ä ´ÙÀ½¿¡ ´Ù½ÃÇÑ¹ø ÇØº¸¼¼¿ä!";
-                    infoText.text += "\n¸¶À»·Î ´Ù½Ã µ¹¾Æ°©´Ï´Ù." + Mathf.Ceil(restartTimer);
+                    infoText.text = "ï¿½Æ½ï¿½ï¿½×¿ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ù½ï¿½ï¿½Ñ¹ï¿½ ï¿½Øºï¿½ï¿½ï¿½ï¿½ï¿½!";
+                    infoText.text += "\nï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ù½ï¿½ ï¿½ï¿½ï¿½Æ°ï¿½ï¿½Ï´ï¿½." + Mathf.Ceil(restartTimer);
                 }
             }
         }

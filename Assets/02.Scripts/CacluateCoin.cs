@@ -21,7 +21,7 @@ public class CacluateCoin : MonoBehaviour
                     if (txt[i].text.Contains("Coin"))
                     {
                         double price = Double.Parse(txt[i].text.Replace(" Coin", ""));
-                        price *= 0.0001;
+                        price *= 0.00001;
                         txt[i].text = price.ToString() + " MATIC";
                     }
                 }

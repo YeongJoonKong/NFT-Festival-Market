@@ -28,7 +28,7 @@ public class birdBombBird : MonoBehaviour
         GameObject explosion = Instantiate(birdExplosionFactory);
         explosion.transform.position = transform.position;
         Destroy(gameObject);
-        birdScoreManager.instance.AddScore(10);
+        birdScoreManager.instance.AddScore(20);
     }
 
     // Start is called before the first frame update

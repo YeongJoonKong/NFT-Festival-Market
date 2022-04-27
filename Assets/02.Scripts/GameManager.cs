@@ -33,6 +33,8 @@ public class GameManager : MonoBehaviourPunCallbacks
     State state;
     float timer;
 
+    bool checkCoroutine;
+
     public GameObject GamePlayingUI;
     public GameObject GameOverUI;
 
@@ -109,9 +111,15 @@ public class GameManager : MonoBehaviourPunCallbacks
 
                 double coin = totalScore / 1000000;
                 Debug.Log(coin);
-                StartCoroutine("Request", coin);
-
-                PhotonNetwork.JoinRandomRoom();
+                if (!checkCoroutine) 
+                {
+                    StartCoroutine("Request", coin);
+                    RoomOptions ro = new RoomOptions();
+                    ro.IsOpen = true;
+                    ro.IsVisible = true;
+                    ro.MaxPlayers = 20;
+                    PhotonNetwork.JoinRandomOrCreateRoom(roomOptions: ro);
+                }
                 //SceneManager.LoadScene("Map_01");
             }
         }
@@ -139,6 +147,7 @@ public class GameManager : MonoBehaviourPunCallbacks
 
     IEnumerator Request(double coin)
     {
+        checkCoroutine = true;
         int randomIndex = TicketCache.randomIndex;
         string jsonPath = string.Format("Assets/07.Json/TicketInfo{0}.json", randomIndex);
         PurchaseTicketModel readJson = LoadJsonFile<PurchaseTicketModel>(jsonPath);
