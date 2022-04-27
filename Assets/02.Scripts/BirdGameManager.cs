@@ -70,7 +70,7 @@ public class BirdGameManager : MonoBehaviour
                 Sign.SetActive(false);
             }
 
-            if (birdScoreManager.instance.BdCurrentScore >= 180)
+            if (birdScoreManager.instance.BdCurrentScore >= 360)
             {
                 this.state = State.GAMEOVER;
             }

@@ -19,7 +19,7 @@ public class BirdHandController : MonoBehaviour
     public GameObject bombFactory;
     GameObject bomb;
     public Transform hand;
-    public float kAdjustForce = 3;
+    public float kAdjustForce = 4;
 
     public bool isThrowingCheck;
 
