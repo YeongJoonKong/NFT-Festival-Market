@@ -1,12 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using TMPro;
 using UnityEngine.Networking;
 using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
+using System.IO;
+using System.Text;
 
 public class GameManager : MonoBehaviour
 {
@@ -102,61 +102,33 @@ public class GameManager : MonoBehaviour
 
             if(this.timer > waitTime)
             {
-                int totalScore = WackAMoleScoreManager.instance.CurrentScore;
-                //290 ~390
-                int coin = totalScore / 1000000;
+                double totalScore = WackAMoleScoreManager.instance.CurrentScore;
 
-                // WWWForm form = new WWWForm();
-                
-                // PurchaseTicketModel readJson = LoadJsonFile<PurchaseTicketModel>("Assets/07.json/TicketInfo1.json");
+                double coin = totalScore / 1000000;
+                Debug.Log(coin);
+                StartCoroutine("Request", coin);
 
-                // string walletInfo = JsonConvert.SerializeObject(readJson.walletInfo);
-                // form.AddField("walletInfo", walletInfo);
-                // form.AddField("filename", filename);
-                
-                PurchaseTicketModel readJson = LoadJsonFile<PurchaseTicketModel>("Assets/07.json/TicketInfo1.json");
-                string walletAddress = JsonConvert.SerializeObject(readJson.walletInfo.address);
-                
-                
-
-                using (UnityWebRequest request = UnityWebRequest.Post(Constant.BASE_URL + Constant.EXECUTE_TRANSFER_COIN_TO_PLAYER))
-                {
-                }
-                // using (UnityWebRequest request = UnityWebRequest.Post(Constant.BASE_URL + Constant.CREATE_NFT_OBJECT_CONTRACT, form))
-                // {
-                //     yield return request.SendWebRequest();
-
-                //     if (request.result != UnityWebRequest.Result.Success){
-                //         MakeFailedResponse();
-                //     } else {
-                //         var result = new JObject();
-                //         result.Merge(JObject.Parse(request.downloadHandler.text));
-                //         result.Merge(JObject.Parse(walletInfo));
-
-                //         string res = JsonConvert.SerializeObject(result);
-                //         UnityWebRequest request1 = new UnityWebRequest(Constant.BASE_URL + Constant.CREATE_NFT_OBJECT, "POST");
-                        
-                //         byte[] encodedRequest = new System.Text.UTF8Encoding().GetBytes(res);
-                //         request1.uploadHandler = (UploadHandler)new UploadHandlerRaw(encodedRequest);
-                //         request1.downloadHandler = new DownloadHandlerBuffer();
-                //         request1.SetRequestHeader("Content-Type", "application/json");
-
-                //         yield return request1.SendWebRequest();
-
-                //         if (request1.result != UnityWebRequest.Result.Success) {
-
-                //         } else {
-                //             CreateJsonFile(Constant.SAVE_JSON_PATH, "NFTInfo_"+filename, request1.downloadHandler.text);
-                //         }
-                //     }
-                // }
-                ///execute/transfer/coin
                 SceneManager.LoadScene("Map_01");
             }
         }
     }
 
-    
+    IEnumerator Request(double coin)
+    {
+        PurchaseTicketModel readJson = LoadJsonFile<PurchaseTicketModel>("Assets/07.json/TicketInfo1.json");
+        string walletAddress = readJson.walletInfo.address;
+
+        string json = "{\"walletAddress\":\""+walletAddress+"\", \"value\": "+coin+"}";
+        var request = new UnityWebRequest(Constant.BASE_URL + Constant.EXECUTE_TRANSFER_COIN_TO_PLAYER, "POST");
+        byte[] bodyRaw = Encoding.UTF8.GetBytes(json);
+        request.uploadHandler = (UploadHandler) new UploadHandlerRaw(bodyRaw);
+        request.downloadHandler = (DownloadHandler) new DownloadHandlerBuffer();
+        request.SetRequestHeader("Content-Type", "application/json");
+
+        yield return request.Send();
+
+        Debug.Log(request.responseCode);
+    }
 
     T LoadJsonFile<T>(string loadPath)
     {
