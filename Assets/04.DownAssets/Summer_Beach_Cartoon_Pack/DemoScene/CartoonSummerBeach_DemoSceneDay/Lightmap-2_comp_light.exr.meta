@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<<< HEAD:Assets/04.DownAssets/Summer_Beach_Cartoon_Pack/DemoScene/CartoonSummerBeach_DemoSceneDay/Lightmap-2_comp_light.exr.meta
 guid: 911701983a0fc694d8d4e3c56ac3b9f9
+========
+guid: 57f7dd0851e206e4d92c7b39bb7001c1
+>>>>>>>> main:Assets/01.Scenes/Lobby/Lightmap-2_comp_light.exr.meta
 TextureImporter:
   fileIDToRecycleName: {}
   externalObjects: {}
@@ -61,7 +65,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 2
+    textureCompression: 0
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0

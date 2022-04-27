@@ -1,74 +1,200 @@
 fileFormatVersion: 2
 guid: 9e7281265e1d0424d94d386f277208d9
 ModelImporter:
-  serializedVersion: 22
-  fileIDToRecycleName:
-    100000: Pumpkin_v1_1
-    100002: Pumpkin_v1_1c
-    100004: Pumpkin_v1_2
-    100006: Pumpkin_v1_2c
-    100008: Pumpkin_v1_3
-    100010: Pumpkin_v1_3c
-    100012: Pumpkin_v1_4
-    100014: Pumpkin_v1_4c
-    100016: Pumpkin_v1_5
-    100018: Pumpkin_v1_5c
-    100020: Pumpkin_v1_6
-    100022: Pumpkin_v1_6c
-    100024: //RootNode
-    400000: Pumpkin_v1_1
-    400002: Pumpkin_v1_1c
-    400004: Pumpkin_v1_2
-    400006: Pumpkin_v1_2c
-    400008: Pumpkin_v1_3
-    400010: Pumpkin_v1_3c
-    400012: Pumpkin_v1_4
-    400014: Pumpkin_v1_4c
-    400016: Pumpkin_v1_5
-    400018: Pumpkin_v1_5c
-    400020: Pumpkin_v1_6
-    400022: Pumpkin_v1_6c
-    400024: //RootNode
-    2100000: 'Material #0'
-    2300000: Pumpkin_v1_1
-    2300002: Pumpkin_v1_1c
-    2300004: Pumpkin_v1_2
-    2300006: Pumpkin_v1_2c
-    2300008: Pumpkin_v1_3
-    2300010: Pumpkin_v1_3c
-    2300012: Pumpkin_v1_4
-    2300014: Pumpkin_v1_4c
-    2300016: Pumpkin_v1_5
-    2300018: Pumpkin_v1_5c
-    2300020: Pumpkin_v1_6
-    2300022: Pumpkin_v1_6c
-    3300000: Pumpkin_v1_1
-    3300002: Pumpkin_v1_1c
-    3300004: Pumpkin_v1_2
-    3300006: Pumpkin_v1_2c
-    3300008: Pumpkin_v1_3
-    3300010: Pumpkin_v1_3c
-    3300012: Pumpkin_v1_4
-    3300014: Pumpkin_v1_4c
-    3300016: Pumpkin_v1_5
-    3300018: Pumpkin_v1_5c
-    3300020: Pumpkin_v1_6
-    3300022: Pumpkin_v1_6c
-    4300000: Pumpkin_v1_6
-    4300002: Pumpkin_v1_2
-    4300004: Pumpkin_v1_1
-    4300006: Pumpkin_v1_3
-    4300008: Pumpkin_v1_2c
-    4300010: Pumpkin_v1_1c
-    4300012: Pumpkin_v1_4
-    4300014: Pumpkin_v1_5
-    4300016: Pumpkin_v1_3c
-    4300018: Pumpkin_v1_4c
-    4300020: Pumpkin_v1_5c
-    4300022: Pumpkin_v1_6c
+  serializedVersion: 21202
+  internalIDToNameTable:
+  - first:
+      1: 100000
+    second: Pumpkin_v1_1
+  - first:
+      1: 100002
+    second: Pumpkin_v1_1c
+  - first:
+      1: 100004
+    second: Pumpkin_v1_2
+  - first:
+      1: 100006
+    second: Pumpkin_v1_2c
+  - first:
+      1: 100008
+    second: Pumpkin_v1_3
+  - first:
+      1: 100010
+    second: Pumpkin_v1_3c
+  - first:
+      1: 100012
+    second: Pumpkin_v1_4
+  - first:
+      1: 100014
+    second: Pumpkin_v1_4c
+  - first:
+      1: 100016
+    second: Pumpkin_v1_5
+  - first:
+      1: 100018
+    second: Pumpkin_v1_5c
+  - first:
+      1: 100020
+    second: Pumpkin_v1_6
+  - first:
+      1: 100022
+    second: Pumpkin_v1_6c
+  - first:
+      1: 100024
+    second: //RootNode
+  - first:
+      4: 400000
+    second: Pumpkin_v1_1
+  - first:
+      4: 400002
+    second: Pumpkin_v1_1c
+  - first:
+      4: 400004
+    second: Pumpkin_v1_2
+  - first:
+      4: 400006
+    second: Pumpkin_v1_2c
+  - first:
+      4: 400008
+    second: Pumpkin_v1_3
+  - first:
+      4: 400010
+    second: Pumpkin_v1_3c
+  - first:
+      4: 400012
+    second: Pumpkin_v1_4
+  - first:
+      4: 400014
+    second: Pumpkin_v1_4c
+  - first:
+      4: 400016
+    second: Pumpkin_v1_5
+  - first:
+      4: 400018
+    second: Pumpkin_v1_5c
+  - first:
+      4: 400020
+    second: Pumpkin_v1_6
+  - first:
+      4: 400022
+    second: Pumpkin_v1_6c
+  - first:
+      4: 400024
+    second: //RootNode
+  - first:
+      21: 2100000
+    second: Material #0
+  - first:
+      23: 2300000
+    second: Pumpkin_v1_1
+  - first:
+      23: 2300002
+    second: Pumpkin_v1_1c
+  - first:
+      23: 2300004
+    second: Pumpkin_v1_2
+  - first:
+      23: 2300006
+    second: Pumpkin_v1_2c
+  - first:
+      23: 2300008
+    second: Pumpkin_v1_3
+  - first:
+      23: 2300010
+    second: Pumpkin_v1_3c
+  - first:
+      23: 2300012
+    second: Pumpkin_v1_4
+  - first:
+      23: 2300014
+    second: Pumpkin_v1_4c
+  - first:
+      23: 2300016
+    second: Pumpkin_v1_5
+  - first:
+      23: 2300018
+    second: Pumpkin_v1_5c
+  - first:
+      23: 2300020
+    second: Pumpkin_v1_6
+  - first:
+      23: 2300022
+    second: Pumpkin_v1_6c
+  - first:
+      33: 3300000
+    second: Pumpkin_v1_1
+  - first:
+      33: 3300002
+    second: Pumpkin_v1_1c
+  - first:
+      33: 3300004
+    second: Pumpkin_v1_2
+  - first:
+      33: 3300006
+    second: Pumpkin_v1_2c
+  - first:
+      33: 3300008
+    second: Pumpkin_v1_3
+  - first:
+      33: 3300010
+    second: Pumpkin_v1_3c
+  - first:
+      33: 3300012
+    second: Pumpkin_v1_4
+  - first:
+      33: 3300014
+    second: Pumpkin_v1_4c
+  - first:
+      33: 3300016
+    second: Pumpkin_v1_5
+  - first:
+      33: 3300018
+    second: Pumpkin_v1_5c
+  - first:
+      33: 3300020
+    second: Pumpkin_v1_6
+  - first:
+      33: 3300022
+    second: Pumpkin_v1_6c
+  - first:
+      43: 4300000
+    second: Pumpkin_v1_6
+  - first:
+      43: 4300002
+    second: Pumpkin_v1_2
+  - first:
+      43: 4300004
+    second: Pumpkin_v1_1
+  - first:
+      43: 4300006
+    second: Pumpkin_v1_3
+  - first:
+      43: 4300008
+    second: Pumpkin_v1_2c
+  - first:
+      43: 4300010
+    second: Pumpkin_v1_1c
+  - first:
+      43: 4300012
+    second: Pumpkin_v1_4
+  - first:
+      43: 4300014
+    second: Pumpkin_v1_5
+  - first:
+      43: 4300016
+    second: Pumpkin_v1_3c
+  - first:
+      43: 4300018
+    second: Pumpkin_v1_4c
+  - first:
+      43: 4300020
+    second: Pumpkin_v1_5c
+  - first:
+      43: 4300022
+    second: Pumpkin_v1_6c
   externalObjects: {}
   materials:
-    importMaterials: 0
+    materialImportMode: 0
     materialName: 0
     materialSearch: 1
     materialLocation: 1
@@ -77,6 +203,7 @@ ModelImporter:
     bakeSimulation: 0
     resampleCurves: 1
     optimizeGameObjects: 0
+    removeConstantScaleCurves: 0
     motionNodeName: 
     rigImportErrors: 
     rigImportWarnings: 
@@ -100,21 +227,33 @@ ModelImporter:
     globalScale: 1
     meshCompression: 0
     addColliders: 0
+    useSRGBMaterialColor: 1
+    sortHierarchyByName: 1
     importVisibility: 1
     importBlendShapes: 1
     importCameras: 1
     importLights: 1
+    nodeNameCollisionStrategy: 0
+    fileIdsGeneration: 1
     swapUVChannels: 0
-    generateSecondaryUV: 0
+    generateSecondaryUV: 1
     useFileUnits: 1
-    optimizeMeshForGPU: 1
     keepQuads: 0
     weldVertices: 1
+    bakeAxisConversion: 0
     preserveHierarchy: 0
+    skinWeightsMode: 0
+    maxBonesPerVertex: 4
+    minBoneWeight: 0.001
+    optimizeBones: 1
+    meshOptimizationFlags: -1
     indexFormat: 0
     secondaryUVAngleDistortion: 8
     secondaryUVAreaDistortion: 15.000001
     secondaryUVHardAngle: 88
+    secondaryUVMarginMethod: 0
+    secondaryUVMinLightmapResolution: 40
+    secondaryUVMinObjectScale: 1
     secondaryUVPackMargin: 4
     useFileScale: 1
   tangentSpace:
@@ -122,10 +261,13 @@ ModelImporter:
     normalImportMode: 0
     tangentImportMode: 3
     normalCalculationMode: 4
+    legacyComputeAllNormalsFromSmoothingGroupsWhenMeshHasBlendShapes: 1
+    blendShapeNormalImportMode: 1
+    normalSmoothingSource: 0
+  referencedClips: []
   importAnimation: 0
-  copyAvatar: 0
   humanDescription:
-    serializedVersion: 2
+    serializedVersion: 3
     human: []
     skeleton: []
     armTwist: 0.5
@@ -135,14 +277,17 @@ ModelImporter:
     armStretch: 0.05
     legStretch: 0.05
     feetSpacing: 0
+    globalScale: 1
     rootMotionBoneName: 
-    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
     hasTranslationDoF: 0
     hasExtraRoot: 0
     skeletonHasParents: 1
   lastHumanDescriptionAvatarSource: {instanceID: 0}
+  autoGenerateAvatarMappingIfUnspecified: 1
   animationType: 0
   humanoidOversampling: 1
+  avatarSetup: 0
+  addHumanoidExtraRootOnlyWhenUsingAvatar: 0
   additionalBone: 0
   userData: 
   assetBundleName: 

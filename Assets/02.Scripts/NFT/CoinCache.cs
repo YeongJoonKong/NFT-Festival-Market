@@ -1,4 +1,4 @@
 public class CoinCache
 {
-    public static int coin;
+    public static double coin;
 }

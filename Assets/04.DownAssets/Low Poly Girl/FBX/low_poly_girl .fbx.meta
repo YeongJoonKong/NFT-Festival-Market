@@ -1,7 +1,7 @@
 fileFormatVersion: 2
 guid: 99ea5eedb7d32f64882d40da85881906
 ModelImporter:
-  serializedVersion: 20200
+  serializedVersion: 21202
   internalIDToNameTable:
   - first:
       74: 684805777971307724
@@ -132,58 +132,12 @@ ModelImporter:
     bakeSimulation: 0
     resampleCurves: 1
     optimizeGameObjects: 0
+    removeConstantScaleCurves: 0
     motionNodeName: 
     rigImportErrors: 
     rigImportWarnings: 
     animationImportErrors: 
-    animationImportWarnings: "\nClip 'Rig|climb_high' has import animation warnings
-      that might lower retargeting quality:\nNote: Activate translation DOF on avatar
-      to improve retargeting quality.\n\t'Upper_Arm_L' has translation animation
-      that will be discarded.\n\t'Upper_Leg_L' has translation animation that will
-      be discarded.\n\t'Upper_Leg_R' has translation animation that will be discarded.\n\nClip
-      'Rig|climb_low' has import animation warnings that might lower retargeting
-      quality:\nNote: Activate translation DOF on avatar to improve retargeting quality.\n\t'Upper_Leg_R'
-      has translation animation that will be discarded.\n\nClip 'Rig|Idle 2' has
-      import animation warnings that might lower retargeting quality:\nNote: Activate
-      translation DOF on avatar to improve retargeting quality.\n\t'Upper_Leg_L'
-      has translation animation that will be discarded.\n\t'Upper_Leg_R' has translation
-      animation that will be discarded.\n\nClip 'Rig|Idle 3' has import animation
-      warnings that might lower retargeting quality:\nNote: Activate translation
-      DOF on avatar to improve retargeting quality.\n\t'Upper_Leg_L' has translation
-      animation that will be discarded.\n\nClip 'Rig|inspect_ground_end' has import
-      animation warnings that might lower retargeting quality:\nNote: Activate translation
-      DOF on avatar to improve retargeting quality.\n\t'Index_R' has translation
-      animation that will be discarded.\n\t'Middle_R' has translation animation that
-      will be discarded.\n\t'Ring_L' has translation animation that will be discarded.\n\t'Pinky_R'
-      has translation animation that will be discarded.\n\nClip 'Rig|inspect_ground_start'
-      has import animation warnings that might lower retargeting quality:\nNote:
-      Activate translation DOF on avatar to improve retargeting quality.\n\t'Index_R'
-      has translation animation that will be discarded.\n\t'Middle_R' has translation
-      animation that will be discarded.\n\t'Ring_L' has translation animation that
-      will be discarded.\n\t'Pinky_R' has translation animation that will be discarded.\n\nClip
-      'Rig|jump_end' has import animation warnings that might lower retargeting quality:\nNote:
-      Activate translation DOF on avatar to improve retargeting quality.\n\t'Upper_Arm_L'
-      has translation animation that will be discarded.\n\nClip 'Rig|jump_falling'
-      has import animation warnings that might lower retargeting quality:\nNote:
-      Activate translation DOF on avatar to improve retargeting quality.\n\t'Upper_Arm_L'
-      has translation animation that will be discarded.\n\nClip 'Rig|jump_fwd' has
-      import animation warnings that might lower retargeting quality:\nNote: Activate
-      translation DOF on avatar to improve retargeting quality.\n\t'Upper_Arm_L'
-      has translation animation that will be discarded.\n\nClip 'Rig|jump_loop' has
-      import animation warnings that might lower retargeting quality:\nNote: Activate
-      translation DOF on avatar to improve retargeting quality.\n\t'Upper_Leg_R'
-      has translation animation that will be discarded.\n\nClip 'Rig|run' has import
-      animation warnings that might lower retargeting quality:\nNote: Activate translation
-      DOF on avatar to improve retargeting quality.\n\t'Upper_Leg_L' has translation
-      animation that will be discarded.\n\t'Upper_Leg_R' has translation animation
-      that will be discarded.\n\nClip 'Rig|walk' has import animation warnings that
-      might lower retargeting quality:\nNote: Activate translation DOF on avatar
-      to improve retargeting quality.\n\t'Upper_Leg_L' has translation animation
-      that will be discarded.\n\t'Upper_Leg_R' has translation animation that will
-      be discarded.\n\nClip 'Rig|walk_fast' has import animation warnings that might
-      lower retargeting quality:\nNote: Activate translation DOF on avatar to improve
-      retargeting quality.\n\t'Upper_Leg_L' has translation animation that will be
-      discarded.\n\t'Upper_Leg_R' has translation animation that will be discarded.\n"
+    animationImportWarnings: 
     animationRetargetingWarnings: 
     animationDoRetargetingWarnings: 0
     importAnimatedCustomProperties: 0
@@ -1252,9 +1206,10 @@ ModelImporter:
     importBlendShapes: 1
     importCameras: 1
     importLights: 1
+    nodeNameCollisionStrategy: 0
     fileIdsGeneration: 2
     swapUVChannels: 0
-    generateSecondaryUV: 0
+    generateSecondaryUV: 1
     useFileUnits: 1
     keepQuads: 0
     weldVertices: 1
@@ -1263,6 +1218,7 @@ ModelImporter:
     skinWeightsMode: 0
     maxBonesPerVertex: 4
     minBoneWeight: 0.001
+    optimizeBones: 1
     meshOptimizationFlags: -1
     indexFormat: 0
     secondaryUVAngleDistortion: 8

@@ -10,7 +10,7 @@ public class WaterBullet : MonoBehaviour
 
     IEnumerator Hit(Vector3 target)
     {
-        SharkScoreManager.Instance.AddScore(1);
+        SharkScoreManager.Instance.AddScore(20);
         GameObject hittingEffect = Instantiate(HittingEffect, transform.position, Quaternion.identity);
         Destroy(this.gameObject);
         yield return new WaitForSeconds(0.1f);
@@ -26,14 +26,14 @@ public class WaterBullet : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        transform.position += Vector3.forward * Time.deltaTime * moveSpeed;
-        //Vector3.forward ´Â ¿ùµåÁÂÇ¥¿¡¼­ÀÇ ¾Õ ¹æÇâ
+        //transform.position += Vector3.forward * Time.deltaTime * moveSpeed;
+        //Vector3.forward ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ç¥ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
         transform.position += transform.forward * Time.deltaTime * moveSpeed;
-        //transform.forward ´Â ÀÚ±â ÀÚ½ÅÀ» ±âÁØÀ¸·Î ¾Õ ¹æÇâ
+        //transform.forward ï¿½ï¿½ ï¿½Ú±ï¿½ ï¿½Ú½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
         
-        Vector3 dir = transform.forward;
+        //Vector3 dir = transform.forward;
 
-        transform.position += (dir * moveSpeed) * Time.deltaTime; 
+        //transform.position += (dir * moveSpeed) * Time.deltaTime; 
     }
 
     private void OnTriggerEnter(Collider other)

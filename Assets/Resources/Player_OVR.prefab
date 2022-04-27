@@ -153,6 +153,14 @@ MonoBehaviour:
   - {fileID: 3451924130615297655}
   - {fileID: 3451924130457594584}
   - {fileID: 3451924130518420776}
+  raytext: {fileID: 0}
+  rayUI: {fileID: 0}
+  rotationUI: {fileID: 0}
+  Lights: []
+  sfx: []
+  vfx: {fileID: 0}
+  joystickHighlight: {fileID: 0}
+  aButtonHighlight: {fileID: 0}
 --- !u!114 &7965966467286010590
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -165,11 +173,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b1b79e5cbf2df3447bd30857529ca827, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  lr: {fileID: 0}
   avatars:
   - {fileID: 3451924130615297655}
   - {fileID: 3451924130457594584}
   - {fileID: 3451924130518420776}
   CameaRig: {fileID: 0}
+  userHigh: 0
+  rightHandAnchor: {fileID: 0}
+  FalseHeadRig: {fileID: 0}
+  FalseLeftRig: {fileID: 0}
+  FalseRightRig: {fileID: 0}
+  FalseRightHandAnchor: {fileID: 0}
+  FalseRigSmooteness: 10
+  vrik: {fileID: 0}
+  Avrik: []
+  controller: {fileID: 0}
+  ovrcontroller: {fileID: 0}
 --- !u!120 &2924894745018835636
 LineRenderer:
   m_ObjectHideFlags: 0
@@ -288,6 +308,7 @@ MonoBehaviour:
   OwnershipTransfer: 0
   observableSearch: 2
   ObservedComponents:
+  - {fileID: 7965966467286010590}
   - {fileID: 1794871910222945849}
   sceneViewId: 0
   InstantiationId: 0

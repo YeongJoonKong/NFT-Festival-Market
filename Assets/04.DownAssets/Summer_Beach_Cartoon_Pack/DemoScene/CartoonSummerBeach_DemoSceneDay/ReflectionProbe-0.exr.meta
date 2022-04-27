@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<<< HEAD:Assets/04.DownAssets/Summer_Beach_Cartoon_Pack/DemoScene/CartoonSummerBeach_DemoSceneDay/ReflectionProbe-0.exr.meta
 guid: cc4a70d6fec8d4242b28fda2c85b2db3
+========
+guid: 6cd5e7294f0f7be4aa89e131da9505b4
+>>>>>>>> main:Assets/04.DownAssets/Hovl Studio/RPG VFX Bundle/Demo scenes/Demo AOE skills/ReflectionProbe-1.exr.meta
 TextureImporter:
   fileIDToRecycleName:
     8900000: generatedCubemap

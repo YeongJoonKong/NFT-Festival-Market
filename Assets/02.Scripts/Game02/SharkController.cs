@@ -15,6 +15,9 @@ public class SharkController : MonoBehaviour
 
     bool isWaterFloorChecking;
 
+    AudioSource audioSource;
+    public AudioClip sharkFallingSound;
+    public AudioClip BubblingSound;
     enum State
     {
         UNDER_GOUND,
@@ -33,6 +36,7 @@ public class SharkController : MonoBehaviour
         }
 
         this.gameObject.transform.position = new Vector3(transform.position.x, Bottom -0.5f, transform.position.z);
+        audioSource.PlayOneShot(BubblingSound);
         return true;
     }
 
@@ -48,6 +52,7 @@ public class SharkController : MonoBehaviour
     void Start()
     {
         this.state = State.UNDER_GOUND;
+        audioSource = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -77,8 +82,6 @@ public class SharkController : MonoBehaviour
         }
         else if(this.state == State.DOWN)
         {
-            //transform.Translate(0, Time.deltaTime * -MovingSpeed, 0);
-
             transform.position = Vector3.Lerp(transform.position, transform.position + Vector3.down * Random.Range(3, 16), Time.deltaTime * 0.6f);
 
             if(transform.position.y < Bottom)
@@ -97,6 +100,7 @@ public class SharkController : MonoBehaviour
             {
                 GameObject waterEffect02 = Instantiate(WaterEffect02);
                 waterEffect02.transform.position = new Vector3(transform.position.x, 0, transform.position.z);
+                audioSource.PlayOneShot(sharkFallingSound);
             }
         }
     }

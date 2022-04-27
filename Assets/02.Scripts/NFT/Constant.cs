@@ -13,4 +13,8 @@ public class Constant
     public static string PURCHASE_NFT_TICKET_API_URL = "/users/purchase/ticket";
     public static string CREATE_WALLET_AND_CONTRACT = "/users/create/wallet";
     public static string CREATE_NFT_TICKET = "/users/create/ticket";
+    public static string CREATE_NFT_OBJECT_CONTRACT = "/users/create/NFTObjectContractId";
+    public static string CREATE_NFT_OBJECT = "/users/create/NFTObject";
+    public static string EXECUTE_TRANSFER_COIN_TO_PLAYER = "/execute/transfer/coinToplayer";
+    public static string EXECUTE_TRANSFER_COIN_FROM_PLAYER = "/execute/transfer/coinFromplayer";
 }

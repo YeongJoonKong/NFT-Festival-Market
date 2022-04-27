@@ -25,7 +25,9 @@ TagManager:
   - Avatar2
   - AvatarDoor
   - TUTORIAL_ITEM
+  - Bird
   - COUNTER
+  - INTERACTION
   layers:
   - Default
   - TransparentFX
@@ -39,6 +41,7 @@ TagManager:
   - Hand
   - Wall
   - SecondFloor
+  - Bird
   - 
   - 
   - 

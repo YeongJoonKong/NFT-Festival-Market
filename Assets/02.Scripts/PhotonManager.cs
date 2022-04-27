@@ -65,10 +65,10 @@ public class PhotonManager : MonoBehaviourPunCallbacks
     {
         Debug.Log($"code={returnCode},message={message}");
         //��Ӽ�����
-        RoomOptions ro = new RoomOptions();
-        ro.IsOpen = true;
-        ro.IsVisible = true;
-        ro.MaxPlayers = 20;
+        // RoomOptions ro = new RoomOptions();
+        // ro.IsOpen = true;
+        // ro.IsVisible = true;
+        // ro.MaxPlayers = 20;
 
         //����� �Լ�
         OnMakeeRoomButtonClick();
@@ -88,6 +88,8 @@ public class PhotonManager : MonoBehaviourPunCallbacks
         //{
             //  ���濡�� ���ε���
             PhotonNetwork.LoadLevel("Map_01");
+            //PhotonNetwork.LevelLoadingProgress
+
         //}
 
 
@@ -148,11 +150,27 @@ public class PhotonManager : MonoBehaviourPunCallbacks
         print(1);
         if (cols.gameObject.CompareTag("Player"))
         {
+            // StartCoroutine(Loading(cols));
+
             //SetUserID();
-            PhotonNetwork.JoinRandomRoom();
+            // PhotonNetwork.JoinRandomRoom();
+
+            RoomOptions ro = new RoomOptions();
+            ro.IsOpen = true;
+            ro.IsVisible = true;
+            ro.MaxPlayers = 20;
+            PhotonNetwork.JoinRandomOrCreateRoom(roomOptions: ro);
         }
         //SceneManager.LoadScene("Map_01");
     }
 
+    IEnumerator Loading(Collider cols)
+    {
+        Canvas loading = cols.GetComponentInChildren<Canvas>();
+        
+        loading.enabled = true;
+
+        yield return null;
+    }
     #endregion
 }

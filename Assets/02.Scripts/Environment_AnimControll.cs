@@ -25,7 +25,26 @@ public class Environment_AnimControll : MonoBehaviour
     {
         anim = GetComponent<Animator>();
 
-        player = GameObject.FindWithTag("Player");
+        StartCoroutine(Findplayer());
+
+
+        IEnumerator Findplayer()
+        {
+            if (GameObject.FindWithTag("Player")==null)
+            {
+                yield return new WaitForSeconds(1);
+                StartCoroutine(Findplayer());
+            }
+            else
+            {
+                //if (!(GameObject.FindWithTag("Player") == null))
+                {
+                player = GameObject.FindWithTag("Player");
+                }
+            }
+        }
+
+        //player = GameObject.FindWithTag("Player");
 
         canvas = GetComponentInChildren<Canvas>();
 
@@ -50,6 +69,9 @@ public class Environment_AnimControll : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (player !=null)
+        {
+
         if (canvas != null)
         {
             dist = Vector3.Distance(transform.position, player.transform.position);
@@ -74,6 +96,7 @@ public class Environment_AnimControll : MonoBehaviour
                 StartCoroutine(OnIdle());
             }
             
+        }
         }
         
     }

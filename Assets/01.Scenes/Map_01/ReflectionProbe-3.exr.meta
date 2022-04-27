@@ -1,9 +1,5 @@
 fileFormatVersion: 2
-<<<<<<<< HEAD:Assets/01.Scenes/Map_01/ReflectionProbe-3.exr.meta
 guid: b2827bd62c4c0d14f81c6bddcad4b649
-========
-guid: 4105bd4158237124e95e4bc83ec8e3f2
->>>>>>>> main:Assets/01.Scenes/Lobby/Lightmap-2_comp_dir.png.meta
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -73,13 +69,8 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-<<<<<<<< HEAD:Assets/01.Scenes/Map_01/ReflectionProbe-3.exr.meta
     textureCompression: 1
     compressionQuality: 100
-========
-    textureCompression: 0
-    compressionQuality: 50
->>>>>>>> main:Assets/01.Scenes/Lobby/Lightmap-2_comp_dir.png.meta
     crunchedCompression: 0
     allowsAlphaSplitting: 0
     overridden: 0
