@@ -20,5 +20,17 @@ public class MinigameEntrance : MonoBehaviour
             Playdata.instance.minigameplayed[1] = true;
             SceneManager.LoadScene("Play_Game02_KYJ_Wack_A_Shark");
         }
+         else if (other.CompareTag("Player") && transform.parent.name == ("MiniGame_Bird"))
+        {
+            Playdata.instance.spawnPointData = 3;
+            Playdata.instance.minigameplayed[2] = true;
+            SceneManager.LoadScene("Player_Game_KYJ_003_BirdBombBowling");
+        }
+         else if (other.CompareTag("Player") && transform.parent.name == ("MiniGame_Parachute"))
+        {
+            Playdata.instance.spawnPointData = 4;
+            Playdata.instance.minigameplayed[3] = true;
+            SceneManager.LoadScene("Player_Game_KYJ_004_ParaglidingTown");
+        }
     }
 }
