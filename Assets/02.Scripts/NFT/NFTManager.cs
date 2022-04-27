@@ -243,7 +243,7 @@ public class NFTManager : MonoBehaviour
         TicketCache.destinations = walletAndTicketInfo.ticketInfo.destinations;
         TicketCache.tokenIds = walletAndTicketInfo.ticketInfo.tokenIds;
 
-        CoinCache.coin = 50;
+        CoinCache.coin = 0.0005;
     }
 
 }

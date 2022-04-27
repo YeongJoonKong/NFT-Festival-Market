@@ -50,7 +50,6 @@ public class Counter : MonoBehaviour
                     int price = item.GetComponent<NFTObject>().GetObjectPrice();
                     infoText.enabled = false;
                     effect.SetActive(false);
-                    CoinCache.coin = 100;
                     if (price > CoinCache.coin)
                     {
                         buyText.text = "코인이 부족합니다!\n미니게임으로 돈을 벌어보세요!";

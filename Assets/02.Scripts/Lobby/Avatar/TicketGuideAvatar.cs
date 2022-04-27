@@ -86,6 +86,7 @@ public class TicketGuideAvatar : MonoBehaviour, SubjectLobby
         int randomIndex = random.Next(1, 5);
 
         Debug.Log(randomIndex);
+        TicketCache.randomIndex = randomIndex;
         string path = string.Format("Assets/07.Json/TicketInfo{0}.json", randomIndex);
         Debug.Log(path);
         FileInfo fi = new FileInfo(path);

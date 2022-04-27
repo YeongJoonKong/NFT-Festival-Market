@@ -30,7 +30,6 @@ public class Inventory : MonoBehaviour
     {
         instance = this;
         gameObject.SetActive(false);
-        CoinCache.coin = 50;
     }
 
     void Update()

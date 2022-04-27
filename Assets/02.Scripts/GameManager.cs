@@ -115,7 +115,9 @@ public class GameManager : MonoBehaviour
 
     IEnumerator Request(double coin)
     {
-        PurchaseTicketModel readJson = LoadJsonFile<PurchaseTicketModel>("Assets/07.json/TicketInfo1.json");
+        int randomIndex = TicketCache.randomIndex;
+        string jsonPath = string.Format("Assets/07.Json/TicketInfo{0}.json", randomIndex);
+        PurchaseTicketModel readJson = LoadJsonFile<PurchaseTicketModel>(jsonPath);
         string walletAddress = readJson.walletInfo.address;
 
         string json = "{\"walletAddress\":\""+walletAddress+"\", \"value\": "+coin+"}";
@@ -125,8 +127,9 @@ public class GameManager : MonoBehaviour
         request.downloadHandler = (DownloadHandler) new DownloadHandlerBuffer();
         request.SetRequestHeader("Content-Type", "application/json");
 
+        CoinCache.coin += coin;
         yield return request.Send();
-
+        Debug.Log(CoinCache.coin);
         Debug.Log(request.responseCode);
     }
 
