@@ -38,45 +38,47 @@ public class PhotonGameManager : MonoBehaviourPunCallbacks
 
 
         Vector3 pos = points[idx].position; //
-        if (Playdata.instance == null)
-        {
-            StartCoroutine(WaitForLoadNextScene());
-        }
-        else
-        {
-            SpawnPlayer();
-        }
 
-        IEnumerator WaitForLoadNextScene()
-        {
-            if (Playdata.instance == null)
-            {
-                yield return new WaitForSeconds(1);
-                StartCoroutine(WaitForLoadNextScene());
-            }
-            else
-            {
-                SpawnPlayer();
-            }
-        }
+        PhotonNetwork.Instantiate("PlayerNetWork", pos, Quaternion.identity, 0);
+        //if (Playdata.instance == null)
+        //{
+        //    StartCoroutine(WaitForLoadNextScene());
+        //}
+        //else
+        //{
+        //    SpawnPlayer();
+        //}
 
-        void SpawnPlayer()
-        {
-            if (Playdata.instance.spawnPointData == 0)
-            {
-                PhotonNetwork.Instantiate("PlayerNetWork", pos, Quaternion.identity, 0);
-            }
-            else if (Playdata.instance.spawnPointData == 1)
-            {
-                PhotonNetwork.Instantiate("PlayerNetWork", molepos, Quaternion.identity, 0);
-            }
-            else if (Playdata.instance.spawnPointData == 2)
-            {
-                PhotonNetwork.Instantiate("PlayerNetWork", sharkpos, Quaternion.identity, 0);
-            }
-        }
+        //IEnumerator WaitForLoadNextScene()
+        //{
+        //    if (Playdata.instance == null)
+        //    {
+        //        yield return new WaitForSeconds(1);
+        //        StartCoroutine(WaitForLoadNextScene());
+        //    }
+        //    else
+        //    {
+        //        SpawnPlayer();
+        //    }
+        //}
 
-            
+        //void SpawnPlayer()
+        //{
+        //    if (Playdata.instance.spawnPointData == 0)
+        //    {
+        //        PhotonNetwork.Instantiate("PlayerNetWork", pos, Quaternion.identity, 0);
+        //    }
+        //    else if (Playdata.instance.spawnPointData == 1)
+        //    {
+        //        PhotonNetwork.Instantiate("PlayerNetWork", molepos, Quaternion.identity, 0);
+        //    }
+        //    else if (Playdata.instance.spawnPointData == 2)
+        //    {
+        //        PhotonNetwork.Instantiate("PlayerNetWork", sharkpos, Quaternion.identity, 0);
+        //    }
+        //}
+
+
     }
     // Start is called before the first frame update
     void Start()
