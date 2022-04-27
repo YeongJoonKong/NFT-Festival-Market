@@ -14,6 +14,7 @@ public class Inventory : MonoBehaviour
     GameObject _wallet = null;
     GameObject _ticket = null;
     GameObject[] _NFT;
+    int index;
 
     public GameObject Wallet {
         get { return _wallet; }
@@ -29,11 +30,12 @@ public class Inventory : MonoBehaviour
     {
         instance = this;
         gameObject.SetActive(false);
+        CoinCache.coin = 50;
     }
 
     void Update()
     {
-       
+       SetWalletInfo();
     }
 
     public void SetWalletInfo() 
@@ -41,25 +43,34 @@ public class Inventory : MonoBehaviour
         if (gameObject.activeInHierarchy) 
         {
             if (WalletCache.address != null) {
-                walletInfo.text = "-지갑 주소-\n" + WalletCache.address + "\n" + "-코인 종류-\n" + WalletCache.secretType + "\n" + "-기타 정보-\n" + WalletCache.description;
+                walletInfo.text = "-지갑 주소-\n" + WalletCache.address + "\n" + "-코인 종류-\n" + WalletCache.secretType + "\n" + "-잔액-\n" + CoinCache.coin + WalletCache.secretType;
             }
 
             GameObject[] nfts = Resources.LoadAll<GameObject>("NFT");
-            if (nfts[0].name.Contains("Ticket")) {
-                nfts[0].GetComponent<Animation>().enabled = false;
-                nfts[0].GetComponent<Animator>().enabled = false;
-                Instantiate(nfts[0], activeNFT.transform);
-            }
 
-            if (OVRInput.GetDown(OVRInput.Button.PrimaryHandTrigger) || OVRInput.GetDown(OVRInput.Button.SecondaryHandTrigger)) 
+            if (OVRInput.GetDown(OVRInput.Button.Four)) 
             {
-                for (int i = 0; i < nfts.Length; i++) {
-                    if (nfts[i].name.Contains("Ticket")) {
-                        nfts[i].GetComponent<Animation>().enabled = false;
-                        nfts[i].GetComponent<Animator>().enabled = false;
-                        Instantiate(nfts[i], activeNFT.transform);
+                // Destroy(nfts[index]);
+                if (index + 1 == nfts.Length)
+                {
+                    index = 0;
+                }
+                else
+                {
+                    index += 1;
+                }
+                int childrenLength = activeNFT.transform.childCount;
+                Debug.Log(childrenLength);
+                if (childrenLength > 0) 
+                {
+                    for (int i = 0; i < childrenLength; i++)
+                    {
+                        Destroy(activeNFT.transform.GetChild(i).gameObject);
                     }
                 }
+                GameObject myNFT = Instantiate(nfts[index], activeNFT.transform, false);
+                myNFT.transform.position = activeNFT.transform.position;
+                myNFT.transform.rotation = activeNFT.transform.rotation;
             }
         }
     }

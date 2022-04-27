@@ -27,6 +27,7 @@ TagManager:
   - TUTORIAL_ITEM
   - Bird
   - COUNTER
+  - INTERACTION
   layers:
   - Default
   - TransparentFX

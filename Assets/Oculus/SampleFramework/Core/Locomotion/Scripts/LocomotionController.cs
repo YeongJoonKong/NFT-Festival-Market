@@ -24,23 +24,56 @@ public class LocomotionController : MonoBehaviour
     public OVRCameraRig CameraRig;
     public CharacterController CharacterController;
     //public CapsuleCollider CharacterController;
-	public OVRPlayerController PlayerController;
-	//public SimpleCapsuleWithStickMovement PlayerController;
+    public OVRPlayerController PlayerController;
+    //public SimpleCapsuleWithStickMovement PlayerController;
 
     void Start()
     {
-        
-        if (CharacterController == null)
+        StartCoroutine(WaitCharacterctrl());
+
+        IEnumerator WaitCharacterctrl()
         {
-            CharacterController = GetComponentInParent<CharacterController>();
-        }
+            if (transform.root.gameObject.GetComponent<CharacterController>() == null)
+            {
+                yield return new WaitForSeconds(1);
+                StartCoroutine(WaitCharacterctrl());
+            }
+            else
+            {
+                if (CharacterController == null)
+                {
+                    CharacterController = GetComponentInParent<CharacterController>();
+                }
+
         Assert.IsNotNull(CharacterController);
-		
-        if (PlayerController == null)
-        {
-            PlayerController = GetComponentInParent<OVRPlayerController>();
+            }
         }
-        Assert.IsNotNull(PlayerController);
+
+        StartCoroutine(Waitplayerctrl());
+
+        IEnumerator Waitplayerctrl()
+        {
+            if (transform.root.gameObject.GetComponent<OVRPlayerController>() == null)
+            {
+                yield return new WaitForSeconds(1);
+                StartCoroutine(Waitplayerctrl());
+            }
+            else
+            {
+                if (PlayerController == null)
+                {
+                    PlayerController = GetComponentInParent<OVRPlayerController>();
+                }
+
+            }
+        }
+
+
+        //if (PlayerController == null)
+        //{
+        //    PlayerController = GetComponentInParent<OVRPlayerController>();
+        //}
+        //Assert.IsNotNull(PlayerController);
         if (CameraRig == null)
         {
             CameraRig = FindObjectOfType<OVRCameraRig>();
@@ -49,5 +82,5 @@ public class LocomotionController : MonoBehaviour
 #if UNITY_EDITOR
         OVRPlugin.SendEvent("locomotion_controller", (SceneManager.GetActiveScene().name == "Locomotion").ToString(), "sample_framework");
 #endif
-	}
+    }
 }

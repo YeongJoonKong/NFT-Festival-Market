@@ -13,6 +13,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using OVRTouchSample;
+using System.Collections;
 #if UNITY_EDITOR
 using UnityEngine.SceneManagement;
 using Photon.Pun;
@@ -73,14 +74,28 @@ namespace OVRTouchSample
 
         private void Start()
         {
-            //포톤뷰있다면
-            if (!(transform.root.gameObject.GetComponent<PhotonView>() == null))
-            {
-                string avatar = PlayerPrefs.GetString("Avatar");
-                print(GameObject.FindGameObjectWithTag(avatar).gameObject);
-                m_animator = GameObject.FindGameObjectsWithTag(avatar)[3].gameObject.GetComponent<Animator>();
+            StartCoroutine(Waithandanimator());
 
+            IEnumerator Waithandanimator()
+            {
+                if (transform.root.gameObject.GetComponent<PhotonView>() == null)
+                {
+                    yield return new WaitForSeconds(1);
+                    StartCoroutine(Waithandanimator());
+                }
+                else
+                {
+                    if (!(transform.root.gameObject.GetComponent<PhotonView>() == null))
+                    {
+                        string avatar = PlayerPrefs.GetString("Avatar");
+                        print(GameObject.FindGameObjectWithTag(avatar).gameObject);
+                        m_animator = GameObject.FindGameObjectsWithTag(avatar)[3].gameObject.GetComponent<Animator>();
+
+                    }
+                }
             }
+
+            //포톤뷰있다면
 
 
             m_showAfterInputFocusAcquired = new List<Renderer>();
@@ -212,6 +227,9 @@ namespace OVRTouchSample
 
         private void UpdateAnimStates()
         {
+            if (m_animator!=null)
+            {
+
             bool grabbing = m_grabber.grabbedObject != null;
             HandPose grabPose = m_defaultGrabPose;
             if (grabbing)
@@ -240,6 +258,7 @@ namespace OVRTouchSample
 
             float pinch = OVRInput.Get(OVRInput.Axis1D.PrimaryIndexTrigger, m_controller);
             m_animator.SetFloat(ANIM_PARAM_NAME_PINCH, pinch);
+            }
         }
 
         private float m_collisionScaleCurrent = 0.0f;
