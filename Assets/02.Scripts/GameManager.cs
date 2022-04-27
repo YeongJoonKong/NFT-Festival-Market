@@ -4,8 +4,11 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using TMPro;
+using Photon.Pun;
+using Photon.Realtime;
 
-public class GameManager : MonoBehaviour
+
+public class GameManager : MonoBehaviourPunCallbacks
 {
 
     enum State
@@ -99,8 +102,29 @@ public class GameManager : MonoBehaviour
 
             if(this.timer > waitTime)
             {
-                SceneManager.LoadScene("Map_01");
+                PhotonNetwork.JoinRandomRoom();
+                //SceneManager.LoadScene("Map_01");
             }
         }
+
+        
+    }
+    public override void OnJoinRandomFailed(short returnCode, string message)
+    {
+        RoomOptions ro = new RoomOptions();
+        ro.IsOpen = true;
+        ro.IsVisible = true;
+        ro.MaxPlayers = 20;
+
+        
+        PhotonNetwork.CreateRoom("room", ro);
+    }
+    public override void OnCreatedRoom()
+    {
+       
+    }
+    public override void OnJoinedRoom()
+    {
+        SceneManager.LoadScene("Map_01");
     }
 }

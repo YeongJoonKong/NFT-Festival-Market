@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using Photon.Pun;
 
 public class MinigameEntrance : MonoBehaviour
 {
@@ -12,7 +13,9 @@ public class MinigameEntrance : MonoBehaviour
         {
             Playdata.instance.spawnPointData = 1;
             Playdata.instance.minigameplayed[0] = true;
+            PhotonNetwork.LeaveRoom();
             SceneManager.LoadScene("Play_Game01KYJ_Wack_A_Mole");
+
         }
         else if (other.CompareTag("Player") && transform.parent.name == ("MiniGame_Shark"))
         {
