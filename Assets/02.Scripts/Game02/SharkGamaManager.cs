@@ -24,6 +24,9 @@ public class SharkGamaManager : MonoBehaviour
 
     SharkManager sharkManager;
 
+    public GameObject SharkGamePlayingGroup;
+    public GameObject SharkGameOverGroup;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -61,6 +64,10 @@ public class SharkGamaManager : MonoBehaviour
         }
         else if(state == State.GAME_OVER)
         {
+            SharkGameOverGroup.SetActive(true);
+            SharkGamePlayingGroup.SetActive(false);
+
+
             timer += Time.deltaTime;
             if(timer > WatingTime)
             {

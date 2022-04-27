@@ -18,20 +18,22 @@ public class SharkScoreManager : MonoBehaviour
     }
 
     [Header("UI Field")]
-    public TextMeshProUGUI HighScoreText;
-    public TextMeshProUGUI CurrentScoreText;
+    public TextMeshProUGUI SharkHighScoreText;
+    public TextMeshProUGUI SharkCurrentScoreText;
+    public TextMeshProUGUI SharkfinalScoreText;
 
-    public int CurrentScore;
-    public int HighScore;
+
+    public int SharkCurrentScore;
+    public int SharkHighScore;
 
 
     // Start is called before the first frame update
     void Start()
     {
-        HighScore = PlayerPrefs.GetInt("HighScore", 0);
-        HighScoreText.text = "High Score : " + HighScore.ToString();
+        SharkHighScore = PlayerPrefs.GetInt("HighScore", 0);
+        SharkHighScoreText.text = "High Score : " + SharkHighScore.ToString();
 
-        CurrentScoreText.text = "Score : 0";
+        SharkCurrentScoreText.text = "Score : 0";
     }
 
     // Update is called once per frame
@@ -42,15 +44,17 @@ public class SharkScoreManager : MonoBehaviour
 
     public void AddScore(int ScorePoint)
     {
-        CurrentScore = CurrentScore + ScorePoint;
-        PlayerPrefs.SetInt("CurrentScore", CurrentScore);
+        SharkCurrentScore = SharkCurrentScore + ScorePoint;
+        PlayerPrefs.SetInt("CurrentScore", SharkCurrentScore);
 
-        CurrentScoreText.text = "Score : " + CurrentScore.ToString();
+        SharkCurrentScoreText.text = "Score : " + SharkCurrentScore.ToString();
 
-        if (CurrentScore > PlayerPrefs.GetInt("HighScore", 0))
+        SharkfinalScoreText.text = "Final Score : " + SharkCurrentScore.ToString();
+
+        if (SharkCurrentScore > PlayerPrefs.GetInt("HighScore", 0))
         {
-            PlayerPrefs.SetInt("HighScore", CurrentScore);
-            HighScoreText.text = "High Score : " + CurrentScore.ToString();
+            PlayerPrefs.SetInt("HighScore", SharkCurrentScore);
+            SharkHighScoreText.text = "High Score : " + SharkCurrentScore.ToString();
         }
     }
 }
