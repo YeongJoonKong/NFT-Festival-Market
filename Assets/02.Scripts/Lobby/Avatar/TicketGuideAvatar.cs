@@ -121,6 +121,8 @@ public class TicketGuideAvatar : MonoBehaviour, SubjectLobby
             TicketCache.metadata = walletAndTicketInfo.ticketInfo.metadata;
             TicketCache.destinations = walletAndTicketInfo.ticketInfo.destinations;
             TicketCache.tokenIds = walletAndTicketInfo.ticketInfo.tokenIds;
+
+            CoinCache.coin = 0.0005;
             
             iPad.SetActive(false);
             anim.ResetTrigger("makeNFT");
