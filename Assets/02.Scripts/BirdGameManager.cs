@@ -17,6 +17,7 @@ public class BirdGameManager : MonoBehaviour
 
     public static float time;
     float timer;
+    float timer2;
     public float timeLimit = 60;
     const float waitTime = 5;
 
@@ -83,9 +84,9 @@ public class BirdGameManager : MonoBehaviour
         {
             BirdGamePlayingGroup.SetActive(false);
             BirdGameOverGroup.SetActive(true);
-            this.timer += Time.deltaTime;
+            this.timer2 += Time.deltaTime;
 
-            if (this.timer > waitTime)
+            if (this.timer2 > waitTime)
             {
                 //SceneManager.LoadScene(SceneManager.GetActiveScene().name);
                 SceneManager.LoadScene("Map_01");

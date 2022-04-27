@@ -18,13 +18,13 @@ public class FireWorkManager : MonoBehaviour
     AudioSource audioSource;
 
     float FireworkCurrentTime;
-    public float FireworkCreatTime = 18;    
+    public float FireworkCreatTime = 8;    
     
     float FireworkCurrentTime2;
-    public float FireworkCreatTime2 = 20;
+    public float FireworkCreatTime2 = 13;
 
     float FireworkCurrentTime3;
-    public float FireworkCreatTime3 = 20;
+    public float FireworkCreatTime3 = 13;
 
     float soundCurrentTime;
     float soundWaitTime = 2;
@@ -74,7 +74,7 @@ public class FireWorkManager : MonoBehaviour
         audioSource.PlayOneShot(FireWorkSound02, 2);
         audioSource.PlayOneShot(FireWorkSound03, 3);
         isOnceCheck = true;
-        Invoke("SoundDelay",19.5f);
+        Invoke("SoundDelay",12.5f);
     }
 
     void SoundDelay()
@@ -86,7 +86,7 @@ public class FireWorkManager : MonoBehaviour
     {
         FireWork01.SetActive(true);
         FireWork02.SetActive(true);
-        Invoke("FireWorkDisactive", 7);
+        Invoke("FireWorkDisactive", 6);
     }
 
     void FireWorkDisactive()
@@ -99,7 +99,7 @@ public class FireWorkManager : MonoBehaviour
     {
         FireWork03.SetActive(true);
         FireWork04.SetActive(true);
-        Invoke("FireWorkDisactive2", 7);
+        Invoke("FireWorkDisactive2", 6);
     }
 
     void FireWorkDisactive2()
