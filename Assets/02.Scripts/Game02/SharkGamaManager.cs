@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using TMPro;
 
 public class SharkGamaManager : MonoBehaviour
 {
@@ -19,6 +20,8 @@ public class SharkGamaManager : MonoBehaviour
     public float sharkTimeLimit = 40;
     public float WatingTime = 5.0f;
 
+    public TextMeshProUGUI RemainingSharkTimeText;
+
     SharkManager sharkManager;
 
     // Start is called before the first frame update
@@ -27,6 +30,8 @@ public class SharkGamaManager : MonoBehaviour
         this.state = State.START;
         this.timer = 0;
         sharkManager = GameObject.Find("SharkGameManager").GetComponent<SharkManager>();
+        RemainingSharkTimeText.text = "Time : 0";
+
     }
 
 
@@ -52,6 +57,7 @@ public class SharkGamaManager : MonoBehaviour
                 
                 this.timer = 0;
             }
+            RemainingSharkTimeText.text = "Time : " + ((int)(sharkTimeLimit - timer));
         }
         else if(state == State.GAME_OVER)
         {
