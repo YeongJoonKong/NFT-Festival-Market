@@ -3,8 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using TMPro;
+using Photon.Pun;
+using Photon.Realtime;
 
-public class SharkGamaManager : MonoBehaviour
+public class SharkGamaManager : MonoBehaviourPunCallbacks
 {
     enum State
     {
@@ -64,8 +66,26 @@ public class SharkGamaManager : MonoBehaviour
             timer += Time.deltaTime;
             if(timer > WatingTime)
             {
-                SceneManager.LoadScene("Map_01");
+                PhotonNetwork.JoinRandomRoom();
             }
         }
+    }
+    public override void OnJoinRandomFailed(short returnCode, string message)
+    {
+        RoomOptions ro = new RoomOptions();
+        ro.IsOpen = true;
+        ro.IsVisible = true;
+        ro.MaxPlayers = 20;
+
+
+        PhotonNetwork.CreateRoom("room", ro);
+    }
+    public override void OnCreatedRoom()
+    {
+
+    }
+    public override void OnJoinedRoom()
+    {
+        PhotonNetwork.LoadLevel("Map_01");
     }
 }

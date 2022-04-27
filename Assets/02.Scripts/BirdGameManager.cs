@@ -3,8 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using TMPro;
+using Photon.Pun;
+using Photon.Realtime;
 
-public class BirdGameManager : MonoBehaviour
+public class BirdGameManager : MonoBehaviourPunCallbacks
 {
     enum State
     {
@@ -96,17 +98,28 @@ public class BirdGameManager : MonoBehaviour
             if (this.timer2 > waitTime)
             {
                 //SceneManager.LoadScene(SceneManager.GetActiveScene().name);
-                SceneManager.LoadScene("Map_01");
+                PhotonNetwork.JoinRandomRoom();
             }
         }
     }
+    public override void OnJoinRandomFailed(short returnCode, string message)
+    {
+        RoomOptions ro = new RoomOptions();
+        ro.IsOpen = true;
+        ro.IsVisible = true;
+        ro.MaxPlayers = 20;
 
 
+        PhotonNetwork.CreateRoom("room", ro);
+    }
+    public override void OnCreatedRoom()
+    {
 
-
-
-
-
+    }
+    public override void OnJoinedRoom()
+    {
+        PhotonNetwork.LoadLevel("Map_01");
+    }
 
 
 
