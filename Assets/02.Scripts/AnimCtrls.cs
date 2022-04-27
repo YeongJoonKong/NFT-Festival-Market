@@ -29,7 +29,24 @@ public class AnimCtrls : MonoBehaviour
         anim = GetComponent<Animator>();
         tr = GetComponent<Transform>();
 
-        player = GameObject.FindWithTag("Player");
+        StartCoroutine(Findplayer());
+
+
+        IEnumerator Findplayer()
+        {
+            if (GameObject.FindWithTag("Player") == null)
+            {
+                yield return new WaitForSeconds(1);
+                StartCoroutine(Findplayer());
+            }
+            else
+            {
+                //if (!(GameObject.FindWithTag("Player") == null))
+                {
+                    player = GameObject.FindWithTag("Player");
+                }
+            }
+        }
         npctext = GetComponentInChildren<NpcDialugeManager>();
         canvas = GetComponentInChildren<Canvas>();
 

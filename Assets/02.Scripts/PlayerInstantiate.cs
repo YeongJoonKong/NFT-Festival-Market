@@ -156,8 +156,8 @@ public class PlayerInstantiate : MonoBehaviour, IPunObservable
             stream.SendNext(rightHandTr.rotation);
             stream.SendNext(rightHandTr.position);
 
-            stream.SendNext(rightHandAnchor.rotation);
-            stream.SendNext(rightHandAnchor.position);
+            //stream.SendNext(rightHandAnchor.rotation);
+            //stream.SendNext(rightHandAnchor.position);
 
             
             //stream.SendNext(lr.enabled);
@@ -179,11 +179,11 @@ public class PlayerInstantiate : MonoBehaviour, IPunObservable
             curRotRightHand = (Quaternion)stream.ReceiveNext();
             curPosRightHand = (Vector3)stream.ReceiveNext();
 
-            curRotRightHandAnchor = (Quaternion)stream.ReceiveNext();
-            curPosRightHandAnchor = (Vector3)stream.ReceiveNext();
+            //curRotRightHandAnchor = (Quaternion)stream.ReceiveNext();
+            //curPosRightHandAnchor = (Vector3)stream.ReceiveNext();
 
-            curPosRightHandAnchor = (Vector3)stream.ReceiveNext();
-            curPosRightHandAnchor = (Vector3)stream.ReceiveNext();
+            //curPosRightHandAnchor = (Vector3)stream.ReceiveNext();
+            //curPosRightHandAnchor = (Vector3)stream.ReceiveNext();
 
             //lineEnabled= (bool)stream.ReceiveNext();
             //line0 = (Vector3)stream.ReceiveNext();

@@ -227,6 +227,9 @@ namespace OVRTouchSample
 
         private void UpdateAnimStates()
         {
+            if (m_animator!=null)
+            {
+
             bool grabbing = m_grabber.grabbedObject != null;
             HandPose grabPose = m_defaultGrabPose;
             if (grabbing)
@@ -255,6 +258,7 @@ namespace OVRTouchSample
 
             float pinch = OVRInput.Get(OVRInput.Axis1D.PrimaryIndexTrigger, m_controller);
             m_animator.SetFloat(ANIM_PARAM_NAME_PINCH, pinch);
+            }
         }
 
         private float m_collisionScaleCurrent = 0.0f;
