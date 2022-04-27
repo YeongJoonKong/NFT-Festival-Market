@@ -4,6 +4,9 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using TMPro;
+using UnityEngine.Networking;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 
 public class GameManager : MonoBehaviour
 {
@@ -99,8 +102,69 @@ public class GameManager : MonoBehaviour
 
             if(this.timer > waitTime)
             {
+                int totalScore = WackAMoleScoreManager.instance.CurrentScore;
+                //290 ~390
+                int coin = totalScore / 1000000;
+
+                // WWWForm form = new WWWForm();
+                
+                // PurchaseTicketModel readJson = LoadJsonFile<PurchaseTicketModel>("Assets/07.json/TicketInfo1.json");
+
+                // string walletInfo = JsonConvert.SerializeObject(readJson.walletInfo);
+                // form.AddField("walletInfo", walletInfo);
+                // form.AddField("filename", filename);
+                
+                PurchaseTicketModel readJson = LoadJsonFile<PurchaseTicketModel>("Assets/07.json/TicketInfo1.json");
+                string walletAddress = JsonConvert.SerializeObject(readJson.walletInfo.address);
+                
+                
+
+                using (UnityWebRequest request = UnityWebRequest.Post(Constant.BASE_URL + Constant.EXECUTE_TRANSFER_COIN_TO_PLAYER))
+                {
+                }
+                // using (UnityWebRequest request = UnityWebRequest.Post(Constant.BASE_URL + Constant.CREATE_NFT_OBJECT_CONTRACT, form))
+                // {
+                //     yield return request.SendWebRequest();
+
+                //     if (request.result != UnityWebRequest.Result.Success){
+                //         MakeFailedResponse();
+                //     } else {
+                //         var result = new JObject();
+                //         result.Merge(JObject.Parse(request.downloadHandler.text));
+                //         result.Merge(JObject.Parse(walletInfo));
+
+                //         string res = JsonConvert.SerializeObject(result);
+                //         UnityWebRequest request1 = new UnityWebRequest(Constant.BASE_URL + Constant.CREATE_NFT_OBJECT, "POST");
+                        
+                //         byte[] encodedRequest = new System.Text.UTF8Encoding().GetBytes(res);
+                //         request1.uploadHandler = (UploadHandler)new UploadHandlerRaw(encodedRequest);
+                //         request1.downloadHandler = new DownloadHandlerBuffer();
+                //         request1.SetRequestHeader("Content-Type", "application/json");
+
+                //         yield return request1.SendWebRequest();
+
+                //         if (request1.result != UnityWebRequest.Result.Success) {
+
+                //         } else {
+                //             CreateJsonFile(Constant.SAVE_JSON_PATH, "NFTInfo_"+filename, request1.downloadHandler.text);
+                //         }
+                //     }
+                // }
+                ///execute/transfer/coin
                 SceneManager.LoadScene("Map_01");
             }
         }
+    }
+
+    
+
+    T LoadJsonFile<T>(string loadPath)
+    {
+        FileStream fileStream = new FileStream(string.Format("{0}", loadPath), FileMode.Open);
+        byte[] data = new byte[fileStream.Length];
+        fileStream.Read(data, 0, data.Length);
+        fileStream.Close();
+        string jsonData = Encoding.UTF8.GetString(data);
+        return JsonConvert.DeserializeObject<T>(jsonData);
     }
 }
