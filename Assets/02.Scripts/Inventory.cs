@@ -67,9 +67,17 @@ public class Inventory : MonoBehaviour
                         Destroy(activeNFT.transform.GetChild(i).gameObject);
                     }
                 }
+                
                 GameObject myNFT = Instantiate(nfts[index], activeNFT.transform, false);
                 myNFT.transform.position = activeNFT.transform.position;
-                myNFT.transform.rotation = activeNFT.transform.rotation;
+                if (myNFT.gameObject.name.Contains("Ticket"))
+                {
+                    myNFT.transform.rotation = activeNFT.transform.rotation * Quaternion.Euler(0, 180, 0);    
+                }
+                else
+                {
+                    myNFT.transform.rotation = activeNFT.transform.rotation;
+                }
             }
         }
     }

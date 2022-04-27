@@ -176,8 +176,12 @@ public class NFTManager : MonoBehaviour
         GameObject particleSystem = nftTicket.transform.Find("Particle System").gameObject;
         particleSystem.SetActive(false);
 
+        nftTicket.GetComponent<Animation>().enabled = false;
+        nftTicket.GetComponent<Animator>().enabled = false;
         CreateNFTTicketPrefab(nftTicket);
 
+        nftTicket.GetComponent<Animation>().enabled = true;
+        nftTicket.GetComponent<Animator>().enabled = true;
         particleSystem.SetActive(true);
 
         nftTicket.SetActive(false);
