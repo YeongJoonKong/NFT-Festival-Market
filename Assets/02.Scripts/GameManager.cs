@@ -125,6 +125,6 @@ public class GameManager : MonoBehaviourPunCallbacks
     }
     public override void OnJoinedRoom()
     {
-        SceneManager.LoadScene("Map_01");
+        PhotonNetwork.LoadLevel("Map_01");
     }
 }
