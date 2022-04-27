@@ -50,6 +50,8 @@ public class BirdGameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        
+
         if (this.state == State.START)
         {
             this.state = State.PLAY;
@@ -66,6 +68,11 @@ public class BirdGameManager : MonoBehaviour
             if(SignCurrentTime > SignWaitTime)
             {
                 Sign.SetActive(false);
+            }
+
+            if (birdScoreManager.instance.BdCurrentScore >= 180)
+            {
+                this.state = State.GAMEOVER;
             }
 
             if (this.timer > timeLimit)
