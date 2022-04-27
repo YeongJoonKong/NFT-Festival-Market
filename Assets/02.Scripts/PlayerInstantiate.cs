@@ -17,7 +17,7 @@ public class PlayerInstantiate : MonoBehaviour, IPunObservable
     public GameObject[] avatars;
     string avatar;
     public GameObject CameaRig;
-    public float CamrigHigh;
+    public float userHigh;
     public Transform rightHandAnchor;
 
     int count;
@@ -52,7 +52,7 @@ public class PlayerInstantiate : MonoBehaviour, IPunObservable
             CameaRig = GameObject.Find("OVRCameraRigNetWork");
 
             CameaRig.transform.parent = transform;
-            CameaRig.transform.position = transform.position + new Vector3(0, CamrigHigh, 0);
+            CameaRig.transform.position = transform.position + new Vector3(0, (userHigh - 154f)/100f, 0);
             rightHandAnchor = GameObject.Find("RightHandAnchor").transform;
             AudioListener.volume = 1;
 
