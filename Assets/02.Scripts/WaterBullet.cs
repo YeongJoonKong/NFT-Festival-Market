@@ -10,7 +10,7 @@ public class WaterBullet : MonoBehaviour
 
     IEnumerator Hit(Vector3 target)
     {
-        SharkScoreManager.Instance.AddScore(1);
+        SharkScoreManager.Instance.AddScore(10);
         GameObject hittingEffect = Instantiate(HittingEffect, transform.position, Quaternion.identity);
         Destroy(this.gameObject);
         yield return new WaitForSeconds(0.1f);
