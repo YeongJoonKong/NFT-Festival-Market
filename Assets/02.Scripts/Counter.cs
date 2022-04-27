@@ -47,7 +47,7 @@ public class Counter : MonoBehaviour
                 {
                     count += 1;
                     // isSpawnItem = true;
-                    int price = item.GetComponent<NFTObject>().GetObjectPrice();
+                    double price = item.GetComponent<NFTObject>().GetObjectPrice();
                     infoText.enabled = false;
                     effect.SetActive(false);
                     if (price > CoinCache.coin)
@@ -98,6 +98,8 @@ public class Counter : MonoBehaviour
                 yesBubble.GetComponentInChildren<TextMeshPro>().text = "감사합니다!";
                 buyText.enabled = true;
                 yesBubble.SetActive(true);
+                double price = item.GetComponent<NFTObject>().GetObjectPrice();
+                CoinCache.coin -= price;
                 break;
             }
 

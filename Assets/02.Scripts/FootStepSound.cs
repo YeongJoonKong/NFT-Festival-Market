@@ -43,14 +43,11 @@ public class FootStepSound : MonoBehaviour
 
                 if (hit.collider.TryGetComponent<Terrain>(out Terrain terrain))
                 {
-                    print("terrain");
                     yield return StartCoroutine(PlayerFootStepSoundfromTerrain(terrain, hit.point));
 
                 }
                 else if (hit.collider.TryGetComponent<Renderer>(out Renderer renderer))
                 {
-                    print("renderer");
-
                     yield return StartCoroutine(PlayerFootStepSoundfromRenderer(renderer));
                 }
             }

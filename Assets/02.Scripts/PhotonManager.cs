@@ -65,10 +65,10 @@ public class PhotonManager : MonoBehaviourPunCallbacks
     {
         Debug.Log($"code={returnCode},message={message}");
         //��Ӽ�����
-        RoomOptions ro = new RoomOptions();
-        ro.IsOpen = true;
-        ro.IsVisible = true;
-        ro.MaxPlayers = 20;
+        // RoomOptions ro = new RoomOptions();
+        // ro.IsOpen = true;
+        // ro.IsVisible = true;
+        // ro.MaxPlayers = 20;
 
         //����� �Լ�
         OnMakeeRoomButtonClick();
@@ -153,7 +153,13 @@ public class PhotonManager : MonoBehaviourPunCallbacks
             // StartCoroutine(Loading(cols));
 
             //SetUserID();
-            PhotonNetwork.JoinRandomRoom();
+            // PhotonNetwork.JoinRandomRoom();
+
+            RoomOptions ro = new RoomOptions();
+            ro.IsOpen = true;
+            ro.IsVisible = true;
+            ro.MaxPlayers = 20;
+            PhotonNetwork.JoinRandomOrCreateRoom(roomOptions: ro);
         }
         //SceneManager.LoadScene("Map_01");
     }

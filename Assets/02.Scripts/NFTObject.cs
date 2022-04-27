@@ -101,12 +101,12 @@ public class NFTObject : MonoBehaviour
         }
     }
     
-    public int GetObjectPrice()
+    public double GetObjectPrice()
     {
         TextMeshPro[] infos = gameObject.GetComponentsInChildren<TextMeshPro>();
         foreach (TextMeshPro info in infos) {
-            if (info.text.Contains("Coin")) {
-                int price = Int32.Parse(info.text.Replace(" Coin", ""));
+            if (info.text.Contains("MATIC")) {
+                double price = Double.Parse(info.text.Replace(" MATIC", ""));
                 return price;
             }
         }
