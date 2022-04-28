@@ -136,7 +136,7 @@ public class PlayerInstantiate : MonoBehaviour, IPunObservable
                 if (avatars[i].tag == avatar)
                 {
 
-                    ChangeLayer(avatars[i].transform, "Default");
+                    ChangeLayer(avatars[i].transform);
 
 
                 }
@@ -150,13 +150,15 @@ public class PlayerInstantiate : MonoBehaviour, IPunObservable
 
     }
 
-    public void ChangeLayer(Transform trans,string name)
+    public void ChangeLayer(Transform trans)
     {
-        trans.gameObject.layer = LayerMask.NameToLayer(name);
-        foreach (Transform child in trans)
+        Transform[] childtrans= trans.gameObject.GetComponentsInChildren<Transform>();
+
+        for (int i = 0; i < childtrans.Length; i++)
         {
-            ChangeLayer(child, name);
+            childtrans[i].gameObject.layer = 0;
         }
+       
     }
 
     
