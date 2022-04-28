@@ -579,7 +579,7 @@ namespace Photon.Pun
             }
 
             object obj = this.readData[this.currentItem];
-            Debug.Log(obj);
+            
             this.currentItem++;
             return obj;
         }

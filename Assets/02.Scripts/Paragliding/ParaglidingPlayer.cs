@@ -23,8 +23,8 @@ public class ParaglidingPlayer : MonoBehaviourPunCallbacks
     // Start is called before the first frame update
     void Start()
     {
-        infoText.text = "���� ���ʿ� �ִ� �ɿ� ������ ������ �ϼ���!";
-       
+        infoText.text = "마을 북쪽에 있는 꽃에 무사히 착지를 하세요!";
+
     }
 
     // Update is called once per frame
@@ -47,28 +47,28 @@ public class ParaglidingPlayer : MonoBehaviourPunCallbacks
             if(restartTimer < 0)
             {
                 if (isGameOver && !checkphoton) {
-                    // checkphoton = true;
+                    checkphoton = true;
                     RoomOptions ro = new RoomOptions();
                     ro.IsOpen = true;
                     ro.IsVisible = true;
                     ro.MaxPlayers = 20;
                     
-                    PhotonNetwork.JoinRandomOrCreateRoom(roomOptions: ro);
+                    //PhotonNetwork.JoinRandomOrCreateRoom(roomOptions: ro);
                     PhotonNetwork.JoinRandomRoom();
-                    
+
                 }
             }
             else
             {
-                if(won == true)
+                if (won == true)
                 {
-                    infoText.text = "���߾��! �����߾��!";
-                    infoText.text += "\n������ �ٽ� ���ư��ϴ�." + Mathf.Ceil(restartTimer);
+                    infoText.text = "잘했어요! 성공했어요!";
+                    infoText.text += "\n마을로 다시 돌아갑니다." + Mathf.Ceil(restartTimer);
                 }
                 else
                 {
-                    infoText.text = "�ƽ��׿� ������ �ٽ��ѹ� �غ�����!";
-                    infoText.text += "\n������ �ٽ� ���ư��ϴ�." + Mathf.Ceil(restartTimer);
+                    infoText.text = "아쉽네요 다음에 다시한번 해보세요!";
+                    infoText.text += "\n마을로 다시 돌아갑니다." + Mathf.Ceil(restartTimer);
                 }
             }
         }

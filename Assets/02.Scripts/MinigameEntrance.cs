@@ -4,7 +4,8 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using Photon.Pun;
 
-public class MinigameEntrance : MonoBehaviour
+
+public class MinigameEntrance : MonoBehaviourPunCallbacks
 {
     private OVRManager controller;
     void OnTriggerEnter(Collider other)
@@ -36,7 +37,13 @@ public class MinigameEntrance : MonoBehaviour
             Playdata.instance.spawnPointData = 4;
             Playdata.instance.minigameplayed[3] = true;
             PhotonNetwork.LeaveRoom();
-            SceneManager.LoadScene("Player_Game_KYJ_004_ParaglidingTown");
+            //SceneManager.LoadScene("Player_Game_KYJ_004_ParaglidingTown");
         }
+        
+    }
+    public override void OnLeftRoom()
+    {
+        SceneManager.LoadScene("Player_Game_KYJ_004_ParaglidingTown");
     }
 }
+
