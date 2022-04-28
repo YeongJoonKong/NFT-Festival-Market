@@ -131,18 +131,14 @@ public class PlayerInstantiate : MonoBehaviour, IPunObservable
             vrik.solver.leftArm.target = FalseLeftRig;
             vrik.solver.rightArm.target = FalseRightRig;
 
-            for (int i = 0; i < avatars.Length; i++)
+
+
+            VRIK activeAvatartr = transform.GetComponentInChildren<VRIK>();
+            Transform[] avatarLayertarget = activeAvatartr.transform.GetComponentsInChildren<Transform>();
+            for (int i = 0; i < avatarLayertarget.Length; i++)
             {
-                if (avatars[i].tag == avatar)
-                {
-
-                    ChangeLayer(avatars[i].transform);
-
-
-                }
-
+                avatarLayertarget[i].gameObject.layer = 0;
             }
-
 
         }
 
@@ -150,16 +146,7 @@ public class PlayerInstantiate : MonoBehaviour, IPunObservable
 
     }
 
-    public void ChangeLayer(Transform trans)
-    {
-        Transform[] childtrans= trans.gameObject.GetComponentsInChildren<Transform>();
-
-        for (int i = 0; i < childtrans.Length; i++)
-        {
-            childtrans[i].gameObject.layer = 0;
-        }
-       
-    }
+    
 
     
     //�Ӹ�����ȭ����
