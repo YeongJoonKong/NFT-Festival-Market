@@ -52,7 +52,7 @@ public class PlayerInstantiate : MonoBehaviour, IPunObservable
             CameaRig = GameObject.Find("OVRCameraRigNetWork");
 
             CameaRig.transform.parent = transform;
-            CameaRig.transform.position = transform.position + new Vector3(0, (userHigh - 154f)/100f, 0);
+            CameaRig.transform.position = transform.position + new Vector3(0, (userHigh - 154f) / 100f, 0);
             rightHandAnchor = GameObject.Find("RightHandAnchor").transform;
             AudioListener.volume = 1;
 
@@ -102,7 +102,7 @@ public class PlayerInstantiate : MonoBehaviour, IPunObservable
                 count = i;
                 this.avatars[i].SetActive(true);
 
-                
+
             }
 
         }
@@ -110,7 +110,7 @@ public class PlayerInstantiate : MonoBehaviour, IPunObservable
 
 
 
-  
+
     void Start()
     {
 
@@ -122,7 +122,7 @@ public class PlayerInstantiate : MonoBehaviour, IPunObservable
             vrik.solver.leftArm.target = leftHandTr;
             vrik.solver.rightArm.target = rightHandTr;
 
-            
+
         }
         else
         {
@@ -131,18 +131,14 @@ public class PlayerInstantiate : MonoBehaviour, IPunObservable
             vrik.solver.leftArm.target = FalseLeftRig;
             vrik.solver.rightArm.target = FalseRightRig;
 
-            for (int i = 0; i < avatars.Length; i++)
+
+
+            VRIK activeAvatartr = transform.GetComponentInChildren<VRIK>();
+            Transform[] avatarLayertarget = activeAvatartr.transform.GetComponentsInChildren<Transform>();
+            for (int i = 0; i < avatarLayertarget.Length; i++)
             {
-                if (avatars[i].tag == avatar)
-                {
-
-                    ChangeLayer(avatars[i].transform, "Default");
-
-
-                }
-
+                avatarLayertarget[i].gameObject.layer = 0;
             }
-
 
         }
 
@@ -150,24 +146,17 @@ public class PlayerInstantiate : MonoBehaviour, IPunObservable
 
     }
 
-    public void ChangeLayer(Transform trans,string name)
-    {
-        trans.gameObject.layer = LayerMask.NameToLayer(name);
-        foreach (Transform child in trans)
-        {
-            ChangeLayer(child, name);
-        }
-    }
 
-    
-    //�Ӹ�����ȭ����
+
+
+    // Ӹ     ȭ    
     private Quaternion currRotHead;
     private Vector3 curPosHead;
-    //�޼յ���ȭ����
+    // ޼յ   ȭ    
     private Quaternion curRotLeftHand;
     private Vector3 curPosLeftHand;
 
-    //�����յ���ȭ����
+    //     յ   ȭ    
     private Quaternion curRotRightHand;
     private Vector3 curPosRightHand;
 
@@ -192,7 +181,7 @@ public class PlayerInstantiate : MonoBehaviour, IPunObservable
             //stream.SendNext(rightHandAnchor.rotation);
             //stream.SendNext(rightHandAnchor.position);
 
-            
+
             //stream.SendNext(lr.enabled);
             //stream.SendNext(lr.GetPosition(0));
             //stream.SendNext(lr.GetPosition(1));
@@ -312,7 +301,7 @@ public class PlayerInstantiate : MonoBehaviour, IPunObservable
                         {
                             if (item.transform.position == counters[index].GetComponent<Counter>().spawnPosition.transform.position)
                             {
-                                
+
                                 counters[index].GetComponent<Counter>().restoreCounterEffect(item);
                                 counters[index].GetComponent<Counter>().isMakingNFT = false;
                                 counters[index].GetComponent<Counter>().yesBubble.GetComponentInChildren<TextMeshPro>().text = "네!";
@@ -337,7 +326,7 @@ public class PlayerInstantiate : MonoBehaviour, IPunObservable
                         {
                             if (item.transform.position == counters[index].GetComponent<Counter>().spawnPosition.transform.position)
                             {
-                                
+
                                 counters[index].GetComponent<Counter>().restoreCounterEffect(item);
                                 break;
                             }
@@ -346,7 +335,7 @@ public class PlayerInstantiate : MonoBehaviour, IPunObservable
                     }
                 }
             }
-            else // ���
+            else //    
             {
                 lr.enabled = true;
                 lr.SetPosition(1, ray.origin + ray.direction * 50);
@@ -422,5 +411,4 @@ public class PlayerInstantiate : MonoBehaviour, IPunObservable
 
     }
 }
-
 
